@@ -1,0 +1,1671 @@
+[config] run=/WORK/PUBLIC/lijuanzi1_work/dz/SAERL/SAERL-0801/runs/selection/qwen2_5/20260815-031029-164461 features=/WORK/PUBLIC/lijuanzi1_work/dz/SAERL/SAERL-0801/runs/selection/qwen2_5/20260815-031029-164461/feature_selection/energy_feature_indices.npy source_F=98,304 selected_K=256
+[features] min=476 max=97,910 sha256=0e873f9f10d9c6e136330dbf4275ee3b3e52a4068c99f68f3800b843e06865a4
+[discover] shards=1,197 rows=103,014
+[project] shards=1/1,197 rows=64/103,014
+[project] shards=59/1,197 rows=3,776/103,014
+[project] shards=118/1,197 rows=7,552/103,014
+[project] shards=177/1,197 rows=11,328/103,014
+[project] shards=236/1,197 rows=15,104/103,014
+[project] shards=295/1,197 rows=18,880/103,014
+[project] shards=354/1,197 rows=22,656/103,014
+[project] shards=413/1,197 rows=26,432/103,014
+[project] shards=472/1,197 rows=30,208/103,014
+[project] shards=531/1,197 rows=33,984/103,014
+[project] shards=590/1,197 rows=37,760/103,014
+[project] shards=649/1,197 rows=41,536/103,014
+[project] shards=708/1,197 rows=45,312/103,014
+[project] shards=767/1,197 rows=49,088/103,014
+[project] shards=826/1,197 rows=55,552/103,014
+[project] shards=885/1,197 rows=63,104/103,014
+[project] shards=944/1,197 rows=70,656/103,014
+[project] shards=1,003/1,197 rows=78,208/103,014
+[project] shards=1,062/1,197 rows=85,760/103,014
+[project] shards=1,121/1,197 rows=93,312/103,014
+[project] shards=1,180/1,197 rows=100,864/103,014
+[project] shards=1,197/1,197 rows=103,014/103,014
+[project] complete active=69,692 source-silent=33,322 projected-zero=0 observed-features=256
+Materialized CUDA rows 128/69,692
+Materialized CUDA rows 256/69,692
+Materialized CUDA rows 384/69,692
+Materialized CUDA rows 512/69,692
+Materialized CUDA rows 640/69,692
+Materialized CUDA rows 768/69,692
+Materialized CUDA rows 896/69,692
+Materialized CUDA rows 1,024/69,692
+Materialized CUDA rows 1,152/69,692
+Materialized CUDA rows 1,280/69,692
+Materialized CUDA rows 1,408/69,692
+Materialized CUDA rows 1,536/69,692
+Materialized CUDA rows 1,664/69,692
+Materialized CUDA rows 1,792/69,692
+Materialized CUDA rows 1,920/69,692
+Materialized CUDA rows 2,048/69,692
+Materialized CUDA rows 2,176/69,692
+Materialized CUDA rows 2,304/69,692
+Materialized CUDA rows 2,432/69,692
+Materialized CUDA rows 2,560/69,692
+Materialized CUDA rows 2,688/69,692
+Materialized CUDA rows 2,816/69,692
+Materialized CUDA rows 2,944/69,692
+Materialized CUDA rows 3,072/69,692
+Materialized CUDA rows 3,200/69,692
+Materialized CUDA rows 3,328/69,692
+Materialized CUDA rows 3,456/69,692
+Materialized CUDA rows 3,584/69,692
+Materialized CUDA rows 3,712/69,692
+Materialized CUDA rows 3,840/69,692
+Materialized CUDA rows 3,968/69,692
+Materialized CUDA rows 4,096/69,692
+Materialized CUDA rows 4,224/69,692
+Materialized CUDA rows 4,352/69,692
+Materialized CUDA rows 4,480/69,692
+Materialized CUDA rows 4,608/69,692
+Materialized CUDA rows 4,736/69,692
+Materialized CUDA rows 4,864/69,692
+Materialized CUDA rows 4,992/69,692
+Materialized CUDA rows 5,120/69,692
+Materialized CUDA rows 5,248/69,692
+Materialized CUDA rows 5,376/69,692
+Materialized CUDA rows 5,504/69,692
+Materialized CUDA rows 5,632/69,692
+Materialized CUDA rows 5,760/69,692
+Materialized CUDA rows 5,888/69,692
+Materialized CUDA rows 6,016/69,692
+Materialized CUDA rows 6,144/69,692
+Materialized CUDA rows 6,272/69,692
+Materialized CUDA rows 6,400/69,692
+Materialized CUDA rows 6,528/69,692
+Materialized CUDA rows 6,656/69,692
+Materialized CUDA rows 6,784/69,692
+Materialized CUDA rows 6,912/69,692
+Materialized CUDA rows 7,040/69,692
+Materialized CUDA rows 7,168/69,692
+Materialized CUDA rows 7,296/69,692
+Materialized CUDA rows 7,424/69,692
+Materialized CUDA rows 7,552/69,692
+Materialized CUDA rows 7,680/69,692
+Materialized CUDA rows 7,808/69,692
+Materialized CUDA rows 7,936/69,692
+Materialized CUDA rows 8,064/69,692
+Materialized CUDA rows 8,192/69,692
+Materialized CUDA rows 8,320/69,692
+Materialized CUDA rows 8,448/69,692
+Materialized CUDA rows 8,576/69,692
+Materialized CUDA rows 8,704/69,692
+Materialized CUDA rows 8,832/69,692
+Materialized CUDA rows 8,960/69,692
+Materialized CUDA rows 9,088/69,692
+Materialized CUDA rows 9,216/69,692
+Materialized CUDA rows 9,344/69,692
+Materialized CUDA rows 9,472/69,692
+Materialized CUDA rows 9,600/69,692
+Materialized CUDA rows 9,728/69,692
+Materialized CUDA rows 9,856/69,692
+Materialized CUDA rows 9,984/69,692
+Materialized CUDA rows 10,112/69,692
+Materialized CUDA rows 10,240/69,692
+Materialized CUDA rows 10,368/69,692
+Materialized CUDA rows 10,496/69,692
+Materialized CUDA rows 10,624/69,692
+Materialized CUDA rows 10,752/69,692
+Materialized CUDA rows 10,880/69,692
+Materialized CUDA rows 11,008/69,692
+Materialized CUDA rows 11,136/69,692
+Materialized CUDA rows 11,264/69,692
+Materialized CUDA rows 11,392/69,692
+Materialized CUDA rows 11,520/69,692
+Materialized CUDA rows 11,648/69,692
+Materialized CUDA rows 11,776/69,692
+Materialized CUDA rows 11,904/69,692
+Materialized CUDA rows 12,032/69,692
+Materialized CUDA rows 12,160/69,692
+Materialized CUDA rows 12,288/69,692
+Materialized CUDA rows 12,416/69,692
+Materialized CUDA rows 12,544/69,692
+Materialized CUDA rows 12,672/69,692
+Materialized CUDA rows 12,800/69,692
+Materialized CUDA rows 12,928/69,692
+Materialized CUDA rows 13,056/69,692
+Materialized CUDA rows 13,184/69,692
+Materialized CUDA rows 13,312/69,692
+Materialized CUDA rows 13,440/69,692
+Materialized CUDA rows 13,568/69,692
+Materialized CUDA rows 13,696/69,692
+Materialized CUDA rows 13,824/69,692
+Materialized CUDA rows 13,952/69,692
+Materialized CUDA rows 14,080/69,692
+Materialized CUDA rows 14,208/69,692
+Materialized CUDA rows 14,336/69,692
+Materialized CUDA rows 14,464/69,692
+Materialized CUDA rows 14,592/69,692
+Materialized CUDA rows 14,720/69,692
+Materialized CUDA rows 14,848/69,692
+Materialized CUDA rows 14,976/69,692
+Materialized CUDA rows 15,104/69,692
+Materialized CUDA rows 15,232/69,692
+Materialized CUDA rows 15,360/69,692
+Materialized CUDA rows 15,488/69,692
+Materialized CUDA rows 15,616/69,692
+Materialized CUDA rows 15,744/69,692
+Materialized CUDA rows 15,872/69,692
+Materialized CUDA rows 16,000/69,692
+Materialized CUDA rows 16,128/69,692
+Materialized CUDA rows 16,256/69,692
+Materialized CUDA rows 16,384/69,692
+Materialized CUDA rows 16,512/69,692
+Materialized CUDA rows 16,640/69,692
+Materialized CUDA rows 16,768/69,692
+Materialized CUDA rows 16,896/69,692
+Materialized CUDA rows 17,024/69,692
+Materialized CUDA rows 17,152/69,692
+Materialized CUDA rows 17,280/69,692
+Materialized CUDA rows 17,408/69,692
+Materialized CUDA rows 17,536/69,692
+Materialized CUDA rows 17,664/69,692
+Materialized CUDA rows 17,792/69,692
+Materialized CUDA rows 17,920/69,692
+Materialized CUDA rows 18,048/69,692
+Materialized CUDA rows 18,176/69,692
+Materialized CUDA rows 18,304/69,692
+Materialized CUDA rows 18,432/69,692
+Materialized CUDA rows 18,560/69,692
+Materialized CUDA rows 18,688/69,692
+Materialized CUDA rows 18,816/69,692
+Materialized CUDA rows 18,944/69,692
+Materialized CUDA rows 19,072/69,692
+Materialized CUDA rows 19,200/69,692
+Materialized CUDA rows 19,328/69,692
+Materialized CUDA rows 19,456/69,692
+Materialized CUDA rows 19,584/69,692
+Materialized CUDA rows 19,712/69,692
+Materialized CUDA rows 19,840/69,692
+Materialized CUDA rows 19,968/69,692
+Materialized CUDA rows 20,096/69,692
+Materialized CUDA rows 20,224/69,692
+Materialized CUDA rows 20,352/69,692
+Materialized CUDA rows 20,480/69,692
+Materialized CUDA rows 20,608/69,692
+Materialized CUDA rows 20,736/69,692
+Materialized CUDA rows 20,864/69,692
+Materialized CUDA rows 20,992/69,692
+Materialized CUDA rows 21,120/69,692
+Materialized CUDA rows 21,248/69,692
+Materialized CUDA rows 21,376/69,692
+Materialized CUDA rows 21,504/69,692
+Materialized CUDA rows 21,632/69,692
+Materialized CUDA rows 21,760/69,692
+Materialized CUDA rows 21,888/69,692
+Materialized CUDA rows 22,016/69,692
+Materialized CUDA rows 22,144/69,692
+Materialized CUDA rows 22,272/69,692
+Materialized CUDA rows 22,400/69,692
+Materialized CUDA rows 22,528/69,692
+Materialized CUDA rows 22,656/69,692
+Materialized CUDA rows 22,784/69,692
+Materialized CUDA rows 22,912/69,692
+Materialized CUDA rows 23,040/69,692
+Materialized CUDA rows 23,168/69,692
+Materialized CUDA rows 23,296/69,692
+Materialized CUDA rows 23,424/69,692
+Materialized CUDA rows 23,552/69,692
+Materialized CUDA rows 23,680/69,692
+Materialized CUDA rows 23,808/69,692
+Materialized CUDA rows 23,936/69,692
+Materialized CUDA rows 24,064/69,692
+Materialized CUDA rows 24,192/69,692
+Materialized CUDA rows 24,320/69,692
+Materialized CUDA rows 24,448/69,692
+Materialized CUDA rows 24,576/69,692
+Materialized CUDA rows 24,704/69,692
+Materialized CUDA rows 24,832/69,692
+Materialized CUDA rows 24,960/69,692
+Materialized CUDA rows 25,088/69,692
+Materialized CUDA rows 25,216/69,692
+Materialized CUDA rows 25,344/69,692
+Materialized CUDA rows 25,472/69,692
+Materialized CUDA rows 25,600/69,692
+Materialized CUDA rows 25,728/69,692
+Materialized CUDA rows 25,856/69,692
+Materialized CUDA rows 25,984/69,692
+Materialized CUDA rows 26,112/69,692
+Materialized CUDA rows 26,240/69,692
+Materialized CUDA rows 26,368/69,692
+Materialized CUDA rows 26,496/69,692
+Materialized CUDA rows 26,624/69,692
+Materialized CUDA rows 26,752/69,692
+Materialized CUDA rows 26,880/69,692
+Materialized CUDA rows 27,008/69,692
+Materialized CUDA rows 27,136/69,692
+Materialized CUDA rows 27,264/69,692
+Materialized CUDA rows 27,392/69,692
+Materialized CUDA rows 27,520/69,692
+Materialized CUDA rows 27,648/69,692
+Materialized CUDA rows 27,776/69,692
+Materialized CUDA rows 27,904/69,692
+Materialized CUDA rows 28,032/69,692
+Materialized CUDA rows 28,160/69,692
+Materialized CUDA rows 28,288/69,692
+Materialized CUDA rows 28,416/69,692
+Materialized CUDA rows 28,544/69,692
+Materialized CUDA rows 28,672/69,692
+Materialized CUDA rows 28,800/69,692
+Materialized CUDA rows 28,928/69,692
+Materialized CUDA rows 29,056/69,692
+Materialized CUDA rows 29,184/69,692
+Materialized CUDA rows 29,312/69,692
+Materialized CUDA rows 29,440/69,692
+Materialized CUDA rows 29,568/69,692
+Materialized CUDA rows 29,696/69,692
+Materialized CUDA rows 29,824/69,692
+Materialized CUDA rows 29,952/69,692
+Materialized CUDA rows 30,080/69,692
+Materialized CUDA rows 30,208/69,692
+Materialized CUDA rows 30,336/69,692
+Materialized CUDA rows 30,464/69,692
+Materialized CUDA rows 30,592/69,692
+Materialized CUDA rows 30,720/69,692
+Materialized CUDA rows 30,848/69,692
+Materialized CUDA rows 30,976/69,692
+Materialized CUDA rows 31,104/69,692
+Materialized CUDA rows 31,232/69,692
+Materialized CUDA rows 31,360/69,692
+Materialized CUDA rows 31,488/69,692
+Materialized CUDA rows 31,616/69,692
+Materialized CUDA rows 31,744/69,692
+Materialized CUDA rows 31,872/69,692
+Materialized CUDA rows 32,000/69,692
+Materialized CUDA rows 32,128/69,692
+Materialized CUDA rows 32,256/69,692
+Materialized CUDA rows 32,384/69,692
+Materialized CUDA rows 32,512/69,692
+Materialized CUDA rows 32,640/69,692
+Materialized CUDA rows 32,768/69,692
+Materialized CUDA rows 32,896/69,692
+Materialized CUDA rows 33,024/69,692
+Materialized CUDA rows 33,152/69,692
+Materialized CUDA rows 33,280/69,692
+Materialized CUDA rows 33,408/69,692
+Materialized CUDA rows 33,536/69,692
+Materialized CUDA rows 33,664/69,692
+Materialized CUDA rows 33,792/69,692
+Materialized CUDA rows 33,920/69,692
+Materialized CUDA rows 34,048/69,692
+Materialized CUDA rows 34,176/69,692
+Materialized CUDA rows 34,304/69,692
+Materialized CUDA rows 34,432/69,692
+Materialized CUDA rows 34,560/69,692
+Materialized CUDA rows 34,688/69,692
+Materialized CUDA rows 34,816/69,692
+Materialized CUDA rows 34,944/69,692
+Materialized CUDA rows 35,072/69,692
+Materialized CUDA rows 35,200/69,692
+Materialized CUDA rows 35,328/69,692
+Materialized CUDA rows 35,456/69,692
+Materialized CUDA rows 35,584/69,692
+Materialized CUDA rows 35,712/69,692
+Materialized CUDA rows 35,840/69,692
+Materialized CUDA rows 35,968/69,692
+Materialized CUDA rows 36,096/69,692
+Materialized CUDA rows 36,224/69,692
+Materialized CUDA rows 36,352/69,692
+Materialized CUDA rows 36,480/69,692
+Materialized CUDA rows 36,608/69,692
+Materialized CUDA rows 36,736/69,692
+Materialized CUDA rows 36,864/69,692
+Materialized CUDA rows 36,992/69,692
+Materialized CUDA rows 37,120/69,692
+Materialized CUDA rows 37,248/69,692
+Materialized CUDA rows 37,376/69,692
+Materialized CUDA rows 37,504/69,692
+Materialized CUDA rows 37,632/69,692
+Materialized CUDA rows 37,760/69,692
+Materialized CUDA rows 37,888/69,692
+Materialized CUDA rows 38,016/69,692
+Materialized CUDA rows 38,144/69,692
+Materialized CUDA rows 38,272/69,692
+Materialized CUDA rows 38,400/69,692
+Materialized CUDA rows 38,528/69,692
+Materialized CUDA rows 38,656/69,692
+Materialized CUDA rows 38,784/69,692
+Materialized CUDA rows 38,912/69,692
+Materialized CUDA rows 39,040/69,692
+Materialized CUDA rows 39,168/69,692
+Materialized CUDA rows 39,296/69,692
+Materialized CUDA rows 39,424/69,692
+Materialized CUDA rows 39,552/69,692
+Materialized CUDA rows 39,680/69,692
+Materialized CUDA rows 39,808/69,692
+Materialized CUDA rows 39,936/69,692
+Materialized CUDA rows 40,064/69,692
+Materialized CUDA rows 40,192/69,692
+Materialized CUDA rows 40,320/69,692
+Materialized CUDA rows 40,448/69,692
+Materialized CUDA rows 40,576/69,692
+Materialized CUDA rows 40,704/69,692
+Materialized CUDA rows 40,832/69,692
+Materialized CUDA rows 40,960/69,692
+Materialized CUDA rows 41,088/69,692
+Materialized CUDA rows 41,216/69,692
+Materialized CUDA rows 41,344/69,692
+Materialized CUDA rows 41,472/69,692
+Materialized CUDA rows 41,600/69,692
+Materialized CUDA rows 41,728/69,692
+Materialized CUDA rows 41,856/69,692
+Materialized CUDA rows 41,984/69,692
+Materialized CUDA rows 42,112/69,692
+Materialized CUDA rows 42,240/69,692
+Materialized CUDA rows 42,368/69,692
+Materialized CUDA rows 42,496/69,692
+Materialized CUDA rows 42,624/69,692
+Materialized CUDA rows 42,752/69,692
+Materialized CUDA rows 42,880/69,692
+Materialized CUDA rows 43,008/69,692
+Materialized CUDA rows 43,136/69,692
+Materialized CUDA rows 43,264/69,692
+Materialized CUDA rows 43,392/69,692
+Materialized CUDA rows 43,520/69,692
+Materialized CUDA rows 43,648/69,692
+Materialized CUDA rows 43,776/69,692
+Materialized CUDA rows 43,904/69,692
+Materialized CUDA rows 44,032/69,692
+Materialized CUDA rows 44,160/69,692
+Materialized CUDA rows 44,288/69,692
+Materialized CUDA rows 44,416/69,692
+Materialized CUDA rows 44,544/69,692
+Materialized CUDA rows 44,672/69,692
+Materialized CUDA rows 44,800/69,692
+Materialized CUDA rows 44,928/69,692
+Materialized CUDA rows 45,056/69,692
+Materialized CUDA rows 45,184/69,692
+Materialized CUDA rows 45,312/69,692
+Materialized CUDA rows 45,440/69,692
+Materialized CUDA rows 45,568/69,692
+Materialized CUDA rows 45,696/69,692
+Materialized CUDA rows 45,824/69,692
+Materialized CUDA rows 45,952/69,692
+Materialized CUDA rows 46,080/69,692
+Materialized CUDA rows 46,208/69,692
+Materialized CUDA rows 46,336/69,692
+Materialized CUDA rows 46,464/69,692
+Materialized CUDA rows 46,592/69,692
+Materialized CUDA rows 46,720/69,692
+Materialized CUDA rows 46,848/69,692
+Materialized CUDA rows 46,976/69,692
+Materialized CUDA rows 47,104/69,692
+Materialized CUDA rows 47,232/69,692
+Materialized CUDA rows 47,360/69,692
+Materialized CUDA rows 47,488/69,692
+Materialized CUDA rows 47,616/69,692
+Materialized CUDA rows 47,744/69,692
+Materialized CUDA rows 47,872/69,692
+Materialized CUDA rows 48,000/69,692
+Materialized CUDA rows 48,128/69,692
+Materialized CUDA rows 48,256/69,692
+Materialized CUDA rows 48,384/69,692
+Materialized CUDA rows 48,512/69,692
+Materialized CUDA rows 48,640/69,692
+Materialized CUDA rows 48,768/69,692
+Materialized CUDA rows 48,896/69,692
+Materialized CUDA rows 49,024/69,692
+Materialized CUDA rows 49,152/69,692
+Materialized CUDA rows 49,280/69,692
+Materialized CUDA rows 49,408/69,692
+Materialized CUDA rows 49,536/69,692
+Materialized CUDA rows 49,664/69,692
+Materialized CUDA rows 49,792/69,692
+Materialized CUDA rows 49,920/69,692
+Materialized CUDA rows 50,048/69,692
+Materialized CUDA rows 50,176/69,692
+Materialized CUDA rows 50,304/69,692
+Materialized CUDA rows 50,432/69,692
+Materialized CUDA rows 50,560/69,692
+Materialized CUDA rows 50,688/69,692
+Materialized CUDA rows 50,816/69,692
+Materialized CUDA rows 50,944/69,692
+Materialized CUDA rows 51,072/69,692
+Materialized CUDA rows 51,200/69,692
+Materialized CUDA rows 51,328/69,692
+Materialized CUDA rows 51,456/69,692
+Materialized CUDA rows 51,584/69,692
+Materialized CUDA rows 51,712/69,692
+Materialized CUDA rows 51,840/69,692
+Materialized CUDA rows 51,968/69,692
+Materialized CUDA rows 52,096/69,692
+Materialized CUDA rows 52,224/69,692
+Materialized CUDA rows 52,352/69,692
+Materialized CUDA rows 52,480/69,692
+Materialized CUDA rows 52,608/69,692
+Materialized CUDA rows 52,736/69,692
+Materialized CUDA rows 52,864/69,692
+Materialized CUDA rows 52,992/69,692
+Materialized CUDA rows 53,120/69,692
+Materialized CUDA rows 53,248/69,692
+Materialized CUDA rows 53,376/69,692
+Materialized CUDA rows 53,504/69,692
+Materialized CUDA rows 53,632/69,692
+Materialized CUDA rows 53,760/69,692
+Materialized CUDA rows 53,888/69,692
+Materialized CUDA rows 54,016/69,692
+Materialized CUDA rows 54,144/69,692
+Materialized CUDA rows 54,272/69,692
+Materialized CUDA rows 54,400/69,692
+Materialized CUDA rows 54,528/69,692
+Materialized CUDA rows 54,656/69,692
+Materialized CUDA rows 54,784/69,692
+Materialized CUDA rows 54,912/69,692
+Materialized CUDA rows 55,040/69,692
+Materialized CUDA rows 55,168/69,692
+Materialized CUDA rows 55,296/69,692
+Materialized CUDA rows 55,424/69,692
+Materialized CUDA rows 55,552/69,692
+Materialized CUDA rows 55,680/69,692
+Materialized CUDA rows 55,808/69,692
+Materialized CUDA rows 55,936/69,692
+Materialized CUDA rows 56,064/69,692
+Materialized CUDA rows 56,192/69,692
+Materialized CUDA rows 56,320/69,692
+Materialized CUDA rows 56,448/69,692
+Materialized CUDA rows 56,576/69,692
+Materialized CUDA rows 56,704/69,692
+Materialized CUDA rows 56,832/69,692
+Materialized CUDA rows 56,960/69,692
+Materialized CUDA rows 57,088/69,692
+Materialized CUDA rows 57,216/69,692
+Materialized CUDA rows 57,344/69,692
+Materialized CUDA rows 57,472/69,692
+Materialized CUDA rows 57,600/69,692
+Materialized CUDA rows 57,728/69,692
+Materialized CUDA rows 57,856/69,692
+Materialized CUDA rows 57,984/69,692
+Materialized CUDA rows 58,112/69,692
+Materialized CUDA rows 58,240/69,692
+Materialized CUDA rows 58,368/69,692
+Materialized CUDA rows 58,496/69,692
+Materialized CUDA rows 58,624/69,692
+Materialized CUDA rows 58,752/69,692
+Materialized CUDA rows 58,880/69,692
+Materialized CUDA rows 59,008/69,692
+Materialized CUDA rows 59,136/69,692
+Materialized CUDA rows 59,264/69,692
+Materialized CUDA rows 59,392/69,692
+Materialized CUDA rows 59,520/69,692
+Materialized CUDA rows 59,648/69,692
+Materialized CUDA rows 59,776/69,692
+Materialized CUDA rows 59,904/69,692
+Materialized CUDA rows 60,032/69,692
+Materialized CUDA rows 60,160/69,692
+Materialized CUDA rows 60,288/69,692
+Materialized CUDA rows 60,416/69,692
+Materialized CUDA rows 60,544/69,692
+Materialized CUDA rows 60,672/69,692
+Materialized CUDA rows 60,800/69,692
+Materialized CUDA rows 60,928/69,692
+Materialized CUDA rows 61,056/69,692
+Materialized CUDA rows 61,184/69,692
+Materialized CUDA rows 61,312/69,692
+Materialized CUDA rows 61,440/69,692
+Materialized CUDA rows 61,568/69,692
+Materialized CUDA rows 61,696/69,692
+Materialized CUDA rows 61,824/69,692
+Materialized CUDA rows 61,952/69,692
+Materialized CUDA rows 62,080/69,692
+Materialized CUDA rows 62,208/69,692
+Materialized CUDA rows 62,336/69,692
+Materialized CUDA rows 62,464/69,692
+Materialized CUDA rows 62,592/69,692
+Materialized CUDA rows 62,720/69,692
+Materialized CUDA rows 62,848/69,692
+Materialized CUDA rows 62,976/69,692
+Materialized CUDA rows 63,104/69,692
+Materialized CUDA rows 63,232/69,692
+Materialized CUDA rows 63,360/69,692
+Materialized CUDA rows 63,488/69,692
+Materialized CUDA rows 63,616/69,692
+Materialized CUDA rows 63,744/69,692
+Materialized CUDA rows 63,872/69,692
+Materialized CUDA rows 64,000/69,692
+Materialized CUDA rows 64,128/69,692
+Materialized CUDA rows 64,256/69,692
+Materialized CUDA rows 64,384/69,692
+Materialized CUDA rows 64,512/69,692
+Materialized CUDA rows 64,640/69,692
+Materialized CUDA rows 64,768/69,692
+Materialized CUDA rows 64,896/69,692
+Materialized CUDA rows 65,024/69,692
+Materialized CUDA rows 65,152/69,692
+Materialized CUDA rows 65,280/69,692
+Materialized CUDA rows 65,408/69,692
+Materialized CUDA rows 65,536/69,692
+Materialized CUDA rows 65,664/69,692
+Materialized CUDA rows 65,792/69,692
+Materialized CUDA rows 65,920/69,692
+Materialized CUDA rows 66,048/69,692
+Materialized CUDA rows 66,176/69,692
+Materialized CUDA rows 66,304/69,692
+Materialized CUDA rows 66,432/69,692
+Materialized CUDA rows 66,560/69,692
+Materialized CUDA rows 66,688/69,692
+Materialized CUDA rows 66,816/69,692
+Materialized CUDA rows 66,944/69,692
+Materialized CUDA rows 67,072/69,692
+Materialized CUDA rows 67,200/69,692
+Materialized CUDA rows 67,328/69,692
+Materialized CUDA rows 67,456/69,692
+Materialized CUDA rows 67,584/69,692
+Materialized CUDA rows 67,712/69,692
+Materialized CUDA rows 67,840/69,692
+Materialized CUDA rows 67,968/69,692
+Materialized CUDA rows 68,096/69,692
+Materialized CUDA rows 68,224/69,692
+Materialized CUDA rows 68,352/69,692
+Materialized CUDA rows 68,480/69,692
+Materialized CUDA rows 68,608/69,692
+Materialized CUDA rows 68,736/69,692
+Materialized CUDA rows 68,864/69,692
+Materialized CUDA rows 68,992/69,692
+Materialized CUDA rows 69,120/69,692
+Materialized CUDA rows 69,248/69,692
+Materialized CUDA rows 69,376/69,692
+Materialized CUDA rows 69,504/69,692
+Materialized CUDA rows 69,632/69,692
+Materialized CUDA rows 69,692/69,692
+Selected through 64/69,692 active samples; kept 46; exact pairs 84
+Selected through 128/69,692 active samples; kept 85; exact pairs 367
+Selected through 192/69,692 active samples; kept 128; exact pairs 827
+Selected through 256/69,692 active samples; kept 177; exact pairs 1,393
+Selected through 320/69,692 active samples; kept 223; exact pairs 2,006
+Selected through 384/69,692 active samples; kept 263; exact pairs 2,935
+Selected through 448/69,692 active samples; kept 311; exact pairs 3,788
+Selected through 512/69,692 active samples; kept 363; exact pairs 4,829
+Selected through 576/69,692 active samples; kept 410; exact pairs 6,044
+Selected through 640/69,692 active samples; kept 457; exact pairs 7,419
+Selected through 704/69,692 active samples; kept 510; exact pairs 8,799
+Selected through 768/69,692 active samples; kept 562; exact pairs 10,192
+Selected through 832/69,692 active samples; kept 614; exact pairs 11,486
+Selected through 896/69,692 active samples; kept 669; exact pairs 12,908
+Selected through 960/69,692 active samples; kept 724; exact pairs 14,520
+Selected through 1,024/69,692 active samples; kept 783; exact pairs 16,114
+Selected through 1,088/69,692 active samples; kept 838; exact pairs 17,808
+Selected through 1,152/69,692 active samples; kept 889; exact pairs 19,696
+Selected through 1,216/69,692 active samples; kept 943; exact pairs 21,874
+Selected through 1,280/69,692 active samples; kept 999; exact pairs 23,705
+Selected through 1,344/69,692 active samples; kept 1,060; exact pairs 25,499
+Selected through 1,408/69,692 active samples; kept 1,119; exact pairs 27,577
+Selected through 1,472/69,692 active samples; kept 1,180; exact pairs 29,552
+Selected through 1,536/69,692 active samples; kept 1,238; exact pairs 31,760
+Selected through 1,600/69,692 active samples; kept 1,297; exact pairs 33,787
+Selected through 1,664/69,692 active samples; kept 1,355; exact pairs 35,985
+Selected through 1,728/69,692 active samples; kept 1,417; exact pairs 38,092
+Selected through 1,792/69,692 active samples; kept 1,478; exact pairs 40,430
+Selected through 1,856/69,692 active samples; kept 1,540; exact pairs 42,801
+Selected through 1,920/69,692 active samples; kept 1,599; exact pairs 45,189
+Selected through 1,984/69,692 active samples; kept 1,661; exact pairs 47,750
+Selected through 2,048/69,692 active samples; kept 1,724; exact pairs 50,181
+Selected through 2,112/69,692 active samples; kept 1,785; exact pairs 52,772
+Selected through 2,176/69,692 active samples; kept 1,847; exact pairs 55,442
+Selected through 2,240/69,692 active samples; kept 1,907; exact pairs 58,213
+Selected through 2,304/69,692 active samples; kept 1,969; exact pairs 60,868
+Selected through 2,368/69,692 active samples; kept 2,029; exact pairs 63,835
+Selected through 2,432/69,692 active samples; kept 2,088; exact pairs 66,938
+Selected through 2,496/69,692 active samples; kept 2,149; exact pairs 69,989
+Selected through 2,560/69,692 active samples; kept 2,212; exact pairs 72,837
+Selected through 2,624/69,692 active samples; kept 2,271; exact pairs 75,778
+Selected through 2,688/69,692 active samples; kept 2,333; exact pairs 78,740
+Selected through 2,752/69,692 active samples; kept 2,396; exact pairs 82,003
+Selected through 2,816/69,692 active samples; kept 2,458; exact pairs 85,419
+Selected through 2,880/69,692 active samples; kept 2,522; exact pairs 88,658
+Selected through 2,944/69,692 active samples; kept 2,583; exact pairs 92,173
+Selected through 3,008/69,692 active samples; kept 2,646; exact pairs 95,464
+Selected through 3,072/69,692 active samples; kept 2,709; exact pairs 99,030
+Selected through 3,136/69,692 active samples; kept 2,772; exact pairs 102,292
+Selected through 3,200/69,692 active samples; kept 2,835; exact pairs 106,119
+Selected through 3,264/69,692 active samples; kept 2,894; exact pairs 109,871
+Selected through 3,328/69,692 active samples; kept 2,958; exact pairs 113,461
+Selected through 3,392/69,692 active samples; kept 3,019; exact pairs 117,257
+Selected through 3,456/69,692 active samples; kept 3,081; exact pairs 121,063
+Selected through 3,520/69,692 active samples; kept 3,145; exact pairs 124,875
+Selected through 3,584/69,692 active samples; kept 3,208; exact pairs 128,811
+Selected through 3,648/69,692 active samples; kept 3,270; exact pairs 132,943
+Selected through 3,712/69,692 active samples; kept 3,331; exact pairs 137,269
+Selected through 3,776/69,692 active samples; kept 3,392; exact pairs 141,694
+Selected through 3,840/69,692 active samples; kept 3,455; exact pairs 145,946
+Selected through 3,904/69,692 active samples; kept 3,518; exact pairs 150,422
+Selected through 3,968/69,692 active samples; kept 3,579; exact pairs 154,763
+Selected through 4,032/69,692 active samples; kept 3,641; exact pairs 159,074
+Selected through 4,096/69,692 active samples; kept 3,700; exact pairs 163,567
+Selected through 4,160/69,692 active samples; kept 3,764; exact pairs 167,846
+Selected through 4,224/69,692 active samples; kept 3,828; exact pairs 172,212
+Selected through 4,288/69,692 active samples; kept 3,892; exact pairs 176,897
+Selected through 4,352/69,692 active samples; kept 3,955; exact pairs 181,857
+Selected through 4,416/69,692 active samples; kept 4,017; exact pairs 186,673
+Selected through 4,480/69,692 active samples; kept 4,081; exact pairs 191,435
+Selected through 4,544/69,692 active samples; kept 4,144; exact pairs 196,151
+Selected through 4,608/69,692 active samples; kept 4,207; exact pairs 200,968
+Selected through 4,672/69,692 active samples; kept 4,268; exact pairs 206,090
+Selected through 4,736/69,692 active samples; kept 4,330; exact pairs 211,292
+Selected through 4,800/69,692 active samples; kept 4,394; exact pairs 216,201
+Selected through 4,864/69,692 active samples; kept 4,457; exact pairs 221,525
+Selected through 4,928/69,692 active samples; kept 4,520; exact pairs 226,524
+Selected through 4,992/69,692 active samples; kept 4,582; exact pairs 231,654
+Selected through 5,056/69,692 active samples; kept 4,643; exact pairs 237,022
+Selected through 5,120/69,692 active samples; kept 4,707; exact pairs 242,201
+Selected through 5,184/69,692 active samples; kept 4,770; exact pairs 248,068
+Selected through 5,248/69,692 active samples; kept 4,833; exact pairs 253,567
+Selected through 5,312/69,692 active samples; kept 4,895; exact pairs 259,362
+Selected through 5,376/69,692 active samples; kept 4,957; exact pairs 264,942
+Selected through 5,440/69,692 active samples; kept 5,020; exact pairs 270,280
+Selected through 5,504/69,692 active samples; kept 5,084; exact pairs 276,326
+Selected through 5,568/69,692 active samples; kept 5,147; exact pairs 282,026
+Selected through 5,632/69,692 active samples; kept 5,209; exact pairs 287,887
+Selected through 5,696/69,692 active samples; kept 5,272; exact pairs 293,673
+Selected through 5,760/69,692 active samples; kept 5,335; exact pairs 299,953
+Selected through 5,824/69,692 active samples; kept 5,399; exact pairs 305,675
+Selected through 5,888/69,692 active samples; kept 5,462; exact pairs 312,194
+Selected through 5,952/69,692 active samples; kept 5,525; exact pairs 318,540
+Selected through 6,016/69,692 active samples; kept 5,588; exact pairs 324,883
+Selected through 6,080/69,692 active samples; kept 5,652; exact pairs 331,186
+Selected through 6,144/69,692 active samples; kept 5,712; exact pairs 337,718
+Selected through 6,208/69,692 active samples; kept 5,775; exact pairs 344,293
+Selected through 6,272/69,692 active samples; kept 5,837; exact pairs 350,757
+Selected through 6,336/69,692 active samples; kept 5,900; exact pairs 357,907
+Selected through 6,400/69,692 active samples; kept 5,963; exact pairs 364,598
+Selected through 6,464/69,692 active samples; kept 6,025; exact pairs 371,734
+Selected through 6,528/69,692 active samples; kept 6,084; exact pairs 378,703
+Selected through 6,592/69,692 active samples; kept 6,144; exact pairs 385,881
+Selected through 6,656/69,692 active samples; kept 6,208; exact pairs 392,721
+Selected through 6,720/69,692 active samples; kept 6,271; exact pairs 399,712
+Selected through 6,784/69,692 active samples; kept 6,334; exact pairs 406,977
+Selected through 6,848/69,692 active samples; kept 6,397; exact pairs 413,868
+Selected through 6,912/69,692 active samples; kept 6,459; exact pairs 420,974
+Selected through 6,976/69,692 active samples; kept 6,523; exact pairs 428,303
+Selected through 7,040/69,692 active samples; kept 6,586; exact pairs 435,769
+Selected through 7,104/69,692 active samples; kept 6,650; exact pairs 443,218
+Selected through 7,168/69,692 active samples; kept 6,713; exact pairs 450,676
+Selected through 7,232/69,692 active samples; kept 6,777; exact pairs 458,197
+Selected through 7,296/69,692 active samples; kept 6,839; exact pairs 465,870
+Selected through 7,360/69,692 active samples; kept 6,903; exact pairs 473,084
+Selected through 7,424/69,692 active samples; kept 6,966; exact pairs 480,611
+Selected through 7,488/69,692 active samples; kept 7,030; exact pairs 488,786
+Selected through 7,552/69,692 active samples; kept 7,094; exact pairs 496,834
+Selected through 7,616/69,692 active samples; kept 7,157; exact pairs 504,542
+Selected through 7,680/69,692 active samples; kept 7,220; exact pairs 512,842
+Selected through 7,744/69,692 active samples; kept 7,284; exact pairs 520,809
+Selected through 7,808/69,692 active samples; kept 7,347; exact pairs 529,241
+Selected through 7,872/69,692 active samples; kept 7,411; exact pairs 537,837
+Selected through 7,936/69,692 active samples; kept 7,474; exact pairs 546,821
+Selected through 8,000/69,692 active samples; kept 7,536; exact pairs 555,727
+Selected through 8,064/69,692 active samples; kept 7,599; exact pairs 564,456
+Selected through 8,128/69,692 active samples; kept 7,662; exact pairs 573,125
+Selected through 8,192/69,692 active samples; kept 7,723; exact pairs 582,053
+Selected through 8,256/69,692 active samples; kept 7,785; exact pairs 590,670
+Selected through 8,320/69,692 active samples; kept 7,845; exact pairs 599,960
+Selected through 8,384/69,692 active samples; kept 7,909; exact pairs 609,191
+Selected through 8,448/69,692 active samples; kept 7,972; exact pairs 618,731
+Selected through 8,512/69,692 active samples; kept 8,036; exact pairs 627,749
+Selected through 8,576/69,692 active samples; kept 8,098; exact pairs 636,708
+Selected through 8,640/69,692 active samples; kept 8,162; exact pairs 645,775
+Selected through 8,704/69,692 active samples; kept 8,226; exact pairs 655,432
+Selected through 8,768/69,692 active samples; kept 8,289; exact pairs 665,492
+Selected through 8,832/69,692 active samples; kept 8,352; exact pairs 674,867
+Selected through 8,896/69,692 active samples; kept 8,416; exact pairs 684,846
+Selected through 8,960/69,692 active samples; kept 8,475; exact pairs 694,654
+Selected through 9,024/69,692 active samples; kept 8,539; exact pairs 704,807
+Selected through 9,088/69,692 active samples; kept 8,602; exact pairs 715,874
+Selected through 9,152/69,692 active samples; kept 8,664; exact pairs 725,863
+Selected through 9,216/69,692 active samples; kept 8,728; exact pairs 735,630
+Selected through 9,280/69,692 active samples; kept 8,792; exact pairs 746,259
+Selected through 9,344/69,692 active samples; kept 8,855; exact pairs 756,032
+Selected through 9,408/69,692 active samples; kept 8,918; exact pairs 766,193
+Selected through 9,472/69,692 active samples; kept 8,981; exact pairs 776,461
+Selected through 9,536/69,692 active samples; kept 9,044; exact pairs 787,483
+Selected through 9,600/69,692 active samples; kept 9,106; exact pairs 797,920
+Selected through 9,664/69,692 active samples; kept 9,168; exact pairs 809,411
+Selected through 9,728/69,692 active samples; kept 9,232; exact pairs 820,595
+Selected through 9,792/69,692 active samples; kept 9,296; exact pairs 831,953
+Selected through 9,856/69,692 active samples; kept 9,360; exact pairs 842,798
+Selected through 9,920/69,692 active samples; kept 9,423; exact pairs 853,741
+Selected through 9,984/69,692 active samples; kept 9,487; exact pairs 865,108
+Selected through 10,048/69,692 active samples; kept 9,550; exact pairs 876,057
+Selected through 10,112/69,692 active samples; kept 9,612; exact pairs 887,769
+Selected through 10,176/69,692 active samples; kept 9,674; exact pairs 899,458
+Selected through 10,240/69,692 active samples; kept 9,738; exact pairs 910,774
+Selected through 10,304/69,692 active samples; kept 9,802; exact pairs 922,642
+Selected through 10,368/69,692 active samples; kept 9,865; exact pairs 935,128
+Selected through 10,432/69,692 active samples; kept 9,927; exact pairs 946,977
+Selected through 10,496/69,692 active samples; kept 9,990; exact pairs 959,174
+Selected through 10,560/69,692 active samples; kept 10,054; exact pairs 971,472
+Selected through 10,624/69,692 active samples; kept 10,118; exact pairs 983,722
+Selected through 10,688/69,692 active samples; kept 10,182; exact pairs 996,043
+Selected through 10,752/69,692 active samples; kept 10,246; exact pairs 1,008,494
+Selected through 10,816/69,692 active samples; kept 10,308; exact pairs 1,021,422
+Selected through 10,880/69,692 active samples; kept 10,372; exact pairs 1,033,717
+Selected through 10,944/69,692 active samples; kept 10,436; exact pairs 1,046,025
+Selected through 11,008/69,692 active samples; kept 10,498; exact pairs 1,059,407
+Selected through 11,072/69,692 active samples; kept 10,562; exact pairs 1,071,855
+Selected through 11,136/69,692 active samples; kept 10,626; exact pairs 1,085,057
+Selected through 11,200/69,692 active samples; kept 10,690; exact pairs 1,098,520
+Selected through 11,264/69,692 active samples; kept 10,754; exact pairs 1,112,024
+Selected through 11,328/69,692 active samples; kept 10,817; exact pairs 1,126,101
+Selected through 11,392/69,692 active samples; kept 10,879; exact pairs 1,139,598
+Selected through 11,456/69,692 active samples; kept 10,942; exact pairs 1,152,689
+Selected through 11,520/69,692 active samples; kept 11,006; exact pairs 1,166,178
+Selected through 11,584/69,692 active samples; kept 11,070; exact pairs 1,179,205
+Selected through 11,648/69,692 active samples; kept 11,134; exact pairs 1,192,256
+Selected through 11,712/69,692 active samples; kept 11,198; exact pairs 1,206,134
+Selected through 11,776/69,692 active samples; kept 11,261; exact pairs 1,219,865
+Selected through 11,840/69,692 active samples; kept 11,324; exact pairs 1,234,307
+Selected through 11,904/69,692 active samples; kept 11,387; exact pairs 1,248,717
+Selected through 11,968/69,692 active samples; kept 11,450; exact pairs 1,263,758
+Selected through 12,032/69,692 active samples; kept 11,514; exact pairs 1,278,698
+Selected through 12,096/69,692 active samples; kept 11,577; exact pairs 1,293,715
+Selected through 12,160/69,692 active samples; kept 11,641; exact pairs 1,308,296
+Selected through 12,224/69,692 active samples; kept 11,705; exact pairs 1,322,784
+Selected through 12,288/69,692 active samples; kept 11,769; exact pairs 1,337,629
+Selected through 12,352/69,692 active samples; kept 11,833; exact pairs 1,351,987
+Selected through 12,416/69,692 active samples; kept 11,897; exact pairs 1,367,407
+Selected through 12,480/69,692 active samples; kept 11,961; exact pairs 1,383,108
+Selected through 12,544/69,692 active samples; kept 12,024; exact pairs 1,397,361
+Selected through 12,608/69,692 active samples; kept 12,088; exact pairs 1,413,773
+Selected through 12,672/69,692 active samples; kept 12,152; exact pairs 1,428,821
+Selected through 12,736/69,692 active samples; kept 12,216; exact pairs 1,444,823
+Selected through 12,800/69,692 active samples; kept 12,280; exact pairs 1,461,041
+Selected through 12,864/69,692 active samples; kept 12,343; exact pairs 1,475,543
+Selected through 12,928/69,692 active samples; kept 12,406; exact pairs 1,491,821
+Selected through 12,992/69,692 active samples; kept 12,470; exact pairs 1,508,190
+Selected through 13,056/69,692 active samples; kept 12,534; exact pairs 1,525,666
+Selected through 13,120/69,692 active samples; kept 12,598; exact pairs 1,542,405
+Selected through 13,184/69,692 active samples; kept 12,661; exact pairs 1,559,808
+Selected through 13,248/69,692 active samples; kept 12,724; exact pairs 1,576,210
+Selected through 13,312/69,692 active samples; kept 12,788; exact pairs 1,592,935
+Selected through 13,376/69,692 active samples; kept 12,852; exact pairs 1,609,327
+Selected through 13,440/69,692 active samples; kept 12,915; exact pairs 1,627,460
+Selected through 13,504/69,692 active samples; kept 12,979; exact pairs 1,645,635
+Selected through 13,568/69,692 active samples; kept 13,042; exact pairs 1,662,516
+Selected through 13,632/69,692 active samples; kept 13,105; exact pairs 1,680,530
+Selected through 13,696/69,692 active samples; kept 13,168; exact pairs 1,696,681
+Selected through 13,760/69,692 active samples; kept 13,232; exact pairs 1,714,497
+Selected through 13,824/69,692 active samples; kept 13,295; exact pairs 1,732,326
+Selected through 13,888/69,692 active samples; kept 13,359; exact pairs 1,749,993
+Selected through 13,952/69,692 active samples; kept 13,422; exact pairs 1,767,713
+Selected through 14,016/69,692 active samples; kept 13,486; exact pairs 1,785,878
+Selected through 14,080/69,692 active samples; kept 13,549; exact pairs 1,803,456
+Selected through 14,144/69,692 active samples; kept 13,612; exact pairs 1,822,212
+Selected through 14,208/69,692 active samples; kept 13,675; exact pairs 1,840,166
+Selected through 14,272/69,692 active samples; kept 13,739; exact pairs 1,858,889
+Selected through 14,336/69,692 active samples; kept 13,803; exact pairs 1,877,413
+Selected through 14,400/69,692 active samples; kept 13,866; exact pairs 1,896,263
+Selected through 14,464/69,692 active samples; kept 13,930; exact pairs 1,915,431
+Selected through 14,528/69,692 active samples; kept 13,994; exact pairs 1,934,901
+Selected through 14,592/69,692 active samples; kept 14,057; exact pairs 1,954,602
+Selected through 14,656/69,692 active samples; kept 14,121; exact pairs 1,973,147
+Selected through 14,720/69,692 active samples; kept 14,185; exact pairs 1,994,030
+Selected through 14,784/69,692 active samples; kept 14,249; exact pairs 2,014,273
+Selected through 14,848/69,692 active samples; kept 14,313; exact pairs 2,033,726
+Selected through 14,912/69,692 active samples; kept 14,377; exact pairs 2,052,446
+Selected through 14,976/69,692 active samples; kept 14,441; exact pairs 2,073,444
+Selected through 15,040/69,692 active samples; kept 14,505; exact pairs 2,092,940
+Selected through 15,104/69,692 active samples; kept 14,567; exact pairs 2,113,482
+Selected through 15,168/69,692 active samples; kept 14,631; exact pairs 2,135,783
+Selected through 15,232/69,692 active samples; kept 14,694; exact pairs 2,155,748
+Selected through 15,296/69,692 active samples; kept 14,756; exact pairs 2,175,633
+Selected through 15,360/69,692 active samples; kept 14,820; exact pairs 2,196,979
+Selected through 15,424/69,692 active samples; kept 14,883; exact pairs 2,218,096
+Selected through 15,488/69,692 active samples; kept 14,947; exact pairs 2,239,123
+Selected through 15,552/69,692 active samples; kept 15,011; exact pairs 2,260,783
+Selected through 15,616/69,692 active samples; kept 15,073; exact pairs 2,281,415
+Selected through 15,680/69,692 active samples; kept 15,136; exact pairs 2,303,512
+Selected through 15,744/69,692 active samples; kept 15,199; exact pairs 2,326,043
+Selected through 15,808/69,692 active samples; kept 15,261; exact pairs 2,348,218
+Selected through 15,872/69,692 active samples; kept 15,324; exact pairs 2,371,246
+Selected through 15,936/69,692 active samples; kept 15,387; exact pairs 2,394,052
+Selected through 16,000/69,692 active samples; kept 15,451; exact pairs 2,416,317
+Selected through 16,064/69,692 active samples; kept 15,514; exact pairs 2,440,190
+Selected through 16,128/69,692 active samples; kept 15,578; exact pairs 2,463,867
+Selected through 16,192/69,692 active samples; kept 15,640; exact pairs 2,486,916
+Selected through 16,256/69,692 active samples; kept 15,703; exact pairs 2,510,243
+Selected through 16,320/69,692 active samples; kept 15,767; exact pairs 2,533,010
+Selected through 16,384/69,692 active samples; kept 15,830; exact pairs 2,556,921
+Selected through 16,448/69,692 active samples; kept 15,894; exact pairs 2,580,634
+Selected through 16,512/69,692 active samples; kept 15,957; exact pairs 2,606,434
+Selected through 16,576/69,692 active samples; kept 16,021; exact pairs 2,630,015
+Selected through 16,640/69,692 active samples; kept 16,084; exact pairs 2,654,747
+Selected through 16,704/69,692 active samples; kept 16,148; exact pairs 2,680,985
+Selected through 16,768/69,692 active samples; kept 16,212; exact pairs 2,706,280
+Selected through 16,832/69,692 active samples; kept 16,274; exact pairs 2,731,455
+Selected through 16,896/69,692 active samples; kept 16,338; exact pairs 2,756,970
+Selected through 16,960/69,692 active samples; kept 16,402; exact pairs 2,783,741
+Selected through 17,024/69,692 active samples; kept 16,465; exact pairs 2,808,263
+Selected through 17,088/69,692 active samples; kept 16,528; exact pairs 2,833,347
+Selected through 17,152/69,692 active samples; kept 16,590; exact pairs 2,858,894
+Selected through 17,216/69,692 active samples; kept 16,653; exact pairs 2,886,344
+Selected through 17,280/69,692 active samples; kept 16,717; exact pairs 2,912,109
+Selected through 17,344/69,692 active samples; kept 16,781; exact pairs 2,937,944
+Selected through 17,408/69,692 active samples; kept 16,844; exact pairs 2,964,895
+Selected through 17,472/69,692 active samples; kept 16,906; exact pairs 2,990,523
+Selected through 17,536/69,692 active samples; kept 16,969; exact pairs 3,017,491
+Selected through 17,600/69,692 active samples; kept 17,032; exact pairs 3,042,751
+Selected through 17,664/69,692 active samples; kept 17,095; exact pairs 3,068,983
+Selected through 17,728/69,692 active samples; kept 17,159; exact pairs 3,096,914
+Selected through 17,792/69,692 active samples; kept 17,222; exact pairs 3,124,631
+Selected through 17,856/69,692 active samples; kept 17,284; exact pairs 3,152,946
+Selected through 17,920/69,692 active samples; kept 17,348; exact pairs 3,181,851
+Selected through 17,984/69,692 active samples; kept 17,412; exact pairs 3,210,375
+Selected through 18,048/69,692 active samples; kept 17,476; exact pairs 3,239,519
+Selected through 18,112/69,692 active samples; kept 17,540; exact pairs 3,268,606
+Selected through 18,176/69,692 active samples; kept 17,604; exact pairs 3,296,562
+Selected through 18,240/69,692 active samples; kept 17,668; exact pairs 3,327,723
+Selected through 18,304/69,692 active samples; kept 17,732; exact pairs 3,357,609
+Selected through 18,368/69,692 active samples; kept 17,795; exact pairs 3,385,980
+Selected through 18,432/69,692 active samples; kept 17,857; exact pairs 3,415,440
+Selected through 18,496/69,692 active samples; kept 17,919; exact pairs 3,442,623
+Selected through 18,560/69,692 active samples; kept 17,983; exact pairs 3,473,833
+Selected through 18,624/69,692 active samples; kept 18,047; exact pairs 3,504,228
+Selected through 18,688/69,692 active samples; kept 18,111; exact pairs 3,533,638
+Selected through 18,752/69,692 active samples; kept 18,175; exact pairs 3,564,149
+Selected through 18,816/69,692 active samples; kept 18,238; exact pairs 3,595,883
+Selected through 18,880/69,692 active samples; kept 18,302; exact pairs 3,627,311
+Selected through 18,944/69,692 active samples; kept 18,366; exact pairs 3,658,288
+Selected through 19,008/69,692 active samples; kept 18,430; exact pairs 3,689,693
+Selected through 19,072/69,692 active samples; kept 18,494; exact pairs 3,723,215
+Selected through 19,136/69,692 active samples; kept 18,554; exact pairs 3,754,318
+Selected through 19,200/69,692 active samples; kept 18,618; exact pairs 3,786,074
+Selected through 19,264/69,692 active samples; kept 18,680; exact pairs 3,817,331
+Selected through 19,328/69,692 active samples; kept 18,743; exact pairs 3,850,098
+Selected through 19,392/69,692 active samples; kept 18,806; exact pairs 3,881,523
+Selected through 19,456/69,692 active samples; kept 18,869; exact pairs 3,914,103
+Selected through 19,520/69,692 active samples; kept 18,932; exact pairs 3,947,000
+Selected through 19,584/69,692 active samples; kept 18,996; exact pairs 3,981,645
+Selected through 19,648/69,692 active samples; kept 19,060; exact pairs 4,016,195
+Selected through 19,712/69,692 active samples; kept 19,124; exact pairs 4,049,367
+Selected through 19,776/69,692 active samples; kept 19,188; exact pairs 4,082,543
+Selected through 19,840/69,692 active samples; kept 19,251; exact pairs 4,118,305
+Selected through 19,904/69,692 active samples; kept 19,315; exact pairs 4,152,279
+Selected through 19,968/69,692 active samples; kept 19,379; exact pairs 4,185,618
+Selected through 20,032/69,692 active samples; kept 19,442; exact pairs 4,221,282
+Selected through 20,096/69,692 active samples; kept 19,505; exact pairs 4,256,953
+Selected through 20,160/69,692 active samples; kept 19,567; exact pairs 4,291,569
+Selected through 20,224/69,692 active samples; kept 19,631; exact pairs 4,327,999
+Selected through 20,288/69,692 active samples; kept 19,694; exact pairs 4,362,037
+Selected through 20,352/69,692 active samples; kept 19,754; exact pairs 4,397,329
+Selected through 20,416/69,692 active samples; kept 19,817; exact pairs 4,432,883
+Selected through 20,480/69,692 active samples; kept 19,880; exact pairs 4,467,618
+Selected through 20,544/69,692 active samples; kept 19,943; exact pairs 4,506,202
+Selected through 20,608/69,692 active samples; kept 20,007; exact pairs 4,544,014
+Selected through 20,672/69,692 active samples; kept 20,070; exact pairs 4,581,385
+Selected through 20,736/69,692 active samples; kept 20,133; exact pairs 4,620,611
+Selected through 20,800/69,692 active samples; kept 20,196; exact pairs 4,657,864
+Selected through 20,864/69,692 active samples; kept 20,260; exact pairs 4,696,236
+Selected through 20,928/69,692 active samples; kept 20,322; exact pairs 4,733,992
+Selected through 20,992/69,692 active samples; kept 20,382; exact pairs 4,769,985
+Selected through 21,056/69,692 active samples; kept 20,446; exact pairs 4,810,249
+Selected through 21,120/69,692 active samples; kept 20,508; exact pairs 4,848,058
+Selected through 21,184/69,692 active samples; kept 20,571; exact pairs 4,887,187
+Selected through 21,248/69,692 active samples; kept 20,635; exact pairs 4,928,128
+Selected through 21,312/69,692 active samples; kept 20,697; exact pairs 4,964,242
+Selected through 21,376/69,692 active samples; kept 20,760; exact pairs 5,003,432
+Selected through 21,440/69,692 active samples; kept 20,823; exact pairs 5,045,674
+Selected through 21,504/69,692 active samples; kept 20,885; exact pairs 5,084,308
+Selected through 21,568/69,692 active samples; kept 20,948; exact pairs 5,126,701
+Selected through 21,632/69,692 active samples; kept 21,012; exact pairs 5,168,033
+Selected through 21,696/69,692 active samples; kept 21,075; exact pairs 5,207,980
+Selected through 21,760/69,692 active samples; kept 21,139; exact pairs 5,247,978
+Selected through 21,824/69,692 active samples; kept 21,203; exact pairs 5,288,825
+Selected through 21,888/69,692 active samples; kept 21,266; exact pairs 5,330,945
+Selected through 21,952/69,692 active samples; kept 21,328; exact pairs 5,372,960
+Selected through 22,016/69,692 active samples; kept 21,391; exact pairs 5,416,894
+Selected through 22,080/69,692 active samples; kept 21,453; exact pairs 5,460,182
+Selected through 22,144/69,692 active samples; kept 21,515; exact pairs 5,503,170
+Selected through 22,208/69,692 active samples; kept 21,579; exact pairs 5,545,739
+Selected through 22,272/69,692 active samples; kept 21,642; exact pairs 5,590,967
+Selected through 22,336/69,692 active samples; kept 21,706; exact pairs 5,634,614
+Selected through 22,400/69,692 active samples; kept 21,770; exact pairs 5,683,112
+Selected through 22,464/69,692 active samples; kept 21,834; exact pairs 5,724,881
+Selected through 22,528/69,692 active samples; kept 21,897; exact pairs 5,768,565
+Selected through 22,592/69,692 active samples; kept 21,961; exact pairs 5,815,788
+Selected through 22,656/69,692 active samples; kept 22,025; exact pairs 5,861,025
+Selected through 22,720/69,692 active samples; kept 22,088; exact pairs 5,908,445
+Selected through 22,784/69,692 active samples; kept 22,151; exact pairs 5,950,048
+Selected through 22,848/69,692 active samples; kept 22,214; exact pairs 5,996,114
+Selected through 22,912/69,692 active samples; kept 22,277; exact pairs 6,041,578
+Selected through 22,976/69,692 active samples; kept 22,341; exact pairs 6,088,877
+Selected through 23,040/69,692 active samples; kept 22,403; exact pairs 6,135,555
+Selected through 23,104/69,692 active samples; kept 22,465; exact pairs 6,181,821
+Selected through 23,168/69,692 active samples; kept 22,527; exact pairs 6,229,100
+Selected through 23,232/69,692 active samples; kept 22,590; exact pairs 6,279,401
+Selected through 23,296/69,692 active samples; kept 22,651; exact pairs 6,328,295
+Selected through 23,360/69,692 active samples; kept 22,714; exact pairs 6,371,200
+Selected through 23,424/69,692 active samples; kept 22,778; exact pairs 6,418,832
+Selected through 23,488/69,692 active samples; kept 22,841; exact pairs 6,467,903
+Selected through 23,552/69,692 active samples; kept 22,904; exact pairs 6,513,826
+Selected through 23,616/69,692 active samples; kept 22,967; exact pairs 6,565,538
+Selected through 23,680/69,692 active samples; kept 23,031; exact pairs 6,610,277
+Selected through 23,744/69,692 active samples; kept 23,094; exact pairs 6,659,354
+Selected through 23,808/69,692 active samples; kept 23,158; exact pairs 6,709,957
+Selected through 23,872/69,692 active samples; kept 23,219; exact pairs 6,763,575
+Selected through 23,936/69,692 active samples; kept 23,283; exact pairs 6,814,059
+Selected through 24,000/69,692 active samples; kept 23,346; exact pairs 6,866,638
+Selected through 24,064/69,692 active samples; kept 23,409; exact pairs 6,919,813
+Selected through 24,128/69,692 active samples; kept 23,473; exact pairs 6,971,759
+Selected through 24,192/69,692 active samples; kept 23,535; exact pairs 7,023,960
+Selected through 24,256/69,692 active samples; kept 23,599; exact pairs 7,078,325
+Selected through 24,320/69,692 active samples; kept 23,661; exact pairs 7,133,874
+Selected through 24,384/69,692 active samples; kept 23,725; exact pairs 7,185,168
+Selected through 24,448/69,692 active samples; kept 23,789; exact pairs 7,237,325
+Selected through 24,512/69,692 active samples; kept 23,853; exact pairs 7,289,711
+Selected through 24,576/69,692 active samples; kept 23,916; exact pairs 7,342,893
+Selected through 24,640/69,692 active samples; kept 23,977; exact pairs 7,396,490
+Selected through 24,704/69,692 active samples; kept 24,040; exact pairs 7,450,013
+Selected through 24,768/69,692 active samples; kept 24,102; exact pairs 7,507,074
+Selected through 24,832/69,692 active samples; kept 24,165; exact pairs 7,562,177
+Selected through 24,896/69,692 active samples; kept 24,227; exact pairs 7,617,930
+Selected through 24,960/69,692 active samples; kept 24,291; exact pairs 7,673,167
+Selected through 25,024/69,692 active samples; kept 24,354; exact pairs 7,729,298
+Selected through 25,088/69,692 active samples; kept 24,417; exact pairs 7,784,531
+Selected through 25,152/69,692 active samples; kept 24,481; exact pairs 7,838,966
+Selected through 25,216/69,692 active samples; kept 24,543; exact pairs 7,897,615
+Selected through 25,280/69,692 active samples; kept 24,606; exact pairs 7,956,651
+Selected through 25,344/69,692 active samples; kept 24,670; exact pairs 8,016,700
+Selected through 25,408/69,692 active samples; kept 24,733; exact pairs 8,077,726
+Selected through 25,472/69,692 active samples; kept 24,796; exact pairs 8,138,115
+Selected through 25,536/69,692 active samples; kept 24,859; exact pairs 8,199,095
+Selected through 25,600/69,692 active samples; kept 24,923; exact pairs 8,262,994
+Selected through 25,664/69,692 active samples; kept 24,985; exact pairs 8,320,225
+Selected through 25,728/69,692 active samples; kept 25,049; exact pairs 8,377,254
+Selected through 25,792/69,692 active samples; kept 25,112; exact pairs 8,437,884
+Selected through 25,856/69,692 active samples; kept 25,175; exact pairs 8,497,854
+Selected through 25,920/69,692 active samples; kept 25,237; exact pairs 8,558,404
+Selected through 25,984/69,692 active samples; kept 25,300; exact pairs 8,621,786
+Selected through 26,048/69,692 active samples; kept 25,363; exact pairs 8,683,017
+Selected through 26,112/69,692 active samples; kept 25,425; exact pairs 8,749,304
+Selected through 26,176/69,692 active samples; kept 25,488; exact pairs 8,814,079
+Selected through 26,240/69,692 active samples; kept 25,552; exact pairs 8,877,759
+Selected through 26,304/69,692 active samples; kept 25,615; exact pairs 8,943,306
+Selected through 26,368/69,692 active samples; kept 25,679; exact pairs 9,009,884
+Selected through 26,432/69,692 active samples; kept 25,743; exact pairs 9,075,212
+Selected through 26,496/69,692 active samples; kept 25,807; exact pairs 9,137,752
+Selected through 26,560/69,692 active samples; kept 25,870; exact pairs 9,204,229
+Selected through 26,624/69,692 active samples; kept 25,934; exact pairs 9,271,574
+Selected through 26,688/69,692 active samples; kept 25,998; exact pairs 9,337,676
+Selected through 26,752/69,692 active samples; kept 26,061; exact pairs 9,402,931
+Selected through 26,816/69,692 active samples; kept 26,125; exact pairs 9,473,735
+Selected through 26,880/69,692 active samples; kept 26,188; exact pairs 9,544,134
+Selected through 26,944/69,692 active samples; kept 26,251; exact pairs 9,613,538
+Selected through 27,008/69,692 active samples; kept 26,314; exact pairs 9,678,957
+Selected through 27,072/69,692 active samples; kept 26,377; exact pairs 9,746,726
+Selected through 27,136/69,692 active samples; kept 26,440; exact pairs 9,818,314
+Selected through 27,200/69,692 active samples; kept 26,502; exact pairs 9,888,960
+Selected through 27,264/69,692 active samples; kept 26,564; exact pairs 9,958,829
+Selected through 27,328/69,692 active samples; kept 26,627; exact pairs 10,031,009
+Selected through 27,392/69,692 active samples; kept 26,690; exact pairs 10,095,321
+Selected through 27,456/69,692 active samples; kept 26,753; exact pairs 10,167,536
+Selected through 27,520/69,692 active samples; kept 26,817; exact pairs 10,236,642
+Selected through 27,584/69,692 active samples; kept 26,880; exact pairs 10,310,889
+Selected through 27,648/69,692 active samples; kept 26,943; exact pairs 10,379,638
+Selected through 27,712/69,692 active samples; kept 27,004; exact pairs 10,452,011
+Selected through 27,776/69,692 active samples; kept 27,066; exact pairs 10,525,084
+Selected through 27,840/69,692 active samples; kept 27,129; exact pairs 10,597,676
+Selected through 27,904/69,692 active samples; kept 27,192; exact pairs 10,672,702
+Selected through 27,968/69,692 active samples; kept 27,256; exact pairs 10,747,176
+Selected through 28,032/69,692 active samples; kept 27,319; exact pairs 10,827,582
+Selected through 28,096/69,692 active samples; kept 27,383; exact pairs 10,906,250
+Selected through 28,160/69,692 active samples; kept 27,447; exact pairs 10,981,244
+Selected through 28,224/69,692 active samples; kept 27,510; exact pairs 11,053,182
+Selected through 28,288/69,692 active samples; kept 27,574; exact pairs 11,132,761
+Selected through 28,352/69,692 active samples; kept 27,637; exact pairs 11,209,181
+Selected through 28,416/69,692 active samples; kept 27,701; exact pairs 11,287,179
+Selected through 28,480/69,692 active samples; kept 27,764; exact pairs 11,361,553
+Selected through 28,544/69,692 active samples; kept 27,827; exact pairs 11,437,359
+Selected through 28,608/69,692 active samples; kept 27,890; exact pairs 11,518,112
+Selected through 28,672/69,692 active samples; kept 27,953; exact pairs 11,599,707
+Selected through 28,736/69,692 active samples; kept 28,017; exact pairs 11,679,698
+Selected through 28,800/69,692 active samples; kept 28,080; exact pairs 11,763,544
+Selected through 28,864/69,692 active samples; kept 28,142; exact pairs 11,844,062
+Selected through 28,928/69,692 active samples; kept 28,206; exact pairs 11,922,402
+Selected through 28,992/69,692 active samples; kept 28,268; exact pairs 12,003,050
+Selected through 29,056/69,692 active samples; kept 28,331; exact pairs 12,086,252
+Selected through 29,120/69,692 active samples; kept 28,394; exact pairs 12,169,061
+Selected through 29,184/69,692 active samples; kept 28,458; exact pairs 12,247,284
+Selected through 29,248/69,692 active samples; kept 28,521; exact pairs 12,331,919
+Selected through 29,312/69,692 active samples; kept 28,583; exact pairs 12,415,227
+Selected through 29,376/69,692 active samples; kept 28,646; exact pairs 12,497,391
+Selected through 29,440/69,692 active samples; kept 28,710; exact pairs 12,584,818
+Selected through 29,504/69,692 active samples; kept 28,772; exact pairs 12,671,202
+Selected through 29,568/69,692 active samples; kept 28,834; exact pairs 12,757,479
+Selected through 29,632/69,692 active samples; kept 28,898; exact pairs 12,839,416
+Selected through 29,696/69,692 active samples; kept 28,961; exact pairs 12,931,220
+Selected through 29,760/69,692 active samples; kept 29,024; exact pairs 13,019,054
+Selected through 29,824/69,692 active samples; kept 29,088; exact pairs 13,111,206
+Selected through 29,888/69,692 active samples; kept 29,151; exact pairs 13,196,779
+Selected through 29,952/69,692 active samples; kept 29,215; exact pairs 13,287,528
+Selected through 30,016/69,692 active samples; kept 29,277; exact pairs 13,375,221
+Selected through 30,080/69,692 active samples; kept 29,339; exact pairs 13,462,217
+Selected through 30,144/69,692 active samples; kept 29,403; exact pairs 13,555,734
+Selected through 30,208/69,692 active samples; kept 29,466; exact pairs 13,642,835
+Selected through 30,272/69,692 active samples; kept 29,528; exact pairs 13,738,547
+Selected through 30,336/69,692 active samples; kept 29,591; exact pairs 13,832,766
+Selected through 30,400/69,692 active samples; kept 29,654; exact pairs 13,924,073
+Selected through 30,464/69,692 active samples; kept 29,716; exact pairs 14,014,165
+Selected through 30,528/69,692 active samples; kept 29,780; exact pairs 14,106,909
+Selected through 30,592/69,692 active samples; kept 29,844; exact pairs 14,199,043
+Selected through 30,656/69,692 active samples; kept 29,908; exact pairs 14,299,776
+Selected through 30,720/69,692 active samples; kept 29,971; exact pairs 14,395,355
+Selected through 30,784/69,692 active samples; kept 30,034; exact pairs 14,494,815
+Selected through 30,848/69,692 active samples; kept 30,098; exact pairs 14,591,335
+Selected through 30,912/69,692 active samples; kept 30,162; exact pairs 14,686,596
+Selected through 30,976/69,692 active samples; kept 30,225; exact pairs 14,783,817
+Selected through 31,040/69,692 active samples; kept 30,289; exact pairs 14,881,537
+Selected through 31,104/69,692 active samples; kept 30,353; exact pairs 14,979,461
+Selected through 31,168/69,692 active samples; kept 30,416; exact pairs 15,076,241
+Selected through 31,232/69,692 active samples; kept 30,480; exact pairs 15,171,581
+Selected through 31,296/69,692 active samples; kept 30,543; exact pairs 15,273,273
+Selected through 31,360/69,692 active samples; kept 30,606; exact pairs 15,369,296
+Selected through 31,424/69,692 active samples; kept 30,667; exact pairs 15,467,267
+Selected through 31,488/69,692 active samples; kept 30,730; exact pairs 15,567,353
+Selected through 31,552/69,692 active samples; kept 30,792; exact pairs 15,672,100
+Selected through 31,616/69,692 active samples; kept 30,856; exact pairs 15,775,849
+Selected through 31,680/69,692 active samples; kept 30,920; exact pairs 15,882,718
+Selected through 31,744/69,692 active samples; kept 30,983; exact pairs 15,983,585
+Selected through 31,808/69,692 active samples; kept 31,045; exact pairs 16,082,886
+Selected through 31,872/69,692 active samples; kept 31,108; exact pairs 16,193,711
+Selected through 31,936/69,692 active samples; kept 31,172; exact pairs 16,302,691
+Selected through 32,000/69,692 active samples; kept 31,235; exact pairs 16,409,225
+Selected through 32,064/69,692 active samples; kept 31,298; exact pairs 16,509,169
+Selected through 32,128/69,692 active samples; kept 31,361; exact pairs 16,617,844
+Selected through 32,192/69,692 active samples; kept 31,425; exact pairs 16,723,524
+Selected through 32,256/69,692 active samples; kept 31,487; exact pairs 16,828,720
+Selected through 32,320/69,692 active samples; kept 31,549; exact pairs 16,934,724
+Selected through 32,384/69,692 active samples; kept 31,611; exact pairs 17,040,309
+Selected through 32,448/69,692 active samples; kept 31,675; exact pairs 17,148,889
+Selected through 32,512/69,692 active samples; kept 31,738; exact pairs 17,254,653
+Selected through 32,576/69,692 active samples; kept 31,800; exact pairs 17,367,354
+Selected through 32,640/69,692 active samples; kept 31,864; exact pairs 17,477,228
+Selected through 32,704/69,692 active samples; kept 31,925; exact pairs 17,580,528
+Selected through 32,768/69,692 active samples; kept 31,987; exact pairs 17,692,671
+Selected through 32,832/69,692 active samples; kept 32,050; exact pairs 17,806,997
+Selected through 32,896/69,692 active samples; kept 32,112; exact pairs 17,922,843
+Selected through 32,960/69,692 active samples; kept 32,176; exact pairs 18,041,865
+Selected through 33,024/69,692 active samples; kept 32,239; exact pairs 18,154,684
+Selected through 33,088/69,692 active samples; kept 32,302; exact pairs 18,268,779
+Selected through 33,152/69,692 active samples; kept 32,365; exact pairs 18,385,032
+Selected through 33,216/69,692 active samples; kept 32,428; exact pairs 18,505,101
+Selected through 33,280/69,692 active samples; kept 32,492; exact pairs 18,623,081
+Selected through 33,344/69,692 active samples; kept 32,555; exact pairs 18,737,678
+Selected through 33,408/69,692 active samples; kept 32,618; exact pairs 18,858,003
+Selected through 33,472/69,692 active samples; kept 32,681; exact pairs 18,977,341
+Selected through 33,536/69,692 active samples; kept 32,745; exact pairs 19,097,259
+Selected through 33,600/69,692 active samples; kept 32,807; exact pairs 19,220,820
+Selected through 33,664/69,692 active samples; kept 32,871; exact pairs 19,330,416
+Selected through 33,728/69,692 active samples; kept 32,934; exact pairs 19,453,930
+Selected through 33,792/69,692 active samples; kept 32,997; exact pairs 19,578,064
+Selected through 33,856/69,692 active samples; kept 33,059; exact pairs 19,702,080
+Selected through 33,920/69,692 active samples; kept 33,120; exact pairs 19,836,380
+Selected through 33,984/69,692 active samples; kept 33,182; exact pairs 19,967,770
+Selected through 34,048/69,692 active samples; kept 33,245; exact pairs 20,090,294
+Selected through 34,112/69,692 active samples; kept 33,308; exact pairs 20,220,096
+Selected through 34,176/69,692 active samples; kept 33,371; exact pairs 20,351,511
+Selected through 34,240/69,692 active samples; kept 33,433; exact pairs 20,476,075
+Selected through 34,304/69,692 active samples; kept 33,495; exact pairs 20,609,729
+Selected through 34,368/69,692 active samples; kept 33,556; exact pairs 20,731,985
+Selected through 34,432/69,692 active samples; kept 33,620; exact pairs 20,858,035
+Selected through 34,496/69,692 active samples; kept 33,684; exact pairs 20,983,610
+Selected through 34,560/69,692 active samples; kept 33,748; exact pairs 21,120,441
+Selected through 34,624/69,692 active samples; kept 33,811; exact pairs 21,253,510
+Selected through 34,688/69,692 active samples; kept 33,874; exact pairs 21,387,586
+Selected through 34,752/69,692 active samples; kept 33,937; exact pairs 21,518,721
+Selected through 34,816/69,692 active samples; kept 34,000; exact pairs 21,652,110
+Selected through 34,880/69,692 active samples; kept 34,063; exact pairs 21,784,762
+Selected through 34,944/69,692 active samples; kept 34,126; exact pairs 21,915,632
+Selected through 35,008/69,692 active samples; kept 34,190; exact pairs 22,044,254
+Selected through 35,072/69,692 active samples; kept 34,249; exact pairs 22,176,072
+Selected through 35,136/69,692 active samples; kept 34,312; exact pairs 22,313,628
+Selected through 35,200/69,692 active samples; kept 34,375; exact pairs 22,444,391
+Selected through 35,264/69,692 active samples; kept 34,438; exact pairs 22,589,228
+Selected through 35,328/69,692 active samples; kept 34,500; exact pairs 22,730,896
+Selected through 35,392/69,692 active samples; kept 34,564; exact pairs 22,875,458
+Selected through 35,456/69,692 active samples; kept 34,627; exact pairs 23,007,469
+Selected through 35,520/69,692 active samples; kept 34,691; exact pairs 23,150,014
+Selected through 35,584/69,692 active samples; kept 34,754; exact pairs 23,293,738
+Selected through 35,648/69,692 active samples; kept 34,817; exact pairs 23,437,495
+Selected through 35,712/69,692 active samples; kept 34,881; exact pairs 23,587,671
+Selected through 35,776/69,692 active samples; kept 34,944; exact pairs 23,744,332
+Selected through 35,840/69,692 active samples; kept 35,004; exact pairs 23,899,513
+Selected through 35,904/69,692 active samples; kept 35,067; exact pairs 24,046,976
+Selected through 35,968/69,692 active samples; kept 35,126; exact pairs 24,195,746
+Selected through 36,032/69,692 active samples; kept 35,187; exact pairs 24,346,836
+Selected through 36,096/69,692 active samples; kept 35,250; exact pairs 24,488,262
+Selected through 36,160/69,692 active samples; kept 35,313; exact pairs 24,633,707
+Selected through 36,224/69,692 active samples; kept 35,377; exact pairs 24,782,137
+Selected through 36,288/69,692 active samples; kept 35,441; exact pairs 24,921,183
+Selected through 36,352/69,692 active samples; kept 35,503; exact pairs 25,073,822
+Selected through 36,416/69,692 active samples; kept 35,565; exact pairs 25,220,452
+Selected through 36,480/69,692 active samples; kept 35,628; exact pairs 25,369,374
+Selected through 36,544/69,692 active samples; kept 35,692; exact pairs 25,512,943
+Selected through 36,608/69,692 active samples; kept 35,753; exact pairs 25,666,340
+Selected through 36,672/69,692 active samples; kept 35,817; exact pairs 25,819,991
+Selected through 36,736/69,692 active samples; kept 35,879; exact pairs 25,975,908
+Selected through 36,800/69,692 active samples; kept 35,943; exact pairs 26,127,793
+Selected through 36,864/69,692 active samples; kept 36,007; exact pairs 26,290,447
+Selected through 36,928/69,692 active samples; kept 36,070; exact pairs 26,443,758
+Selected through 36,992/69,692 active samples; kept 36,131; exact pairs 26,596,936
+Selected through 37,056/69,692 active samples; kept 36,193; exact pairs 26,750,280
+Selected through 37,120/69,692 active samples; kept 36,256; exact pairs 26,916,937
+Selected through 37,184/69,692 active samples; kept 36,320; exact pairs 27,080,664
+Selected through 37,248/69,692 active samples; kept 36,383; exact pairs 27,247,667
+Selected through 37,312/69,692 active samples; kept 36,445; exact pairs 27,399,969
+Selected through 37,376/69,692 active samples; kept 36,509; exact pairs 27,569,013
+Selected through 37,440/69,692 active samples; kept 36,573; exact pairs 27,732,243
+Selected through 37,504/69,692 active samples; kept 36,636; exact pairs 27,892,998
+Selected through 37,568/69,692 active samples; kept 36,697; exact pairs 28,074,060
+Selected through 37,632/69,692 active samples; kept 36,761; exact pairs 28,239,340
+Selected through 37,696/69,692 active samples; kept 36,824; exact pairs 28,392,928
+Selected through 37,760/69,692 active samples; kept 36,887; exact pairs 28,560,740
+Selected through 37,824/69,692 active samples; kept 36,951; exact pairs 28,721,533
+Selected through 37,888/69,692 active samples; kept 37,013; exact pairs 28,880,743
+Selected through 37,952/69,692 active samples; kept 37,075; exact pairs 29,055,398
+Selected through 38,016/69,692 active samples; kept 37,135; exact pairs 29,221,743
+Selected through 38,080/69,692 active samples; kept 37,196; exact pairs 29,391,715
+Selected through 38,144/69,692 active samples; kept 37,256; exact pairs 29,556,992
+Selected through 38,208/69,692 active samples; kept 37,319; exact pairs 29,730,091
+Selected through 38,272/69,692 active samples; kept 37,383; exact pairs 29,902,553
+Selected through 38,336/69,692 active samples; kept 37,447; exact pairs 30,083,279
+Selected through 38,400/69,692 active samples; kept 37,507; exact pairs 30,262,602
+Selected through 38,464/69,692 active samples; kept 37,570; exact pairs 30,441,468
+Selected through 38,528/69,692 active samples; kept 37,633; exact pairs 30,614,175
+Selected through 38,592/69,692 active samples; kept 37,695; exact pairs 30,795,484
+Selected through 38,656/69,692 active samples; kept 37,757; exact pairs 30,971,984
+Selected through 38,720/69,692 active samples; kept 37,821; exact pairs 31,156,234
+Selected through 38,784/69,692 active samples; kept 37,884; exact pairs 31,346,970
+Selected through 38,848/69,692 active samples; kept 37,947; exact pairs 31,532,100
+Selected through 38,912/69,692 active samples; kept 38,010; exact pairs 31,710,428
+Selected through 38,976/69,692 active samples; kept 38,074; exact pairs 31,890,801
+Selected through 39,040/69,692 active samples; kept 38,138; exact pairs 32,069,223
+Selected through 39,104/69,692 active samples; kept 38,202; exact pairs 32,255,300
+Selected through 39,168/69,692 active samples; kept 38,266; exact pairs 32,446,858
+Selected through 39,232/69,692 active samples; kept 38,329; exact pairs 32,639,908
+Selected through 39,296/69,692 active samples; kept 38,392; exact pairs 32,838,719
+Selected through 39,360/69,692 active samples; kept 38,456; exact pairs 33,034,980
+Selected through 39,424/69,692 active samples; kept 38,520; exact pairs 33,215,360
+Selected through 39,488/69,692 active samples; kept 38,584; exact pairs 33,417,343
+Selected through 39,552/69,692 active samples; kept 38,647; exact pairs 33,615,928
+Selected through 39,616/69,692 active samples; kept 38,711; exact pairs 33,811,400
+Selected through 39,680/69,692 active samples; kept 38,775; exact pairs 34,010,809
+Selected through 39,744/69,692 active samples; kept 38,839; exact pairs 34,206,868
+Selected through 39,808/69,692 active samples; kept 38,901; exact pairs 34,406,991
+Selected through 39,872/69,692 active samples; kept 38,963; exact pairs 34,605,494
+Selected through 39,936/69,692 active samples; kept 39,025; exact pairs 34,805,338
+Selected through 40,000/69,692 active samples; kept 39,089; exact pairs 35,003,132
+Selected through 40,064/69,692 active samples; kept 39,152; exact pairs 35,189,862
+Selected through 40,128/69,692 active samples; kept 39,214; exact pairs 35,403,147
+Selected through 40,192/69,692 active samples; kept 39,277; exact pairs 35,607,140
+Selected through 40,256/69,692 active samples; kept 39,337; exact pairs 35,825,632
+Selected through 40,320/69,692 active samples; kept 39,401; exact pairs 36,034,059
+Selected through 40,384/69,692 active samples; kept 39,465; exact pairs 36,241,512
+Selected through 40,448/69,692 active samples; kept 39,528; exact pairs 36,444,732
+Selected through 40,512/69,692 active samples; kept 39,589; exact pairs 36,652,027
+Selected through 40,576/69,692 active samples; kept 39,650; exact pairs 36,857,285
+Selected through 40,640/69,692 active samples; kept 39,712; exact pairs 37,068,157
+Selected through 40,704/69,692 active samples; kept 39,776; exact pairs 37,272,505
+Selected through 40,768/69,692 active samples; kept 39,838; exact pairs 37,479,580
+Selected through 40,832/69,692 active samples; kept 39,902; exact pairs 37,697,025
+Selected through 40,896/69,692 active samples; kept 39,965; exact pairs 37,916,992
+Selected through 40,960/69,692 active samples; kept 40,026; exact pairs 38,133,191
+Selected through 41,024/69,692 active samples; kept 40,089; exact pairs 38,348,907
+Selected through 41,088/69,692 active samples; kept 40,152; exact pairs 38,564,860
+Selected through 41,152/69,692 active samples; kept 40,214; exact pairs 38,787,580
+Selected through 41,216/69,692 active samples; kept 40,277; exact pairs 39,005,758
+Selected through 41,280/69,692 active samples; kept 40,340; exact pairs 39,225,615
+Selected through 41,344/69,692 active samples; kept 40,404; exact pairs 39,448,496
+Selected through 41,408/69,692 active samples; kept 40,466; exact pairs 39,676,802
+Selected through 41,472/69,692 active samples; kept 40,530; exact pairs 39,898,759
+Selected through 41,536/69,692 active samples; kept 40,593; exact pairs 40,135,383
+Selected through 41,600/69,692 active samples; kept 40,657; exact pairs 40,359,452
+Selected through 41,664/69,692 active samples; kept 40,721; exact pairs 40,583,763
+Selected through 41,728/69,692 active samples; kept 40,782; exact pairs 40,817,365
+Selected through 41,792/69,692 active samples; kept 40,846; exact pairs 41,046,053
+Selected through 41,856/69,692 active samples; kept 40,907; exact pairs 41,269,805
+Selected through 41,920/69,692 active samples; kept 40,969; exact pairs 41,514,193
+Selected through 41,984/69,692 active samples; kept 41,033; exact pairs 41,746,735
+Selected through 42,048/69,692 active samples; kept 41,096; exact pairs 41,972,692
+Selected through 42,112/69,692 active samples; kept 41,158; exact pairs 42,221,964
+Selected through 42,176/69,692 active samples; kept 41,222; exact pairs 42,452,160
+Selected through 42,240/69,692 active samples; kept 41,284; exact pairs 42,694,925
+Selected through 42,304/69,692 active samples; kept 41,347; exact pairs 42,942,351
+Selected through 42,368/69,692 active samples; kept 41,408; exact pairs 43,183,663
+Selected through 42,432/69,692 active samples; kept 41,470; exact pairs 43,427,956
+Selected through 42,496/69,692 active samples; kept 41,534; exact pairs 43,667,490
+Selected through 42,560/69,692 active samples; kept 41,595; exact pairs 43,924,706
+Selected through 42,624/69,692 active samples; kept 41,659; exact pairs 44,155,716
+Selected through 42,688/69,692 active samples; kept 41,721; exact pairs 44,399,283
+Selected through 42,752/69,692 active samples; kept 41,783; exact pairs 44,635,289
+Selected through 42,816/69,692 active samples; kept 41,845; exact pairs 44,878,899
+Selected through 42,880/69,692 active samples; kept 41,909; exact pairs 45,128,578
+Selected through 42,944/69,692 active samples; kept 41,972; exact pairs 45,385,080
+Selected through 43,008/69,692 active samples; kept 42,035; exact pairs 45,633,920
+Selected through 43,072/69,692 active samples; kept 42,096; exact pairs 45,891,325
+Selected through 43,136/69,692 active samples; kept 42,158; exact pairs 46,143,759
+Selected through 43,200/69,692 active samples; kept 42,222; exact pairs 46,400,487
+Selected through 43,264/69,692 active samples; kept 42,283; exact pairs 46,665,788
+Selected through 43,328/69,692 active samples; kept 42,346; exact pairs 46,928,287
+Selected through 43,392/69,692 active samples; kept 42,410; exact pairs 47,185,076
+Selected through 43,456/69,692 active samples; kept 42,471; exact pairs 47,456,675
+Selected through 43,520/69,692 active samples; kept 42,529; exact pairs 47,706,501
+Selected through 43,584/69,692 active samples; kept 42,593; exact pairs 47,966,331
+Selected through 43,648/69,692 active samples; kept 42,656; exact pairs 48,230,043
+Selected through 43,712/69,692 active samples; kept 42,716; exact pairs 48,489,239
+Selected through 43,776/69,692 active samples; kept 42,777; exact pairs 48,771,207
+Selected through 43,840/69,692 active samples; kept 42,841; exact pairs 49,035,458
+Selected through 43,904/69,692 active samples; kept 42,902; exact pairs 49,318,897
+Selected through 43,968/69,692 active samples; kept 42,964; exact pairs 49,593,811
+Selected through 44,032/69,692 active samples; kept 43,027; exact pairs 49,856,497
+Selected through 44,096/69,692 active samples; kept 43,091; exact pairs 50,140,474
+Selected through 44,160/69,692 active samples; kept 43,150; exact pairs 50,421,653
+Selected through 44,224/69,692 active samples; kept 43,213; exact pairs 50,695,014
+Selected through 44,288/69,692 active samples; kept 43,275; exact pairs 50,968,320
+Selected through 44,352/69,692 active samples; kept 43,337; exact pairs 51,250,099
+Selected through 44,416/69,692 active samples; kept 43,397; exact pairs 51,509,650
+Selected through 44,480/69,692 active samples; kept 43,460; exact pairs 51,777,317
+Selected through 44,544/69,692 active samples; kept 43,522; exact pairs 52,054,751
+Selected through 44,608/69,692 active samples; kept 43,585; exact pairs 52,354,180
+Selected through 44,672/69,692 active samples; kept 43,646; exact pairs 52,625,906
+Selected through 44,736/69,692 active samples; kept 43,709; exact pairs 52,920,676
+Selected through 44,800/69,692 active samples; kept 43,771; exact pairs 53,207,472
+Selected through 44,864/69,692 active samples; kept 43,835; exact pairs 53,506,575
+Selected through 44,928/69,692 active samples; kept 43,897; exact pairs 53,803,354
+Selected through 44,992/69,692 active samples; kept 43,957; exact pairs 54,088,677
+Selected through 45,056/69,692 active samples; kept 44,020; exact pairs 54,374,575
+Selected through 45,120/69,692 active samples; kept 44,081; exact pairs 54,660,900
+Selected through 45,184/69,692 active samples; kept 44,144; exact pairs 54,964,023
+Selected through 45,248/69,692 active samples; kept 44,207; exact pairs 55,261,223
+Selected through 45,312/69,692 active samples; kept 44,269; exact pairs 55,552,718
+Selected through 45,376/69,692 active samples; kept 44,333; exact pairs 55,844,909
+Selected through 45,440/69,692 active samples; kept 44,396; exact pairs 56,149,101
+Selected through 45,504/69,692 active samples; kept 44,459; exact pairs 56,462,548
+Selected through 45,568/69,692 active samples; kept 44,520; exact pairs 56,750,267
+Selected through 45,632/69,692 active samples; kept 44,582; exact pairs 57,044,478
+Selected through 45,696/69,692 active samples; kept 44,645; exact pairs 57,346,279
+Selected through 45,760/69,692 active samples; kept 44,707; exact pairs 57,664,107
+Selected through 45,824/69,692 active samples; kept 44,770; exact pairs 57,975,761
+Selected through 45,888/69,692 active samples; kept 44,833; exact pairs 58,298,155
+Selected through 45,952/69,692 active samples; kept 44,896; exact pairs 58,606,124
+Selected through 46,016/69,692 active samples; kept 44,957; exact pairs 58,898,909
+Selected through 46,080/69,692 active samples; kept 45,021; exact pairs 59,212,519
+Selected through 46,144/69,692 active samples; kept 45,084; exact pairs 59,528,515
+Selected through 46,208/69,692 active samples; kept 45,145; exact pairs 59,848,974
+Selected through 46,272/69,692 active samples; kept 45,207; exact pairs 60,188,555
+Selected through 46,336/69,692 active samples; kept 45,270; exact pairs 60,517,233
+Selected through 46,400/69,692 active samples; kept 45,330; exact pairs 60,832,782
+Selected through 46,464/69,692 active samples; kept 45,391; exact pairs 61,154,081
+Selected through 46,528/69,692 active samples; kept 45,453; exact pairs 61,480,525
+Selected through 46,592/69,692 active samples; kept 45,516; exact pairs 61,813,941
+Selected through 46,656/69,692 active samples; kept 45,579; exact pairs 62,128,609
+Selected through 46,720/69,692 active samples; kept 45,642; exact pairs 62,464,087
+Selected through 46,784/69,692 active samples; kept 45,706; exact pairs 62,807,846
+Selected through 46,848/69,692 active samples; kept 45,769; exact pairs 63,129,482
+Selected through 46,912/69,692 active samples; kept 45,832; exact pairs 63,456,569
+Selected through 46,976/69,692 active samples; kept 45,894; exact pairs 63,785,027
+Selected through 47,040/69,692 active samples; kept 45,957; exact pairs 64,130,928
+Selected through 47,104/69,692 active samples; kept 46,020; exact pairs 64,471,499
+Selected through 47,168/69,692 active samples; kept 46,082; exact pairs 64,819,581
+Selected through 47,232/69,692 active samples; kept 46,144; exact pairs 65,172,785
+Selected through 47,296/69,692 active samples; kept 46,205; exact pairs 65,516,691
+Selected through 47,360/69,692 active samples; kept 46,267; exact pairs 65,870,680
+Selected through 47,424/69,692 active samples; kept 46,329; exact pairs 66,228,563
+Selected through 47,488/69,692 active samples; kept 46,391; exact pairs 66,579,598
+Selected through 47,552/69,692 active samples; kept 46,452; exact pairs 66,919,156
+Selected through 47,616/69,692 active samples; kept 46,511; exact pairs 67,269,575
+Selected through 47,680/69,692 active samples; kept 46,571; exact pairs 67,617,229
+Selected through 47,744/69,692 active samples; kept 46,633; exact pairs 67,983,157
+Selected through 47,808/69,692 active samples; kept 46,696; exact pairs 68,350,614
+Selected through 47,872/69,692 active samples; kept 46,759; exact pairs 68,726,224
+Selected through 47,936/69,692 active samples; kept 46,822; exact pairs 69,089,539
+Selected through 48,000/69,692 active samples; kept 46,886; exact pairs 69,458,236
+Selected through 48,064/69,692 active samples; kept 46,946; exact pairs 69,809,846
+Selected through 48,128/69,692 active samples; kept 47,008; exact pairs 70,189,878
+Selected through 48,192/69,692 active samples; kept 47,071; exact pairs 70,566,931
+Selected through 48,256/69,692 active samples; kept 47,134; exact pairs 70,956,265
+Selected through 48,320/69,692 active samples; kept 47,195; exact pairs 71,346,156
+Selected through 48,384/69,692 active samples; kept 47,258; exact pairs 71,733,572
+Selected through 48,448/69,692 active samples; kept 47,322; exact pairs 72,096,596
+Selected through 48,512/69,692 active samples; kept 47,384; exact pairs 72,486,924
+Selected through 48,576/69,692 active samples; kept 47,446; exact pairs 72,867,678
+Selected through 48,640/69,692 active samples; kept 47,509; exact pairs 73,248,461
+Selected through 48,704/69,692 active samples; kept 47,572; exact pairs 73,637,289
+Selected through 48,768/69,692 active samples; kept 47,634; exact pairs 74,024,416
+Selected through 48,832/69,692 active samples; kept 47,696; exact pairs 74,389,946
+Selected through 48,896/69,692 active samples; kept 47,760; exact pairs 74,787,598
+Selected through 48,960/69,692 active samples; kept 47,822; exact pairs 75,177,667
+Selected through 49,024/69,692 active samples; kept 47,884; exact pairs 75,570,656
+Selected through 49,088/69,692 active samples; kept 47,947; exact pairs 75,969,907
+Selected through 49,152/69,692 active samples; kept 48,011; exact pairs 76,364,650
+Selected through 49,216/69,692 active samples; kept 48,074; exact pairs 76,770,313
+Selected through 49,280/69,692 active samples; kept 48,133; exact pairs 77,160,454
+Selected through 49,344/69,692 active samples; kept 48,197; exact pairs 77,567,415
+Selected through 49,408/69,692 active samples; kept 48,260; exact pairs 77,980,162
+Selected through 49,472/69,692 active samples; kept 48,320; exact pairs 78,383,603
+Selected through 49,536/69,692 active samples; kept 48,383; exact pairs 78,801,659
+Selected through 49,600/69,692 active samples; kept 48,443; exact pairs 79,216,861
+Selected through 49,664/69,692 active samples; kept 48,505; exact pairs 79,634,946
+Selected through 49,728/69,692 active samples; kept 48,569; exact pairs 80,050,873
+Selected through 49,792/69,692 active samples; kept 48,631; exact pairs 80,467,486
+Selected through 49,856/69,692 active samples; kept 48,695; exact pairs 80,886,054
+Selected through 49,920/69,692 active samples; kept 48,757; exact pairs 81,306,472
+Selected through 49,984/69,692 active samples; kept 48,817; exact pairs 81,720,553
+Selected through 50,048/69,692 active samples; kept 48,880; exact pairs 82,159,148
+Selected through 50,112/69,692 active samples; kept 48,942; exact pairs 82,583,136
+Selected through 50,176/69,692 active samples; kept 49,002; exact pairs 83,017,270
+Selected through 50,240/69,692 active samples; kept 49,064; exact pairs 83,462,202
+Selected through 50,304/69,692 active samples; kept 49,126; exact pairs 83,888,303
+Selected through 50,368/69,692 active samples; kept 49,188; exact pairs 84,316,565
+Selected through 50,432/69,692 active samples; kept 49,250; exact pairs 84,767,651
+Selected through 50,496/69,692 active samples; kept 49,314; exact pairs 85,225,658
+Selected through 50,560/69,692 active samples; kept 49,377; exact pairs 85,657,892
+Selected through 50,624/69,692 active samples; kept 49,438; exact pairs 86,107,821
+Selected through 50,688/69,692 active samples; kept 49,500; exact pairs 86,554,818
+Selected through 50,752/69,692 active samples; kept 49,561; exact pairs 86,995,209
+Selected through 50,816/69,692 active samples; kept 49,622; exact pairs 87,450,568
+Selected through 50,880/69,692 active samples; kept 49,685; exact pairs 87,924,875
+Selected through 50,944/69,692 active samples; kept 49,746; exact pairs 88,391,134
+Selected through 51,008/69,692 active samples; kept 49,808; exact pairs 88,846,791
+Selected through 51,072/69,692 active samples; kept 49,869; exact pairs 89,289,363
+Selected through 51,136/69,692 active samples; kept 49,931; exact pairs 89,752,871
+Selected through 51,200/69,692 active samples; kept 49,993; exact pairs 90,218,596
+Selected through 51,264/69,692 active samples; kept 50,055; exact pairs 90,686,878
+Selected through 51,328/69,692 active samples; kept 50,116; exact pairs 91,155,553
+Selected through 51,392/69,692 active samples; kept 50,180; exact pairs 91,642,388
+Selected through 51,456/69,692 active samples; kept 50,241; exact pairs 92,112,396
+Selected through 51,520/69,692 active samples; kept 50,304; exact pairs 92,606,026
+Selected through 51,584/69,692 active samples; kept 50,365; exact pairs 93,086,503
+Selected through 51,648/69,692 active samples; kept 50,424; exact pairs 93,558,628
+Selected through 51,712/69,692 active samples; kept 50,486; exact pairs 94,038,029
+Selected through 51,776/69,692 active samples; kept 50,548; exact pairs 94,530,886
+Selected through 51,840/69,692 active samples; kept 50,612; exact pairs 95,041,067
+Selected through 51,904/69,692 active samples; kept 50,674; exact pairs 95,533,319
+Selected through 51,968/69,692 active samples; kept 50,737; exact pairs 96,038,152
+Selected through 52,032/69,692 active samples; kept 50,800; exact pairs 96,519,447
+Selected through 52,096/69,692 active samples; kept 50,862; exact pairs 97,006,446
+Selected through 52,160/69,692 active samples; kept 50,924; exact pairs 97,510,518
+Selected through 52,224/69,692 active samples; kept 50,987; exact pairs 98,006,569
+Selected through 52,288/69,692 active samples; kept 51,046; exact pairs 98,503,410
+Selected through 52,352/69,692 active samples; kept 51,107; exact pairs 99,023,301
+Selected through 52,416/69,692 active samples; kept 51,168; exact pairs 99,523,072
+Selected through 52,480/69,692 active samples; kept 51,231; exact pairs 100,055,216
+Selected through 52,544/69,692 active samples; kept 51,294; exact pairs 100,561,061
+Selected through 52,608/69,692 active samples; kept 51,357; exact pairs 101,081,447
+Selected through 52,672/69,692 active samples; kept 51,416; exact pairs 101,579,691
+Selected through 52,736/69,692 active samples; kept 51,476; exact pairs 102,107,858
+Selected through 52,800/69,692 active samples; kept 51,538; exact pairs 102,652,358
+Selected through 52,864/69,692 active samples; kept 51,599; exact pairs 103,171,777
+Selected through 52,928/69,692 active samples; kept 51,661; exact pairs 103,682,663
+Selected through 52,992/69,692 active samples; kept 51,723; exact pairs 104,217,846
+Selected through 53,056/69,692 active samples; kept 51,786; exact pairs 104,732,553
+Selected through 53,120/69,692 active samples; kept 51,848; exact pairs 105,257,904
+Selected through 53,184/69,692 active samples; kept 51,908; exact pairs 105,793,400
+Selected through 53,248/69,692 active samples; kept 51,972; exact pairs 106,344,259
+Selected through 53,312/69,692 active samples; kept 52,032; exact pairs 106,887,175
+Selected through 53,376/69,692 active samples; kept 52,092; exact pairs 107,418,203
+Selected through 53,440/69,692 active samples; kept 52,155; exact pairs 107,978,691
+Selected through 53,504/69,692 active samples; kept 52,216; exact pairs 108,534,930
+Selected through 53,568/69,692 active samples; kept 52,277; exact pairs 109,097,955
+Selected through 53,632/69,692 active samples; kept 52,339; exact pairs 109,650,945
+Selected through 53,696/69,692 active samples; kept 52,402; exact pairs 110,200,078
+Selected through 53,760/69,692 active samples; kept 52,461; exact pairs 110,761,035
+Selected through 53,824/69,692 active samples; kept 52,522; exact pairs 111,330,366
+Selected through 53,888/69,692 active samples; kept 52,583; exact pairs 111,901,032
+Selected through 53,952/69,692 active samples; kept 52,644; exact pairs 112,466,434
+Selected through 54,016/69,692 active samples; kept 52,705; exact pairs 113,008,753
+Selected through 54,080/69,692 active samples; kept 52,769; exact pairs 113,591,523
+Selected through 54,144/69,692 active samples; kept 52,832; exact pairs 114,182,000
+Selected through 54,208/69,692 active samples; kept 52,896; exact pairs 114,781,370
+Selected through 54,272/69,692 active samples; kept 52,958; exact pairs 115,373,975
+Selected through 54,336/69,692 active samples; kept 53,020; exact pairs 115,972,399
+Selected through 54,400/69,692 active samples; kept 53,078; exact pairs 116,558,620
+Selected through 54,464/69,692 active samples; kept 53,140; exact pairs 117,151,964
+Selected through 54,528/69,692 active samples; kept 53,204; exact pairs 117,753,393
+Selected through 54,592/69,692 active samples; kept 53,267; exact pairs 118,343,400
+Selected through 54,656/69,692 active samples; kept 53,330; exact pairs 118,951,478
+Selected through 54,720/69,692 active samples; kept 53,393; exact pairs 119,564,580
+Selected through 54,784/69,692 active samples; kept 53,454; exact pairs 120,161,369
+Selected through 54,848/69,692 active samples; kept 53,517; exact pairs 120,781,969
+Selected through 54,912/69,692 active samples; kept 53,580; exact pairs 121,410,777
+Selected through 54,976/69,692 active samples; kept 53,640; exact pairs 122,034,741
+Selected through 55,040/69,692 active samples; kept 53,702; exact pairs 122,657,559
+Selected through 55,104/69,692 active samples; kept 53,763; exact pairs 123,290,818
+Selected through 55,168/69,692 active samples; kept 53,826; exact pairs 123,929,399
+Selected through 55,232/69,692 active samples; kept 53,889; exact pairs 124,586,844
+Selected through 55,296/69,692 active samples; kept 53,949; exact pairs 125,224,055
+Selected through 55,360/69,692 active samples; kept 54,008; exact pairs 125,845,432
+Selected through 55,424/69,692 active samples; kept 54,071; exact pairs 126,490,395
+Selected through 55,488/69,692 active samples; kept 54,131; exact pairs 127,144,170
+Selected through 55,552/69,692 active samples; kept 54,190; exact pairs 127,812,408
+Selected through 55,616/69,692 active samples; kept 54,252; exact pairs 128,463,712
+Selected through 55,680/69,692 active samples; kept 54,315; exact pairs 129,120,005
+Selected through 55,744/69,692 active samples; kept 54,378; exact pairs 129,793,276
+Selected through 55,808/69,692 active samples; kept 54,440; exact pairs 130,441,042
+Selected through 55,872/69,692 active samples; kept 54,500; exact pairs 131,085,994
+Selected through 55,936/69,692 active samples; kept 54,558; exact pairs 131,738,066
+Selected through 56,000/69,692 active samples; kept 54,621; exact pairs 132,430,221
+Selected through 56,064/69,692 active samples; kept 54,683; exact pairs 133,127,524
+Selected through 56,128/69,692 active samples; kept 54,744; exact pairs 133,790,379
+Selected through 56,192/69,692 active samples; kept 54,807; exact pairs 134,471,221
+Selected through 56,256/69,692 active samples; kept 54,868; exact pairs 135,139,998
+Selected through 56,320/69,692 active samples; kept 54,928; exact pairs 135,816,727
+Selected through 56,384/69,692 active samples; kept 54,989; exact pairs 136,519,952
+Selected through 56,448/69,692 active samples; kept 55,049; exact pairs 137,215,667
+Selected through 56,512/69,692 active samples; kept 55,112; exact pairs 137,937,978
+Selected through 56,576/69,692 active samples; kept 55,175; exact pairs 138,662,310
+Selected through 56,640/69,692 active samples; kept 55,237; exact pairs 139,353,254
+Selected through 56,704/69,692 active samples; kept 55,298; exact pairs 140,070,126
+Selected through 56,768/69,692 active samples; kept 55,362; exact pairs 140,786,524
+Selected through 56,832/69,692 active samples; kept 55,423; exact pairs 141,496,176
+Selected through 56,896/69,692 active samples; kept 55,485; exact pairs 142,213,661
+Selected through 56,960/69,692 active samples; kept 55,546; exact pairs 142,941,910
+Selected through 57,024/69,692 active samples; kept 55,609; exact pairs 143,651,740
+Selected through 57,088/69,692 active samples; kept 55,671; exact pairs 144,398,785
+Selected through 57,152/69,692 active samples; kept 55,732; exact pairs 145,124,730
+Selected through 57,216/69,692 active samples; kept 55,793; exact pairs 145,844,273
+Selected through 57,280/69,692 active samples; kept 55,854; exact pairs 146,590,927
+Selected through 57,344/69,692 active samples; kept 55,915; exact pairs 147,318,550
+Selected through 57,408/69,692 active samples; kept 55,978; exact pairs 148,072,416
+Selected through 57,472/69,692 active samples; kept 56,039; exact pairs 148,826,333
+Selected through 57,536/69,692 active samples; kept 56,100; exact pairs 149,551,117
+Selected through 57,600/69,692 active samples; kept 56,163; exact pairs 150,307,273
+Selected through 57,664/69,692 active samples; kept 56,225; exact pairs 151,065,001
+Selected through 57,728/69,692 active samples; kept 56,287; exact pairs 151,853,097
+Selected through 57,792/69,692 active samples; kept 56,347; exact pairs 152,618,119
+Selected through 57,856/69,692 active samples; kept 56,410; exact pairs 153,408,695
+Selected through 57,920/69,692 active samples; kept 56,469; exact pairs 154,174,764
+Selected through 57,984/69,692 active samples; kept 56,529; exact pairs 154,959,747
+Selected through 58,048/69,692 active samples; kept 56,592; exact pairs 155,738,234
+Selected through 58,112/69,692 active samples; kept 56,655; exact pairs 156,524,291
+Selected through 58,176/69,692 active samples; kept 56,718; exact pairs 157,358,631
+Selected through 58,240/69,692 active samples; kept 56,779; exact pairs 158,135,784
+Selected through 58,304/69,692 active samples; kept 56,841; exact pairs 158,941,205
+Selected through 58,368/69,692 active samples; kept 56,899; exact pairs 159,738,323
+Selected through 58,432/69,692 active samples; kept 56,962; exact pairs 160,527,896
+Selected through 58,496/69,692 active samples; kept 57,022; exact pairs 161,353,963
+Selected through 58,560/69,692 active samples; kept 57,084; exact pairs 162,148,670
+Selected through 58,624/69,692 active samples; kept 57,148; exact pairs 162,974,019
+Selected through 58,688/69,692 active samples; kept 57,209; exact pairs 163,825,428
+Selected through 58,752/69,692 active samples; kept 57,272; exact pairs 164,659,249
+Selected through 58,816/69,692 active samples; kept 57,335; exact pairs 165,487,446
+Selected through 58,880/69,692 active samples; kept 57,399; exact pairs 166,332,249
+Selected through 58,944/69,692 active samples; kept 57,462; exact pairs 167,190,490
+Selected through 59,008/69,692 active samples; kept 57,524; exact pairs 168,050,686
+Selected through 59,072/69,692 active samples; kept 57,582; exact pairs 168,891,058
+Selected through 59,136/69,692 active samples; kept 57,643; exact pairs 169,721,141
+Selected through 59,200/69,692 active samples; kept 57,703; exact pairs 170,582,298
+Selected through 59,264/69,692 active samples; kept 57,763; exact pairs 171,434,562
+Selected through 59,328/69,692 active samples; kept 57,824; exact pairs 172,284,384
+Selected through 59,392/69,692 active samples; kept 57,886; exact pairs 173,173,603
+Selected through 59,456/69,692 active samples; kept 57,946; exact pairs 174,053,814
+Selected through 59,520/69,692 active samples; kept 58,010; exact pairs 174,924,948
+Selected through 59,584/69,692 active samples; kept 58,069; exact pairs 175,806,847
+Selected through 59,648/69,692 active samples; kept 58,130; exact pairs 176,713,220
+Selected through 59,712/69,692 active samples; kept 58,190; exact pairs 177,604,348
+Selected through 59,776/69,692 active samples; kept 58,246; exact pairs 178,521,898
+Selected through 59,840/69,692 active samples; kept 58,309; exact pairs 179,422,380
+Selected through 59,904/69,692 active samples; kept 58,373; exact pairs 180,329,283
+Selected through 59,968/69,692 active samples; kept 58,437; exact pairs 181,255,716
+Selected through 60,032/69,692 active samples; kept 58,500; exact pairs 182,180,666
+Selected through 60,096/69,692 active samples; kept 58,559; exact pairs 183,118,162
+Selected through 60,160/69,692 active samples; kept 58,619; exact pairs 184,051,107
+Selected through 60,224/69,692 active samples; kept 58,678; exact pairs 184,965,885
+Selected through 60,288/69,692 active samples; kept 58,736; exact pairs 185,890,714
+Selected through 60,352/69,692 active samples; kept 58,799; exact pairs 186,818,150
+Selected through 60,416/69,692 active samples; kept 58,862; exact pairs 187,758,253
+Selected through 60,480/69,692 active samples; kept 58,923; exact pairs 188,720,060
+Selected through 60,544/69,692 active samples; kept 58,986; exact pairs 189,647,242
+Selected through 60,608/69,692 active samples; kept 59,048; exact pairs 190,603,601
+Selected through 60,672/69,692 active samples; kept 59,107; exact pairs 191,561,552
+Selected through 60,736/69,692 active samples; kept 59,168; exact pairs 192,562,998
+Selected through 60,800/69,692 active samples; kept 59,230; exact pairs 193,527,191
+Selected through 60,864/69,692 active samples; kept 59,292; exact pairs 194,487,249
+Selected through 60,928/69,692 active samples; kept 59,354; exact pairs 195,473,074
+Selected through 60,992/69,692 active samples; kept 59,415; exact pairs 196,485,136
+Selected through 61,056/69,692 active samples; kept 59,477; exact pairs 197,487,499
+Selected through 61,120/69,692 active samples; kept 59,540; exact pairs 198,502,048
+Selected through 61,184/69,692 active samples; kept 59,600; exact pairs 199,471,517
+Selected through 61,248/69,692 active samples; kept 59,661; exact pairs 200,463,709
+Selected through 61,312/69,692 active samples; kept 59,724; exact pairs 201,465,032
+Selected through 61,376/69,692 active samples; kept 59,786; exact pairs 202,480,289
+Selected through 61,440/69,692 active samples; kept 59,848; exact pairs 203,466,692
+Selected through 61,504/69,692 active samples; kept 59,908; exact pairs 204,486,213
+Selected through 61,568/69,692 active samples; kept 59,970; exact pairs 205,554,387
+Selected through 61,632/69,692 active samples; kept 60,029; exact pairs 206,575,215
+Selected through 61,696/69,692 active samples; kept 60,091; exact pairs 207,571,050
+Selected through 61,760/69,692 active samples; kept 60,151; exact pairs 208,603,816
+Selected through 61,824/69,692 active samples; kept 60,209; exact pairs 209,656,909
+Selected through 61,888/69,692 active samples; kept 60,267; exact pairs 210,721,027
+Selected through 61,952/69,692 active samples; kept 60,329; exact pairs 211,790,002
+Selected through 62,016/69,692 active samples; kept 60,390; exact pairs 212,882,138
+Selected through 62,080/69,692 active samples; kept 60,452; exact pairs 213,945,359
+Selected through 62,144/69,692 active samples; kept 60,514; exact pairs 215,017,171
+Selected through 62,208/69,692 active samples; kept 60,576; exact pairs 216,092,072
+Selected through 62,272/69,692 active samples; kept 60,639; exact pairs 217,180,007
+Selected through 62,336/69,692 active samples; kept 60,698; exact pairs 218,259,787
+Selected through 62,400/69,692 active samples; kept 60,759; exact pairs 219,375,412
+Selected through 62,464/69,692 active samples; kept 60,821; exact pairs 220,481,108
+Selected through 62,528/69,692 active samples; kept 60,884; exact pairs 221,588,139
+Selected through 62,592/69,692 active samples; kept 60,943; exact pairs 222,727,152
+Selected through 62,656/69,692 active samples; kept 61,003; exact pairs 223,853,887
+Selected through 62,720/69,692 active samples; kept 61,065; exact pairs 224,968,342
+Selected through 62,784/69,692 active samples; kept 61,123; exact pairs 226,099,756
+Selected through 62,848/69,692 active samples; kept 61,185; exact pairs 227,234,878
+Selected through 62,912/69,692 active samples; kept 61,244; exact pairs 228,388,520
+Selected through 62,976/69,692 active samples; kept 61,307; exact pairs 229,536,990
+Selected through 63,040/69,692 active samples; kept 61,371; exact pairs 230,721,366
+Selected through 63,104/69,692 active samples; kept 61,431; exact pairs 231,878,258
+Selected through 63,168/69,692 active samples; kept 61,492; exact pairs 233,036,855
+Selected through 63,232/69,692 active samples; kept 61,549; exact pairs 234,202,425
+Selected through 63,296/69,692 active samples; kept 61,612; exact pairs 235,414,102
+Selected through 63,360/69,692 active samples; kept 61,672; exact pairs 236,605,294
+Selected through 63,424/69,692 active samples; kept 61,732; exact pairs 237,789,560
+Selected through 63,488/69,692 active samples; kept 61,791; exact pairs 238,993,840
+Selected through 63,552/69,692 active samples; kept 61,853; exact pairs 240,212,104
+Selected through 63,616/69,692 active samples; kept 61,914; exact pairs 241,438,222
+Selected through 63,680/69,692 active samples; kept 61,975; exact pairs 242,653,969
+Selected through 63,744/69,692 active samples; kept 62,036; exact pairs 243,887,440
+Selected through 63,808/69,692 active samples; kept 62,098; exact pairs 245,128,641
+Selected through 63,872/69,692 active samples; kept 62,158; exact pairs 246,386,408
+Selected through 63,936/69,692 active samples; kept 62,222; exact pairs 247,656,285
+Selected through 64,000/69,692 active samples; kept 62,285; exact pairs 248,915,347
+Selected through 64,064/69,692 active samples; kept 62,343; exact pairs 250,194,980
+Selected through 64,128/69,692 active samples; kept 62,403; exact pairs 251,444,466
+Selected through 64,192/69,692 active samples; kept 62,463; exact pairs 252,728,814
+Selected through 64,256/69,692 active samples; kept 62,516; exact pairs 253,997,800
+Selected through 64,320/69,692 active samples; kept 62,576; exact pairs 255,287,010
+Selected through 64,384/69,692 active samples; kept 62,639; exact pairs 256,625,960
+Selected through 64,448/69,692 active samples; kept 62,703; exact pairs 257,946,946
+Selected through 64,512/69,692 active samples; kept 62,763; exact pairs 259,247,241
+Selected through 64,576/69,692 active samples; kept 62,826; exact pairs 260,568,900
+Selected through 64,640/69,692 active samples; kept 62,885; exact pairs 261,889,365
+Selected through 64,704/69,692 active samples; kept 62,946; exact pairs 263,230,472
+Selected through 64,768/69,692 active samples; kept 63,005; exact pairs 264,574,012
+Selected through 64,832/69,692 active samples; kept 63,065; exact pairs 265,915,293
+Selected through 64,896/69,692 active samples; kept 63,126; exact pairs 267,279,357
+Selected through 64,960/69,692 active samples; kept 63,185; exact pairs 268,663,212
+Selected through 65,024/69,692 active samples; kept 63,246; exact pairs 270,081,016
+Selected through 65,088/69,692 active samples; kept 63,308; exact pairs 271,479,048
+Selected through 65,152/69,692 active samples; kept 63,368; exact pairs 272,871,085
+Selected through 65,216/69,692 active samples; kept 63,431; exact pairs 274,273,605
+Selected through 65,280/69,692 active samples; kept 63,492; exact pairs 275,674,304
+Selected through 65,344/69,692 active samples; kept 63,549; exact pairs 277,109,824
+Selected through 65,408/69,692 active samples; kept 63,610; exact pairs 278,547,034
+Selected through 65,472/69,692 active samples; kept 63,665; exact pairs 280,014,287
+Selected through 65,536/69,692 active samples; kept 63,725; exact pairs 281,491,245
+Selected through 65,600/69,692 active samples; kept 63,787; exact pairs 282,933,464
+Selected through 65,664/69,692 active samples; kept 63,845; exact pairs 284,442,597
+Selected through 65,728/69,692 active samples; kept 63,908; exact pairs 285,917,335
+Selected through 65,792/69,692 active samples; kept 63,968; exact pairs 287,435,398
+Selected through 65,856/69,692 active samples; kept 64,027; exact pairs 288,954,511
+Selected through 65,920/69,692 active samples; kept 64,090; exact pairs 290,483,832
+Selected through 65,984/69,692 active samples; kept 64,153; exact pairs 291,990,758
+Selected through 66,048/69,692 active samples; kept 64,215; exact pairs 293,510,867
+Selected through 66,112/69,692 active samples; kept 64,275; exact pairs 295,054,170
+Selected through 66,176/69,692 active samples; kept 64,333; exact pairs 296,643,098
+Selected through 66,240/69,692 active samples; kept 64,395; exact pairs 298,223,117
+Selected through 66,304/69,692 active samples; kept 64,456; exact pairs 299,821,203
+Selected through 66,368/69,692 active samples; kept 64,516; exact pairs 301,381,383
+Selected through 66,432/69,692 active samples; kept 64,576; exact pairs 303,008,766
+Selected through 66,496/69,692 active samples; kept 64,635; exact pairs 304,606,121
+Selected through 66,560/69,692 active samples; kept 64,695; exact pairs 306,240,847
+Selected through 66,624/69,692 active samples; kept 64,754; exact pairs 307,901,984
+Selected through 66,688/69,692 active samples; kept 64,813; exact pairs 309,576,597
+Selected through 66,752/69,692 active samples; kept 64,875; exact pairs 311,220,490
+Selected through 66,816/69,692 active samples; kept 64,935; exact pairs 312,911,513
+Selected through 66,880/69,692 active samples; kept 64,997; exact pairs 314,567,660
+Selected through 66,944/69,692 active samples; kept 65,055; exact pairs 316,271,409
+Selected through 67,008/69,692 active samples; kept 65,111; exact pairs 318,011,209
+Selected through 67,072/69,692 active samples; kept 65,169; exact pairs 319,740,825
+Selected through 67,136/69,692 active samples; kept 65,225; exact pairs 321,466,486
+Selected through 67,200/69,692 active samples; kept 65,284; exact pairs 323,248,597
+Selected through 67,264/69,692 active samples; kept 65,346; exact pairs 325,048,987
+Selected through 67,328/69,692 active samples; kept 65,405; exact pairs 326,851,919
+Selected through 67,392/69,692 active samples; kept 65,464; exact pairs 328,664,692
+Selected through 67,456/69,692 active samples; kept 65,525; exact pairs 330,465,377
+Selected through 67,520/69,692 active samples; kept 65,582; exact pairs 332,326,611
+Selected through 67,584/69,692 active samples; kept 65,635; exact pairs 334,160,131
+Selected through 67,648/69,692 active samples; kept 65,693; exact pairs 336,019,354
+Selected through 67,712/69,692 active samples; kept 65,750; exact pairs 337,948,323
+Selected through 67,776/69,692 active samples; kept 65,808; exact pairs 339,861,774
+Selected through 67,840/69,692 active samples; kept 65,870; exact pairs 341,773,942
+Selected through 67,904/69,692 active samples; kept 65,929; exact pairs 343,683,357
+Selected through 67,968/69,692 active samples; kept 65,983; exact pairs 345,635,043
+Selected through 68,032/69,692 active samples; kept 66,040; exact pairs 347,615,130
+Selected through 68,096/69,692 active samples; kept 66,102; exact pairs 349,643,302
+Selected through 68,160/69,692 active samples; kept 66,161; exact pairs 351,656,091
+Selected through 68,224/69,692 active samples; kept 66,214; exact pairs 353,685,512
+Selected through 68,288/69,692 active samples; kept 66,275; exact pairs 355,742,118
+Selected through 68,352/69,692 active samples; kept 66,334; exact pairs 357,842,660
+Selected through 68,416/69,692 active samples; kept 66,392; exact pairs 359,966,877
+Selected through 68,480/69,692 active samples; kept 66,449; exact pairs 362,116,339
+Selected through 68,544/69,692 active samples; kept 66,506; exact pairs 364,311,129
+Selected through 68,608/69,692 active samples; kept 66,566; exact pairs 366,503,467
+Selected through 68,672/69,692 active samples; kept 66,623; exact pairs 368,723,944
+Selected through 68,736/69,692 active samples; kept 66,686; exact pairs 371,012,059
+Selected through 68,800/69,692 active samples; kept 66,745; exact pairs 373,314,805
+Selected through 68,864/69,692 active samples; kept 66,802; exact pairs 375,670,298
+Selected through 68,928/69,692 active samples; kept 66,860; exact pairs 378,057,238
+Selected through 68,992/69,692 active samples; kept 66,918; exact pairs 380,456,017
+Selected through 69,056/69,692 active samples; kept 66,979; exact pairs 382,875,671
+Selected through 69,120/69,692 active samples; kept 67,033; exact pairs 385,379,401
+Selected through 69,184/69,692 active samples; kept 67,088; exact pairs 387,895,423
+Selected through 69,248/69,692 active samples; kept 67,148; exact pairs 390,493,801
+Selected through 69,312/69,692 active samples; kept 67,206; exact pairs 393,172,242
+Selected through 69,376/69,692 active samples; kept 67,261; exact pairs 395,954,347
+Selected through 69,440/69,692 active samples; kept 67,317; exact pairs 398,841,355
+Selected through 69,504/69,692 active samples; kept 67,371; exact pairs 401,803,816
+Selected through 69,568/69,692 active samples; kept 67,427; exact pairs 404,877,019
+Selected through 69,632/69,692 active samples; kept 67,480; exact pairs 408,144,319
+Selected through 69,692/69,692 active samples; kept 67,529; exact pairs 411,481,281
+[done] output=/WORK/PUBLIC/lijuanzi1_work/dz/SAERL/SAERL-0801/runs/selection/qwen2_5/20260815-031029-164461/selection_v2_sf_energy_feature_indices counts={'total': 103014, 'active': 69692, 'selected': 67529, 'redundant': 2163, 'silent': 33322}
+{
+  "counts": {
+    "total": 103014,
+    "active": 69692,
+    "selected": 67529,
+    "redundant": 2163,
+    "silent": 33322
+  },
+  "output_dir": "/WORK/PUBLIC/lijuanzi1_work/dz/SAERL/SAERL-0801/runs/selection/qwen2_5/20260815-031029-164461/selection_v2_sf_energy_feature_indices"
+}

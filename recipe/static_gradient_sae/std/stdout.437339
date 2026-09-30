@@ -1,0 +1,1202 @@
+ray init kwargs: {'num_cpus': None, 'runtime_env': {'env_vars': {'TOKENIZERS_PARALLELISM': 'true', 'VLLM_LOGGING_LEVEL': 'WARN', 'VLLM_ALLOW_RUNTIME_LORA_UPDATING': 'true', 'VLLM_ALLREDUCE_USE_SYMM_MEM': '0', 'CUDA_DEVICE_MAX_CONNECTIONS': '1', 'NCCL_CUMEM_ENABLE': '0'}, 'working_dir': None}}
+[36m(TaskRunner pid=715730)[0m Static gradient-SAE output directory: /WORK/PUBLIC/lijuanzi1_work/dz/SAERL/SAERL-0801/runs/selection/verl-main-static-gradient-sae/20260806-143158-970665
+[36m(TaskRunner pid=715730)[0m TaskRunner hostname: g44, PID: 715730
+[36m(TaskRunner pid=715730)[0m {'actor_rollout_ref': {'actor': {'_target_': 'verl.workers.config.FSDPActorConfig',
+[36m(TaskRunner pid=715730)[0m                                  'calculate_entropy': False,
+[36m(TaskRunner pid=715730)[0m                                  'checkpoint': {'_target_': 'verl.trainer.config.CheckpointConfig',
+[36m(TaskRunner pid=715730)[0m                                                 'async_save': False,
+[36m(TaskRunner pid=715730)[0m                                                 'load_contents': ['model',
+[36m(TaskRunner pid=715730)[0m                                                                   'optimizer',
+[36m(TaskRunner pid=715730)[0m                                                                   'extra'],
+[36m(TaskRunner pid=715730)[0m                                                 'save_contents': ['model',
+[36m(TaskRunner pid=715730)[0m                                                                   'optimizer',
+[36m(TaskRunner pid=715730)[0m                                                                   'extra']},
+[36m(TaskRunner pid=715730)[0m                                  'clip_ratio': 0.2,
+[36m(TaskRunner pid=715730)[0m                                  'clip_ratio_c': 3.0,
+[36m(TaskRunner pid=715730)[0m                                  'clip_ratio_high': 0.2,
+[36m(TaskRunner pid=715730)[0m                                  'clip_ratio_low': 0.2,
+[36m(TaskRunner pid=715730)[0m                                  'data_loader_seed': 42,
+[36m(TaskRunner pid=715730)[0m                                  'entropy_checkpointing': False,
+[36m(TaskRunner pid=715730)[0m                                  'entropy_coeff': 0,
+[36m(TaskRunner pid=715730)[0m                                  'entropy_from_logits_with_chunking': False,
+[36m(TaskRunner pid=715730)[0m                                  'freeze_vision_tower': False,
+[36m(TaskRunner pid=715730)[0m                                  'fsdp_config': {'_target_': 'verl.workers.config.FSDPEngineConfig',
+[36m(TaskRunner pid=715730)[0m                                                  'dtype': 'bfloat16',
+[36m(TaskRunner pid=715730)[0m                                                  'entropy_checkpointing': False,
+[36m(TaskRunner pid=715730)[0m                                                  'entropy_from_logits_with_chunking': False,
+[36m(TaskRunner pid=715730)[0m                                                  'forward_only': False,
+[36m(TaskRunner pid=715730)[0m                                                  'forward_prefetch': False,
+[36m(TaskRunner pid=715730)[0m                                                  'fsdp_size': -1,
+[36m(TaskRunner pid=715730)[0m                                                  'full_determinism': False,
+[36m(TaskRunner pid=715730)[0m                                                  'model_dtype': 'fp32',
+[36m(TaskRunner pid=715730)[0m                                                  'offload_policy': False,
+[36m(TaskRunner pid=715730)[0m                                                  'optimizer_offload': False,
+[36m(TaskRunner pid=715730)[0m                                                  'param_offload': False,
+[36m(TaskRunner pid=715730)[0m                                                  'reshard_after_forward': True,
+[36m(TaskRunner pid=715730)[0m                                                  'seed': 42,
+[36m(TaskRunner pid=715730)[0m                                                  'strategy': 'fsdp',
+[36m(TaskRunner pid=715730)[0m                                                  'ulysses_sequence_parallel_size': 1,
+[36m(TaskRunner pid=715730)[0m                                                  'use_orig_params': False,
+[36m(TaskRunner pid=715730)[0m                                                  'use_torch_compile': True,
+[36m(TaskRunner pid=715730)[0m                                                  'wrap_policy': {'min_num_params': 0}},
+[36m(TaskRunner pid=715730)[0m                                  'grad_clip': 1.0,
+[36m(TaskRunner pid=715730)[0m                                  'kl_loss_coef': 0.001,
+[36m(TaskRunner pid=715730)[0m                                  'kl_loss_type': 'low_var_kl',
+[36m(TaskRunner pid=715730)[0m                                  'loss_agg_mode': 'token-mean',
+[36m(TaskRunner pid=715730)[0m                                  'loss_scale_factor': None,
+[36m(TaskRunner pid=715730)[0m                                  'optim': {'_target_': 'verl.workers.config.FSDPOptimizerConfig',
+[36m(TaskRunner pid=715730)[0m                                            'betas': [0.9, 0.999],
+[36m(TaskRunner pid=715730)[0m                                            'clip_grad': 1.0,
+[36m(TaskRunner pid=715730)[0m                                            'lr': 1e-06,
+[36m(TaskRunner pid=715730)[0m                                            'lr_scheduler_type': 'constant',
+[36m(TaskRunner pid=715730)[0m                                            'lr_warmup_steps': -1,
+[36m(TaskRunner pid=715730)[0m                                            'lr_warmup_steps_ratio': 0.0,
+[36m(TaskRunner pid=715730)[0m                                            'min_lr_ratio': 0.0,
+[36m(TaskRunner pid=715730)[0m                                            'num_cycles': 0.5,
+[36m(TaskRunner pid=715730)[0m                                            'optimizer': 'AdamW',
+[36m(TaskRunner pid=715730)[0m                                            'optimizer_impl': 'torch.optim',
+[36m(TaskRunner pid=715730)[0m                                            'override_optimizer_config': None,
+[36m(TaskRunner pid=715730)[0m                                            'total_training_steps': -1,
+[36m(TaskRunner pid=715730)[0m                                            'warmup_style': None,
+[36m(TaskRunner pid=715730)[0m                                            'weight_decay': 0.01},
+[36m(TaskRunner pid=715730)[0m                                  'policy_loss': {'_target_': 'verl.workers.config.PolicyLossConfig',
+[36m(TaskRunner pid=715730)[0m                                                  'clip_cov_lb': 1.0,
+[36m(TaskRunner pid=715730)[0m                                                  'clip_cov_ratio': 0.0002,
+[36m(TaskRunner pid=715730)[0m                                                  'clip_cov_ub': 5.0,
+[36m(TaskRunner pid=715730)[0m                                                  'kl_cov_ratio': 0.0002,
+[36m(TaskRunner pid=715730)[0m                                                  'loss_mode': 'vanilla',
+[36m(TaskRunner pid=715730)[0m                                                  'ppo_kl_coef': 0.1},
+[36m(TaskRunner pid=715730)[0m                                  'ppo_epochs': 1,
+[36m(TaskRunner pid=715730)[0m                                  'ppo_max_token_len_per_gpu': 32768,
+[36m(TaskRunner pid=715730)[0m                                  'ppo_micro_batch_size': None,
+[36m(TaskRunner pid=715730)[0m                                  'ppo_micro_batch_size_per_gpu': None,
+[36m(TaskRunner pid=715730)[0m                                  'ppo_mini_batch_size': 64,
+[36m(TaskRunner pid=715730)[0m                                  'profiler': {'_target_': 'verl.utils.profiler.ProfilerConfig',
+[36m(TaskRunner pid=715730)[0m                                               'all_ranks': False,
+[36m(TaskRunner pid=715730)[0m                                               'enable': False,
+[36m(TaskRunner pid=715730)[0m                                               'ranks': [],
+[36m(TaskRunner pid=715730)[0m                                               'save_path': 'outputs/profile',
+[36m(TaskRunner pid=715730)[0m                                               'tool': None,
+[36m(TaskRunner pid=715730)[0m                                               'tool_config': {'npu': {'_target_': 'verl.utils.profiler.config.NPUToolConfig',
+[36m(TaskRunner pid=715730)[0m                                                                       'analysis': True,
+[36m(TaskRunner pid=715730)[0m                                                                       'contents': [],
+[36m(TaskRunner pid=715730)[0m                                                                       'discrete': False,
+[36m(TaskRunner pid=715730)[0m                                                                       'level': 'level0'},
+[36m(TaskRunner pid=715730)[0m                                                               'nsys': {'_target_': 'verl.utils.profiler.config.NsightToolConfig',
+[36m(TaskRunner pid=715730)[0m                                                                        'discrete': False},
+[36m(TaskRunner pid=715730)[0m                                                               'torch': {'_target_': 'verl.utils.profiler.config.TorchProfilerToolConfig',
+[36m(TaskRunner pid=715730)[0m                                                                         'step_end': None,
+[36m(TaskRunner pid=715730)[0m                                                                         'step_start': 0},
+[36m(TaskRunner pid=715730)[0m                                                               'torch_memory': {'_target_': 'verl.utils.profiler.config.TorchMemoryToolConfig',
+[36m(TaskRunner pid=715730)[0m                                                                                'stack_depth': 32,
+[36m(TaskRunner pid=715730)[0m                                                                                'trace_alloc_max_entries': 100000}}},
+[36m(TaskRunner pid=715730)[0m                                  'rollout_n': 8,
+[36m(TaskRunner pid=715730)[0m                                  'router_replay': {'_target_': 'verl.workers.config.RouterReplayConfig',
+[36m(TaskRunner pid=715730)[0m                                                    'mode': 'disabled',
+[36m(TaskRunner pid=715730)[0m                                                    'record_file': None,
+[36m(TaskRunner pid=715730)[0m                                                    'replay_file': None},
+[36m(TaskRunner pid=715730)[0m                                  'shuffle': False,
+[36m(TaskRunner pid=715730)[0m                                  'strategy': 'fsdp',
+[36m(TaskRunner pid=715730)[0m                                  'ulysses_sequence_parallel_size': 1,
+[36m(TaskRunner pid=715730)[0m                                  'use_dynamic_bsz': True,
+[36m(TaskRunner pid=715730)[0m                                  'use_fused_kernels': False,
+[36m(TaskRunner pid=715730)[0m                                  'use_kl_loss': False,
+[36m(TaskRunner pid=715730)[0m                                  'use_remove_padding': True,
+[36m(TaskRunner pid=715730)[0m                                  'use_torch_compile': True},
+[36m(TaskRunner pid=715730)[0m                        'hybrid_engine': True,
+[36m(TaskRunner pid=715730)[0m                        'model': {'_target_': 'verl.workers.config.HFModelConfig',
+[36m(TaskRunner pid=715730)[0m                                  'custom_chat_template': None,
+[36m(TaskRunner pid=715730)[0m                                  'enable_activation_offload': False,
+[36m(TaskRunner pid=715730)[0m                                  'enable_gradient_checkpointing': True,
+[36m(TaskRunner pid=715730)[0m                                  'exclude_modules': None,
+[36m(TaskRunner pid=715730)[0m                                  'external_lib': None,
+[36m(TaskRunner pid=715730)[0m                                  'fused_kernel_options': {'impl_backend': 'torch'},
+[36m(TaskRunner pid=715730)[0m                                  'hf_config_path': None,
+[36m(TaskRunner pid=715730)[0m                                  'lora_adapter_path': None,
+[36m(TaskRunner pid=715730)[0m                                  'lora_alpha': 16,
+[36m(TaskRunner pid=715730)[0m                                  'lora_rank': 0,
+[36m(TaskRunner pid=715730)[0m                                  'override_config': {},
+[36m(TaskRunner pid=715730)[0m                                  'path': '/WORK/PUBLIC/lijuanzi1_work/MODELS/Qwen3-1.7B',
+[36m(TaskRunner pid=715730)[0m                                  'target_modules': 'all-linear',
+[36m(TaskRunner pid=715730)[0m                                  'tokenizer_path': None,
+[36m(TaskRunner pid=715730)[0m                                  'trust_remote_code': False,
+[36m(TaskRunner pid=715730)[0m                                  'use_fused_kernels': False,
+[36m(TaskRunner pid=715730)[0m                                  'use_liger': False,
+[36m(TaskRunner pid=715730)[0m                                  'use_remove_padding': True,
+[36m(TaskRunner pid=715730)[0m                                  'use_shm': False},
+[36m(TaskRunner pid=715730)[0m                        'nccl_timeout': 600,
+[36m(TaskRunner pid=715730)[0m                        'ref': {'_target_': 'verl.workers.config.FSDPActorConfig',
+[36m(TaskRunner pid=715730)[0m                                'entropy_checkpointing': False,
+[36m(TaskRunner pid=715730)[0m                                'entropy_from_logits_with_chunking': False,
+[36m(TaskRunner pid=715730)[0m                                'fsdp_config': {'_target_': 'verl.workers.config.FSDPEngineConfig',
+[36m(TaskRunner pid=715730)[0m                                                'dtype': 'bfloat16',
+[36m(TaskRunner pid=715730)[0m                                                'entropy_checkpointing': False,
+[36m(TaskRunner pid=715730)[0m                                                'entropy_from_logits_with_chunking': False,
+[36m(TaskRunner pid=715730)[0m                                                'forward_only': True,
+[36m(TaskRunner pid=715730)[0m                                                'forward_prefetch': False,
+[36m(TaskRunner pid=715730)[0m                                                'fsdp_size': -1,
+[36m(TaskRunner pid=715730)[0m                                                'full_determinism': False,
+[36m(TaskRunner pid=715730)[0m                                                'model_dtype': 'fp32',
+[36m(TaskRunner pid=715730)[0m                                                'offload_policy': False,
+[36m(TaskRunner pid=715730)[0m                                                'optimizer_offload': False,
+[36m(TaskRunner pid=715730)[0m                                                'param_offload': False,
+[36m(TaskRunner pid=715730)[0m                                                'reshard_after_forward': True,
+[36m(TaskRunner pid=715730)[0m                                                'seed': 42,
+[36m(TaskRunner pid=715730)[0m                                                'strategy': 'fsdp',
+[36m(TaskRunner pid=715730)[0m                                                'ulysses_sequence_parallel_size': 1,
+[36m(TaskRunner pid=715730)[0m                                                'use_orig_params': False,
+[36m(TaskRunner pid=715730)[0m                                                'use_torch_compile': True,
+[36m(TaskRunner pid=715730)[0m                                                'wrap_policy': {'min_num_params': 0}},
+[36m(TaskRunner pid=715730)[0m                                'log_prob_max_token_len_per_gpu': 32768,
+[36m(TaskRunner pid=715730)[0m                                'log_prob_micro_batch_size': None,
+[36m(TaskRunner pid=715730)[0m                                'log_prob_micro_batch_size_per_gpu': None,
+[36m(TaskRunner pid=715730)[0m                                'log_prob_use_dynamic_bsz': True,
+[36m(TaskRunner pid=715730)[0m                                'profiler': {'_target_': 'verl.utils.profiler.ProfilerConfig',
+[36m(TaskRunner pid=715730)[0m                                             'all_ranks': False,
+[36m(TaskRunner pid=715730)[0m                                             'enable': False,
+[36m(TaskRunner pid=715730)[0m                                             'ranks': [],
+[36m(TaskRunner pid=715730)[0m                                             'save_path': 'outputs/profile',
+[36m(TaskRunner pid=715730)[0m                                             'tool': None,
+[36m(TaskRunner pid=715730)[0m                                             'tool_config': {'npu': {'_target_': 'verl.utils.profiler.config.NPUToolConfig',
+[36m(TaskRunner pid=715730)[0m                                                                     'analysis': True,
+[36m(TaskRunner pid=715730)[0m                                                                     'contents': [],
+[36m(TaskRunner pid=715730)[0m                                                                     'discrete': False,
+[36m(TaskRunner pid=715730)[0m                                                                     'level': 'level0'},
+[36m(TaskRunner pid=715730)[0m                                                             'nsys': {'_target_': 'verl.utils.profiler.config.NsightToolConfig',
+[36m(TaskRunner pid=715730)[0m                                                                      'discrete': False},
+[36m(TaskRunner pid=715730)[0m                                                             'torch': {'_target_': 'verl.utils.profiler.config.TorchProfilerToolConfig',
+[36m(TaskRunner pid=715730)[0m                                                                       'step_end': None,
+[36m(TaskRunner pid=715730)[0m                                                                       'step_start': 0},
+[36m(TaskRunner pid=715730)[0m                                                             'torch_memory': {'_target_': 'verl.utils.profiler.config.TorchMemoryToolConfig',
+[36m(TaskRunner pid=715730)[0m                                                                              'stack_depth': 32,
+[36m(TaskRunner pid=715730)[0m                                                                              'trace_alloc_max_entries': 100000}}},
+[36m(TaskRunner pid=715730)[0m                                'rollout_n': 8,
+[36m(TaskRunner pid=715730)[0m                                'router_replay': {'_target_': 'verl.workers.config.RouterReplayConfig',
+[36m(TaskRunner pid=715730)[0m                                                  'mode': 
+[36m(TaskRunner pid=715730)[0m 'disabled',
+[36m(TaskRunner pid=715730)[0m                                                  'record_file': None,
+[36m(TaskRunner pid=715730)[0m                                                  'replay_file': None},
+[36m(TaskRunner pid=715730)[0m                                'strategy': 'fsdp',
+[36m(TaskRunner pid=715730)[0m                                'ulysses_sequence_parallel_size': 1,
+[36m(TaskRunner pid=715730)[0m                                'use_torch_compile': True},
+[36m(TaskRunner pid=715730)[0m                        'rollout': 
+[36m(TaskRunner pid=715730)[0m {'_target_': 'verl.workers.config.RolloutConfig',
+[36m(TaskRunner pid=715730)[0m                                    'agent': {'_target_': 'verl.workers.config.AgentLoopConfig',
+[36m(TaskRunner pid=715730)[0m                                              'agent_loop_config_path': None,
+[36m(TaskRunner pid=715730)[0m                                              'custom_async_server': {'_target_': 'verl.workers.config.CustomAsyncServerConfig',
+[36m(TaskRunner pid=715730)[0m                                                                      'name': None,
+[36m(TaskRunner pid=715730)[0m                                                                      'path': None},
+[36m(TaskRunner pid=715730)[0m                                              'default_agent_loop': 'single_turn_agent',
+[36m(TaskRunner pid=715730)[0m                                              'num_workers': 8},
+[36m(TaskRunner pid=715730)[0m                                    'calculate_log_probs': False,
+[36m(TaskRunner pid=715730)[0m                                    'cudagraph_capture_sizes': None,
+[36m(TaskRunner pid=715730)[0m                                    'data_parallel_size': 1,
+[36m(TaskRunner pid=715730)[0m                                    'disable_log_stats': True,
+[36m(TaskRunner pid=715730)[0m                                    'do_sample': True,
+[36m(TaskRunner pid=715730)[0m                                    'dtype': 'bfloat16',
+[36m(TaskRunner pid=715730)[0m                                    'enable_chunked_prefill': True,
+[36m(TaskRunner pid=715730)[0m                                    'enable_prefix_caching': True,
+[36m(TaskRunner pid=715730)[0m                                    'enable_rollout_routing_replay': False,
+[36m(TaskRunner pid=715730)[0m                                    'enforce_eager': False,
+[36m(TaskRunner pid=715730)[0m                                    'engine_kwargs': {'sglang': {}, 'vllm': {}},
+[36m(TaskRunner pid=715730)[0m                                    'expert_parallel_size': 1,
+[36m(TaskRunner pid=715730)[0m                                    'free_cache_engine': True,
+[36m(TaskRunner pid=715730)[0m                                    'gpu_memory_utilization': 0.85,
+[36m(TaskRunner pid=715730)[0m                                    'ignore_eos': False,
+[36m(TaskRunner pid=715730)[0m                                    'layered_summon': False,
+[36m(TaskRunner pid=715730)[0m                                    'load_format': 'dummy',
+[36m(TaskRunner pid=715730)[0m                                    'log_prob_max_token_len_per_gpu': 32768,
+[36m(TaskRunner pid=715730)[0m                                    'log_prob_micro_batch_size': None,
+[36m(TaskRunner pid=715730)[0m                                    'log_prob_micro_batch_size_per_gpu': None,
+[36m(TaskRunner pid=715730)[0m                                    'log_prob_use_dynamic_bsz': True,
+[36m(TaskRunner pid=715730)[0m                                    'max_model_len': None,
+[36m(TaskRunner pid=715730)[0m                                    'max_num_batched_tokens': 8192,
+[36m(TaskRunner pid=715730)[0m                                    'max_num_seqs': 1024,
+[36m(TaskRunner pid=715730)[0m                                    'mode': 'async',
+[36m(TaskRunner pid=715730)[0m                                    'multi_stage_wake_up': False,
+[36m(TaskRunner pid=715730)[0m                                    'multi_turn': {'_target_': 'verl.workers.config.MultiTurnConfig',
+[36m(TaskRunner pid=715730)[0m                                                   'enable': False,
+[36m(TaskRunner pid=715730)[0m                                                   'format': 'hermes',
+[36m(TaskRunner pid=715730)[0m                                                   'interaction_config_path': None,
+[36m(TaskRunner pid=715730)[0m                                                   'max_assistant_turns': None,
+[36m(TaskRunner pid=715730)[0m                                                   'max_parallel_calls': 1,
+[36m(TaskRunner pid=715730)[0m                                                   'max_tool_response_length': 256,
+[36m(TaskRunner pid=715730)[0m                                                   'max_user_turns': None,
+[36m(TaskRunner pid=715730)[0m                                                   'num_repeat_rollouts': None,
+[36m(TaskRunner pid=715730)[0m                                                   'tokenization_sanity_check_mode': 'strict',
+[36m(TaskRunner pid=715730)[0m                                                   'tool_config_path': None,
+[36m(TaskRunner pid=715730)[0m                                                   'tool_response_truncate_side': 'middle',
+[36m(TaskRunner pid=715730)[0m                                                   'use_inference_chat_template': False},
+[36m(TaskRunner pid=715730)[0m                                    'n': 8,
+[36m(TaskRunner pid=715730)[0m                                    'name': 'vllm',
+[36m(TaskRunner pid=715730)[0m                                    'over_sample_rate': 0,
+[36m(TaskRunner pid=715730)[0m                                    'pipeline_model_parallel_size': 1,
+[36m(TaskRunner pid=715730)[0m                                    'profiler': {'_target_': 'verl.utils.profiler.ProfilerConfig',
+[36m(TaskRunner pid=715730)[0m                                                 'all_ranks': False,
+[36m(TaskRunner pid=715730)[0m                                                 'enable': False,
+[36m(TaskRunner pid=715730)[0m                                                 'ranks': [],
+[36m(TaskRunner pid=715730)[0m                                                 'save_path': 'outputs/profile',
+[36m(TaskRunner pid=715730)[0m                                                 'tool': None,
+[36m(TaskRunner pid=715730)[0m                                                 'tool_config': {'npu': {'_target_': 'verl.utils.profiler.config.NPUToolConfig',
+[36m(TaskRunner pid=715730)[0m                                                                         'analysis': True,
+[36m(TaskRunner pid=715730)[0m                                                                         'contents': [],
+[36m(TaskRunner pid=715730)[0m                                                                         'discrete': False,
+[36m(TaskRunner pid=715730)[0m                                                                         'level': 'level0'},
+[36m(TaskRunner pid=715730)[0m                                                                 'nsys': {'_target_': 'verl.utils.profiler.config.NsightToolConfig',
+[36m(TaskRunner pid=715730)[0m                                                                          'discrete': False},
+[36m(TaskRunner pid=715730)[0m                                                                 'torch': {'_target_': 'verl.utils.profiler.config.TorchProfilerToolConfig',
+[36m(TaskRunner pid=715730)[0m                                                                           'step_end': None,
+[36m(TaskRunner pid=715730)[0m                                                                           'step_start': 0},
+[36m(TaskRunner pid=715730)[0m                                                                 'torch_memory': {'_target_': 'verl.utils.profiler.config.TorchMemoryToolConfig',
+[36m(TaskRunner pid=715730)[0m                                                                                  'stack_depth': 32,
+[36m(TaskRunner pid=715730)[0m                                                                                  'trace_alloc_max_entries': 100000}}},
+[36m(TaskRunner pid=715730)[0m                                    'prometheus': {'_target_': 'verl.workers.config.PrometheusConfig',
+[36m(TaskRunner pid=715730)[0m                                                   'enable': False,
+[36m(TaskRunner pid=715730)[0m                                                   'file': '/tmp/ray/session_latest/metrics/prometheus/prometheus.yml',
+[36m(TaskRunner pid=715730)[0m                                                   'port': 9090,
+[36m(TaskRunner pid=715730)[0m                                                   'served_model_name': '/WORK/PUBLIC/lijuanzi1_work/MODELS/Qwen3-1.7B'},
+[36m(TaskRunner pid=715730)[0m                                    'prompt_length': 1024,
+[36m(TaskRunner pid=715730)[0m                                    'response_length': 8192,
+[36m(TaskRunner pid=715730)[0m                                    'skip_dump_dir': '/tmp/rollout_dump',
+[36m(TaskRunner pid=715730)[0m                                    'skip_rollout': False,
+[36m(TaskRunner pid=715730)[0m                                    'skip_tokenizer_init': True,
+[36m(TaskRunner pid=715730)[0m                                    'temperature': 0.6,
+[36m(TaskRunner pid=715730)[0m                                    'tensor_model_parallel_size': 1,
+[36m(TaskRunner pid=715730)[0m                                    'top_k': -1,
+[36m(TaskRunner pid=715730)[0m                                    'top_p': 1,
+[36m(TaskRunner pid=715730)[0m                                    'trace': {'_target_': 'verl.workers.config.TraceConfig',
+[36m(TaskRunner pid=715730)[0m                                              'backend': None,
+[36m(TaskRunner pid=715730)[0m                                              'max_samples_per_step_per_worker': None,
+[36m(TaskRunner pid=715730)[0m                                              'token2text': False},
+[36m(TaskRunner pid=715730)[0m                                    'update_weights_bucket_megabytes': 512,
+[36m(TaskRunner pid=715730)[0m                                    'val_kwargs': {'_target_': 'verl.workers.config.SamplingConfig',
+[36m(TaskRunner pid=715730)[0m                                                   'do_sample': False,
+[36m(TaskRunner pid=715730)[0m                                                   'n': 1,
+[36m(TaskRunner pid=715730)[0m                                                   'temperature': 0,
+[36m(TaskRunner pid=715730)[0m                                                   'top_k': -1,
+[36m(TaskRunner pid=715730)[0m                                                   'top_p': 1.0}},
+[36m(TaskRunner pid=715730)[0m                        'static_gradient_extraction': {'enable': True,
+[36m(TaskRunner pid=715730)[0m                                                       'gradient_token_scope': 'attention',
+[36m(TaskRunner pid=715730)[0m                                                       'gradient_zero_eps': 1e-12,
+[36m(TaskRunner pid=715730)[0m                                                       'hookpoint': None,
+[36m(TaskRunner pid=715730)[0m                                                       'log_every_micro_batches': 1,
+[36m(TaskRunner pid=715730)[0m                                                       'num_rollouts': 8,
+[36m(TaskRunner pid=715730)[0m                                                       'output_dir': '/home/fit/lijuanzi1/WORK/dz/SAERL/SAERL-0801/runs/selection/verl-main-static-gradient-sae',
+[36m(TaskRunner pid=715730)[0m                                                       'projection_chunk_size': 32,
+[36m(TaskRunner pid=715730)[0m                                                       'run_dir': '/WORK/PUBLIC/lijuanzi1_work/dz/SAERL/SAERL-0801/runs/selection/verl-main-static-gradient-sae/20260806-143158-970665',
+[36m(TaskRunner pid=715730)[0m                                                       'run_name': None,
+[36m(TaskRunner pid=715730)[0m                                                       'sae_path': '/home/fit/lijuanzi1/WORK/dz/SAERL/SAERL-0801/OpenSAE-Qwen3-1.7B-hjw-layer26-legacy130915',
+[36m(TaskRunner pid=715730)[0m                                                       'sample_id_key': 'index',
+[36m(TaskRunner pid=715730)[0m                                                       'save_unpooled_tensors': False,
+[36m(TaskRunner pid=715730)[0m                                                       'unpooled_projection_dtype': 'bfloat16'}},
+[36m(TaskRunner pid=715730)[0m  'algorithm': {'_target_': 'verl.trainer.config.AlgoConfig',
+[36m(TaskRunner pid=715730)[0m                'adv_estimator': 'grpo',
+[36m(TaskRunner pid=715730)[0m                'gamma': 1.0,
+[36m(TaskRunner pid=715730)[0m                'kl_ctrl': {'_target_': 'verl.trainer.config.KLControlConfig',
+[36m(TaskRunner pid=715730)[0m                            'horizon': 10000,
+[36m(TaskRunner pid=715730)[0m                            'kl_coef': 0.001,
+[36m(TaskRunner pid=715730)[0m                            'target_kl': 0.1,
+[36m(TaskRunner pid=715730)[0m                            'type': 'fixed'},
+[36m(TaskRunner pid=715730)[0m                'kl_penalty': 'kl',
+[36m(TaskRunner pid=715730)[0m                'lam': 1.0,
+[36m(TaskRunner pid=715730)[0m                'norm_adv_by_std_in_grpo': True,
+[36m(TaskRunner pid=715730)[0m                'pf_ppo': {'reweight_method': 'pow', 'weight_pow': 2.0},
+[36m(TaskRunner pid=715730)[0m                'rollout_correction': {'bypass_mode': False,
+[36m(TaskRunner pid=715730)[0m                                       'loss_type': 'ppo_clip',
+[36m(TaskRunner pid=715730)[0m                                       'rollout_is': None,
+[36m(TaskRunner pid=715730)[0m                                       'rollout_is_batch_normalize': False,
+[36m(TaskRunner pid=715730)[0m                                       'rollout_is_threshold': 2.0,
+[36m(TaskRunner pid=715730)[0m                                       'rollout_rs': None,
+[36m(TaskRunner pid=715730)[0m                                       'rollout_rs_threshold': None,
+[36m(TaskRunner pid=715730)[0m                                       'rollout_rs_threshold_lower': None,
+[36m(TaskRunner pid=715730)[0m                                       'rollout_token_veto_threshold': None},
+[36m(TaskRunner pid=715730)[0m                'use_kl_in_reward': False,
+[36m(TaskRunner pid=715730)[0m                'use_pf_ppo': False},
+[36m(TaskRunner pid=715730)[0m  'critic': {'_target_': 'verl.workers.config.FSDPCriticConfig',
+[36m(TaskRunner pid=715730)[0m             'checkpoint': {'_target_': 'verl.trainer.config.CheckpointConfig',
+[36m(TaskRunner pid=715730)[0m                            'async_save': False,
+[36m(TaskRunner pid=715730)[0m                            'load_contents': ['model', 'optimizer', 'extra'],
+[36m(TaskRunner pid=715730)[0m                            'save_contents': ['model', 'optimizer', 'extra']},
+[36m(TaskRunner pid=715730)[0m             'cliprange_value': 0.5,
+[36m(TaskRunner pid=715730)[0m             'data_loader_seed': 42,
+[36m(TaskRunner pid=715730)[0m             'enable': False,
+[36m(TaskRunner pid=715730)[0m             'forward_max_token_len_per_gpu': 32768,
+[36m(TaskRunner pid=715730)[0m             'forward_micro_batch_size': None,
+[36m(TaskRunner pid=715730)[0m             'forward_micro_batch_size_per_gpu': None,
+[36m(TaskRunner pid=715730)[0m             'grad_clip': 1.0,
+[36m(TaskRunner pid=715730)[0m             'loss_agg_mode': 'token-mean',
+[36m(TaskRunner pid=715730)[0m             'model': {'_target_': 'verl.workers.config.FSDPCriticModelCfg',
+[36m(TaskRunner pid=715730)[0m                       'enable_activation_offload': False,
+[36m(TaskRunner pid=715730)[0m                       'enable_gradient_checkpointing': True,
+[36m(TaskRunner pid=715730)[0m                       'external_lib': None,
+[36m(TaskRunner pid=715730)[0m                       'fsdp_config': {'_target_': 'verl.workers.config.FSDPEngineConfig',
+[36m(TaskRunner pid=715730)[0m                                       'dtype': 'bfloat16',
+[36m(TaskRunner pid=715730)[0m                                       'entropy_checkpointing': False,
+[36m(TaskRunner pid=715730)[0m                                       'entropy_from_logits_with_chunking': False,
+[36m(TaskRunner pid=715730)[0m                                       'forward_only': False,
+[36m(TaskRunner pid=715730)[0m                                       'forward_prefetch': False,
+[36m(TaskRunner pid=715730)[0m                                       'fsdp_size': -1,
+[36m(TaskRunner pid=715730)[0m                                       'full_determinism': False,
+[36m(TaskRunner pid=715730)[0m                                       'model_dtype': 'fp32',
+[36m(TaskRunner pid=715730)[0m                                       'offload_policy': False,
+[36m(TaskRunner pid=715730)[0m                                       'optimizer_offload': False,
+[36m(TaskRunner pid=715730)[0m                                       'param_offload': False,
+[36m(TaskRunner pid=715730)[0m                                       'reshard_after_forward': True,
+[36m(TaskRunner pid=715730)[0m                                       'seed': 42,
+[36m(TaskRunner pid=715730)[0m                                       'strategy': 'fsdp',
+[36m(TaskRunner pid=715730)[0m                                       'ulysses_sequence_parallel_size': 1,
+[36m(TaskRunner pid=715730)[0m                                       'use_orig_params': False,
+[36m(TaskRunner pid=715730)[0m                                       'use_torch_compile': True,
+[36m(TaskRunner pid=715730)[0m                                       'wrap_policy': {'min_num_params': 0}},
+[36m(TaskRunner pid=715730)[0m                       'lora_alpha': 16,
+[36m(TaskRunner pid=715730)[0m                       'lora_rank': 0,
+[36m(TaskRunner pid=715730)[0m                       'override_config': {},
+[36m(TaskRunner pid=715730)[0m                       'path': '~/models/deepseek-llm-7b-chat',
+[36m(TaskRunner pid=715730)[0m                       'target_modules': 'all-linear',
+[36m(TaskRunner pid=715730)[0m                       'tokenizer_path': '/WORK/PUBLIC/lijuanzi1_work/MODELS/Qwen3-1.7B',
+[36m(TaskRunner pid=715730)[0m                       'trust_remote_code': False,
+[36m(TaskRunner pid=715730)[0m                       'use_remove_padding': False,
+[36m(TaskRunner pid=715730)[0m                       'use_shm': False},
+[36m(TaskRunner pid=715730)[0m             'optim': {'_target_': 'verl.workers.config.FSDPOptimizerConfig',
+[36m(TaskRunner pid=715730)[0m                       'betas': [0.9, 0.999],
+[36m(TaskRunner pid=715730)[0m                       'clip_grad': 1.0,
+[36m(TaskRunner pid=715730)[0m                       'lr': 1e-05,
+[36m(TaskRunner pid=715730)[0m                       'lr_scheduler_type': 'constant',
+[36m(TaskRunner pid=715730)[0m                       'lr_warmup_steps': -1,
+[36m(TaskRunner pid=715730)[0m                       'lr_warmup_steps_ratio': 0.0,
+[36m(TaskRunner pid=715730)[0m                       'min_lr_ratio': 0.0,
+[36m(TaskRunner pid=715730)[0m                       'num_cycles': 0.5,
+[36m(TaskRunner pid=715730)[0m                       'optimizer': 'AdamW',
+[36m(TaskRunner pid=715730)[0m                       'optimizer_impl': 'torch.optim',
+[36m(TaskRunner pid=715730)[0m                       'override_optimizer_config': None,
+[36m(TaskRunner pid=715730)[0m                       'total_training_steps': -1,
+[36m(TaskRunner pid=715730)[0m                       'warmup_style': None,
+[36m(TaskRunner pid=715730)[0m                       'weight_decay': 0.01},
+[36m(TaskRunner pid=715730)[0m             'ppo_epochs': 1,
+[36m(TaskRunner pid=715730)[0m             'ppo_max_token_len_per_gpu': 32768,
+[36m(TaskRunner pid=715730)[0m             'ppo_micro_batch_size': None,
+[36m(TaskRunner pid=715730)[0m             'ppo_micro_batch_size_per_gpu': None,
+[36m(TaskRunner pid=715730)[0m             'ppo_mini_batch_size': 64,
+[36m(TaskRunner pid=715730)[0m             'profiler': {'_target_': 'verl.utils.profiler.ProfilerConfig',
+[36m(TaskRunner pid=715730)[0m                          'all_ranks': False,
+[36m(TaskRunner pid=715730)[0m                          'enable': False,
+[36m(TaskRunner pid=715730)[0m                          'ranks': [],
+[36m(TaskRunner pid=715730)[0m                          'save_path': 'outputs/profile',
+[36m(TaskRunner pid=715730)[0m                          'tool': None,
+[36m(TaskRunner pid=715730)[0m                          'tool_config': {'npu': {'_target_': 'verl.utils.profiler.config.NPUToolConfig',
+[36m(TaskRunner pid=715730)[0m                                                  'analysis': True,
+[36m(TaskRunner pid=715730)[0m                                                  'contents': [],
+[36m(TaskRunner pid=715730)[0m                                                  'discrete': False,
+[36m(TaskRunner pid=715730)[0m                                                  'level': 'level0'},
+[36m(TaskRunner pid=715730)[0m                                          'nsys': {'_target_': 'verl.utils.profiler.config.NsightToolConfig',
+[36m(TaskRunner pid=715730)[0m                                                   'discrete': False},
+[36m(TaskRunner pid=715730)[0m                                          'torch': {'_target_': 'verl.utils.profiler.config.TorchProfilerToolConfig',
+[36m(TaskRunner pid=715730)[0m                                                    'step_end': None,
+[36m(TaskRunner pid=715730)[0m                                                    'step_start': 0},
+[36m(TaskRunner pid=715730)[0m                                          'torch_memory': {'_target_': 'verl.utils.profiler.config.TorchMemoryToolConfig',
+[36m(TaskRunner pid=715730)[0m                                                           'stack_depth': 32,
+[36m(TaskRunner pid=715730)[0m                                                           'trace_alloc_max_entries': 100000}}},
+[36m(TaskRunner pid=715730)[0m             'rollout_n': 8,
+[36m(TaskRunner pid=715730)[0m             'shuffle': False,
+[36m(TaskRunner pid=715730)[0m             'strategy': 'fsdp',
+[36m(TaskRunner pid=715730)[0m             'ulysses_sequence_parallel_size': 1,
+[36m(TaskRunner pid=715730)[0m             'use_dynamic_bsz': True},
+[36m(TaskRunner pid=715730)[0m  'custom_reward_function': {'name': 'compute_score', 'path': None},
+[36m(TaskRunner pid=715730)[0m  'data': {'apply_chat_template_kwargs': {},
+[36m(TaskRunner pid=715730)[0m           'custom_cls': {'name': None, 'path': None},
+[36m(TaskRunner pid=715730)[0m           'datagen': {'name': None, 'path': None},
+[36m(TaskRunner pid=715730)[0m           'dataloader_num_workers': 8,
+[36m(TaskRunner pid=715730)[0m           'filter_overlong_prompts': False,
+[36m(TaskRunner pid=715730)[0m           'filter_overlong_prompts_workers': 1,
+[36m(TaskRunner pid=715730)[0m           'image_key': 'images',
+[36m(TaskRunner pid=715730)[0m           'image_patch_size': 14,
+[36m(TaskRunner pid=715730)[0m           'max_prompt_length': 1024,
+[36m(TaskRunner pid=715730)[0m           'max_response_length': 8192,
+[36m(TaskRunner pid=715730)[0m           'prompt_key': 'prompt',
+[36m(TaskRunner pid=715730)[0m           'return_full_prompt': False,
+[36m(TaskRunner pid=715730)[0m           'return_multi_modal_inputs': True,
+[36m(TaskRunner pid=715730)[0m           'return_raw_chat': True,
+[36m(TaskRunner pid=715730)[0m           'return_raw_input_ids': False,
+[36m(TaskRunner pid=715730)[0m           'reward_fn_key': 'data_source',
+[36m(TaskRunner pid=715730)[0m           'saerl': {'enable': False,
+[36m(TaskRunner pid=715730)[0m                     'processed_file': '~/processed_data/processed_gsm8k.pt'},
+[36m(TaskRunner pid=715730)[0m           'sampler': {'class_name': None, 'class_path': None},
+[36m(TaskRunner pid=715730)[0m           'seed': None,
+[36m(TaskRunner pid=715730)[0m           'shuffle': False,
+[36m(TaskRunner pid=715730)[0m           'tokenizer': None,
+[36m(TaskRunner pid=715730)[0m           'tool_config_path': None,
+[36m(TaskRunner pid=715730)[0m           'train_batch_size': 128,
+[36m(TaskRunner pid=715730)[0m           'train_files': '/WORK/PUBLIC/lijuanzi1_work/dz/data/SAERL/sorted_deepmath/train.parquet',
+[36m(TaskRunner pid=715730)[0m           'train_max_samples': -1,
+[36m(TaskRunner pid=715730)[0m           'truncation': 'error',
+[36m(TaskRunner pid=715730)[0m           'trust_remote_code': False,
+[36m(TaskRunner pid=715730)[0m           'use_shm': False,
+[36m(TaskRunner pid=715730)[0m           'val_batch_size': None,
+[36m(TaskRunner pid=715730)[0m           'val_files': ['/WORK/PUBLIC/lijuanzi1_work/dz/data/SAERL/my_data/AIME_2024/train.parquet',
+[36m(TaskRunner pid=715730)[0m                         '/WORK/PUBLIC/lijuanzi1_work/dz/data/SAERL/my_data/math500/test.parquet'],
+[36m(TaskRunner pid=715730)[0m           'val_max_samples': -1,
+[36m(TaskRunner pid=715730)[0m           'validation_shuffle': False,
+[36m(TaskRunner pid=715730)[0m           'video_key': 'videos'},
+[36m(TaskRunner pid=715730)[0m  'global_profiler': {'_target_': 'verl.utils.profiler.ProfilerConfig',
+[36m(TaskRunner pid=715730)[0m                      'global_tool_config': {'nsys': {'_target_': 'verl.utils.profiler.config.NsightToolConfig',
+[36m(TaskRunner pid=715730)[0m                                                      'controller_nsight_options': {'cuda-graph-trace': 'graph',
+[36m(TaskRunner pid=715730)[0m                                                                                    'cuda-memory-usage': 'true',
+[36m(TaskRunner pid=715730)[0m                                                                                    'trace': 'cuda,nvtx,cublas,ucx'},
+[36m(TaskRunner pid=715730)[0m                                                      'discrete': False,
+[36m(TaskRunner pid=715730)[0m                                                      'worker_nsight_options': {'capture-range': 'cudaProfilerApi',
+[36m(TaskRunner pid=715730)[0m                                                                                'capture-range-end': None,
+[36m(TaskRunner pid=715730)[0m                                                                                'cuda-graph-trace': 'graph',
+[36m(TaskRunner pid=715730)[0m                                                                                'cuda-memory-usage': 'true',
+[36m(TaskRunner pid=715730)[0m                                                                                'kill': 'none',
+[36m(TaskRunner pid=715730)[0m                                                                                'trace': 'cuda,nvtx,cublas,ucx'}},
+[36m(TaskRunner pid=715730)[0m                                             'torch_memory': {'context': 'all',
+[36m(TaskRunner pid=715730)[0m                                                              'kw_args': {},
+[36m(TaskRunner pid=715730)[0m                                                              'stack_depth': 32,
+[36m(TaskRunner pid=715730)[0m                                                              'stacks': 'all',
+[36m(TaskRunner pid=715730)[0m                                                              'trace_alloc_max_entries': 100000}},
+[36m(TaskRunner pid=715730)[0m                      'profile_continuous_steps': False,
+[36m(TaskRunner pid=715730)[0m                      'save_path': 'outputs/profile',
+[36m(TaskRunner pid=715730)[0m                      'steps': None,
+[36m(TaskRunner pid=715730)[0m                      'tool': None},
+[36m(TaskRunner pid=715730)[0m  'ray_kwargs': {'ray_init': {'num_cpus': None}, 'timeline_json_file': None},
+[36m(TaskRunner pid=715730)[0m  'reward_manager': {'_target_': 'verl.trainer.config.config.RewardManagerConfig',
+[36m(TaskRunner pid=715730)[0m                     'module': {'_target_': 'verl.trainer.config.config.ModuleConfig',
+[36m(TaskRunner pid=715730)[0m                                'name': 'custom_reward_manager',
+[36m(TaskRunner pid=715730)[0m                                'path': None},
+[36m(TaskRunner pid=715730)[0m                     'name': 'naive',
+[36m(TaskRunner pid=715730)[0m                     'source': 'register'},
+[36m(TaskRunner pid=715730)[0m  'reward_model': {'enable': False,
+[36m(TaskRunner pid=715730)[0m                   'enable_resource_pool': False,
+[36m(TaskRunner pid=715730)[0m                   'forward_max_token_len_per_gpu': 32768,
+[36m(TaskRunner pid=715730)[0m                   'launch_reward_fn_async': False,
+[36m(TaskRunner pid=715730)[0m                   'max_length': None,
+[36m(TaskRunner pid=715730)[0m                   'micro_batch_size': None,
+[36m(TaskRunner pid=715730)[0m                   'micro_batch_size_per_gpu': None,
+[36m(TaskRunner pid=715730)[0m                   'model': {'external_lib': None,
+[36m(TaskRunner pid=715730)[0m                             'fsdp_config': {'_target_': 'verl.workers.config.FSDPEngineConfig',
+[36m(TaskRunner pid=715730)[0m                                             'forward_prefetch': False,
+[36m(TaskRunner pid=715730)[0m                                             'fsdp_size': -1,
+[36m(TaskRunner pid=715730)[0m                                             'param_offload': False,
+[36m(TaskRunner pid=715730)[0m                                             'reshard_after_forward': True,
+[36m(TaskRunner pid=715730)[0m                                             'wrap_policy': {'min_num_params': 0}},
+[36m(TaskRunner pid=715730)[0m                             'input_tokenizer': '/WORK/PUBLIC/lijuanzi1_work/MODELS/Qwen3-1.7B',
+[36m(TaskRunner pid=715730)[0m                             'override_config': {},
+[36m(TaskRunner pid=715730)[0m                             'path': '~/models/FsfairX-LLaMA3-RM-v0.1',
+[36m(TaskRunner pid=715730)[0m                             'trust_remote_code': False,
+[36m(TaskRunner pid=715730)[0m                             'use_fused_kernels': False,
+[36m(TaskRunner pid=715730)[0m                             'use_remove_padding': False,
+[36m(TaskRunner pid=715730)[0m                             'use_shm': False},
+[36m(TaskRunner pid=715730)[0m                   'n_gpus_per_node': 8,
+[36m(TaskRunner pid=715730)[0m                   'nnodes': 0,
+[36m(TaskRunner pid=715730)[0m                   'num_workers': 1,
+[36m(TaskRunner pid=715730)[0m                   'profiler': {'_target_': 'verl.utils.profiler.ProfilerConfig',
+[36m(TaskRunner pid=715730)[0m                                'all_ranks': False,
+[36m(TaskRunner pid=715730)[0m                                'enable': False,
+[36m(TaskRunner pid=715730)[0m                                'ranks': [],
+[36m(TaskRunner pid=715730)[0m                                'save_path': 'outputs/profile',
+[36m(TaskRunner pid=715730)[0m                                'tool': None,
+[36m(TaskRunner pid=715730)[0m                                'tool_config': {'npu': {'_target_': 'verl.utils.profiler.config.NPUToolConfig',
+[36m(TaskRunner pid=715730)[0m                                                        'analysis': True,
+[36m(TaskRunner pid=715730)[0m                                                        'contents': [],
+[36m(TaskRunner pid=715730)[0m                                                        'discrete': False,
+[36m(TaskRunner pid=715730)[0m                                                        'level': 'level0'},
+[36m(TaskRunner pid=715730)[0m                                                'nsys': {'_target_': 'verl.utils.profiler.config.NsightToolConfig',
+[36m(TaskRunner pid=715730)[0m                                                         'discrete': False},
+[36m(TaskRunner pid=715730)[0m                                                'torch': {'_target_': 'verl.utils.profiler.config.TorchProfilerToolConfig',
+[36m(TaskRunner pid=715730)[0m                                                          'step_end': None,
+[36m(TaskRunner pid=715730)[0m                                                          'step_start': 0},
+[36m(TaskRunner pid=715730)[0m                                                'torch_memory': {'_target_': 'verl.utils.profiler.config.TorchMemoryToolConfig',
+[36m(TaskRunner pid=715730)[0m                                                                 'stack_depth': 32,
+[36m(TaskRunner pid=715730)[0m                                                                 'trace_alloc_max_entries': 100000}}},
+[36m(TaskRunner pid=715730)[0m                   'reward_manager': 'naive',
+[36m(TaskRunner pid=715730)[0m                   'rollout': {'_target_': 'verl.workers.config.RolloutConfig',
+[36m(TaskRunner pid=715730)[0m                               'cudagraph_capture_sizes': None,
+[36m(TaskRunner pid=715730)[0m                               'data_parallel_size': 1,
+[36m(TaskRunner pid=715730)[0m                               'disable_log_stats': True,
+[36m(TaskRunner pid=715730)[0m                               'dtype': 'bfloat16',
+[36m(TaskRunner pid=715730)[0m                               'enable_chunked_prefill': True,
+[36m(TaskRunner pid=715730)[0m                               'enable_prefix_caching': True,
+[36m(TaskRunner pid=715730)[0m                               'enforce_eager': True,
+[36m(TaskRunner pid=715730)[0m                               'engine_kwargs': {},
+[36m(TaskRunner pid=715730)[0m                               'expert_parallel_size': 1,
+[36m(TaskRunner pid=715730)[0m                               'free_cache_engine': True,
+[36m(TaskRunner pid=715730)[0m                               'gpu_memory_utilization': 0.5,
+[36m(TaskRunner pid=715730)[0m                               'limit_images': None,
+[36m(TaskRunner pid=715730)[0m                               'load_format': 'auto',
+[36m(TaskRunner pid=715730)[0m                               'max_model_len': None,
+[36m(TaskRunner pid=715730)[0m                               'max_num_batched_tokens': 8192,
+[36m(TaskRunner pid=715730)[0m                               'max_num_seqs': 1024,
+[36m(TaskRunner pid=715730)[0m                               'name': '???',
+[36m(TaskRunner pid=715730)[0m                               'prompt_length': 2048,
+[36m(TaskRunner pid=715730)[0m                               'response_length': 2048,
+[36m(TaskRunner pid=715730)[0m                               'skip_tokenizer_init': False,
+[36m(TaskRunner pid=715730)[0m                               'tensor_model_parallel_size': 2}
+[36m(TaskRunner pid=715730)[0m ,
+[36m(TaskRunner pid=715730)[0m                   'sandbox_fusion': 
+[36m(TaskRunner pid=715730)[0m {'max_concurrent': 64,
+[36m(TaskRunner pid=715730)[0m                                      'memory_limit_mb': 1024,
+[36m(TaskRunner pid=715730)[0m                                      'url': None},
+[36m(TaskRunner pid=715730)[0m                   'strategy': 'fsdp',
+[36m(TaskRunner pid=715730)[0m                   'ulysses_sequence_parallel_size': 1,
+[36m(TaskRunner pid=715730)[0m                   'use_dynamic_bsz': True,
+[36m(TaskRunner pid=715730)[0m                   'use_reward_loop': True},
+[36m(TaskRunner pid=715730)[0m  'static_gradient_extraction': 
+[36m(TaskRunner pid=715730)[0m {'enable': True,
+[36m(TaskRunner pid=715730)[0m                                 'gradient_token_scope': 'attention',
+[36m(TaskRunner pid=715730)[0m                                 'gradient_zero_eps': 1e-12,
+[36m(TaskRunner pid=715730)[0m                                 'hookpoint': None,
+[36m(TaskRunner pid=715730)[0m                                 'log_every_micro_batches': 1,
+[36m(TaskRunner pid=715730)[0m                                 'num_rollouts': 8,
+[36m(TaskRunner pid=715730)[0m                                 'output_dir': '/home/fit/lijuanzi1/WORK/dz/SAERL/SAERL-0801/runs/selection/verl-main-static-gradient-sae',
+[36m(TaskRunner pid=715730)[0m                                 'projection_chunk_size': 32,
+[36m(TaskRunner pid=715730)[0m                                 'run_dir': '/WORK/PUBLIC/lijuanzi1_work/dz/SAERL/SAERL-0801/runs/selection/verl-main-static-gradient-sae/20260806-143158-970665',
+[36m(TaskRunner pid=715730)[0m                                 'run_name': None,
+[36m(TaskRunner pid=715730)[0m                                 'sae_path': '/home/fit/lijuanzi1/WORK/dz/SAERL/SAERL-0801/OpenSAE-Qwen3-1.7B-hjw-layer26-legacy130915',
+[36m(TaskRunner pid=715730)[0m                                 'sample_id_key': 'index',
+[36m(TaskRunner pid=715730)[0m                                 'save_unpooled_tensors': False,
+[36m(TaskRunner pid=715730)[0m                                 'unpooled_projection_dtype': 'bfloat16'},
+[36m(TaskRunner pid=715730)[0m  'trainer': {'balance_batch': False,
+[36m(TaskRunner pid=715730)[0m              'critic_warmup': 0,
+[36m(TaskRunner pid=715730)[0m              'default_hdfs_dir': None,
+[36m(TaskRunner pid=715730)[0m              'default_local_dir': 'checkpoints/deepmath_difficulty_Qwen3-1.7B/static_grad_8k',
+[36m(TaskRunner pid=715730)[0m              'del_local_ckpt_after_load': False,
+[36m(TaskRunner pid=715730)[0m              'device': 'cuda',
+[36m(TaskRunner pid=715730)[0m              'esi_redundant_time': 0,
+[36m(TaskRunner pid=715730)[0m              'experiment_name': 'static_grad_8k',
+[36m(TaskRunner pid=715730)[0m              'log_val_generations': 0,
+[36m(TaskRunner pid=715730)[0m              'logger': ['console', 'wandb'],
+[36m(TaskRunner pid=715730)[0m              'max_actor_ckpt_to_keep': None,
+[36m(TaskRunner pid=715730)[0m              'max_critic_ckpt_to_keep': None,
+[36m(TaskRunner pid=715730)[0m              'n_gpus_per_node': 4,
+[36m(TaskRunner pid=715730)[0m              'nnodes': 1,
+[36m(TaskRunner pid=715730)[0m              'project_name': 'deepmath_difficulty_Qwen3-1.7B',
+[36m(TaskRunner pid=715730)[0m              'ray_wait_register_center_timeout': 300,
+[36m(TaskRunner pid=715730)[0m              'resume_from_path': None,
+[36m(TaskRunner pid=715730)[0m              'resume_mode': 'disable',
+[36m(TaskRunner pid=715730)[0m              'rollout_data_dir': None,
+[36m(TaskRunner pid=715730)[0m              'save_freq': -1,
+[36m(TaskRunner pid=715730)[0m              'test_freq': -1,
+[36m(TaskRunner pid=715730)[0m              'total_epochs': 1,
+[36m(TaskRunner pid=715730)[0m              'total_training_steps': None,
+[36m(TaskRunner pid=715730)[0m              'use_legacy_worker_impl': 'enable',
+[36m(TaskRunner pid=715730)[0m              'val_before_train': False,
+[36m(TaskRunner pid=715730)[0m              'val_only': False,
+[36m(TaskRunner pid=715730)[0m              'validation_data_dir': None},
+[36m(TaskRunner pid=715730)[0m  'transfer_queue': {'enable': False}}
+[36m(TaskRunner pid=715730)[0m [validate_config] All configuration checks passed successfully!
+[36m(TaskRunner pid=715730)[0m Using dataset class: RLHFDataset
+[36m(TaskRunner pid=715730)[0m dataset len: 103022
+[36m(TaskRunner pid=715730)[0m Using dataset class: RLHFDataset
+[36m(TaskRunner pid=715730)[0m dataset len: 530
+[36m(TaskRunner pid=715730)[0m Size of train dataloader: 805, Size of val dataloader: 1
+[36m(TaskRunner pid=715730)[0m Total training steps: 805
+[36m(TaskRunner pid=715730)[0m colocated worker base class <class 'verl.single_controller.base.worker.Worker'>
+[36m(TaskRunner pid=715730)[0m bind role actor_rollout method chat_completion to class <class 'verl.single_controller.ray.base.create_colocated_worker_cls.<locals>.WorkerDict'>
+[36m(TaskRunner pid=715730)[0m bind role actor_rollout method generate to class <class 'verl.single_controller.ray.base.create_colocated_worker_cls.<locals>.WorkerDict'>
+[36m(TaskRunner pid=715730)[0m bind role actor_rollout method get_zeromq_address to class <class 'verl.single_controller.ray.base.create_colocated_worker_cls.<locals>.WorkerDict'>
+[36m(TaskRunner pid=715730)[0m bind role actor_rollout method sleep to class <class 'verl.single_controller.ray.base.create_colocated_worker_cls.<locals>.WorkerDict'>
+[36m(TaskRunner pid=715730)[0m bind role actor_rollout method wake_up to class <class 'verl.single_controller.ray.base.create_colocated_worker_cls.<locals>.WorkerDict'>
+[36m(WorkerDict pid=716470)[0m [Gloo] Rank 2 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+[36m(WorkerDict pid=716468)[0m Model config after override: Qwen3Config {
+[36m(WorkerDict pid=716468)[0m   "architectures": [
+[36m(WorkerDict pid=716468)[0m     "Qwen3ForCausalLM"
+[36m(WorkerDict pid=716468)[0m   ],
+[36m(WorkerDict pid=716468)[0m   "attention_bias": false,
+[36m(WorkerDict pid=716468)[0m   "attention_dropout": 0.0,
+[36m(WorkerDict pid=716468)[0m   "dtype": "bfloat16",
+[36m(WorkerDict pid=716468)[0m   "eos_token_id": 151645,
+[36m(WorkerDict pid=716468)[0m   "head_dim": 128,
+[36m(WorkerDict pid=716468)[0m   "hidden_act": "silu",
+[36m(WorkerDict pid=716468)[0m   "hidden_size": 2048,
+[36m(WorkerDict pid=716468)[0m   "initializer_range": 0.02,
+[36m(WorkerDict pid=716468)[0m   "intermediate_size": 6144,
+[36m(WorkerDict pid=716468)[0m   "layer_types": [
+[36m(WorkerDict pid=716468)[0m     "full_attention",
+[36m(WorkerDict pid=716468)[0m     "full_attention",
+[36m(WorkerDict pid=716468)[0m     "full_attention",
+[36m(WorkerDict pid=716468)[0m     "full_attention",
+[36m(WorkerDict pid=716468)[0m     "full_attention",
+[36m(WorkerDict pid=716468)[0m     "full_attention",
+[36m(WorkerDict pid=716468)[0m     "full_attention",
+[36m(WorkerDict pid=716468)[0m     "full_attention",
+[36m(WorkerDict pid=716468)[0m     "full_attention",
+[36m(WorkerDict pid=716468)[0m     "full_attention",
+[36m(WorkerDict pid=716468)[0m     "full_attention",
+[36m(WorkerDict pid=716468)[0m     "full_attention",
+[36m(WorkerDict pid=716468)[0m     "full_attention",
+[36m(WorkerDict pid=716468)[0m     "full_attention",
+[36m(WorkerDict pid=716468)[0m     "full_attention",
+[36m(WorkerDict pid=716468)[0m     "full_attention",
+[36m(WorkerDict pid=716468)[0m     "full_attention",
+[36m(WorkerDict pid=716468)[0m     "full_attention",
+[36m(WorkerDict pid=716468)[0m     "full_attention",
+[36m(WorkerDict pid=716468)[0m     "full_attention",
+[36m(WorkerDict pid=716468)[0m     "full_attention",
+[36m(WorkerDict pid=716468)[0m     "full_attention",
+[36m(WorkerDict pid=716468)[0m     "full_attention",
+[36m(WorkerDict pid=716468)[0m     "full_attention",
+[36m(WorkerDict pid=716468)[0m     "full_attention",
+[36m(WorkerDict pid=716468)[0m     "full_attention",
+[36m(WorkerDict pid=716468)[0m     "full_attention",
+[36m(WorkerDict pid=716468)[0m     "full_attention"
+[36m(WorkerDict pid=716468)[0m   ],
+[36m(WorkerDict pid=716468)[0m   "max_position_embeddings": 40960,
+[36m(WorkerDict pid=716468)[0m   "max_window_layers": 28,
+[36m(WorkerDict pid=716468)[0m   "model_type": "qwen3",
+[36m(WorkerDict pid=716468)[0m   "num_attention_heads": 16,
+[36m(WorkerDict pid=716468)[0m   "num_hidden_layers": 28,
+[36m(WorkerDict pid=716468)[0m   "num_key_value_heads": 8,
+[36m(WorkerDict pid=716468)[0m   "pad_token_id": 151643,
+[36m(WorkerDict pid=716468)[0m   "rms_norm_eps": 1e-06,
+[36m(WorkerDict pid=716468)[0m   "rope_scaling": null,
+[36m(WorkerDict pid=716468)[0m   "rope_theta": 1000000,
+[36m(WorkerDict pid=716468)[0m   "sliding_window": null,
+[36m(WorkerDict pid=716468)[0m   "tie_word_embeddings": true,
+[36m(WorkerDict pid=716468)[0m   "transformers_version": "4.56.1",
+[36m(WorkerDict pid=716468)[0m   "use_cache": true,
+[36m(WorkerDict pid=716468)[0m   "use_sliding_window": false,
+[36m(WorkerDict pid=716468)[0m   "vocab_size": 151936
+[36m(WorkerDict pid=716468)[0m }
+[36m(WorkerDict pid=716468)[0m 
+[36m(WorkerDict pid=716470)[0m Monkey patch _flash_attention_forward in transformers.integrations.flash_attention
+[36m(WorkerDict pid=716470)[0m Skipping monkey patch for Qwen3ForCausalLM as use_fused_kernels is False or fused_kernels_backend is torch
+[36m(WorkerDict pid=716469)[0m [Gloo] Rank 1 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716468)[0m Qwen3ForCausalLM contains 1.72B parameters
+[36m(WorkerDict pid=716468)[0m wrap_policy: functools.partial(<function _or_policy at 0x7f54f61604a0>, policies=[functools.partial(<function transformer_auto_wrap_policy at 0x7f54f6160360>, transformer_layer_cls={<class 'transformers.models.qwen3.modeling_qwen3.Qwen3DecoderLayer'>})])
+[36m(WorkerDict pid=716470)[0m g44:716470:716856 [0] NCCL INFO cudaDriverVersion 13030
+[36m(WorkerDict pid=716470)[0m g44:716470:716856 [0] NCCL INFO Bootstrap: Using ibs108:14.14.16.1<0>
+[36m(WorkerDict pid=716470)[0m g44:716470:716856 [0] NCCL INFO NCCL version 2.27.3+cuda12.9
+[36m(WorkerDict pid=716470)[0m g44:716470:716856 [0] NCCL INFO Comm config Blocking set to 1
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO NET/Plugin: Could not find: libnccl-net.so. 
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO NCCL_IB_HCA set to mlx5_0,mlx5_1,mlx5_2,mlx5_3,mlx5_4,mlx5_6,mlx5_7,mlx5_8
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [1]mlx5_1:1/IB [2]mlx5_2:1/IB [3]mlx5_3:1/IB [4]mlx5_4:1/IB [5]mlx5_6:1/IB [6]mlx5_7:1/IB [7]mlx5_8:1/IB [RO]; OOB ibs108:14.14.16.1<0>
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO Initialized NET plugin IB
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO Assigned NET plugin IB to comm
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO Using network IB
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO ncclCommInitRankConfig comm 0x7f817555cac0 rank 2 nranks 4 cudaDev 0 nvmlDev 2 busId c2000 commId 0x6b67fec6251ebcc4 - Init START
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO RAS client listening socket at 127.0.0.1<28028>
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO Bootstrap timings total 0.001492 (create 0.000034, send 0.000100, recv 0.000126, ring 0.000063, delay 0.000002)
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO NCCL_CUMEM_ENABLE set by environment to 0.
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO MNNVL busId 0xc2000 fabric UUID 0.0 cliqueId 0x0 state 3 healthMask 0x0
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO Setting affinity for GPU 2 to 52-83
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO NVLS multicast support is available on dev 0 (NVLS_NCHANNELS 16)
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO comm 0x7f817555cac0 rank 2 nRanks 4 nNodes 1 localRanks 4 localRank 2 MNNVL 0
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO Trees [0] 3/-1/-1->2->1 [1] 3/-1/-1->2->1 [2] 3/-1/-1->2->1 [3] 3/-1/-1->2->1 [4] 3/-1/-1->2->-1 [5] 3/-1/-1->2->-1 [6] -1/-1/-1->2->1 [7] -1/-1/-1->2->1 [8] 3/-1/-1->2->1 [9] 3/-1/-1->2->1 [10] 3/-1/-1->2->1 [11] 3/-1/-1->2->1 [12] 3/-1/-1->2->-1 [13] 3/-1/-1->2->-1 [14] -1/-1/-1->2->1 [15] -1/-1/-1->2->1
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO P2P Chunksize set to 524288
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO PROFILER/Plugin: Could not find: libnccl-profiler.so. 
+[36m(WorkerDict pid=716470)[0m g44:716470:718045 [0] NCCL INFO [Proxy Service UDS] Device 0 CPU core 55
+[36m(WorkerDict pid=716470)[0m g44:716470:718044 [0] NCCL INFO [Proxy Service] Device 0 CPU core 57
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO Channel 00/0 : 2[2] -> 3[3] via P2P/IPC
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO Channel 01/0 : 2[2] -> 3[3] via P2P/IPC
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO Channel 02/0 : 2[2] -> 3[3] via P2P/IPC
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO Channel 03/0 : 2[2] -> 3[3] via P2P/IPC
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO Channel 04/0 : 2[2] -> 3[3] via P2P/IPC
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO Channel 05/0 : 2[2] -> 3[3] via P2P/IPC
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO Channel 06/0 : 2[2] -> 3[3] via P2P/IPC
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO Channel 07/0 : 2[2] -> 3[3] via P2P/IPC
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO Channel 08/0 : 2[2] -> 3[3] via P2P/IPC
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO Channel 09/0 : 2[2] -> 3[3] via P2P/IPC
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO Channel 10/0 : 2[2] -> 3[3] via P2P/IPC
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO Channel 11/0 : 2[2] -> 3[3] via P2P/IPC
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO Channel 12/0 : 2[2] -> 3[3] via P2P/IPC
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO Channel 13/0 : 2[2] -> 3[3] via P2P/IPC
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO Channel 14/0 : 2[2] -> 3[3] via P2P/IPC
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO Channel 15/0 : 2[2] -> 3[3] via P2P/IPC
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO Channel 00/0 : 2[2] -> 1[1] via P2P/IPC
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO Channel 01/0 : 2[2] -> 1[1] via P2P/IPC
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO Channel 02/0 : 2[2] -> 1[1] via P2P/IPC
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO Channel 03/0 : 2[2] -> 1[1] via P2P/IPC
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO Channel 06/0 : 2[2] -> 1[1] via P2P/IPC
+[36m(WorkerDict pid=716468)[0m g44:716468:717992 [0] NCCL INFO Channel 00/16 : 0 1 2 3
+[36m(WorkerDict pid=716468)[0m g44:716468:717992 [0] NCCL INFO Channel 01/16 : 0 1 2 3
+[36m(WorkerDict pid=716468)[0m g44:716468:717992 [0] NCCL INFO Channel 02/16 : 0 1 2 3
+[36m(WorkerDict pid=716468)[0m g44:716468:717992 [0] NCCL INFO Channel 03/16 : 0 1 2 3
+[36m(WorkerDict pid=716468)[0m g44:716468:717992 [0] NCCL INFO Channel 04/16 : 0 1 2 3
+[36m(WorkerDict pid=716468)[0m g44:716468:717992 [0] NCCL INFO Channel 05/16 : 0 1 2 3
+[36m(WorkerDict pid=716468)[0m g44:716468:717992 [0] NCCL INFO Channel 06/16 : 0 1 2 3
+[36m(WorkerDict pid=716468)[0m g44:716468:717992 [0] NCCL INFO Channel 07/16 : 0 1 2 3
+[36m(WorkerDict pid=716468)[0m g44:716468:717992 [0] NCCL INFO Channel 08/16 : 0 1 2 3
+[36m(WorkerDict pid=716468)[0m g44:716468:717992 [0] NCCL INFO Channel 09/16 : 0 1 2 3
+[36m(WorkerDict pid=716468)[0m g44:716468:717992 [0] NCCL INFO Channel 10/16 : 0 1 2 3
+[36m(WorkerDict pid=716468)[0m g44:716468:717992 [0] NCCL INFO Channel 11/16 : 0 1 2 3
+[36m(WorkerDict pid=716468)[0m g44:716468:717992 [0] NCCL INFO Channel 12/16 : 0 1 2 3
+[36m(WorkerDict pid=716468)[0m g44:716468:717992 [0] NCCL INFO Channel 13/16 : 0 1 2 3
+[36m(WorkerDict pid=716468)[0m g44:716468:717992 [0] NCCL INFO Channel 14/16 : 0 1 2 3
+[36m(WorkerDict pid=716468)[0m g44:716468:717992 [0] NCCL INFO Channel 15/16 : 0 1 2 3
+[36m(WorkerDict pid=716468)[0m g44:716468:717992 [0] NCCL INFO Check P2P Type isAllDirectP2p 1 directMode 0
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO Connected all trees
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO NVLS comm 0x7f817555cac0 headRank 2 nHeads 4 nvlsRanks 4 buffSize 1048576 nvlsPerRankSize 33554432 nvlsTotalSize 134217728
+[36m(WorkerDict pid=716470)[0m g44:716470:718049 [0] NCCL INFO [Proxy Progress] Device 0 CPU core 53
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO 16 coll channels, 16 collnet channels, 16 nvls channels, 16 p2p channels, 16 p2p channels per peer
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO TUNER/Plugin: Could not find: libnccl-tuner.so. Using internal tuner plugin.
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO ncclCommInitRankConfig comm 0x7f817555cac0 rank 2 nranks 4 cudaDev 0 nvmlDev 2 busId c2000 commId 0x6b67fec6251ebcc4 - Init COMPLETE
+[36m(WorkerDict pid=716470)[0m g44:716470:717994 [0] NCCL INFO Init timings - ncclCommInitRankConfig: rank 2 nranks 4 total 1.87 (kernels 1.38, alloc 0.14, bootstrap 0.00, allgathers 0.00, topo 0.03, graphs 0.01, connections 0.29, rest 0.02)
+[36m(WorkerDict pid=716468)[0m g44:716468:717992 [0] NCCL INFO CC Off, workFifoBytes 1048576
+[36m(WorkerDict pid=716468)[0m Total steps: 805, num_warmup_steps: 0
+[36m(WorkerDict pid=716468)[0m Actor use_remove_padding=True
+[36m(WorkerDict pid=716468)[0m Actor use_fused_kernels=False
+[36m(WorkerDict pid=716469)[0m Monkey patch _flash_attention_forward in transformers.integrations.flash_attention[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716469)[0m Skipping monkey patch for Qwen3ForCausalLM as use_fused_kernels is False or fused_kernels_backend is torch[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716470)[0m [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716469)[0m g44:716469:716853 [0] NCCL INFO cudaDriverVersion 13030[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716469)[0m g44:716469:716853 [0] NCCL INFO Bootstrap: Using ibs108:14.14.16.1<0>[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716469)[0m g44:716469:716853 [0] NCCL INFO NCCL version 2.27.3+cuda12.9[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716469)[0m g44:716469:716853 [0] NCCL INFO Comm config Blocking set to 1[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716469)[0m g44:716469:717995 [0] NCCL INFO NET/Plugin: Could not find: libnccl-net.so. [32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716469)[0m g44:716469:717995 [0] NCCL INFO NCCL_IB_HCA set to mlx5_0,mlx5_1,mlx5_2,mlx5_3,mlx5_4,mlx5_6,mlx5_7,mlx5_8[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716469)[0m g44:716469:717995 [0] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [1]mlx5_1:1/IB [2]mlx5_2:1/IB [3]mlx5_3:1/IB [4]mlx5_4:1/IB [5]mlx5_6:1/IB [6]mlx5_7:1/IB [7]mlx5_8:1/IB [RO]; OOB ibs108:14.14.16.1<0>[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716469)[0m g44:716469:717995 [0] NCCL INFO Initialized NET plugin IB[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716469)[0m g44:716469:717995 [0] NCCL INFO Assigned NET plugin IB to comm[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716469)[0m g44:716469:717995 [0] NCCL INFO Using network IB[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716469)[0m g44:716469:717995 [0] NCCL INFO ncclCommInitRankConfig comm 0x7f0ce59dd240 rank 1 nranks 4 cudaDev 0 nvmlDev 1 busId ae000 commId 0x6b67fec6251ebcc4 - Init START[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716469)[0m g44:716469:717995 [0] NCCL INFO RAS client listening socket at 127.0.0.1<28028>[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716469)[0m g44:716469:717995 [0] NCCL INFO Bootstrap timings total 0.001438 (create 0.000032, send 0.000093, recv 0.000201, ring 0.000054, delay 0.000002)[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716469)[0m g44:716469:717995 [0] NCCL INFO NCCL_CUMEM_ENABLE set by environment to 0.[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716469)[0m g44:716469:717995 [0] NCCL INFO MNNVL busId 0xae000 fabric UUID 0.0 cliqueId 0x0 state 3 healthMask 0x0[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716469)[0m g44:716469:717995 [0] NCCL INFO Setting affinity for GPU 1 to 52-83[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716469)[0m g44:716469:717995 [0] NCCL INFO NVLS multicast support is available on dev 0 (NVLS_NCHANNELS 16)[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716469)[0m g44:716469:717995 [0] NCCL INFO comm 0x7f0ce59dd240 rank 1 nRanks 4 nNodes 1 localRanks 4 localRank 1 MNNVL 0[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716469)[0m g44:716469:717995 [0] NCCL INFO Trees [0] 2/-1/-1->1->0 [1] 2/-1/-1->1->0 [2] 2/-1/-1->1->-1 [3] 2/-1/-1->1->-1 [4] -1/-1/-1->1->0 [5] -1/-1/-1->1->0 [6] 2/-1/-1->1->0 [7] 2/-1/-1->1->0 [8] 2/-1/-1->1->0 [9] 2/-1/-1->1->0 [10] 2/-1/-1->1->-1 [11] 2/-1/-1->1->-1 [12] -1/-1/-1->1->0 [13] -1/-1/-1->1->0 [14] 2/-1/-1->1->0 [15] 2/-1/-1->1->0[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716469)[0m g44:716469:717995 [0] NCCL INFO P2P Chunksize set to 524288[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716469)[0m g44:716469:717995 [0] NCCL INFO PROFILER/Plugin: Could not find: libnccl-profiler.so. [32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716469)[0m g44:716469:718041 [0] NCCL INFO [Proxy Service UDS] Device 0 CPU core 56[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716469)[0m g44:716469:718040 [0] NCCL INFO [Proxy Service] Device 0 CPU core 59[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716469)[0m g44:716469:717995 [0] NCCL INFO Channel 15/0 : 1[1] -> 0[0] via P2P/IPC[32m [repeated 91x across cluster][0m
+[36m(WorkerDict pid=716469)[0m g44:716469:717995 [0] NCCL INFO Connected all rings, use ring PXN 0 GDR 1[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716469)[0m g44:716469:717995 [0] NCCL INFO Connected all trees[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716469)[0m g44:716469:717995 [0] NCCL INFO NVLS comm 0x7f0ce59dd240 headRank 1 nHeads 4 nvlsRanks 4 buffSize 1048576 nvlsPerRankSize 33554432 nvlsTotalSize 134217728[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716469)[0m g44:716469:718048 [0] NCCL INFO [Proxy Progress] Device 0 CPU core 82[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716469)[0m g44:716469:717995 [0] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716469)[0m g44:716469:717995 [0] NCCL INFO 16 coll channels, 16 collnet channels, 16 nvls channels, 16 p2p channels, 16 p2p channels per peer[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716469)[0m g44:716469:717995 [0] NCCL INFO TUNER/Plugin: Could not find: libnccl-tuner.so. Using internal tuner plugin.[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716469)[0m g44:716469:717995 [0] NCCL INFO ncclCommInitRankConfig comm 0x7f0ce59dd240 rank 1 nranks 4 cudaDev 0 nvmlDev 1 busId ae000 commId 0x6b67fec6251ebcc4 - Init COMPLETE[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716469)[0m g44:716469:717995 [0] NCCL INFO Init timings - ncclCommInitRankConfig: rank 1 nranks 4 total 1.87 (kernels 1.38, alloc 0.14, bootstrap 0.00, allgathers 0.00, topo 0.03, graphs 0.01, connections 0.29, rest 0.02)[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE enabled: target=_fsdp_wrapped_module.model.layers.26, run_dir=/WORK/PUBLIC/lijuanzi1_work/dz/SAERL/SAERL-0801/runs/selection/verl-main-static-gradient-sae/20260806-143158-970665
+[36m(WorkerDict pid=716469)[0m [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0[32m [repeated 9x across cluster][0m
+[36m(TaskRunner pid=715730)[0m WARNING 08-06 14:34:32 [api_server.py:1213] LoRA dynamic loading & unloading is enabled in the API server. This should ONLY be used for local development!
+[36m(pid=719153)[0m WARNING 08-06 14:34:49 [api_server.py:1213] LoRA dynamic loading & unloading is enabled in the API server. This should ONLY be used for local development!
+[36m(pid=719151)[0m WARNING 08-06 14:34:49 [api_server.py:1213] LoRA dynamic loading & unloading is enabled in the API server. This should ONLY be used for local development!
+[36m(vLLMHttpServer pid=719151)[0m ['serve',
+[36m(vLLMHttpServer pid=719151)[0m  '/WORK/PUBLIC/lijuanzi1_work/MODELS/Qwen3-1.7B',
+[36m(vLLMHttpServer pid=719151)[0m  '--dtype',
+[36m(vLLMHttpServer pid=719151)[0m  'bfloat16',
+[36m(vLLMHttpServer pid=719151)[0m  '--load_format',
+[36m(vLLMHttpServer pid=719151)[0m  'dummy',
+[36m(vLLMHttpServer pid=719151)[0m  '--max_model_len',
+[36m(vLLMHttpServer pid=719151)[0m  '9216',
+[36m(vLLMHttpServer pid=719151)[0m  '--max_num_seqs',
+[36m(vLLMHttpServer pid=719151)[0m  '1024',
+[36m(vLLMHttpServer pid=719151)[0m  '--enable_chunked_prefill',
+[36m(vLLMHttpServer pid=719151)[0m  '--max_num_batched_tokens',
+[36m(vLLMHttpServer pid=719151)[0m  '8192',
+[36m(vLLMHttpServer pid=719151)[0m  '--enable_prefix_caching',
+[36m(vLLMHttpServer pid=719151)[0m  '--enable_sleep_mode',
+[36m(vLLMHttpServer pid=719151)[0m  '--disable_custom_all_reduce',
+[36m(vLLMHttpServer pid=719151)[0m  '--gpu_memory_utilization',
+[36m(vLLMHttpServer pid=719151)[0m  '0.85',
+[36m(vLLMHttpServer pid=719151)[0m  '--disable_log_stats',
+[36m(vLLMHttpServer pid=719151)[0m  '--tensor_parallel_size',
+[36m(vLLMHttpServer pid=719151)[0m  '1',
+[36m(vLLMHttpServer pid=719151)[0m  '--seed',
+[36m(vLLMHttpServer pid=719151)[0m  '0',
+[36m(vLLMHttpServer pid=719151)[0m  '--override_generation_config',
+[36m(vLLMHttpServer pid=719151)[0m  '{"temperature": 0.6, "top_k": -1, "top_p": 1, "repetition_penalty": 1.0, '
+[36m(vLLMHttpServer pid=719151)[0m  '"max_new_tokens": 8192}']
+[36m(vLLMHttpServer pid=719153)[0m WARNING 08-06 14:34:51 [__init__.py:3036] We must use the `spawn` multiprocessing start method. Overriding VLLM_WORKER_MULTIPROC_METHOD to 'spawn'. See https://docs.vllm.ai/en/latest/usage/troubleshooting.html#python-multiprocessing for more information. Reasons: In a Ray actor and can only be spawned
+[36m(vLLMHttpServer pid=719153)[0m WARNING 08-06 14:35:07 [api_server.py:1213] LoRA dynamic loading & unloading is enabled in the API server. This should ONLY be used for local development![32m [repeated 3x across cluster][0m
+[36m(vLLMHttpServer pid=719151)[0m WARNING 08-06 14:34:51 [__init__.py:3036] We must use the `spawn` multiprocessing start method. Overriding VLLM_WORKER_MULTIPROC_METHOD to 'spawn'. See https://docs.vllm.ai/en/latest/usage/troubleshooting.html#python-multiprocessing for more information. Reasons: In a Ray actor and can only be spawned[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716470)[0m [Gloo] Rank 2 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+[36m(WorkerDict pid=716469)[0m WARNING 08-06 14:35:08 [api_server.py:1213] LoRA dynamic loading & unloading is enabled in the API server. This should ONLY be used for local development![32m [repeated 7x across cluster][0m
+[36m(WorkerDict pid=716470)[0m All deep_gemm operations loaded successfully!
+[36m(WorkerDict pid=716469)[0m [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0[32m [repeated 23x across cluster][0m
+[36m(vLLMHttpServer pid=719153)[0m WARNING 08-06 14:39:57 [model.py:1389] Default sampling parameters have been overridden by the model's Hugging Face generation config recommended from the model creator. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`.
+[36m(WorkerDict pid=716469)[0m All deep_gemm operations loaded successfully![32m [repeated 3x across cluster][0m
+[36m(TaskRunner pid=715730)[0m AgentLoopManager: ['11.11.16.1:34085', '11.11.16.1:41981', '11.11.16.1:40987', '11.11.16.1:43723']
+[36m(AgentLoopWorker pid=725591)[0m WARNING 08-06 14:40:17 [api_server.py:1213] LoRA dynamic loading & unloading is enabled in the API server. This should ONLY be used for local development!
+[36m(vLLMHttpServer pid=719152)[0m WARNING 08-06 14:39:57 [model.py:1389] Default sampling parameters have been overridden by the model's Hugging Face generation config recommended from the model creator. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`.[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=1 rollouts=4 projected_tokens=25857
+[36m(AgentLoopWorker pid=725595)[0m WARNING 08-06 14:40:17 [api_server.py:1213] LoRA dynamic loading & unloading is enabled in the API server. This should ONLY be used for local development![32m [repeated 7x across cluster][0m
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=2 rollouts=8 projected_tokens=51788
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=3 rollouts=12 projected_tokens=77801
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=4 rollouts=17 projected_tokens=104884
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=5 rollouts=21 projected_tokens=131157
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=6 rollouts=25 projected_tokens=157521
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=7 rollouts=29 projected_tokens=183858
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=8 rollouts=34 projected_tokens=211045
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=9 rollouts=39 projected_tokens=238271
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=10 rollouts=43 projected_tokens=264685
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=11 rollouts=48 projected_tokens=291923
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=12 rollouts=52 projected_tokens=318538
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=13 rollouts=57 projected_tokens=345957
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=14 rollouts=61 projected_tokens=372660
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=15 rollouts=65 projected_tokens=399398
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=16 rollouts=69 projected_tokens=426112
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=17 rollouts=73 projected_tokens=452715
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=18 rollouts=78 projected_tokens=480114
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=19 rollouts=83 projected_tokens=507388
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=20 rollouts=87 projected_tokens=533796
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=21 rollouts=91 projected_tokens=560277
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=22 rollouts=96 projected_tokens=587379
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=23 rollouts=100 projected_tokens=613731
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=24 rollouts=105 projected_tokens=640747
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=25 rollouts=110 projected_tokens=667888
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=26 rollouts=115 projected_tokens=695014
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=27 rollouts=120 projected_tokens=721989
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=28 rollouts=124 projected_tokens=747965
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=29 rollouts=128 projected_tokens=773915
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=30 rollouts=133 projected_tokens=801971
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=31 rollouts=138 projected_tokens=830045
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=32 rollouts=142 projected_tokens=857596
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=33 rollouts=147 projected_tokens=885857
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=34 rollouts=151 projected_tokens=913641
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=35 rollouts=155 projected_tokens=941418
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=36 rollouts=159 projected_tokens=969252
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=37 rollouts=163 projected_tokens=997083
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=38 rollouts=167 projected_tokens=1024814
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=39 rollouts=171 projected_tokens=1052612
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=40 rollouts=175 projected_tokens=1080419
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=41 rollouts=179 projected_tokens=1108278
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=42 rollouts=183 projected_tokens=1136151
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=43 rollouts=188 projected_tokens=1164984
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=44 rollouts=193 projected_tokens=1193934
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=45 rollouts=198 projected_tokens=1222860
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=46 rollouts=203 projected_tokens=1251521
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=47 rollouts=207 projected_tokens=1279428
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=48 rollouts=211 projected_tokens=1307198
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=49 rollouts=216 projected_tokens=1335605
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=50 rollouts=220 projected_tokens=1363355
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=51 rollouts=224 projected_tokens=1391070
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=52 rollouts=228 projected_tokens=1418897
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=53 rollouts=232 projected_tokens=1446709
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=54 rollouts=236 projected_tokens=1474475
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=55 rollouts=241 projected_tokens=1502713
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=56 rollouts=246 projected_tokens=1530921
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=57 rollouts=251 projected_tokens=1559023
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=1 micro_batches=58 rollouts=256 projected_tokens=1587073
+[36m(WorkerDict pid=716470)[0m Static gradient-SAE rank=2 step=1 wrote_rows=32 unpooled_rollouts=0 path=/WORK/PUBLIC/lijuanzi1_work/dz/SAERL/SAERL-0801/runs/selection/verl-main-static-gradient-sae/20260806-143158-970665/step-00000001-rank-00002.parquet
+[36m(TaskRunner pid=715730)[0m step:1 - actor/entropy:0.15938031673431396 - perf/mfu/actor_infer:0 - actor/pg_clipfrac:0.0 - actor/ppo_kl:0.0 - actor/pg_clipfrac_lower:0.0 - actor/pg_loss:0.0008544048013046167 - static_gradient/rows:32.0 - static_gradient/unpooled_rollouts:0.0 - static_gradient/optimizer_step:0.0 - timing_s/static_gradient_projection_compute:35.846886906355614 - timing_s/static_gradient_projection_compute_max:42.03296131473779 - timing_s/static_gradient_raw_gradient_write:0.0 - timing_s/static_gradient_raw_gradient_write_max:0.0 - timing_s/static_gradient_projection_write:0.0 - timing_s/static_gradient_projection_write_max:0.0 - timing_s/static_gradient_processing:37.18414793442935 - timing_s/static_gradient_processing_max:43.46734650526196 - timing_s/static_gradient_finalize:1.1757830856367946 - timing_s/static_gradient_finalize_max:1.2598738428205252 - perf/static_gradient_projected_tokens_per_second:42909.17765707673 - perf/mfu/actor:0.1970631897104709 - perf/max_memory_allocated_gb:110.32555627822876 - perf/max_memory_reserved_gb:115.65625 - perf/cpu_memory_used_gb:385.0432891845703 - actor/lr:1e-06 - training/global_step:1 - training/epoch:0 - critic/score/mean:0.4921875 - critic/score/max:1.0 - critic/score/min:0.0 - critic/rewards/mean:0.4921875 - critic/rewards/max:1.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.028308583423495293 - critic/advantages/max:2.4748666286468506 - critic/advantages/min:-2.4748666286468506 - critic/returns/mean:-0.028308583423495293 - critic/returns/max:2.4748666286468506 - critic/returns/min:-2.4748666286468506 - response_length/mean:6688.107421875 - response_length/max:8192.0 - response_length/min:1678.0 - response_length/clip_ratio:0.462890625 - response_length_non_aborted/mean:6688.107421875 - response_length_non_aborted/max:8192.0 - response_length_non_aborted/min:1678.0 - response_length_non_aborted/clip_ratio:0.462890625 - response/aborted_ratio:0.0 - prompt_length/mean:88.015625 - prompt_length/max:211.0 - prompt_length/min:35.0 - prompt_length/clip_ratio:0.0 - num_turns/min:2 - num_turns/max:2 - num_turns/mean:2.0 - timing_s/start_profile:0.0002869758754968643 - timing_s/agent_loop/generate_sequences/min:35.428101061843336 - timing_s/agent_loop/generate_sequences/max:408.6822715457529 - timing_s/agent_loop/generate_sequences/mean:268.66774853635616 - timing_s/agent_loop/tool_calls/min:0.0 - timing_s/agent_loop/tool_calls/max:0.0 - timing_s/agent_loop/tool_calls/mean:0.0 - timing_s/agent_loop/slowest/generate_sequences:408.6822715457529 - timing_s/agent_loop/slowest/tool_calls:0.0 - timing_s/agent_loop/slowest/prompt_length:100 - timing_s/agent_loop/slowest/response_length:8192 - timing_s/gen:419.2419204637408 - timing_s/reward:0.00013205409049987793 - timing_s/old_log_prob:41.9608468292281 - timing_s/adv:0.19151713699102402 - timing_s/update_actor:154.030585183762 - timing_s/step:615.4303811695427 - timing_s/stop_profile:6.047077476978302e-05 - timing_per_token_ms/gen:0.0612155146632039 - timing_per_token_ms/adv:2.760110062922342e-05 - timing_per_token_ms/update_actor:0.02219860712430366 - perf/total_num_tokens:6938750 - perf/time_per_step:615.4303811695427 - perf/throughput:2818.6575656266104
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=1 rollouts=4 projected_tokens=29002
+[36m(WorkerDict pid=716469)[0m Static gradient-SAE rank=1 step=1 wrote_rows=32 unpooled_rollouts=0 path=/WORK/PUBLIC/lijuanzi1_work/dz/SAERL/SAERL-0801/runs/selection/verl-main-static-gradient-sae/20260806-143158-970665/step-00000001-rank-00001.parquet[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=2 rollouts=8 projected_tokens=58045
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=3 rollouts=12 projected_tokens=87138
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=4 rollouts=16 projected_tokens=116116
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=5 rollouts=20 projected_tokens=145166
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=6 rollouts=24 projected_tokens=174246
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=7 rollouts=29 projected_tokens=204280
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=8 rollouts=34 projected_tokens=234340
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=9 rollouts=39 projected_tokens=264421
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=10 rollouts=44 projected_tokens=294568
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=11 rollouts=49 projected_tokens=324898
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=12 rollouts=54 projected_tokens=355243
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=13 rollouts=59 projected_tokens=385607
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=14 rollouts=64 projected_tokens=416280
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=15 rollouts=69 projected_tokens=446628
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=16 rollouts=74 projected_tokens=476936
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=17 rollouts=79 projected_tokens=507234
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=18 rollouts=84 projected_tokens=537553
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=19 rollouts=89 projected_tokens=567736
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=20 rollouts=94 projected_tokens=597866
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=21 rollouts=99 projected_tokens=627914
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=22 rollouts=104 projected_tokens=658100
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=23 rollouts=108 projected_tokens=687219
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=24 rollouts=112 projected_tokens=716220
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=25 rollouts=116 projected_tokens=745267
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=26 rollouts=120 projected_tokens=774230
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=27 rollouts=124 projected_tokens=803189
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=28 rollouts=128 projected_tokens=832220
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=29 rollouts=132 projected_tokens=860230
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=30 rollouts=136 projected_tokens=888488
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=31 rollouts=140 projected_tokens=916753
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=32 rollouts=144 projected_tokens=944906
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=33 rollouts=149 projected_tokens=973806
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=34 rollouts=154 projected_tokens=1002760
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=35 rollouts=158 projected_tokens=1031207
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=36 rollouts=163 projected_tokens=1060197
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=37 rollouts=167 projected_tokens=1088746
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=38 rollouts=171 projected_tokens=1117334
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=39 rollouts=175 projected_tokens=1145928
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=40 rollouts=179 projected_tokens=1174596
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=41 rollouts=183 projected_tokens=1203322
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=42 rollouts=187 projected_tokens=1232079
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=43 rollouts=192 projected_tokens=1261426
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=44 rollouts=197 projected_tokens=1290764
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=45 rollouts=202 projected_tokens=1320054
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=46 rollouts=206 projected_tokens=1348733
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=47 rollouts=210 projected_tokens=1377374
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=48 rollouts=215 projected_tokens=1406552
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=49 rollouts=219 projected_tokens=1435133
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=50 rollouts=223 projected_tokens=1463546
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=51 rollouts=227 projected_tokens=1491874
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=52 rollouts=232 projected_tokens=1520858
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=53 rollouts=236 projected_tokens=1549124
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=54 rollouts=240 projected_tokens=1577484
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=55 rollouts=244 projected_tokens=1605782
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=56 rollouts=248 projected_tokens=1633847
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=57 rollouts=252 projected_tokens=1662073
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=2 micro_batches=58 rollouts=256 projected_tokens=1690070
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE rank=0 step=2 wrote_rows=32 unpooled_rollouts=0 path=/WORK/PUBLIC/lijuanzi1_work/dz/SAERL/SAERL-0801/runs/selection/verl-main-static-gradient-sae/20260806-143158-970665/step-00000002-rank-00000.parquet
+[36m(TaskRunner pid=715730)[0m step:2 - actor/entropy:0.15805965662002563 - perf/mfu/actor_infer:0 - actor/pg_clipfrac:0.0 - actor/ppo_kl:0.0 - actor/pg_clipfrac_lower:0.0 - actor/pg_loss:0.0011634980773476578 - static_gradient/rows:32.0 - static_gradient/unpooled_rollouts:0.0 - static_gradient/optimizer_step:0.0 - timing_s/static_gradient_projection_compute:37.02367337682843 - timing_s/static_gradient_projection_compute_max:41.14519885431228 - timing_s/static_gradient_raw_gradient_write:0.0 - timing_s/static_gradient_raw_gradient_write_max:0.0 - timing_s/static_gradient_projection_write:0.0 - timing_s/static_gradient_projection_write_max:0.0 - timing_s/static_gradient_processing:37.64950688183308 - timing_s/static_gradient_processing_max:41.84238131623715 - timing_s/static_gradient_finalize:0.5611752914264798 - timing_s/static_gradient_finalize_max:0.7910189405083656 - perf/static_gradient_projected_tokens_per_second:44033.75041454159 - perf/mfu/actor:0.2123849157206531 - perf/max_memory_allocated_gb:111.37156057357788 - perf/max_memory_reserved_gb:116.708984375 - perf/cpu_memory_used_gb:386.38628101348877 - actor/lr:1e-06 - training/global_step:2 - training/epoch:0 - critic/score/mean:0.45703125 - critic/score/max:1.0 - critic/score/min:0.0 - critic/rewards/mean:0.45703125 - critic/rewards/max:1.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.033755186945199966 - critic/advantages/max:2.4748666286468506 - critic/advantages/min:-2.4748666286468506 - critic/returns/mean:-0.033755186945199966 - critic/returns/max:2.4748666286468506 - critic/returns/min:-2.4748666286468506 - response_length/mean:6753.630859375 - response_length/max:8192.0 - response_length/min:1486.0 - response_length/clip_ratio:0.5068359375 - response_length_non_aborted/mean:6753.630859375 - response_length_non_aborted/max:8192.0 - response_length_non_aborted/min:1486.0 - response_length_non_aborted/clip_ratio:0.5068359375 - response/aborted_ratio:0.0 - prompt_length/mean:96.296875 - prompt_length/max:278.0 - prompt_length/min:34.0 - prompt_length/clip_ratio:0.0 - num_turns/min:2 - num_turns/max:2 - num_turns/mean:2.0 - timing_s/start_profile:8.090585470199585e-05 - timing_s/agent_loop/generate_sequences/min:30.622737981379032 - timing_s/agent_loop/generate_sequences/max:423.65700833220035 - timing_s/agent_loop/generate_sequences/mean:267.4285862829456 - timing_s/agent_loop/tool_calls/min:0.0 - timing_s/agent_loop/tool_calls/max:0.0 - timing_s/agent_loop/tool_calls/mean:0.0 - timing_s/agent_loop/slowest/generate_sequences:423.65700833220035 - timing_s/agent_loop/slowest/tool_calls:0.0 - timing_s/agent_loop/slowest/prompt_length:107 - timing_s/agent_loop/slowest/response_length:8192 - timing_s/gen:430.5097953658551 - timing_s/reward:0.0018857503309845924 - timing_s/old_log_prob:26.8483766913414 - timing_s/adv:0.06071040313690901 - timing_s/update_actor:145.2953509138897 - timing_s/step:602.7213415550068 - timing_s/stop_profile:6.197486072778702e-05 - timing_per_token_ms/gen:0.06225091817882902 - timing_per_token_ms/adv:8.655201246265003e-06 - timing_per_token_ms/update_actor:0.02071408584572341 - perf/total_num_tokens:7014326 - perf/time_per_step:602.7213415550068 - perf/throughput:2909.43986731215
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=1 rollouts=5 projected_tokens=25708
+[36m(WorkerDict pid=716469)[0m Static gradient-SAE rank=1 step=2 wrote_rows=32 unpooled_rollouts=0 path=/WORK/PUBLIC/lijuanzi1_work/dz/SAERL/SAERL-0801/runs/selection/verl-main-static-gradient-sae/20260806-143158-970665/step-00000002-rank-00001.parquet[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=2 rollouts=10 projected_tokens=51516
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=3 rollouts=14 projected_tokens=76537
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=4 rollouts=19 projected_tokens=102386
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=5 rollouts=24 projected_tokens=128149
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=6 rollouts=29 projected_tokens=154000
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=7 rollouts=33 projected_tokens=179131
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=8 rollouts=37 projected_tokens=204436
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=9 rollouts=41 projected_tokens=229668
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=10 rollouts=45 projected_tokens=255022
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=11 rollouts=49 projected_tokens=280402
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=12 rollouts=53 projected_tokens=305889
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=13 rollouts=57 projected_tokens=331366
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=14 rollouts=61 projected_tokens=356865
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=15 rollouts=65 projected_tokens=382366
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=16 rollouts=69 projected_tokens=407893
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=17 rollouts=73 projected_tokens=433427
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=18 rollouts=77 projected_tokens=458915
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=19 rollouts=81 projected_tokens=484323
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=20 rollouts=85 projected_tokens=509678
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=21 rollouts=89 projected_tokens=534919
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=22 rollouts=94 projected_tokens=560699
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=23 rollouts=99 projected_tokens=586539
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=24 rollouts=104 projected_tokens=612431
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=25 rollouts=109 projected_tokens=638287
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=26 rollouts=113 projected_tokens=663533
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=27 rollouts=118 projected_tokens=689283
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=28 rollouts=123 projected_tokens=715110
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=29 rollouts=128 projected_tokens=740790
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=30 rollouts=132 projected_tokens=771969
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=31 rollouts=136 projected_tokens=803218
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=32 rollouts=140 projected_tokens=834603
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=33 rollouts=144 projected_tokens=866010
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=34 rollouts=148 projected_tokens=897508
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=35 rollouts=152 projected_tokens=929037
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=36 rollouts=157 projected_tokens=962367
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=37 rollouts=162 projected_tokens=995785
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=38 rollouts=167 projected_tokens=1029222
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=39 rollouts=172 projected_tokens=1062683
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=40 rollouts=177 projected_tokens=1096193
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=41 rollouts=182 projected_tokens=1130160
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=42 rollouts=187 projected_tokens=1164041
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=43 rollouts=192 projected_tokens=1198180
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=44 rollouts=197 projected_tokens=1232300
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=45 rollouts=202 projected_tokens=1266220
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=46 rollouts=207 projected_tokens=1300088
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=47 rollouts=212 projected_tokens=1333759
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=48 rollouts=217 projected_tokens=1367205
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=49 rollouts=222 projected_tokens=1400593
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=50 rollouts=227 projected_tokens=1433939
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=51 rollouts=232 projected_tokens=1467233
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=52 rollouts=236 projected_tokens=1498730
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=53 rollouts=240 projected_tokens=1530203
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=54 rollouts=244 projected_tokens=1561606
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=55 rollouts=248 projected_tokens=1592923
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=56 rollouts=252 projected_tokens=1624137
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=3 micro_batches=57 rollouts=256 projected_tokens=1655108
+[36m(WorkerDict pid=716471)[0m Static gradient-SAE rank=3 step=3 wrote_rows=32 unpooled_rollouts=0 path=/WORK/PUBLIC/lijuanzi1_work/dz/SAERL/SAERL-0801/runs/selection/verl-main-static-gradient-sae/20260806-143158-970665/step-00000003-rank-00003.parquet
+[36m(TaskRunner pid=715730)[0m step:3 - actor/entropy:0.15558092296123505 - perf/mfu/actor_infer:0 - actor/pg_clipfrac:0.0 - actor/ppo_kl:0.0 - actor/pg_clipfrac_lower:0.0 - actor/pg_loss:0.0013849045365795494 - static_gradient/rows:32.0 - static_gradient/unpooled_rollouts:0.0 - static_gradient/optimizer_step:0.0 - timing_s/static_gradient_projection_compute:37.018555865570896 - timing_s/static_gradient_projection_compute_max:40.781107138395335 - timing_s/static_gradient_raw_gradient_write:0.0 - timing_s/static_gradient_raw_gradient_write_max:0.0 - timing_s/static_gradient_projection_write:0.0 - timing_s/static_gradient_projection_write_max:0.0 - timing_s/static_gradient_processing:37.65302983485162 - timing_s/static_gradient_processing_max:41.46006301417947 - timing_s/static_gradient_finalize:0.554973472841084 - timing_s/static_gradient_finalize_max:0.8062420431524515 - perf/static_gradient_projected_tokens_per_second:44004.11280320911 - perf/mfu/actor:0.2138720731995466 - perf/max_memory_allocated_gb:111.37156057357788 - perf/max_memory_reserved_gb:116.708984375 - perf/cpu_memory_used_gb:385.27483463287354 - actor/lr:1e-06 - training/global_step:3 - training/epoch:0 - critic/score/mean:0.4853515625 - critic/score/max:1.0 - critic/score/min:0.0 - critic/rewards/mean:0.4853515625 - critic/rewards/max:1.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.04212561994791031 - critic/advantages/max:2.4748666286468506 - critic/advantages/min:-2.4748666286468506 - critic/returns/mean:-0.04212561994791031 - critic/returns/max:2.4748666286468506 - critic/returns/min:-2.4748666286468506 - response_length/mean:6753.392578125 - response_length/max:8192.0 - response_length/min:1626.0 - response_length/clip_ratio:0.484375 - response_length_non_aborted/mean:6753.392578125 - response_length_non_aborted/max:8192.0 - response_length_non_aborted/min:1626.0 - response_length_non_aborted/clip_ratio:0.484375 - response/aborted_ratio:0.0 - prompt_length/mean:92.1796875 - prompt_length/max:333.0 - prompt_length/min:38.0 - prompt_length/clip_ratio:0.0 - num_turns/min:2 - num_turns/max:2 - num_turns/mean:2.0 - timing_s/start_profile:7.538218051195145e-05 - timing_s/agent_loop/generate_sequences/min:34.354806498624384 - timing_s/agent_loop/generate_sequences/max:417.14490661304444 - timing_s/agent_loop/generate_sequences/mean:264.2584676215447 - timing_s/agent_loop/tool_calls/min:0.0 - timing_s/agent_loop/tool_calls/max:0.0 - timing_s/agent_loop/tool_calls/mean:0.0 - timing_s/agent_loop/slowest/generate_sequences:417.14490661304444 - timing_s/agent_loop/slowest/tool_calls:0.0 - timing_s/agent_loop/slowest/prompt_length:122 - timing_s/agent_loop/slowest/response_length:8192 - timing_s/gen:422.95265868119895 - timing_s/reward:0.00190803874284029 - timing_s/old_log_prob:26.754452167078853 - timing_s/adv:0.07950760331004858 - timing_s/update_actor:143.9846115866676 - timing_s/step:593.7779805669561 - timing_s/stop_profile:5.01265749335289e-05 - timing_per_token_ms/gen:0.06116032808180596 - timing_per_token_ms/adv:1.1342242962996523e-05 - timing_per_token_ms/update_actor:0.02054028016893156 - perf/total_num_tokens:7009866 - perf/time_per_step:593.7779805669561 - perf/throughput:2951.383441882933
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=1 rollouts=4 projected_tokens=30807
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE rank=0 step=3 wrote_rows=32 unpooled_rollouts=0 path=/WORK/PUBLIC/lijuanzi1_work/dz/SAERL/SAERL-0801/runs/selection/verl-main-static-gradient-sae/20260806-143158-970665/step-00000003-rank-00000.parquet[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=2 rollouts=8 projected_tokens=61974
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=3 rollouts=12 projected_tokens=93328
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=4 rollouts=16 projected_tokens=124732
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=5 rollouts=20 projected_tokens=156137
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=6 rollouts=24 projected_tokens=187586
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=7 rollouts=28 projected_tokens=219065
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=8 rollouts=32 projected_tokens=250529
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=9 rollouts=36 projected_tokens=282101
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=10 rollouts=41 projected_tokens=314944
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=11 rollouts=46 projected_tokens=347931
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=12 rollouts=51 projected_tokens=380972
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=13 rollouts=56 projected_tokens=413985
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=14 rollouts=61 projected_tokens=447078
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=15 rollouts=66 projected_tokens=480291
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=16 rollouts=71 projected_tokens=513457
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=17 rollouts=76 projected_tokens=546519
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=18 rollouts=81 projected_tokens=579566
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=19 rollouts=86 projected_tokens=612559
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=20 rollouts=91 projected_tokens=645510
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=21 rollouts=96 projected_tokens=678111
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=22 rollouts=100 projected_tokens=709580
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=23 rollouts=104 projected_tokens=741035
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=24 rollouts=108 projected_tokens=772490
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=25 rollouts=112 projected_tokens=803910
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=26 rollouts=116 projected_tokens=835314
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=27 rollouts=120 projected_tokens=866708
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=28 rollouts=124 projected_tokens=898008
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=29 rollouts=128 projected_tokens=928907
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=30 rollouts=132 projected_tokens=957757
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=31 rollouts=136 projected_tokens=986648
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=32 rollouts=140 projected_tokens=1015594
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=33 rollouts=144 projected_tokens=1044576
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=34 rollouts=149 projected_tokens=1074225
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=35 rollouts=153 projected_tokens=1103208
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=36 rollouts=157 projected_tokens=1132208
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=37 rollouts=162 projected_tokens=1162068
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=38 rollouts=167 projected_tokens=1191934
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=39 rollouts=172 projected_tokens=1222135
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=40 rollouts=177 projected_tokens=1252367
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=41 rollouts=182 projected_tokens=1282665
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=42 rollouts=187 projected_tokens=1313106
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=43 rollouts=192 projected_tokens=1343552
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=44 rollouts=197 projected_tokens=1373885
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=45 rollouts=202 projected_tokens=1404224
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=46 rollouts=207 projected_tokens=1434511
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=47 rollouts=212 projected_tokens=1464708
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=48 rollouts=217 projected_tokens=1494604
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=49 rollouts=222 projected_tokens=1524625
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=50 rollouts=226 projected_tokens=1553693
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=51 rollouts=230 projected_tokens=1582709
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=52 rollouts=234 projected_tokens=1611714
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=53 rollouts=239 projected_tokens=1641574
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=54 rollouts=243 projected_tokens=1670510
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=55 rollouts=248 projected_tokens=1700027
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=56 rollouts=252 projected_tokens=1728899
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=4 micro_batches=57 rollouts=256 projected_tokens=1757739
+[36m(WorkerDict pid=716471)[0m Static gradient-SAE rank=3 step=4 wrote_rows=32 unpooled_rollouts=0 path=/WORK/PUBLIC/lijuanzi1_work/dz/SAERL/SAERL-0801/runs/selection/verl-main-static-gradient-sae/20260806-143158-970665/step-00000004-rank-00003.parquet
+[36m(TaskRunner pid=715730)[0m step:4 - actor/entropy:0.15621529519557953 - perf/mfu/actor_infer:0 - actor/pg_clipfrac:0.0 - actor/ppo_kl:0.0 - actor/pg_clipfrac_lower:0.0 - actor/pg_loss:0.0013803523023126903 - static_gradient/rows:32.0 - static_gradient/unpooled_rollouts:0.0 - static_gradient/optimizer_step:0.0 - timing_s/static_gradient_projection_compute:37.662568110913035 - timing_s/static_gradient_projection_compute_max:41.04020607496794 - timing_s/static_gradient_raw_gradient_write:0.0 - timing_s/static_gradient_raw_gradient_write_max:0.0 - timing_s/static_gradient_projection_write:0.0 - timing_s/static_gradient_projection_write_max:0.0 - timing_s/static_gradient_processing:38.292469524778426 - timing_s/static_gradient_processing_max:41.699637077748775 - timing_s/static_gradient_finalize:0.7990132430568337 - timing_s/static_gradient_finalize_max:0.8233367465436459 - perf/static_gradient_projected_tokens_per_second:44002.559364805435 - perf/mfu/actor:0.21543608047933505 - perf/max_memory_allocated_gb:111.37156057357788 - perf/max_memory_reserved_gb:116.708984375 - perf/cpu_memory_used_gb:383.9481153488159 - actor/lr:1e-06 - training/global_step:4 - training/epoch:0 - critic/score/mean:0.4853515625 - critic/score/max:1.0 - critic/score/min:0.0 - critic/rewards/mean:0.4853515625 - critic/rewards/max:1.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.03839737921953201 - critic/advantages/max:2.4748666286468506 - critic/advantages/min:-2.4748666286468506 - critic/returns/mean:-0.03839737921953201 - critic/returns/max:2.4748666286468506 - critic/returns/min:-2.4748666286468506 - response_length/mean:6760.9267578125 - response_length/max:8192.0 - response_length/min:1960.0 - response_length/clip_ratio:0.4931640625 - response_length_non_aborted/mean:6760.9267578125 - response_length_non_aborted/max:8192.0 - response_length_non_aborted/min:1960.0 - response_length_non_aborted/clip_ratio:0.4931640625 - response/aborted_ratio:0.0 - prompt_length/mean:95.296875 - prompt_length/max:218.0 - prompt_length/min:41.0 - prompt_length/clip_ratio:0.0 - num_turns/min:2 - num_turns/max:2 - num_turns/mean:2.0 - timing_s/start_profile:4.8034824430942535e-05 - timing_s/agent_loop/generate_sequences/min:44.936389609239995 - timing_s/agent_loop/generate_sequences/max:418.0433035492897 - timing_s/agent_loop/generate_sequences/mean:268.2271621942791 - timing_s/agent_loop/tool_calls/min:0.0 - timing_s/agent_loop/tool_calls/max:0.0 - timing_s/agent_loop/tool_calls/mean:0.0 - timing_s/agent_loop/slowest/generate_sequences:418.0433035492897 - timing_s/agent_loop/slowest/tool_calls:0.0 - timing_s/agent_loop/slowest/prompt_length:77 - timing_s/agent_loop/slowest/response_length:8192 - timing_s/gen:424.0088335815817 - timing_s/reward:9.96151939034462e-05 - timing_s/old_log_prob:26.97199760377407 - timing_s/adv:0.06574717815965414 - timing_s/update_actor:143.3394477814436 - timing_s/step:594.3907432239503 - timing_s/stop_profile:7.614772766828537e-05 - timing_per_token_ms/gen:0.061244728922116916 - timing_per_token_ms/adv:9.364663714330907e-06 - timing_per_token_ms/update_actor:0.020416476616099622 - perf/total_num_tokens:7020773 - perf/time_per_step:594.3907432239503 - perf/throughput:2952.9283051749862
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=1 rollouts=4 projected_tokens=30733
+[36m(WorkerDict pid=716469)[0m Static gradient-SAE rank=1 step=4 wrote_rows=32 unpooled_rollouts=0 path=/WORK/PUBLIC/lijuanzi1_work/dz/SAERL/SAERL-0801/runs/selection/verl-main-static-gradient-sae/20260806-143158-970665/step-00000004-rank-00001.parquet[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=2 rollouts=8 projected_tokens=61581
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=3 rollouts=12 projected_tokens=92565
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=4 rollouts=16 projected_tokens=123615
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=5 rollouts=20 projected_tokens=154760
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=6 rollouts=24 projected_tokens=186151
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=7 rollouts=28 projected_tokens=217602
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=8 rollouts=32 projected_tokens=249489
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=9 rollouts=37 projected_tokens=282247
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=10 rollouts=42 projected_tokens=314964
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=11 rollouts=47 projected_tokens=347794
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=12 rollouts=51 projected_tokens=379794
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=13 rollouts=56 projected_tokens=412694
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=14 rollouts=61 projected_tokens=445589
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=15 rollouts=66 projected_tokens=478389
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=16 rollouts=70 projected_tokens=510462
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=17 rollouts=75 projected_tokens=543311
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=18 rollouts=80 projected_tokens=576226
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=19 rollouts=85 projected_tokens=609075
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=20 rollouts=89 projected_tokens=640993
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=21 rollouts=94 projected_tokens=673782
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=22 rollouts=99 projected_tokens=706548
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=23 rollouts=104 projected_tokens=739294
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=24 rollouts=108 projected_tokens=770727
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=25 rollouts=112 projected_tokens=802076
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=26 rollouts=116 projected_tokens=833197
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=27 rollouts=120 projected_tokens=864246
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=28 rollouts=124 projected_tokens=895135
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=29 rollouts=128 projected_tokens=925905
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=30 rollouts=132 projected_tokens=956466
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=31 rollouts=136 projected_tokens=987025
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=32 rollouts=140 projected_tokens=1017552
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=33 rollouts=144 projected_tokens=1048081
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=34 rollouts=148 projected_tokens=1078617
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=35 rollouts=153 projected_tokens=1109977
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=36 rollouts=157 projected_tokens=1140522
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=37 rollouts=162 projected_tokens=1172140
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=38 rollouts=167 projected_tokens=1203948
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=39 rollouts=172 projected_tokens=1235909
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=40 rollouts=177 projected_tokens=1267824
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=41 rollouts=182 projected_tokens=1300301
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=42 rollouts=188 projected_tokens=1333715
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=43 rollouts=193 projected_tokens=1366348
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=44 rollouts=199 projected_tokens=1399765
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=45 rollouts=204 projected_tokens=1432287
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=46 rollouts=210 projected_tokens=1465643
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=47 rollouts=215 projected_tokens=1497626
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=48 rollouts=220 projected_tokens=1529471
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=49 rollouts=225 projected_tokens=1561162
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=50 rollouts=229 projected_tokens=1591764
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=51 rollouts=234 projected_tokens=1623150
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=52 rollouts=238 projected_tokens=1653718
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=53 rollouts=242 projected_tokens=1684254
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=54 rollouts=247 projected_tokens=1715626
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=55 rollouts=252 projected_tokens=1747010
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=5 micro_batches=56 rollouts=256 projected_tokens=1777571
+[36m(WorkerDict pid=716470)[0m Static gradient-SAE rank=2 step=5 wrote_rows=32 unpooled_rollouts=0 path=/WORK/PUBLIC/lijuanzi1_work/dz/SAERL/SAERL-0801/runs/selection/verl-main-static-gradient-sae/20260806-143158-970665/step-00000005-rank-00002.parquet
+[36m(TaskRunner pid=715730)[0m step:5 - actor/entropy:0.16598603129386902 - perf/mfu/actor_infer:0 - actor/pg_clipfrac:0.0 - actor/ppo_kl:0.0 - actor/pg_clipfrac_lower:0.0 - actor/pg_loss:0.0012327259733240226 - static_gradient/rows:32.0 - static_gradient/unpooled_rollouts:0.0 - static_gradient/optimizer_step:0.0 - timing_s/static_gradient_projection_compute:36.200324144214385 - timing_s/static_gradient_projection_compute_max:40.137249085709456 - timing_s/static_gradient_raw_gradient_write:0.0 - timing_s/static_gradient_raw_gradient_write_max:0.0 - timing_s/static_gradient_projection_write:0.0 - timing_s/static_gradient_projection_write_max:0.0 - timing_s/static_gradient_processing:36.80596279818565 - timing_s/static_gradient_processing_max:40.74036255851388 - timing_s/static_gradient_finalize:0.567811488173902 - timing_s/static_gradient_finalize_max:0.819182151928544 - perf/static_gradient_projected_tokens_per_second:44029.25568044718 - perf/mfu/actor:0.21158847202547243 - perf/max_memory_allocated_gb:111.37156057357788 - perf/max_memory_reserved_gb:116.708984375 - perf/cpu_memory_used_gb:382.44372177124023 - actor/lr:1e-06 - training/global_step:5 - training/epoch:0 - critic/score/mean:0.48046875 - critic/score/max:1.0 - critic/score/min:0.0 - critic/rewards/mean:0.48046875 - critic/rewards/max:1.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.036237794905900955 - critic/advantages/max:2.4748666286468506 - critic/advantages/min:-2.4748666286468506 - critic/returns/mean:-0.036237794905900955 - critic/returns/max:2.4748666286468506 - critic/returns/min:-2.4748666286468506 - response_length/mean:6654.3671875 - response_length/max:8192.0 - response_length/min:1095.0 - response_length/clip_ratio:0.474609375 - response_length_non_aborted/mean:6654.3671875 - response_length_non_aborted/max:8192.0 - response_length_non_aborted/min:1095.0 - response_length_non_aborted/clip_ratio:0.474609375 - response/aborted_ratio:0.0 - prompt_length/mean:87.015625 - prompt_length/max:271.0 - prompt_length/min:33.0 - prompt_length/clip_ratio:0.0 - num_turns/min:2 - num_turns/max:2 - num_turns/mean:2.0 - timing_s/start_profile:4.8357993364334106e-05 - timing_s/agent_loop/generate_sequences/min:20.6313860071823 - timing_s/agent_loop/generate_sequences/max:410.837651389651 - timing_s/agent_loop/generate_sequences/mean:264.350561037887 - timing_s/agent_loop/tool_calls/min:0.0 - timing_s/agent_loop/tool_calls/max:0.0 - timing_s/agent_loop/tool_calls/mean:0.0 - timing_s/agent_loop/slowest/generate_sequences:410.837651389651 - timing_s/agent_loop/slowest/tool_calls:0.0 - timing_s/agent_loop/slowest/prompt_length:65 - timing_s/agent_loop/slowest/response_length:8192 - timing_s/gen:416.62936618272215 - timing_s/reward:0.002531411126255989 - timing_s/old_log_prob:26.22640658542514 - timing_s/adv:0.08284051530063152 - timing_s/update_actor:143.10795710608363 - timing_s/step:586.053476001136 - timing_s/stop_profile:4.7165900468826294e-05 - timing_per_token_ms/gen:0.06114249543925015 - timing_per_token_ms/adv:1.2000348144192112e-05 - timing_per_token_ms/update_actor:0.020730741488567527 - perf/total_num_tokens:6903176 - perf/time_per_step:586.053476001136 - perf/throughput:2944.7722275716947
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=1 rollouts=4 projected_tokens=30115
+[36m(WorkerDict pid=716469)[0m Static gradient-SAE rank=1 step=5 wrote_rows=32 unpooled_rollouts=0 path=/WORK/PUBLIC/lijuanzi1_work/dz/SAERL/SAERL-0801/runs/selection/verl-main-static-gradient-sae/20260806-143158-970665/step-00000005-rank-00001.parquet[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=2 rollouts=8 projected_tokens=60321
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=3 rollouts=12 projected_tokens=90652
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=4 rollouts=16 projected_tokens=120919
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=5 rollouts=20 projected_tokens=151290
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=6 rollouts=24 projected_tokens=181668
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=7 rollouts=28 projected_tokens=212048
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=8 rollouts=32 projected_tokens=242427
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=9 rollouts=36 projected_tokens=272936
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=10 rollouts=41 projected_tokens=305381
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=11 rollouts=46 projected_tokens=337857
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=12 rollouts=51 projected_tokens=370320
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=13 rollouts=56 projected_tokens=402730
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=14 rollouts=61 projected_tokens=435169
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=15 rollouts=66 projected_tokens=467769
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=16 rollouts=71 projected_tokens=500305
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=17 rollouts=76 projected_tokens=532753
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=18 rollouts=81 projected_tokens=565121
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=19 rollouts=86 projected_tokens=597569
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=20 rollouts=91 projected_tokens=630054
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=21 rollouts=96 projected_tokens=662489
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=22 rollouts=100 projected_tokens=692906
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=23 rollouts=104 projected_tokens=723331
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=24 rollouts=108 projected_tokens=753762
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=25 rollouts=112 projected_tokens=784128
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=26 rollouts=116 projected_tokens=814407
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=27 rollouts=120 projected_tokens=844676
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=28 rollouts=124 projected_tokens=874897
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=29 rollouts=128 projected_tokens=905137
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=30 rollouts=132 projected_tokens=933730
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=31 rollouts=136 projected_tokens=962636
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=32 rollouts=140 projected_tokens=991609
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=33 rollouts=144 projected_tokens=1020619
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=34 rollouts=148 projected_tokens=1049647
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=35 rollouts=152 projected_tokens=1078750
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=36 rollouts=157 projected_tokens=1109517
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=37 rollouts=162 projected_tokens=1140405
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=38 rollouts=167 projected_tokens=1171234
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=39 rollouts=172 projected_tokens=1202296
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=40 rollouts=177 projected_tokens=1233432
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=41 rollouts=182 projected_tokens=1264500
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=42 rollouts=187 projected_tokens=1295724
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=43 rollouts=192 projected_tokens=1326956
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=44 rollouts=197 projected_tokens=1358159
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=45 rollouts=202 projected_tokens=1389359
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=46 rollouts=207 projected_tokens=1420417
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=47 rollouts=212 projected_tokens=1451533
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=48 rollouts=217 projected_tokens=1482642
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=49 rollouts=222 projected_tokens=1513535
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=50 rollouts=227 projected_tokens=1544306
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=51 rollouts=232 projected_tokens=1575001
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=52 rollouts=236 projected_tokens=1604103
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=53 rollouts=240 projected_tokens=1633111
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=54 rollouts=244 projected_tokens=1662104
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=55 rollouts=248 projected_tokens=1691047
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=56 rollouts=252 projected_tokens=1719943
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=6 micro_batches=57 rollouts=256 projected_tokens=1748512
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE rank=0 step=6 wrote_rows=32 unpooled_rollouts=0 path=/WORK/PUBLIC/lijuanzi1_work/dz/SAERL/SAERL-0801/runs/selection/verl-main-static-gradient-sae/20260806-143158-970665/step-00000006-rank-00000.parquet
+[36m(TaskRunner pid=715730)[0m step:6 - actor/entropy:0.1563406139612198 - perf/mfu/actor_infer:0 - actor/pg_clipfrac:0.0 - actor/ppo_kl:0.0 - actor/pg_clipfrac_lower:0.0 - actor/pg_loss:0.0011956040703576594 - static_gradient/rows:32.0 - static_gradient/unpooled_rollouts:0.0 - static_gradient/optimizer_step:0.0 - timing_s/static_gradient_projection_compute:39.07446355034412 - timing_s/static_gradient_projection_compute_max:41.18219660449027 - timing_s/static_gradient_raw_gradient_write:0.0 - timing_s/static_gradient_raw_gradient_write_max:0.0 - timing_s/static_gradient_projection_write:0.0 - timing_s/static_gradient_projection_write_max:0.0 - timing_s/static_gradient_processing:39.697590010240674 - timing_s/static_gradient_processing_max:41.87614064104855 - timing_s/static_gradient_finalize:0.5626855352893472 - timing_s/static_gradient_finalize_max:0.8080273633822799 - perf/static_gradient_projected_tokens_per_second:44032.30115355094 - perf/mfu/actor:0.22107380606191185 - perf/max_memory_allocated_gb:111.37156057357788 - perf/max_memory_reserved_gb:116.708984375 - perf/cpu_memory_used_gb:380.4785690307617 - actor/lr:1e-06 - training/global_step:6 - training/epoch:0 - critic/score/mean:0.4453125 - critic/score/max:1.0 - critic/score/min:0.0 - critic/rewards/mean:0.4453125 - critic/rewards/max:1.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.03641931712627411 - critic/advantages/max:2.4748666286468506 - critic/advantages/min:-2.4748666286468506 - critic/returns/mean:-0.03641931712627411 - critic/returns/max:2.4748666286468506 - critic/returns/min:-2.4748666286468506 - response_length/mean:6970.0888671875 - response_length/max:8192.0 - response_length/min:1458.0 - response_length/clip_ratio:0.53515625 - response_length_non_aborted/mean:6970.0888671875 - response_length_non_aborted/max:8192.0 - response_length_non_aborted/min:1458.0 - response_length_non_aborted/clip_ratio:0.53515625 - response/aborted_ratio:0.0 - prompt_length/mean:92.3828125 - prompt_length/max:322.0 - prompt_length/min:39.0 - prompt_length/clip_ratio:0.0 - num_turns/min:2 - num_turns/max:2 - num_turns/mean:2.0 - timing_s/start_profile:4.289485514163971e-05 - timing_s/agent_loop/generate_sequences/min:29.933647678233683 - timing_s/agent_loop/generate_sequences/max:434.3410564381629 - timing_s/agent_loop/generate_sequences/mean:283.382072702826 - timing_s/agent_loop/tool_calls/min:0.0 - timing_s/agent_loop/tool_calls/max:0.0 - timing_s/agent_loop/tool_calls/mean:0.0 - timing_s/agent_loop/slowest/generate_sequences:434.3410564381629 - timing_s/agent_loop/slowest/tool_calls:0.0 - timing_s/agent_loop/slowest/prompt_length:61 - timing_s/agent_loop/slowest/response_length:8192 - timing_s/gen:440.11932031810284 - timing_s/reward:9.978190064430237e-05 - timing_s/old_log_prob:26.979981280863285 - timing_s/adv:0.07958719227463007 - timing_s/update_actor:144.45820249803364 - timing_s/step:611.6420478373766 - timing_s/stop_profile:4.693865776062012e-05 - timing_per_token_ms/gen:0.06166406654748686 - timing_per_token_ms/adv:1.1004910317620199e-05 - timing_per_token_ms/update_actor:0.019974942169711914 - perf/total_num_tokens:7231971 - perf/time_per_step:611.6420478373766 - perf/throughput:2955.9654317302743
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=7 micro_batches=1 rollouts=4 projected_tokens=30637
+[36m(WorkerDict pid=716471)[0m Static gradient-SAE rank=3 step=6 wrote_rows=32 unpooled_rollouts=0 path=/WORK/PUBLIC/lijuanzi1_work/dz/SAERL/SAERL-0801/runs/selection/verl-main-static-gradient-sae/20260806-143158-970665/step-00000006-rank-00003.parquet[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=7 micro_batches=2 rollouts=8 projected_tokens=61327
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=7 micro_batches=3 rollouts=12 projected_tokens=92043
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=7 micro_batches=4 rollouts=16 projected_tokens=122866
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=7 micro_batches=5 rollouts=21 projected_tokens=155193
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=7 micro_batches=6 rollouts=26 projected_tokens=187728
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=7 micro_batches=7 rollouts=31 projected_tokens=220267
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=7 micro_batches=8 rollouts=36 projected_tokens=252894
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=7 micro_batches=9 rollouts=41 projected_tokens=285328
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=7 micro_batches=10 rollouts=46 projected_tokens=317859
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=7 micro_batches=11 rollouts=51 projected_tokens=350541
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=7 micro_batches=12 rollouts=56 projected_tokens=383284
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=7 micro_batches=13 rollouts=61 projected_tokens=416182
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=7 micro_batches=14 rollouts=66 projected_tokens=449321
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=7 micro_batches=15 rollouts=71 projected_tokens=482366
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=7 micro_batches=16 rollouts=76 projected_tokens=515099
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=7 micro_batches=17 rollouts=81 projected_tokens=547687
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=7 micro_batches=18 rollouts=86 projected_tokens=579999
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=7 micro_batches=19 rollouts=91 projected_tokens=612625
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=7 micro_batches=20 rollouts=96 projected_tokens=645251
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=7 micro_batches=21 rollouts=101 projected_tokens=677721
+[36m(WorkerDict pid=716468)[0m Static gradient-SAE progress: step=7 micro_batches=22 rollouts=106 projected_tokens=710291

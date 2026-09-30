@@ -1,0 +1,106 @@
+[config] run=/WORK/PUBLIC/lijuanzi1_work/dz/SAERL/SAERL-0801/runs/selection/qwen2_5/20260815-031029-164461 features=/WORK/PUBLIC/lijuanzi1_work/dz/SAERL/SAERL-0801/runs/selection/qwen2_5/20260815-031029-164461/feature_selection/energy_feature_indices.npy source_F=98,304 selected_K=256
+[features] min=476 max=97,910 sha256=0e873f9f10d9c6e136330dbf4275ee3b3e52a4068c99f68f3800b843e06865a4
+[discover] shards=1,197 rows=103,014
+[project] shards=1/1,197 rows=64/103,014
+[project] shards=59/1,197 rows=3,776/103,014
+[project] shards=118/1,197 rows=7,552/103,014
+[project] shards=177/1,197 rows=11,328/103,014
+[project] shards=236/1,197 rows=15,104/103,014
+[project] shards=295/1,197 rows=18,880/103,014
+[project] shards=354/1,197 rows=22,656/103,014
+[project] shards=413/1,197 rows=26,432/103,014
+[project] shards=472/1,197 rows=30,208/103,014
+[project] shards=531/1,197 rows=33,984/103,014
+[project] shards=590/1,197 rows=37,760/103,014
+[project] shards=649/1,197 rows=41,536/103,014
+[project] shards=708/1,197 rows=45,312/103,014
+[project] shards=767/1,197 rows=49,088/103,014
+[project] shards=826/1,197 rows=55,552/103,014
+[project] shards=885/1,197 rows=63,104/103,014
+[project] shards=944/1,197 rows=70,656/103,014
+[project] shards=1,003/1,197 rows=78,208/103,014
+[project] shards=1,062/1,197 rows=85,760/103,014
+[project] shards=1,121/1,197 rows=93,312/103,014
+[project] shards=1,180/1,197 rows=100,864/103,014
+[project] shards=1,197/1,197 rows=103,014/103,014
+[project] complete active=69,692 source-silent=33,322 projected-zero=0 observed-features=256
+Selected through 1,024/69,692; kept 280
+Selected through 2,048/69,692; kept 312
+Selected through 3,072/69,692; kept 321
+Selected through 4,096/69,692; kept 324
+Selected through 5,120/69,692; kept 326
+Selected through 6,144/69,692; kept 329
+Selected through 7,168/69,692; kept 329
+Selected through 8,192/69,692; kept 330
+Selected through 9,216/69,692; kept 331
+Selected through 10,240/69,692; kept 331
+Selected through 11,264/69,692; kept 331
+Selected through 12,288/69,692; kept 331
+Selected through 13,312/69,692; kept 331
+Selected through 14,336/69,692; kept 331
+Selected through 15,360/69,692; kept 332
+Selected through 16,384/69,692; kept 332
+Selected through 17,408/69,692; kept 332
+Selected through 18,432/69,692; kept 332
+Selected through 19,456/69,692; kept 332
+Selected through 20,480/69,692; kept 332
+Selected through 21,504/69,692; kept 332
+Selected through 22,528/69,692; kept 332
+Selected through 23,552/69,692; kept 332
+Selected through 24,576/69,692; kept 332
+Selected through 25,600/69,692; kept 332
+Selected through 26,624/69,692; kept 332
+Selected through 27,648/69,692; kept 332
+Selected through 28,672/69,692; kept 332
+Selected through 29,696/69,692; kept 332
+Selected through 30,720/69,692; kept 332
+Selected through 31,744/69,692; kept 332
+Selected through 32,768/69,692; kept 332
+Selected through 33,792/69,692; kept 332
+Selected through 34,816/69,692; kept 332
+Selected through 35,840/69,692; kept 332
+Selected through 36,864/69,692; kept 332
+Selected through 37,888/69,692; kept 332
+Selected through 38,912/69,692; kept 332
+Selected through 39,936/69,692; kept 332
+Selected through 40,960/69,692; kept 332
+Selected through 41,984/69,692; kept 332
+Selected through 43,008/69,692; kept 332
+Selected through 44,032/69,692; kept 332
+Selected through 45,056/69,692; kept 332
+Selected through 46,080/69,692; kept 332
+Selected through 47,104/69,692; kept 332
+Selected through 48,128/69,692; kept 332
+Selected through 49,152/69,692; kept 332
+Selected through 50,176/69,692; kept 332
+Selected through 51,200/69,692; kept 332
+Selected through 52,224/69,692; kept 332
+Selected through 53,248/69,692; kept 332
+Selected through 54,272/69,692; kept 332
+Selected through 55,296/69,692; kept 332
+Selected through 56,320/69,692; kept 332
+Selected through 57,344/69,692; kept 332
+Selected through 58,368/69,692; kept 332
+Selected through 59,392/69,692; kept 332
+Selected through 60,416/69,692; kept 332
+Selected through 61,440/69,692; kept 332
+Selected through 62,464/69,692; kept 332
+Selected through 63,488/69,692; kept 332
+Selected through 64,512/69,692; kept 332
+Selected through 65,536/69,692; kept 332
+Selected through 66,560/69,692; kept 332
+Selected through 67,584/69,692; kept 332
+Selected through 68,608/69,692; kept 332
+Selected through 69,632/69,692; kept 332
+Selected through 69,692/69,692; kept 332
+[done] output=/WORK/PUBLIC/lijuanzi1_work/dz/SAERL/SAERL-0801/runs/selection/qwen2_5/20260815-031029-164461/selection_v3_sf_energy_feature_indices counts={'total': 103014, 'active': 69692, 'selected': 332, 'redundant': 69360, 'silent': 33322}
+{
+  "counts": {
+    "total": 103014,
+    "active": 69692,
+    "selected": 332,
+    "redundant": 69360,
+    "silent": 33322
+  },
+  "output_dir": "/WORK/PUBLIC/lijuanzi1_work/dz/SAERL/SAERL-0801/runs/selection/qwen2_5/20260815-031029-164461/selection_v3_sf_energy_feature_indices"
+}

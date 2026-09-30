@@ -1,0 +1,254 @@
++ export NCCL_IB_HCA=mlx5_0,mlx5_1,mlx5_2,mlx5_3,mlx5_4,mlx5_6,mlx5_7,mlx5_8
++ NCCL_IB_HCA=mlx5_0,mlx5_1,mlx5_2,mlx5_3,mlx5_4,mlx5_6,mlx5_7,mlx5_8
++ export NCCL_DEBUG=INFO
++ NCCL_DEBUG=INFO
++ export TORCH_NCCL_ASYNC_ERROR_HANDLING=1
++ TORCH_NCCL_ASYNC_ERROR_HANDLING=1
++ export OMP_NUM_THREADS=2
++ OMP_NUM_THREADS=2
++ unset ROCR_VISIBLE_DEVICES
++ unset HIP_VISIBLE_DEVICES
++ unset HSA_VISIBLE_DEVICES
++ unset RAY_ADDRESS RAY_HEAD_IP RAY_HEAD_NODE RAY_CLIENT_MODE
++ export RAY_TMPDIR=/home/fit/lijuanzi1/WORK/dz/ray_tmp
++ RAY_TMPDIR=/home/fit/lijuanzi1/WORK/dz/ray_tmp
++ mkdir -p /home/fit/lijuanzi1/WORK/dz/ray_tmp
++ export VLLM_USE_RAY=0
++ VLLM_USE_RAY=0
++ source /home/fit/lijuanzi1/WORK/jy/miniconda3/etc/profile.d/conda.sh
+++ export CONDA_EXE=/home/fit/lijuanzi1/WORK/jy/miniconda3/bin/conda
+++ CONDA_EXE=/home/fit/lijuanzi1/WORK/jy/miniconda3/bin/conda
+++ export _CE_M=
+++ _CE_M=
+++ export _CE_CONDA=
+++ _CE_CONDA=
+++ export CONDA_PYTHON_EXE=/home/fit/lijuanzi1/WORK/jy/miniconda3/bin/python
+++ CONDA_PYTHON_EXE=/home/fit/lijuanzi1/WORK/jy/miniconda3/bin/python
+++ '[' -z x ']'
++ conda activate verl_dz
++ local cmd=activate
++ case "$cmd" in
++ __conda_activate activate verl_dz
++ '[' -n '' ']'
++ local ask_conda
+++ PS1=
+++ __conda_exe shell.posix activate verl_dz
+++ /home/fit/lijuanzi1/WORK/jy/miniconda3/bin/conda shell.posix activate verl_dz
++ ask_conda='PS1='\''(verl_dz) '\''
+export PATH='\''/home/fit/lijuanzi1/.npm-global/bin:/home/fit/lijuanzi1/.local/bin:/home/fit/lijuanzi1/WORK/jy/miniconda3/envs/verl_dz/bin:/home/fit/lijuanzi1/WORK/jy/miniconda3/condabin:/rmprog/munge/v0.5.16/bin:/rmprog/pmix/v3.2.5/bin:/rmprog/slurm/v24.05.1/bin:/rmprog/ucx/v1.15.0/bin:/apps/management/modules/5.4.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'\''
+export CONDA_PREFIX='\''/home/fit/lijuanzi1/WORK/jy/miniconda3/envs/verl_dz'\''
+export CONDA_SHLVL='\''2'\''
+export CONDA_DEFAULT_ENV='\''verl_dz'\''
+export CONDA_PROMPT_MODIFIER='\''(verl_dz) '\''
+export CONDA_PREFIX_1='\''/home/fit/lijuanzi1/WORK/jy/miniconda3'\''
+export CONDA_EXE='\''/home/fit/lijuanzi1/WORK/jy/miniconda3/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/home/fit/lijuanzi1/WORK/jy/miniconda3/bin/python'\'''
++ eval 'PS1='\''(verl_dz) '\''
+export PATH='\''/home/fit/lijuanzi1/.npm-global/bin:/home/fit/lijuanzi1/.local/bin:/home/fit/lijuanzi1/WORK/jy/miniconda3/envs/verl_dz/bin:/home/fit/lijuanzi1/WORK/jy/miniconda3/condabin:/rmprog/munge/v0.5.16/bin:/rmprog/pmix/v3.2.5/bin:/rmprog/slurm/v24.05.1/bin:/rmprog/ucx/v1.15.0/bin:/apps/management/modules/5.4.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'\''
+export CONDA_PREFIX='\''/home/fit/lijuanzi1/WORK/jy/miniconda3/envs/verl_dz'\''
+export CONDA_SHLVL='\''2'\''
+export CONDA_DEFAULT_ENV='\''verl_dz'\''
+export CONDA_PROMPT_MODIFIER='\''(verl_dz) '\''
+export CONDA_PREFIX_1='\''/home/fit/lijuanzi1/WORK/jy/miniconda3'\''
+export CONDA_EXE='\''/home/fit/lijuanzi1/WORK/jy/miniconda3/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/home/fit/lijuanzi1/WORK/jy/miniconda3/bin/python'\'''
+++ PS1='(verl_dz) '
+++ export PATH=/home/fit/lijuanzi1/.npm-global/bin:/home/fit/lijuanzi1/.local/bin:/home/fit/lijuanzi1/WORK/jy/miniconda3/envs/verl_dz/bin:/home/fit/lijuanzi1/WORK/jy/miniconda3/condabin:/rmprog/munge/v0.5.16/bin:/rmprog/pmix/v3.2.5/bin:/rmprog/slurm/v24.05.1/bin:/rmprog/ucx/v1.15.0/bin:/apps/management/modules/5.4.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+++ PATH=/home/fit/lijuanzi1/.npm-global/bin:/home/fit/lijuanzi1/.local/bin:/home/fit/lijuanzi1/WORK/jy/miniconda3/envs/verl_dz/bin:/home/fit/lijuanzi1/WORK/jy/miniconda3/condabin:/rmprog/munge/v0.5.16/bin:/rmprog/pmix/v3.2.5/bin:/rmprog/slurm/v24.05.1/bin:/rmprog/ucx/v1.15.0/bin:/apps/management/modules/5.4.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+++ export CONDA_PREFIX=/home/fit/lijuanzi1/WORK/jy/miniconda3/envs/verl_dz
+++ CONDA_PREFIX=/home/fit/lijuanzi1/WORK/jy/miniconda3/envs/verl_dz
+++ export CONDA_SHLVL=2
+++ CONDA_SHLVL=2
+++ export CONDA_DEFAULT_ENV=verl_dz
+++ CONDA_DEFAULT_ENV=verl_dz
+++ export 'CONDA_PROMPT_MODIFIER=(verl_dz) '
+++ CONDA_PROMPT_MODIFIER='(verl_dz) '
+++ export CONDA_PREFIX_1=/home/fit/lijuanzi1/WORK/jy/miniconda3
+++ CONDA_PREFIX_1=/home/fit/lijuanzi1/WORK/jy/miniconda3
+++ export CONDA_EXE=/home/fit/lijuanzi1/WORK/jy/miniconda3/bin/conda
+++ CONDA_EXE=/home/fit/lijuanzi1/WORK/jy/miniconda3/bin/conda
+++ export _CE_M=
+++ _CE_M=
+++ export _CE_CONDA=
+++ _CE_CONDA=
+++ export CONDA_PYTHON_EXE=/home/fit/lijuanzi1/WORK/jy/miniconda3/bin/python
+++ CONDA_PYTHON_EXE=/home/fit/lijuanzi1/WORK/jy/miniconda3/bin/python
++ __conda_hashr
++ '[' -n '' ']'
++ '[' -n '' ']'
++ hash -r
++ chmod +x /home/fit/lijuanzi1/WORK/dz/SAERL/recipe/static_gradient_sae/run_qwen3_1_7b_deepmath.sh
++ bash /home/fit/lijuanzi1/WORK/dz/SAERL/recipe/static_gradient_sae/run_qwen3_1_7b_deepmath.sh
++ VERL_ROOT=/home/fit/lijuanzi1/WORK/dz/SAERL
++ PYTHON_BIN=/WORK/PUBLIC/lijuanzi1_work/jy/miniconda3/envs/verl_dz/bin/python
++ export PYTHONPATH=/home/fit/lijuanzi1/WORK/dz/SAERL:
++ PYTHONPATH=/home/fit/lijuanzi1/WORK/dz/SAERL:
++ export PYTHONUNBUFFERED=1
++ PYTHONUNBUFFERED=1
++ export WANDB_MODE=offline
++ WANDB_MODE=offline
++ export WANDB_DIR=/home/fit/lijuanzi1/WORK/dz/SAERL/recipe/static_gradient_sae
++ WANDB_DIR=/home/fit/lijuanzi1/WORK/dz/SAERL/recipe/static_gradient_sae
++ cd /home/fit/lijuanzi1/WORK/dz/SAERL
++ /WORK/PUBLIC/lijuanzi1_work/jy/miniconda3/envs/verl_dz/bin/python -m verl.trainer.main_ppo algorithm.adv_estimator=grpo data.train_files=/WORK/PUBLIC/lijuanzi1_work/dz/data/SAERL/sorted_deepmath/train.parquet 'data.val_files=["/WORK/PUBLIC/lijuanzi1_work/dz/data/SAERL/my_data/AIME_2024/train.parquet", "/WORK/PUBLIC/lijuanzi1_work/dz/data/SAERL/my_data/math500/test.parquet"]' data.train_batch_size=128 data.max_prompt_length=1024 data.max_response_length=3072 data.filter_overlong_prompts=False actor_rollout_ref.model.path=/WORK/PUBLIC/lijuanzi1_work/MODELS/Qwen3-1.7B actor_rollout_ref.model.use_remove_padding=True actor_rollout_ref.model.enable_gradient_checkpointing=True actor_rollout_ref.actor.strategy=fsdp actor_rollout_ref.actor.ppo_mini_batch_size=64 actor_rollout_ref.actor.use_dynamic_bsz=True actor_rollout_ref.actor.ppo_max_token_len_per_gpu=32768 actor_rollout_ref.actor.use_kl_loss=False actor_rollout_ref.actor.fsdp_config.param_offload=False actor_rollout_ref.actor.fsdp_config.optimizer_offload=False actor_rollout_ref.rollout.tensor_model_parallel_size=1 actor_rollout_ref.rollout.name=vllm actor_rollout_ref.rollout.data_parallel_size=1 actor_rollout_ref.rollout.temperature=0.6 actor_rollout_ref.rollout.gpu_memory_utilization=0.85 actor_rollout_ref.rollout.n=8 'trainer.logger=[console,wandb]' trainer.project_name=deepmath_difficulty_Qwen3-1.7B trainer.experiment_name=static_grad trainer.nnodes=1 trainer.total_epochs=1 trainer.n_gpus_per_node=4 trainer.use_legacy_worker_impl=enable static_gradient_extraction.enable=True static_gradient_extraction.sae_path=/home/fit/lijuanzi1/WORK/dz/SAERL/SAERL-0801/OpenSAE-Qwen3-1.7B-hjw-layer26-legacy130915 static_gradient_extraction.output_dir=/home/fit/lijuanzi1/WORK/dz/SAERL/SAERL-0801/runs/selection/verl-main-static-gradient-sae static_gradient_extraction.sample_id_key=index static_gradient_extraction.gradient_token_scope=attention static_gradient_extraction.projection_chunk_size=32 static_gradient_extraction.save_unpooled_tensors=False
+/WORK/PUBLIC/lijuanzi1_work/jy/miniconda3/envs/verl_dz/lib/python3.12/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+2026-08-06 00:43:19,624	INFO worker.py:2004 -- Started a local Ray instance. View the dashboard at [1m[32mhttp://127.0.0.1:8265 [39m[22m
+/WORK/PUBLIC/lijuanzi1_work/jy/miniconda3/envs/verl_dz/lib/python3.12/site-packages/ray/_private/worker.py:2052: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+[36m(pid=977582)[0m /WORK/PUBLIC/lijuanzi1_work/jy/miniconda3/envs/verl_dz/lib/python3.12/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+[36m(pid=977582)[0m   import pynvml  # type: ignore[import]
+[36m(TaskRunner pid=977582)[0m /WORK/PUBLIC/lijuanzi1_work/dz/SAERL/verl/utils/profiler/config.py:49: UserWarning: Torch profiler tool config is not fully supported now.
+[36m(TaskRunner pid=977582)[0m   warnings.warn("Torch profiler tool config is not fully supported now.", stacklevel=1)
+[36m(pid=978445)[0m /WORK/PUBLIC/lijuanzi1_work/jy/miniconda3/envs/verl_dz/lib/python3.12/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+[36m(pid=978445)[0m   import pynvml  # type: ignore[import]
+[36m(WorkerDict pid=978445)[0m `torch_dtype` is deprecated! Use `dtype` instead!
+[36m(pid=978448)[0m /WORK/PUBLIC/lijuanzi1_work/jy/miniconda3/envs/verl_dz/lib/python3.12/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.[32m [repeated 3x across cluster] (Ray deduplicates logs by default. Set RAY_DEDUP_LOGS=0 to disable log deduplication, or see https://docs.ray.io/en/master/ray-observability/user-guides/configure-logging.html#log-deduplication for more options.)[0m
+[36m(pid=978448)[0m   import pynvml  # type: ignore[import][32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=978445)[0m Flash Attention 2 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in Qwen3ForCausalLM is torch.float32. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", dtype=torch.float16)`
+[36m(WorkerDict pid=978445)[0m Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]
+[36m(WorkerDict pid=978445)[0m Loading checkpoint shards:  50%|█████     | 1/2 [00:06<00:06,  6.35s/it]
+[36m(WorkerDict pid=978448)[0m `torch_dtype` is deprecated! Use `dtype` instead![32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=978445)[0m Flash Attention 2 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in Qwen3Model is torch.float32. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", dtype=torch.float16)`[32m [repeated 7x across cluster][0m
+[36m(WorkerDict pid=978448)[0m Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s][32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=978445)[0m Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.28s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.74s/it]
+[36m(WorkerDict pid=978445)[0m /WORK/PUBLIC/lijuanzi1_work/dz/SAERL/verl/utils/profiler/config.py:49: UserWarning: Torch profiler tool config is not fully supported now.
+[36m(WorkerDict pid=978445)[0m   warnings.warn("Torch profiler tool config is not fully supported now.", stacklevel=1)
+[36m(WorkerDict pid=978448)[0m Loading checkpoint shards:  50%|█████     | 1/2 [00:06<00:06,  6.35s/it][32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=978448)[0m Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.28s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.74s/it][32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=978447)[0m /WORK/PUBLIC/lijuanzi1_work/jy/miniconda3/envs/verl_dz/lib/python3.12/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py:678: FutureWarning: FSDP.state_dict_type() and FSDP.set_state_dict_type() are being deprecated. Please use APIs, get_state_dict() and set_state_dict(), which can support different parallelisms, FSDP1, FSDP2, DDP. API doc: https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.get_state_dict .Tutorial: https://pytorch.org/tutorials/recipes/distributed_checkpoint_recipe.html .
+[36m(WorkerDict pid=978447)[0m   warnings.warn(
+[36m(WorkerDict pid=978448)[0m /WORK/PUBLIC/lijuanzi1_work/dz/SAERL/verl/utils/profiler/config.py:49: UserWarning: Torch profiler tool config is not fully supported now.[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=978448)[0m   warnings.warn("Torch profiler tool config is not fully supported now.", stacklevel=1)[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=978445)[0m /WORK/PUBLIC/lijuanzi1_work/jy/miniconda3/envs/verl_dz/lib/python3.12/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py:678: FutureWarning: FSDP.state_dict_type() and FSDP.set_state_dict_type() are being deprecated. Please use APIs, get_state_dict() and set_state_dict(), which can support different parallelisms, FSDP1, FSDP2, DDP. API doc: https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.get_state_dict .Tutorial: https://pytorch.org/tutorials/recipes/distributed_checkpoint_recipe.html .[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=978445)[0m   warnings.warn([32m [repeated 3x across cluster][0m
+[36m(TaskRunner pid=977582)[0m /WORK/PUBLIC/lijuanzi1_work/dz/SAERL/verl/utils/profiler/config.py:49: UserWarning: Torch profiler tool config is not fully supported now.
+[36m(TaskRunner pid=977582)[0m   warnings.warn("Torch profiler tool config is not fully supported now.", stacklevel=1)
+[36m(pid=980494)[0m /WORK/PUBLIC/lijuanzi1_work/jy/miniconda3/envs/verl_dz/lib/python3.12/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+[36m(pid=980494)[0m   import pynvml  # type: ignore[import]
+[36m(vLLMHttpServer pid=980492)[0m INFO:2026-08-06 00:46:17,723:vLLMHttpServer, replica_rank: 2, master address: 11.11.15.1, master port: 38215, data parallel master port: 39053
+[36m(vLLMHttpServer pid=980492)[0m INFO:2026-08-06 00:46:17,737:override_generation_config: {'temperature': 0.6, 'top_k': -1, 'top_p': 1, 'repetition_penalty': 1.0, 'max_new_tokens': 3072}
+[36m(vLLMHttpServer pid=980492)[0m INFO:2026-08-06 00:46:17,737:enable_sleep_mode: True
+[36m(pid=980492)[0m /WORK/PUBLIC/lijuanzi1_work/jy/miniconda3/envs/verl_dz/lib/python3.12/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.[32m [repeated 3x across cluster][0m
+[36m(pid=980492)[0m   import pynvml  # type: ignore[import][32m [repeated 3x across cluster][0m
+[36m(vLLMHttpServer pid=980492)[0m Using blocking ray.get inside async actor. This blocks the event loop. Please use `await` on object ref with asyncio.gather if you want to yield execution to the event loop instead.
+[36m(vLLMHttpServer pid=980492)[0m INFO:2026-08-06 00:46:17,907:replica_rank=2, node_rank=0, nnodes=1, get worker zmq addresses: ['ipc:///tmp/verl_vllm_zmq_978447_lijuanzi1.ipc']
+[36m(vLLMHttpServer pid=980492)[0m `torch_dtype` is deprecated! Use `dtype` instead!
+[36m(WorkerDict pid=978445)[0m [rank0]:W0806 00:46:46.572000 978445 site-packages/torch/utils/cpp_extension.py:2425] TORCH_CUDA_ARCH_LIST is not set, all archs for visible cards are included for compilation. 
+[36m(WorkerDict pid=978445)[0m [rank0]:W0806 00:46:46.572000 978445 site-packages/torch/utils/cpp_extension.py:2425] If this is not desired, please set os.environ['TORCH_CUDA_ARCH_LIST'] to specific architectures.
+[36m(vLLMHttpServer pid=980493)[0m INFO:2026-08-06 00:46:18,078:vLLMHttpServer, replica_rank: 3, master address: 11.11.15.1, master port: 35159, data parallel master port: 37717[32m [repeated 3x across cluster][0m
+[36m(vLLMHttpServer pid=980491)[0m INFO:2026-08-06 00:46:18,113:override_generation_config: {'temperature': 0.6, 'top_k': -1, 'top_p': 1, 'repetition_penalty': 1.0, 'max_new_tokens': 3072}[32m [repeated 3x across cluster][0m
+[36m(vLLMHttpServer pid=980491)[0m INFO:2026-08-06 00:46:18,113:enable_sleep_mode: True[32m [repeated 3x across cluster][0m
+[36m(vLLMHttpServer pid=980493)[0m /WORK/PUBLIC/lijuanzi1_work/jy/miniconda3/envs/verl_dz/lib/python3.12/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.[32m [repeated 4x across cluster][0m
+[36m(vLLMHttpServer pid=980493)[0m   import pynvml  # type: ignore[import][32m [repeated 4x across cluster][0m
+[36m(vLLMHttpServer pid=980493)[0m Using blocking ray.get inside async actor. This blocks the event loop. Please use `await` on object ref with asyncio.gather if you want to yield execution to the event loop instead.[32m [repeated 3x across cluster][0m
+[36m(vLLMHttpServer pid=980493)[0m INFO:2026-08-06 00:46:18,197:replica_rank=3, node_rank=0, nnodes=1, get worker zmq addresses: ['ipc:///tmp/verl_vllm_zmq_978448_lijuanzi1.ipc'][32m [repeated 3x across cluster][0m
+[36m(vLLMHttpServer pid=980493)[0m `torch_dtype` is deprecated! Use `dtype` instead![32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=978445)[0m 2026-08-06 00:47:25,431 - INFO - autotuner.py:256 - flashinfer.jit: [Autotuner]: Autotuning process starts ...
+[36m(WorkerDict pid=978448)[0m [rank3]:W0806 00:46:46.572000 978448 site-packages/torch/utils/cpp_extension.py:2425] TORCH_CUDA_ARCH_LIST is not set, all archs for visible cards are included for compilation. [32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=978448)[0m [rank3]:W0806 00:46:46.572000 978448 site-packages/torch/utils/cpp_extension.py:2425] If this is not desired, please set os.environ['TORCH_CUDA_ARCH_LIST'] to specific architectures.[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=978445)[0m 2026-08-06 00:47:25,483 - INFO - autotuner.py:262 - flashinfer.jit: [Autotuner]: Autotuning process ends
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):   0%|          | 0/67 [00:00<?, ?it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):   3%|▎         | 2/67 [00:00<00:03, 16.91it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):   7%|▋         | 5/67 [00:00<00:02, 21.11it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  12%|█▏        | 8/67 [00:00<00:02, 22.52it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  16%|█▋        | 11/67 [00:00<00:02, 22.19it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  21%|██        | 14/67 [00:00<00:02, 21.63it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  25%|██▌       | 17/67 [00:00<00:02, 21.74it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  30%|██▉       | 20/67 [00:00<00:02, 22.42it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  34%|███▍      | 23/67 [00:01<00:01, 22.21it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  39%|███▉      | 26/67 [00:01<00:01, 22.15it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  43%|████▎     | 29/67 [00:01<00:01, 22.09it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  48%|████▊     | 32/67 [00:01<00:01, 21.85it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  52%|█████▏    | 35/67 [00:01<00:01, 21.10it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  57%|█████▋    | 38/67 [00:01<00:01, 20.90it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  61%|██████    | 41/67 [00:01<00:01, 19.89it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  66%|██████▌   | 44/67 [00:02<00:01, 19.85it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  69%|██████▊   | 46/67 [00:02<00:01, 19.76it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  72%|███████▏  | 48/67 [00:02<00:00, 19.80it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  75%|███████▍  | 50/67 [00:02<00:00, 18.88it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  78%|███████▊  | 52/67 [00:02<00:00, 18.39it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  81%|████████  | 54/67 [00:02<00:00, 18.08it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  84%|████████▎ | 56/67 [00:03<00:01, 10.80it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  87%|████████▋ | 58/67 [00:03<00:00, 12.19it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  90%|████████▉ | 60/67 [00:03<00:00, 13.28it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  93%|█████████▎| 62/67 [00:03<00:00, 14.34it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  96%|█████████▌| 64/67 [00:03<00:00, 15.28it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 67/67 [00:03<00:00, 11.08it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 67/67 [00:03<00:00, 17.38it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (decode, FULL):   0%|          | 0/67 [00:00<?, ?it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (decode, FULL):   4%|▍         | 3/67 [00:00<00:03, 20.52it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (decode, FULL):   9%|▉         | 6/67 [00:00<00:02, 23.98it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (decode, FULL):  13%|█▎        | 9/67 [00:00<00:02, 25.24it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (decode, FULL):  18%|█▊        | 12/67 [00:00<00:02, 26.12it/s]
+[36m(WorkerDict pid=978448)[0m 2026-08-06 00:47:25,432 - INFO - autotuner.py:256 - flashinfer.jit: [Autotuner]: Autotuning process starts ...[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=978448)[0m 2026-08-06 00:47:25,484 - INFO - autotuner.py:262 - flashinfer.jit: [Autotuner]: Autotuning process ends[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (decode, FULL):  22%|██▏       | 15/67 [00:00<00:01, 26.63it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (decode, FULL):  27%|██▋       | 18/67 [00:00<00:01, 24.99it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (decode, FULL):  31%|███▏      | 21/67 [00:00<00:01, 25.79it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (decode, FULL):  36%|███▌      | 24/67 [00:00<00:01, 26.46it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (decode, FULL):  40%|████      | 27/67 [00:01<00:01, 26.46it/s]Capturing CUDA graphs (decode, FULL):  45%|████▍     | 30/67 [00:01<00:01, 26.78it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (decode, FULL):  49%|████▉     | 33/67 [00:01<00:01, 26.81it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (decode, FULL):  54%|█████▎    | 36/67 [00:01<00:01, 26.65it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (decode, FULL):  58%|█████▊    | 39/67 [00:01<00:01, 26.65it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (decode, FULL):  63%|██████▎   | 42/67 [00:01<00:00, 26.79it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (decode, FULL):  67%|██████▋   | 45/67 [00:01<00:00, 26.66it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (decode, FULL):  72%|███████▏  | 48/67 [00:01<00:00, 26.90it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (decode, FULL):  76%|███████▌  | 51/67 [00:01<00:00, 27.19it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (decode, FULL):  81%|████████  | 54/67 [00:02<00:00, 27.20it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (decode, FULL):  85%|████████▌ | 57/67 [00:02<00:00, 27.35it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (decode, FULL):  90%|████████▉ | 60/67 [00:02<00:00, 27.46it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (decode, FULL):  94%|█████████▍| 63/67 [00:02<00:00, 27.26it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (decode, FULL):  99%|█████████▊| 66/67 [00:02<00:00, 27.53it/s]
+[36m(WorkerDict pid=978445)[0m Capturing CUDA graphs (decode, FULL): 100%|██████████| 67/67 [00:02<00:00, 26.61it/s]
+[36m(vLLMHttpServer pid=980494)[0m INFO:2026-08-06 00:47:34,758:Initializing a V1 LLM engine with config: model='/WORK/PUBLIC/lijuanzi1_work/MODELS/Qwen3-1.7B', speculative_config=None, tokenizer='/WORK/PUBLIC/lijuanzi1_work/MODELS/Qwen3-1.7B', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=dummy, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, disable_custom_all_reduce=True, quantization=None, enforce_eager=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_fallback=False, disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser=''), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None), seed=0, served_model_name=/WORK/PUBLIC/lijuanzi1_work/MODELS/Qwen3-1.7B, enable_prefix_caching=True, chunked_prefill_enabled=True, pooler_config=None, compilation_config={"level":3,"debug_dump_path":"","cache_dir":"","backend":"","custom_ops":[],"splitting_ops":["vllm.unified_attention","vllm.unified_attention_with_output","vllm.mamba_mixer2","vllm.mamba_mixer","vllm.short_conv","vllm.linear_attention","vllm.plamo2_mamba_mixer","vllm.gdn_attention","vllm.sparse_attn_indexer"],"use_inductor":true,"compile_sizes":[],"inductor_compile_config":{"enable_auto_functionalized_v2":false},"inductor_passes":{},"cudagraph_mode":[2,1],"use_cudagraph":true,"cudagraph_num_of_warmups":1,"cudagraph_capture_sizes":[512,504,496,488,480,472,464,456,448,440,432,424,416,408,400,392,384,376,368,360,352,344,336,328,320,312,304,296,288,280,272,264,256,248,240,232,224,216,208,200,192,184,176,168,160,152,144,136,128,120,112,104,96,88,80,72,64,56,48,40,32,24,16,8,4,2,1],"cudagraph_copy_inputs":false,"full_cuda_graph":false,"use_inductor_graph_partition":false,"pass_config":{},"max_capture_size":512,"local_cache_dir":null}
+[36m(pid=982368)[0m /WORK/PUBLIC/lijuanzi1_work/jy/miniconda3/envs/verl_dz/lib/python3.12/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+[36m(pid=982368)[0m   import pynvml  # type: ignore[import]
+[36m(TaskRunner pid=977582)[0m wandb: Loading settings from /WORK/PUBLIC/lijuanzi1_work/dz/SAERL/wandb/settings
+[36m(TaskRunner pid=977582)[0m wandb: Tracking run with wandb version 0.26.1
+[36m(TaskRunner pid=977582)[0m wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+[36m(TaskRunner pid=977582)[0m wandb: Run data is saved locally in /home/fit/lijuanzi1/WORK/dz/SAERL/recipe/static_gradient_sae/wandb/offline-run-20260806_004742-d82xg9z5
+[36m(pid=982366)[0m /WORK/PUBLIC/lijuanzi1_work/jy/miniconda3/envs/verl_dz/lib/python3.12/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.[32m [repeated 7x across cluster][0m
+[36m(pid=982366)[0m   import pynvml  # type: ignore[import][32m [repeated 7x across cluster][0m
+[36m(TaskRunner pid=977582)[0m wandb: Detected [openai] in use.
+[36m(TaskRunner pid=977582)[0m wandb: Use W&B Weave for improved LLM call tracing. Install Weave with `pip install weave` then add `import weave` to the top of your script.
+[36m(TaskRunner pid=977582)[0m wandb: For more information, check out the docs at: https://weave-docs.wandb.ai
+[36m(TaskRunner pid=977582)[0m Training Progress:   0%|          | 0/805 [00:00<?, ?it/s]
+[36m(pid=983581)[0m /WORK/PUBLIC/lijuanzi1_work/jy/miniconda3/envs/verl_dz/lib/python3.12/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+[36m(pid=983581)[0m   import pynvml  # type: ignore[import]
+[36m(pid=983740)[0m /WORK/PUBLIC/lijuanzi1_work/jy/miniconda3/envs/verl_dz/lib/python3.12/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+[36m(pid=983740)[0m   import pynvml  # type: ignore[import]
+[36m(AgentLoopWorker pid=982363)[0m You're using a Qwen2TokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[36m(pid=983922)[0m /WORK/PUBLIC/lijuanzi1_work/jy/miniconda3/envs/verl_dz/lib/python3.12/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.[32m [repeated 6x across cluster][0m
+[36m(pid=983922)[0m   import pynvml  # type: ignore[import][32m [repeated 6x across cluster][0m
+[36m(AgentLoopWorker pid=982370)[0m You're using a Qwen2TokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[36m(AgentLoopWorker pid=982366)[0m You're using a Qwen2TokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[36m(AgentLoopWorker pid=982361)[0m You're using a Qwen2TokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[36m(AgentLoopWorker pid=982362)[0m You're using a Qwen2TokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[36m(AgentLoopWorker pid=982365)[0m You're using a Qwen2TokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[36m(AgentLoopWorker pid=982368)[0m You're using a Qwen2TokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[36m(AgentLoopWorker pid=982364)[0m You're using a Qwen2TokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[36m(TaskRunner pid=977582)[0m Training Progress:   0%|          | 1/805 [04:09<55:49:16, 249.95s/it]
+[36m(TaskRunner pid=977582)[0m Training Progress:   0%|          | 2/805 [07:59<53:05:04, 237.99s/it]
+[36m(TaskRunner pid=977582)[0m Training Progress:   0%|          | 3/805 [11:46<51:55:31, 233.08s/it]
+[36m(TaskRunner pid=977582)[0m Training Progress:   0%|          | 4/805 [15:28<50:53:14, 228.71s/it]
+[36m(TaskRunner pid=977582)[0m Training Progress:   1%|          | 5/805 [19:14<50:33:28, 227.51s/it]
+[36m(TaskRunner pid=977582)[0m Training Progress:   1%|          | 6/805 [23:06<50:51:31, 229.15s/it]
+[36m(TaskRunner pid=977582)[0m Training Progress:   1%|          | 7/805 [26:57<50:55:54, 229.77s/it]
+[36m(TaskRunner pid=977582)[0m Training Progress:   1%|          | 8/805 [30:47<50:53:34, 229.88s/it]
+[36m(TaskRunner pid=977582)[0m Training Progress:   1%|          | 9/805 [34:36<50:46:52, 229.66s/it]
+[36m(TaskRunner pid=977582)[0m Training Progress:   1%|          | 10/805 [38:29<50:53:54, 230.48s/it]
+[36m(TaskRunner pid=977582)[0m Training Progress:   1%|▏         | 11/805 [42:19<50:50:31, 230.52s/it]
+[36m(TaskRunner pid=977582)[0m Training Progress:   1%|▏         | 12/805 [46:09<50:41:50, 230.15s/it]
+[36m(TaskRunner pid=977582)[0m Training Progress:   2%|▏         | 13/805 [49:50<50:02:19, 227.45s/it]
+[36m(TaskRunner pid=977582)[0m Training Progress:   2%|▏         | 14/805 [53:35<49:50:46, 226.86s/it]
+[36m(TaskRunner pid=977582)[0m Training Progress:   2%|▏         | 15/805 [57:17<49:27:40, 225.39s/it]
+[36m(TaskRunner pid=977582)[0m Training Progress:   2%|▏         | 16/805 [1:01:00<49:12:52, 224.55s/it]
+[36m(TaskRunner pid=977582)[0m Training Progress:   2%|▏         | 17/805 [1:04:41<48:55:23, 223.51s/it]
+[36m(TaskRunner pid=977582)[0m Training Progress:   2%|▏         | 18/805 [1:08:27<48:59:43, 224.12s/it]
+[36m(TaskRunner pid=977582)[0m Training Progress:   2%|▏         | 19/805 [1:12:07<48:41:55, 223.05s/it]
+[36m(TaskRunner pid=977582)[0m Training Progress:   2%|▏         | 20/805 [1:15:47<48:27:18, 222.21s/it]
+[36m(TaskRunner pid=977582)[0m Training Progress:   3%|▎         | 21/805 [1:19:29<48:21:35, 222.06s/it]
+slurmstepd: error: *** JOB 435790 ON g42 CANCELLED AT 2026-08-06T02:10:19 ***
