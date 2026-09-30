@@ -65,6 +65,42 @@ custom_reward_function:
   # The name of the reward function within the specified file. Default is 'compute_score'.
   name: compute_score
 
+# One-pass gradient extraction using the ordinary VERL PPO/GRPO execution path.
+static_gradient_extraction:
+
+  # Enable backward gradient capture and disable all parameter updates.
+  enable: false
+
+  # OpenSAE checkpoint directory containing config.json and .pt or safetensors weights.
+  sae_path: null
+
+  # Parent directory; each invocation creates a timestamped child directory.
+  output_dir: null
+
+  # Optional fixed child name. Leave null to use a timestamp.
+  run_name: null
+
+  # First step to process when continuing an existing run. Requires run_name; null starts a new run.
+  resume_from_step: null
+
+  # Optional model hookpoint override. Null uses input_hookpoint from the SAE config.
+  hookpoint: null
+
+  # Dataset metadata key used as the stable prompt identifier.
+  sample_id_key: index
+
+  # attention projects all valid prompt/response positions; response_loss uses shifted loss positions.
+  gradient_token_scope: attention
+
+  # Number of token gradients projected together before exact mean/max pooling.
+  projection_chunk_size: 32
+
+  # Threshold used only for reporting the nonzero-gradient token count.
+  gradient_zero_eps: 1.0e-12
+
+  # Rank 0 prints projection progress every N actor microbatches; 0 disables it.
+  log_every_micro_batches: 1
+
 # config for the algorithm
 algorithm:
 

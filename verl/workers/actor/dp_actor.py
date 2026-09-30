@@ -19,11 +19,13 @@ Single Process Actor
 
 import logging
 import os
+import re
 
 import torch
 from torch import nn
 from torch.distributed.fsdp import FullyShardedDataParallel as FSDP
 from torch.distributed.tensor import DTensor
+import torch.nn.functional as F
 
 import verl.utils.torch_functional as verl_F
 from verl import DataProto
@@ -91,6 +93,90 @@ class DataParallelPPOActor(BasePPOActor):
         else:
             self.scaler = None
 
+        # Configured by ActorRolloutRefWorker only when the top-level static
+        # extraction mode is enabled. Normal PPO never imports or calls the
+        # projection helper.
+        self.static_gradient_sae_processor = None
+        self._static_gradient_hook_handle = None
+        self._static_gradient_target_module_name = None
+        self._latest_static_layer_output_grad = None
+
+    @property
+    def static_gradient_extraction_enabled(self) -> bool:
+        return self.static_gradient_sae_processor is not None
+
+    def __del__(self):
+        try:
+            self._remove_static_gradient_hook()
+        except Exception:
+            pass
+
+    def _remove_static_gradient_hook(self) -> None:
+        if self._static_gradient_hook_handle is None:
+            return
+        try:
+            self._static_gradient_hook_handle.remove()
+        finally:
+            self._static_gradient_hook_handle = None
+            self._static_gradient_target_module_name = None
+            self._latest_static_layer_output_grad = None
+
+    def _register_static_gradient_hook(self, hookpoint: str) -> str:
+        """Register the layer-output backward hook on the FSDP actor."""
+        self._remove_static_gradient_hook()
+        layer_match = re.search(r"(?:^|\.)layers\.(\d+)(?:$|\.)", hookpoint)
+        if layer_match is None:
+            raise ValueError(f"Cannot infer transformer layer from hookpoint {hookpoint!r}")
+        layer_index = int(layer_match.group(1))
+        exact = re.compile(rf"(?:^|\.)layers\.{layer_index}(?:$|\._fsdp_wrapped_module$)")
+        candidates = [(name, module) for name, module in self.actor_module.named_modules() if hookpoint in name]
+        if not candidates:
+            raise ValueError(f"No actor module matched SAE hookpoint {hookpoint!r}")
+        candidates.sort(key=lambda item: (0 if exact.search(item[0]) else 1, len(item[0])))
+        name, module = candidates[0]
+        self._static_gradient_target_module_name = name
+        self._static_gradient_hook_handle = module.register_full_backward_hook(self._on_static_layer_output_gradient)
+        return name
+
+    def _on_static_layer_output_gradient(self, _module: nn.Module, _grad_input, grad_output) -> None:
+        if not grad_output or grad_output[0] is None:
+            return
+        # update_policy consumes this immediately after loss.backward(), so a
+        # detached view is sufficient and avoids a full activation-sized copy.
+        self._latest_static_layer_output_grad = grad_output[0].detach()
+
+    def _pop_static_layer_output_gradient(self) -> torch.Tensor:
+        gradient = self._latest_static_layer_output_grad
+        self._latest_static_layer_output_grad = None
+        if gradient is None:
+            raise RuntimeError("Configured layer backward hook did not capture grad_output[0]")
+        return gradient
+
+    def enable_static_gradient_extraction(self, config) -> None:
+        """Attach the layer-output hook used by static gradient-SAE mode."""
+        if self.actor_optimizer is None:
+            raise ValueError("Static gradient extraction can only be enabled on the actor")
+        if self.static_gradient_sae_processor is not None:
+            raise RuntimeError("Static gradient extraction is already enabled")
+        if int(self.ulysses_sequence_parallel_size) != 1:
+            raise ValueError("Static gradient-SAE extraction currently requires Ulysses SP size 1")
+        from verl.workers.actor.static_gradient_sae import StaticGradientSaeProcessor
+
+        processor = StaticGradientSaeProcessor(
+            config=config,
+            device=get_device_id(),
+            use_remove_padding=self.use_remove_padding,
+        )
+        target_module_name = self._register_static_gradient_hook(processor.hookpoint)
+        self.static_gradient_sae_processor = processor
+        if torch.distributed.get_rank() == 0:
+            print(
+                "Static gradient-SAE enabled: "
+                f"target={target_module_name}, "
+                f"run_dir={self.static_gradient_sae_processor.run_dir}",
+                flush=True,
+            )
+
     def _forward_micro_batch(
         self, micro_batch, temperature, calculate_entropy=False
     ) -> tuple[torch.Tensor, torch.Tensor]:
@@ -105,6 +191,9 @@ class DataParallelPPOActor(BasePPOActor):
             from verl.utils.model import extract_multi_modal_inputs
 
             multi_modal_inputs = extract_multi_modal_inputs(micro_batch["multi_modal_inputs"])
+
+        if self.static_gradient_sae_processor is not None:
+            self._latest_static_layer_output_grad = None
 
         with torch.autocast(device_type=self.device_name, dtype=self.param_dtype):
             input_ids = micro_batch["input_ids"]
@@ -307,6 +396,8 @@ class DataParallelPPOActor(BasePPOActor):
             return entropy, log_probs
 
     def _optimizer_step(self):
+        if self.static_gradient_extraction_enabled:
+            raise RuntimeError("optimizer.step() is forbidden in static gradient extraction mode")
         assert self.config.grad_clip is not None
         if self.scaler is not None:
             self.scaler.unscale_(self.actor_optimizer)
@@ -407,9 +498,10 @@ class DataParallelPPOActor(BasePPOActor):
             "input_ids",
             "attention_mask",
             "position_ids",
-            "old_log_probs",
             "advantages",
         ]
+        if not self.static_gradient_extraction_enabled:
+            select_keys.append("old_log_probs")
         if self.config.use_kl_loss:
             select_keys.append("ref_log_prob")
         # Include pre-computed IS weights if present in batch
@@ -420,10 +512,26 @@ class DataParallelPPOActor(BasePPOActor):
         if "rollout_log_probs" in data.batch.keys():
             select_keys.append("rollout_log_probs")
 
+        if self.static_gradient_extraction_enabled:
+            if "token_level_scores" in data.batch.keys():
+                select_keys.append("token_level_scores")
+            elif "token_level_rewards" in data.batch.keys():
+                select_keys.append("token_level_rewards")
+            else:
+                raise ValueError("Static gradient extraction requires token-level reward scores")
+
         has_multi_modal_inputs = "multi_modal_inputs" in data.non_tensor_batch.keys()
         non_tensor_select_keys = ["multi_modal_inputs"] if has_multi_modal_inputs else []
 
+        if self.static_gradient_extraction_enabled:
+            for key in ("uid", "index", "extra_info", "static_gradient_is_padding"):
+                if key in data.non_tensor_batch:
+                    non_tensor_select_keys.append(key)
+
         data = data.select(batch_keys=select_keys, non_tensor_batch_keys=non_tensor_select_keys)
+
+        if self.static_gradient_extraction_enabled:
+            self.static_gradient_sae_processor.start_update(int(data.meta_info.get("global_steps", -1)))
 
         # Split to make minibatch iterator for updating the actor
         # See PPO paper for details. https://arxiv.org/abs/1707.06347
@@ -450,7 +558,6 @@ class DataParallelPPOActor(BasePPOActor):
                     micro_batch_metrics = {}
                     model_inputs = {**micro_batch.batch, **micro_batch.non_tensor_batch}
                     response_mask = model_inputs["response_mask"]
-                    old_log_prob = model_inputs["old_log_probs"]
                     advantages = model_inputs["advantages"]
 
                     entropy_coeff = self.config.entropy_coeff
@@ -469,7 +576,9 @@ class DataParallelPPOActor(BasePPOActor):
                     )
 
                     # for fully_async_policy recipe
-                    if hasattr(self.config, "use_rollout_log_probs") and self.config.use_rollout_log_probs:
+                    if self.static_gradient_extraction_enabled:
+                        old_log_prob = log_prob.detach()
+                    elif hasattr(self.config, "use_rollout_log_probs") and self.config.use_rollout_log_probs:
                         old_log_prob = model_inputs["old_log_probs"]
                     else:
                         if on_policy:
@@ -543,11 +652,33 @@ class DataParallelPPOActor(BasePPOActor):
                     else:
                         loss.backward()
 
+                    if self.static_gradient_extraction_enabled:
+                        layer_output_gradient = self._pop_static_layer_output_gradient()
+                        gradient_scale = float(self.scaler.get_scale()) if self.scaler is not None else 1.0
+                        # Parameter gradients are not part of the requested
+                        # representation. Release them before the dense SAE
+                        # projection instead of retaining an entire PPO
+                        # mini-batch's accumulation.
+                        self.actor_optimizer.zero_grad(set_to_none=True)
+                        self.static_gradient_sae_processor.consume_micro_batch(
+                            layer_output_gradient,
+                            model_inputs,
+                            gradient_scale=gradient_scale,
+                        )
+
                     micro_batch_metrics["actor/pg_loss"] = pg_loss.detach().item() * loss_scale_factor
                     append_to_dict(metrics, micro_batch_metrics)
 
-                grad_norm = self._optimizer_step()
-                mini_batch_metrics = {"actor/grad_norm": grad_norm.detach().item()}
-                append_to_dict(metrics, mini_batch_metrics)
+                if self.static_gradient_extraction_enabled:
+                    # Backward is retained to obtain exactly the training
+                    # gradient, but parameters are never stepped.
+                    self.actor_optimizer.zero_grad(set_to_none=True)
+                else:
+                    grad_norm = self._optimizer_step()
+                    mini_batch_metrics = {"actor/grad_norm": grad_norm.detach().item()}
+                    append_to_dict(metrics, mini_batch_metrics)
+        if self.static_gradient_extraction_enabled:
+            static_metrics = self.static_gradient_sae_processor.finish_update()
+            append_to_dict(metrics, static_metrics)
         self.actor_optimizer.zero_grad()
         return metrics

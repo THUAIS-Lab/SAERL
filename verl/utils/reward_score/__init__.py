@@ -45,7 +45,7 @@ def default_compute_score(
         from . import gsm8k
 
         res = gsm8k.compute_score(solution_str, ground_truth)
-    elif data_source in ["lighteval/MATH", "DigitalLearningGmbH/MATH-lighteval", "HuggingFaceH4/MATH-500"]:
+    elif data_source in ["lighteval/MATH", "DigitalLearningGmbH/MATH-lighteval", "HuggingFaceH4/MATH-500", "Maxwell-Jia/AIME_2024", "knoveleng/AMC-23"]:
         from . import math_reward
 
         res = math_reward.compute_score(solution_str, ground_truth)
@@ -56,6 +56,14 @@ def default_compute_score(
 
         # from . import math_verify
         # res = math_verify.compute_score(solution_str, ground_truth)
+    elif data_source in [
+        "zwhe99/DeepMath-103K", 
+        "math-ai/minervamath", 
+        "knoveleng/OlympiadBench"
+    ]:
+        from . import deepmath
+
+        res = deepmath.compute_score(solution_str, ground_truth)
     elif data_source in ["math_dapo", "math", "math_dapo_reasoning"] or data_source.startswith("aime"):
         from . import math_dapo
 

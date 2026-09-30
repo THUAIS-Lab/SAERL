@@ -316,6 +316,7 @@ class RayPPOTrainer:
         self.config = config
         self.reward_fn = reward_fn
         self.val_reward_fn = val_reward_fn
+        self.static_gradient_extraction = bool(config.get("static_gradient_extraction", {}).get("enable", False))
 
         self.hybrid_engine = config.actor_rollout_ref.hybrid_engine
         assert self.hybrid_engine, "Currently, only support hybrid engine"
@@ -380,23 +381,47 @@ class RayPPOTrainer:
             )
         self.train_dataset, self.val_dataset = train_dataset, val_dataset
 
-        if train_sampler is None:
-            train_sampler = create_rl_sampler(self.config.data, self.train_dataset)
-        if collate_fn is None:
-            from verl.utils.dataset.rl_dataset import collate_fn as default_collate_fn
+        #================================================================================================================================
+        if self.config.data.saerl.enable:
+            from .saerl_sampler import SAERLSampler
+            import torch
+            correct_list = torch.load(f"{self.config.data.saerl.processed_file}")
+            correct_list = correct_list.tolist()
+            self.sampler = SAERLSampler(sort_list=correct_list)
 
-            collate_fn = default_collate_fn
+            if collate_fn is None:
+                from verl.utils.dataset.rl_dataset import collate_fn as default_collate_fn
 
-        num_workers = self.config.data["dataloader_num_workers"]
+                collate_fn = default_collate_fn
 
-        self.train_dataloader = StatefulDataLoader(
-            dataset=self.train_dataset,
-            batch_size=self.config.data.get("gen_batch_size", self.config.data.train_batch_size),
-            num_workers=num_workers,
-            drop_last=True,
-            collate_fn=collate_fn,
-            sampler=train_sampler,
-        )
+            self.train_dataloader = StatefulDataLoader(
+                dataset=self.train_dataset,
+                batch_size=self.config.data.get("gen_batch_size", self.config.data.train_batch_size),
+                num_workers=self.config.data.get("dataloader_num_workers", 8),
+                drop_last=not self.static_gradient_extraction,
+                collate_fn=collate_fn,
+                sampler=self.sampler  # Custom fixed order sampler providing sorted index
+            )
+            
+        else:
+            if train_sampler is None:
+                train_sampler = create_rl_sampler(self.config.data, self.train_dataset)
+            if collate_fn is None:
+                from verl.utils.dataset.rl_dataset import collate_fn as default_collate_fn
+
+                collate_fn = default_collate_fn
+
+            num_workers = self.config.data["dataloader_num_workers"]
+
+            self.train_dataloader = StatefulDataLoader(
+                dataset=self.train_dataset,
+                batch_size=self.config.data.get("gen_batch_size", self.config.data.train_batch_size),
+                num_workers=self.config.data.get("dataloader_num_workers", 8),
+                drop_last=not self.static_gradient_extraction,
+                collate_fn=collate_fn,
+                sampler=train_sampler,
+            )
+        #=================================================================================================================================
 
         val_batch_size = self.config.data.val_batch_size  # Prefer config value if set
         if val_batch_size is None:
@@ -405,7 +430,7 @@ class RayPPOTrainer:
         self.val_dataloader = StatefulDataLoader(
             dataset=self.val_dataset,
             batch_size=val_batch_size,
-            num_workers=num_workers,
+            num_workers=self.config.data.get("dataloader_num_workers", 8),
             shuffle=self.config.data.get("validation_shuffle", True),
             drop_last=False,
             collate_fn=collate_fn,
@@ -589,6 +614,10 @@ class RayPPOTrainer:
 
     def _get_gen_batch(self, batch: DataProto) -> DataProto:
         reward_model_keys = set({"data_source", "reward_model", "extra_info", "uid"}) & batch.non_tensor_batch.keys()
+        if self.static_gradient_extraction:
+            reward_model_keys.update(
+                {"index", "static_gradient_is_padding"} & batch.non_tensor_batch.keys()
+            )
 
         # pop those keys for generation
         batch_keys_to_pop = ["input_ids", "attention_mask", "position_ids"]
@@ -1187,6 +1216,8 @@ class RayPPOTrainer:
     def _update_actor(self, batch: DataProto) -> DataProto:
         rollout_config = self.config.actor_rollout_ref.rollout
         batch.meta_info["multi_turn"] = rollout_config.multi_turn.enable
+        if self.static_gradient_extraction:
+            batch.meta_info["global_steps"] = self.global_steps
         # TODO: Make "temperature" single source of truth from generation.
         batch.meta_info["temperature"] = rollout_config.temperature
         # update actor
@@ -1273,6 +1304,24 @@ class RayPPOTrainer:
         # load checkpoint before doing anything
         self._load_checkpoint()
 
+        resume_skip_batches = 0
+        if self.static_gradient_extraction:
+            resume_from_step = self.config.static_gradient_extraction.get("resume_from_step", None)
+            if resume_from_step is not None:
+                resume_from_step = int(resume_from_step)
+                if resume_from_step > self.total_training_steps:
+                    raise ValueError(
+                        f"static_gradient_extraction.resume_from_step={resume_from_step} exceeds "
+                        f"total_training_steps={self.total_training_steps}"
+                    )
+                self.global_steps = resume_from_step - 1
+                resume_skip_batches = self.global_steps % len(self.train_dataloader)
+                print(
+                    f"Static gradient-SAE skipping {self.global_steps} completed steps; "
+                    f"next step={resume_from_step}",
+                    flush=True,
+                )
+
         current_epoch = self.global_steps // len(self.train_dataloader)
 
         # perform validation before training
@@ -1306,7 +1355,9 @@ class RayPPOTrainer:
         next_step_profile = False
 
         for epoch in range(current_epoch, self.config.trainer.total_epochs):
-            for batch_dict in self.train_dataloader:
+            for batch_index, batch_dict in enumerate(self.train_dataloader):
+                if epoch == current_epoch and batch_index < resume_skip_batches:
+                    continue
                 if hasattr(self.actor_rollout_wg, "async_calls_finalize_fn_exec"):
                     self.actor_rollout_wg.async_calls_finalize_fn_exec(blocking=False)
                 metrics = {}
@@ -1320,6 +1371,14 @@ class RayPPOTrainer:
                     )
                 batch: DataProto = DataProto.from_single_dict(batch_dict)
                 batch.meta_info["temperature"] = self.config.actor_rollout_ref.rollout.temperature
+
+                if self.static_gradient_extraction:
+                    original_batch_size = len(batch)
+                    actor_dp_size = int(self.config.trainer.n_gpus_per_node) * int(self.config.trainer.nnodes)
+                    batch, _pad_size = pad_dataproto_to_divisor(batch, actor_dp_size)
+                    padding_flags = np.zeros(len(batch), dtype=np.bool_)
+                    padding_flags[original_batch_size:] = True
+                    batch.non_tensor_batch["static_gradient_is_padding"] = padding_flags
 
                 # add uid to batch
                 batch.non_tensor_batch["uid"] = np.array(
@@ -1423,7 +1482,7 @@ class RayPPOTrainer:
                     #   Note: π_old computed once per data batch, serves as stable reference during mini-batch updates
                     rollout_corr_config = self.config.algorithm.get("rollout_correction", None)
                     bypass_recomputing_logprobs = rollout_corr_config and rollout_corr_config.get("bypass_mode", False)
-                    if bypass_recomputing_logprobs:  # Use `rollout_log_probs`
+                    if bypass_recomputing_logprobs and not self.static_gradient_extraction:
                         from verl.trainer.ppo.rollout_corr_helper import apply_bypass_mode
 
                         apply_bypass_mode(
@@ -1431,7 +1490,7 @@ class RayPPOTrainer:
                             rollout_corr_config=rollout_corr_config,
                             policy_loss_config=self.config.actor_rollout_ref.actor.policy_loss,
                         )
-                    else:  # Recompute old_log_probs
+                    elif not self.static_gradient_extraction:
                         with marked_timer("old_log_prob", timing_raw, color="blue"):
                             old_log_prob, old_log_prob_mfu = self._compute_old_log_prob(batch)
                             entropys = old_log_prob.batch["entropys"]
@@ -1456,7 +1515,8 @@ class RayPPOTrainer:
 
                                 metrics.update(calculate_debug_metrics(batch))
 
-                    assert "old_log_probs" in batch.batch, f'"old_log_prob" not in {batch.batch.keys()=}'
+                    if not self.static_gradient_extraction:
+                        assert "old_log_probs" in batch.batch, f'"old_log_prob" not in {batch.batch.keys()=}'
 
                     if self.use_reference_policy:
                         # compute reference log_prob
@@ -1496,6 +1556,7 @@ class RayPPOTrainer:
                             rollout_corr_config is not None
                             and "rollout_log_probs" in batch.batch
                             and not bypass_recomputing_logprobs  # Only in decoupled mode
+                            and not self.static_gradient_extraction
                         ):
                             from verl.trainer.ppo.rollout_corr_helper import compute_rollout_correction_and_add_to_batch
 

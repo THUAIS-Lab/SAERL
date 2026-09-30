@@ -129,3 +129,8 @@ datagen:
 
 # Additional kwargs when calling tokenizer.apply_chat_template
 apply_chat_template_kwargs: {}
+
+# saerl config
+saerl:
+  enable: False
+  processed_file: null

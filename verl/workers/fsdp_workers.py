@@ -814,6 +814,9 @@ class ActorRolloutRefWorker(Worker, DistProfilerExtension):
         if self._is_rollout:
             self._build_rollout(trust_remote_code=self.config.model.get("trust_remote_code", False))
 
+        if self._is_actor and self.config.get("static_gradient_extraction", {}).get("enable", False):
+            self.actor.enable_static_gradient_extraction(self.config.static_gradient_extraction)
+
         if self._is_ref:
             ref_model_path = self.config.model.path
             ref_model = self.config.ref.get("model", None)
@@ -890,7 +893,8 @@ class ActorRolloutRefWorker(Worker, DistProfilerExtension):
 
             lr = self.actor_lr_scheduler.get_last_lr()[0]
             metrics["actor/lr"] = lr.item() if torch.is_tensor(lr) else lr
-            self.actor_lr_scheduler.step()
+            if not self.actor.static_gradient_extraction_enabled:
+                self.actor_lr_scheduler.step()
 
             # TODO: here, we should return all metrics
             output = DataProto(meta_info={"metrics": metrics})
