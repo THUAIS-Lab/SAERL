@@ -1,0 +1,1 @@
+bash /home/dz/SAERL/grpo_baseline/grpo.sh $@

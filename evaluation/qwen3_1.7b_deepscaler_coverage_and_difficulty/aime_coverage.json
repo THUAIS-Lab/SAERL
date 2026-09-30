@@ -1,0 +1,226 @@
+[
+  {
+    "accuracy": 0.2125,
+    "correct": 51,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/coverage/global_step_10/merged_hf_model",
+    "timestamp": "2026-02-06T13:00:23.893795"
+  },
+  {
+    "accuracy": 0.275,
+    "correct": 66,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/coverage/global_step_100/merged_hf_model",
+    "timestamp": "2026-02-06T13:06:17.418893"
+  },
+  {
+    "accuracy": 0.23333333333333334,
+    "correct": 56,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/coverage/global_step_110/merged_hf_model",
+    "timestamp": "2026-02-06T13:51:33.036666"
+  },
+  {
+    "accuracy": 0.25833333333333336,
+    "correct": 62,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/coverage/global_step_120/merged_hf_model",
+    "timestamp": "2026-02-06T13:44:32.484748"
+  },
+  {
+    "accuracy": 0.25,
+    "correct": 60,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/coverage/global_step_130/merged_hf_model",
+    "timestamp": "2026-02-06T13:23:05.651418"
+  },
+  {
+    "accuracy": 0.275,
+    "correct": 66,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/coverage/global_step_140/merged_hf_model",
+    "timestamp": "2026-02-06T13:10:54.380204"
+  },
+  {
+    "accuracy": 0.29583333333333334,
+    "correct": 71,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/coverage/global_step_150/merged_hf_model",
+    "timestamp": "2026-02-06T13:30:10.075133"
+  },
+  {
+    "accuracy": 0.30416666666666664,
+    "correct": 73,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/coverage/global_step_160/merged_hf_model",
+    "timestamp": "2026-02-06T13:37:52.101657"
+  },
+  {
+    "accuracy": 0.24583333333333332,
+    "correct": 59,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/coverage/global_step_170/merged_hf_model",
+    "timestamp": "2026-02-06T13:18:01.850965"
+  },
+  {
+    "accuracy": 0.30833333333333335,
+    "correct": 74,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/coverage/global_step_180/merged_hf_model",
+    "timestamp": "2026-02-06T13:11:25.337451"
+  },
+  {
+    "accuracy": 0.2375,
+    "correct": 57,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/coverage/global_step_190/merged_hf_model",
+    "timestamp": "2026-02-06T13:16:50.888495"
+  },
+  {
+    "accuracy": 0.22083333333333333,
+    "correct": 53,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/coverage/global_step_20/merged_hf_model",
+    "timestamp": "2026-02-06T13:18:05.067975"
+  },
+  {
+    "accuracy": 0.26666666666666666,
+    "correct": 64,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/coverage/global_step_200/merged_hf_model",
+    "timestamp": "2026-02-06T12:59:12.472895"
+  },
+  {
+    "accuracy": 0.25416666666666665,
+    "correct": 61,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/coverage/global_step_210/merged_hf_model",
+    "timestamp": "2026-02-06T13:36:47.783034"
+  },
+  {
+    "accuracy": 0.275,
+    "correct": 66,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/coverage/global_step_220/merged_hf_model",
+    "timestamp": "2026-02-06T13:04:59.661215"
+  },
+  {
+    "accuracy": 0.275,
+    "correct": 66,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/coverage/global_step_230/merged_hf_model",
+    "timestamp": "2026-02-06T13:05:38.673675"
+  },
+  {
+    "accuracy": 0.24583333333333332,
+    "correct": 59,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/coverage/global_step_240/merged_hf_model",
+    "timestamp": "2026-02-06T13:24:39.009952"
+  },
+  {
+    "accuracy": 0.24166666666666667,
+    "correct": 58,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/coverage/global_step_250/merged_hf_model",
+    "timestamp": "2026-02-06T13:12:04.650037"
+  },
+  {
+    "accuracy": 0.2708333333333333,
+    "correct": 65,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/coverage/global_step_260/merged_hf_model",
+    "timestamp": "2026-02-06T13:30:57.037488"
+  },
+  {
+    "accuracy": 0.2625,
+    "correct": 63,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/coverage/global_step_270/merged_hf_model",
+    "timestamp": "2026-02-06T13:50:41.235000"
+  },
+  {
+    "accuracy": 0.23333333333333334,
+    "correct": 56,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/coverage/global_step_280/merged_hf_model",
+    "timestamp": "2026-02-06T12:59:20.807336"
+  },
+  {
+    "accuracy": 0.22916666666666666,
+    "correct": 55,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/coverage/global_step_290/merged_hf_model",
+    "timestamp": "2026-02-06T13:44:12.518850"
+  },
+  {
+    "accuracy": 0.2125,
+    "correct": 51,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/coverage/global_step_30/merged_hf_model",
+    "timestamp": "2026-02-06T13:11:18.207985"
+  },
+  {
+    "accuracy": 0.2125,
+    "correct": 51,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/coverage/global_step_300/merged_hf_model",
+    "timestamp": "2026-02-06T13:17:22.293030"
+  },
+  {
+    "accuracy": 0.22916666666666666,
+    "correct": 55,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/coverage/global_step_310/merged_hf_model",
+    "timestamp": "2026-02-06T13:24:35.457674"
+  },
+  {
+    "accuracy": 0.2708333333333333,
+    "correct": 65,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/coverage/global_step_320/merged_hf_model",
+    "timestamp": "2026-02-06T13:04:49.074496"
+  },
+  {
+    "accuracy": 0.22916666666666666,
+    "correct": 55,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/coverage/global_step_40/merged_hf_model",
+    "timestamp": "2026-02-06T12:59:59.734579"
+  },
+  {
+    "accuracy": 0.24583333333333332,
+    "correct": 59,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/coverage/global_step_50/merged_hf_model",
+    "timestamp": "2026-02-06T13:51:00.917507"
+  },
+  {
+    "accuracy": 0.2791666666666667,
+    "correct": 67,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/coverage/global_step_60/merged_hf_model",
+    "timestamp": "2026-02-06T13:43:49.458037"
+  },
+  {
+    "accuracy": 0.2791666666666667,
+    "correct": 67,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/coverage/global_step_70/merged_hf_model",
+    "timestamp": "2026-02-06T13:23:39.591014"
+  },
+  {
+    "accuracy": 0.2833333333333333,
+    "correct": 68,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/coverage/global_step_80/merged_hf_model",
+    "timestamp": "2026-02-06T13:37:49.699101"
+  },
+  {
+    "accuracy": 0.26666666666666666,
+    "correct": 64,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/coverage/global_step_90/merged_hf_model",
+    "timestamp": "2026-02-06T13:31:16.206069"
+  }
+]

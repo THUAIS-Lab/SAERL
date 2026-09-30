@@ -1,0 +1,98 @@
+[
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/grpo/global_step_0/merged_hf_model",
+    "accuracy": 0.3707280832095097
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/grpo/global_step_10/merged_hf_model",
+    "accuracy": 0.36311292719167904
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/grpo/global_step_20/merged_hf_model",
+    "accuracy": 0.3664561664190193
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/grpo/global_step_30/merged_hf_model",
+    "accuracy": 0.3610698365527489
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/grpo/global_step_40/merged_hf_model",
+    "accuracy": 0.36589895988112925
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/grpo/global_step_50/merged_hf_model",
+    "accuracy": 0.36701337295690933
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/grpo/global_step_60/merged_hf_model",
+    "accuracy": 0.36069836552748885
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/grpo/global_step_70/merged_hf_model",
+    "accuracy": 0.3640416047548291
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/grpo/global_step_80/merged_hf_model",
+    "accuracy": 0.3664561664190193
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/grpo/global_step_90/merged_hf_model",
+    "accuracy": 0.3610698365527489
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/grpo/global_step_100/merged_hf_model",
+    "accuracy": 0.3562407132243685
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/grpo/global_step_110/merged_hf_model",
+    "accuracy": 0.3636701337295691
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/grpo/global_step_120/merged_hf_model",
+    "accuracy": 0.3699851411589896
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/grpo/global_step_130/merged_hf_model",
+    "accuracy": 0.36478454680534916
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/grpo/global_step_140/merged_hf_model",
+    "accuracy": 0.3699851411589896
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/grpo/global_step_150/merged_hf_model",
+    "accuracy": 0.3649702823179792
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/grpo/global_step_160/merged_hf_model",
+    "accuracy": 0.362369985141159
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/grpo/global_step_170/merged_hf_model",
+    "accuracy": 0.3684992570579495
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/grpo/global_step_180/merged_hf_model",
+    "accuracy": 0.3664561664190193
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/grpo/global_step_190/merged_hf_model",
+    "accuracy": 0.36459881129271915
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/grpo/global_step_200/merged_hf_model",
+    "accuracy": 0.3662704309063893
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/grpo/global_step_210/merged_hf_model",
+    "accuracy": 0.36571322436849923
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/grpo/global_step_220/merged_hf_model",
+    "accuracy": 0.36794205052005946
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/grpo/global_step_230/merged_hf_model",
+    "accuracy": 0.37407132243684993
+  }
+]

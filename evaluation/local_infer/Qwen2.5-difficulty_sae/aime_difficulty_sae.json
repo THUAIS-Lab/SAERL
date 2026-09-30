@@ -1,0 +1,226 @@
+[
+  {
+    "accuracy": 0.1125,
+    "correct": 27,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/qwen2_5/difficulty_sae/global_step_10/merged_hf_model",
+    "timestamp": "2026-02-11T18:58:20.504309"
+  },
+  {
+    "accuracy": 0.10833333333333334,
+    "correct": 26,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/qwen2_5/difficulty_sae/global_step_100/merged_hf_model",
+    "timestamp": "2026-02-11T15:30:36.430504"
+  },
+  {
+    "accuracy": 0.12083333333333333,
+    "correct": 29,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/qwen2_5/difficulty_sae/global_step_110/merged_hf_model",
+    "timestamp": "2026-02-11T15:32:31.967146"
+  },
+  {
+    "accuracy": 0.12083333333333333,
+    "correct": 29,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/qwen2_5/difficulty_sae/global_step_120/merged_hf_model",
+    "timestamp": "2026-02-11T15:31:33.487908"
+  },
+  {
+    "accuracy": 0.12916666666666668,
+    "correct": 31,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/qwen2_5/difficulty_sae/global_step_130/merged_hf_model",
+    "timestamp": "2026-02-11T15:37:24.561344"
+  },
+  {
+    "accuracy": 0.0875,
+    "correct": 21,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/qwen2_5/difficulty_sae/global_step_140/merged_hf_model",
+    "timestamp": "2026-02-11T15:37:12.947482"
+  },
+  {
+    "accuracy": 0.1125,
+    "correct": 27,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/qwen2_5/difficulty_sae/global_step_150/merged_hf_model",
+    "timestamp": "2026-02-11T18:58:58.853192"
+  },
+  {
+    "accuracy": 0.1,
+    "correct": 24,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/qwen2_5/difficulty_sae/global_step_160/merged_hf_model",
+    "timestamp": "2026-02-11T19:34:24.317609"
+  },
+  {
+    "accuracy": 0.12083333333333333,
+    "correct": 29,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/qwen2_5/difficulty_sae/global_step_170/merged_hf_model",
+    "timestamp": "2026-02-11T15:30:35.907646"
+  },
+  {
+    "accuracy": 0.11666666666666667,
+    "correct": 28,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/qwen2_5/difficulty_sae/global_step_180/merged_hf_model",
+    "timestamp": "2026-02-11T20:01:39.830448"
+  },
+  {
+    "accuracy": 0.1125,
+    "correct": 27,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/qwen2_5/difficulty_sae/global_step_190/merged_hf_model",
+    "timestamp": "2026-02-11T15:37:21.784804"
+  },
+  {
+    "accuracy": 0.09166666666666666,
+    "correct": 22,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/qwen2_5/difficulty_sae/global_step_20/merged_hf_model",
+    "timestamp": "2026-02-11T15:35:18.978789"
+  },
+  {
+    "accuracy": 0.10833333333333334,
+    "correct": 26,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/qwen2_5/difficulty_sae/global_step_200/merged_hf_model",
+    "timestamp": "2026-02-11T15:34:26.932057"
+  },
+  {
+    "accuracy": 0.12083333333333333,
+    "correct": 29,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/qwen2_5/difficulty_sae/global_step_210/merged_hf_model",
+    "timestamp": "2026-02-11T15:33:29.402985"
+  },
+  {
+    "accuracy": 0.125,
+    "correct": 30,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/qwen2_5/difficulty_sae/global_step_220/merged_hf_model",
+    "timestamp": "2026-02-11T15:37:22.120361"
+  },
+  {
+    "accuracy": 0.12083333333333333,
+    "correct": 29,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/qwen2_5/difficulty_sae/global_step_230/merged_hf_model",
+    "timestamp": "2026-02-11T19:34:23.664864"
+  },
+  {
+    "accuracy": 0.1,
+    "correct": 24,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/qwen2_5/difficulty_sae/global_step_240/merged_hf_model",
+    "timestamp": "2026-02-11T15:35:25.958386"
+  },
+  {
+    "accuracy": 0.12083333333333333,
+    "correct": 29,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/qwen2_5/difficulty_sae/global_step_250/merged_hf_model",
+    "timestamp": "2026-02-11T18:58:21.403102"
+  },
+  {
+    "accuracy": 0.1125,
+    "correct": 27,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/qwen2_5/difficulty_sae/global_step_260/merged_hf_model",
+    "timestamp": "2026-02-11T15:35:26.022541"
+  },
+  {
+    "accuracy": 0.09166666666666666,
+    "correct": 22,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/qwen2_5/difficulty_sae/global_step_270/merged_hf_model",
+    "timestamp": "2026-02-11T18:59:38.477505"
+  },
+  {
+    "accuracy": 0.10416666666666667,
+    "correct": 25,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/qwen2_5/difficulty_sae/global_step_280/merged_hf_model",
+    "timestamp": "2026-02-11T15:36:25.311151"
+  },
+  {
+    "accuracy": 0.1125,
+    "correct": 27,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/qwen2_5/difficulty_sae/global_step_290/merged_hf_model",
+    "timestamp": "2026-02-11T15:36:16.063618"
+  },
+  {
+    "accuracy": 0.11666666666666667,
+    "correct": 28,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/qwen2_5/difficulty_sae/global_step_30/merged_hf_model",
+    "timestamp": "2026-02-11T19:35:09.265737"
+  },
+  {
+    "accuracy": 0.11666666666666667,
+    "correct": 28,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/qwen2_5/difficulty_sae/global_step_300/merged_hf_model",
+    "timestamp": "2026-02-11T18:58:59.949366"
+  },
+  {
+    "accuracy": 0.125,
+    "correct": 30,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/qwen2_5/difficulty_sae/global_step_310/merged_hf_model",
+    "timestamp": "2026-02-11T15:31:34.727964"
+  },
+  {
+    "accuracy": 0.1125,
+    "correct": 27,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/qwen2_5/difficulty_sae/global_step_320/merged_hf_model",
+    "timestamp": "2026-02-11T18:59:36.986263"
+  },
+  {
+    "accuracy": 0.10833333333333334,
+    "correct": 26,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/qwen2_5/difficulty_sae/global_step_40/merged_hf_model",
+    "timestamp": "2026-02-11T15:32:29.141645"
+  },
+  {
+    "accuracy": 0.10416666666666667,
+    "correct": 25,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/qwen2_5/difficulty_sae/global_step_50/merged_hf_model",
+    "timestamp": "2026-02-11T15:34:22.118165"
+  },
+  {
+    "accuracy": 0.10833333333333334,
+    "correct": 26,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/qwen2_5/difficulty_sae/global_step_60/merged_hf_model",
+    "timestamp": "2026-02-11T15:34:27.523452"
+  },
+  {
+    "accuracy": 0.12083333333333333,
+    "correct": 29,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/qwen2_5/difficulty_sae/global_step_70/merged_hf_model",
+    "timestamp": "2026-02-11T15:33:25.380975"
+  },
+  {
+    "accuracy": 0.11666666666666667,
+    "correct": 28,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/qwen2_5/difficulty_sae/global_step_80/merged_hf_model",
+    "timestamp": "2026-02-11T15:36:23.894049"
+  },
+  {
+    "accuracy": 0.10416666666666667,
+    "correct": 25,
+    "total": 240,
+    "model_path": "/data/daiz/ckpt/saerl/qwen2_5/difficulty_sae/global_step_90/merged_hf_model",
+    "timestamp": "2026-02-11T19:34:21.922049"
+  }
+]

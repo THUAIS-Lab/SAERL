@@ -1,0 +1,317 @@
+[
+  {
+    "accuracy": 0.832,
+    "correct": 416,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_100/merged_hf_model",
+    "timestamp": "2026-09-15T10:24:46.450192"
+  },
+  {
+    "accuracy": 0.844,
+    "correct": 422,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_120/merged_hf_model",
+    "timestamp": "2026-09-15T10:35:15.114552"
+  },
+  {
+    "accuracy": 0.85,
+    "correct": 425,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_140/merged_hf_model",
+    "timestamp": "2026-09-15T10:27:56.163605"
+  },
+  {
+    "accuracy": 0.83,
+    "correct": 415,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_160/merged_hf_model",
+    "timestamp": "2026-09-15T10:14:49.745754"
+  },
+  {
+    "accuracy": 0.832,
+    "correct": 416,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_180/merged_hf_model",
+    "timestamp": "2026-09-15T10:04:06.060358"
+  },
+  {
+    "accuracy": 0.818,
+    "correct": 409,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_20/merged_hf_model",
+    "timestamp": "2026-09-15T10:32:33.547478"
+  },
+  {
+    "accuracy": 0.84,
+    "correct": 420,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_200/merged_hf_model",
+    "timestamp": "2026-09-15T10:14:29.617906"
+  },
+  {
+    "accuracy": 0.84,
+    "correct": 420,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_220/merged_hf_model",
+    "timestamp": "2026-09-15T10:00:42.983571"
+  },
+  {
+    "accuracy": 0.842,
+    "correct": 421,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_240/merged_hf_model",
+    "timestamp": "2026-09-15T10:17:56.059096"
+  },
+  {
+    "accuracy": 0.844,
+    "correct": 422,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_260/merged_hf_model",
+    "timestamp": "2026-09-15T09:57:12.467695"
+  },
+  {
+    "accuracy": 0.846,
+    "correct": 423,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_280/merged_hf_model",
+    "timestamp": "2026-09-15T10:07:29.016809"
+  },
+  {
+    "accuracy": 0.852,
+    "correct": 426,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_300/merged_hf_model",
+    "timestamp": "2026-09-15T10:25:16.836395"
+  },
+  {
+    "accuracy": 0.842,
+    "correct": 421,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_320/merged_hf_model",
+    "timestamp": "2026-09-15T10:10:47.636200"
+  },
+  {
+    "accuracy": 0.84,
+    "correct": 420,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_340/merged_hf_model",
+    "timestamp": "2026-09-15T10:00:42.955149"
+  },
+  {
+    "accuracy": 0.838,
+    "correct": 419,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_360/merged_hf_model",
+    "timestamp": "2026-09-15T10:21:50.791860"
+  },
+  {
+    "accuracy": 0.83,
+    "correct": 415,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_380/merged_hf_model",
+    "timestamp": "2026-09-15T10:28:37.994271"
+  },
+  {
+    "accuracy": 0.816,
+    "correct": 408,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_40/merged_hf_model",
+    "timestamp": "2026-09-15T10:24:35.252831"
+  },
+  {
+    "accuracy": 0.848,
+    "correct": 424,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_400/merged_hf_model",
+    "timestamp": "2026-09-15T09:57:07.283768"
+  },
+  {
+    "accuracy": 0.836,
+    "correct": 418,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_420/merged_hf_model",
+    "timestamp": "2026-09-15T10:04:07.177195"
+  },
+  {
+    "accuracy": 0.84,
+    "correct": 420,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_440/merged_hf_model",
+    "timestamp": "2026-09-15T10:27:57.933394"
+  },
+  {
+    "accuracy": 0.852,
+    "correct": 426,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_460/merged_hf_model",
+    "timestamp": "2026-09-15T10:07:28.603069"
+  },
+  {
+    "accuracy": 0.862,
+    "correct": 431,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_480/merged_hf_model",
+    "timestamp": "2026-09-15T10:00:30.317334"
+  },
+  {
+    "accuracy": 0.84,
+    "correct": 420,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_500/merged_hf_model",
+    "timestamp": "2026-09-15T10:00:21.331003"
+  },
+  {
+    "accuracy": 0.842,
+    "correct": 421,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_520/merged_hf_model",
+    "timestamp": "2026-09-15T09:57:00.308532"
+  },
+  {
+    "accuracy": 0.846,
+    "correct": 423,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_540/merged_hf_model",
+    "timestamp": "2026-09-15T10:14:07.988261"
+  },
+  {
+    "accuracy": 0.844,
+    "correct": 422,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_560/merged_hf_model",
+    "timestamp": "2026-09-15T10:07:24.470013"
+  },
+  {
+    "accuracy": 0.846,
+    "correct": 423,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_580/merged_hf_model",
+    "timestamp": "2026-09-15T10:28:02.996621"
+  },
+  {
+    "accuracy": 0.83,
+    "correct": 415,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_60/merged_hf_model",
+    "timestamp": "2026-09-15T10:18:30.353216"
+  },
+  {
+    "accuracy": 0.836,
+    "correct": 418,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_600/merged_hf_model",
+    "timestamp": "2026-09-15T10:20:49.146129"
+  },
+  {
+    "accuracy": 0.836,
+    "correct": 418,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_620/merged_hf_model",
+    "timestamp": "2026-09-15T10:24:24.818959"
+  },
+  {
+    "accuracy": 0.842,
+    "correct": 421,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_640/merged_hf_model",
+    "timestamp": "2026-09-15T10:17:28.519262"
+  },
+  {
+    "accuracy": 0.838,
+    "correct": 419,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_660/merged_hf_model",
+    "timestamp": "2026-09-15T10:31:12.810367"
+  },
+  {
+    "accuracy": 0.828,
+    "correct": 414,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_680/merged_hf_model",
+    "timestamp": "2026-09-15T10:21:11.024451"
+  },
+  {
+    "accuracy": 0.838,
+    "correct": 419,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_700/merged_hf_model",
+    "timestamp": "2026-09-15T10:04:02.888140"
+  },
+  {
+    "accuracy": 0.828,
+    "correct": 414,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_720/merged_hf_model",
+    "timestamp": "2026-09-15T10:07:13.650114"
+  },
+  {
+    "accuracy": 0.848,
+    "correct": 424,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_740/merged_hf_model",
+    "timestamp": "2026-09-15T09:57:14.475883"
+  },
+  {
+    "accuracy": 0.84,
+    "correct": 420,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_760/merged_hf_model",
+    "timestamp": "2026-09-15T10:21:11.681574"
+  },
+  {
+    "accuracy": 0.824,
+    "correct": 412,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_780/merged_hf_model",
+    "timestamp": "2026-09-15T10:14:08.218078"
+  },
+  {
+    "accuracy": 0.83,
+    "correct": 415,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_80/merged_hf_model",
+    "timestamp": "2026-09-15T10:11:12.683265"
+  },
+  {
+    "accuracy": 0.828,
+    "correct": 414,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_800/merged_hf_model",
+    "timestamp": "2026-09-15T10:03:52.690412"
+  },
+  {
+    "accuracy": 0.83,
+    "correct": 415,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_820/merged_hf_model",
+    "timestamp": "2026-09-15T10:31:33.432142"
+  },
+  {
+    "accuracy": 0.836,
+    "correct": 418,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_840/merged_hf_model",
+    "timestamp": "2026-09-15T10:17:41.291038"
+  },
+  {
+    "accuracy": 0.824,
+    "correct": 412,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_860/merged_hf_model",
+    "timestamp": "2026-09-15T10:10:45.761351"
+  },
+  {
+    "accuracy": 0.82,
+    "correct": 410,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_880/merged_hf_model",
+    "timestamp": "2026-09-15T10:31:19.943013"
+  },
+  {
+    "accuracy": 0.832,
+    "correct": 416,
+    "total": 500,
+    "model_path": "/WORK/PUBLIC/lijuanzi1_work/dz/ckpt/Qwen2.5-Math-1.5B/sorted_deepmath128/learnalign/learnalign_top_44510/global_step_900/merged_hf_model",
+    "timestamp": "2026-09-15T10:10:53.508435"
+  }
+]

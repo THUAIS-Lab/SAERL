@@ -1,0 +1,98 @@
+[
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/difficulty_baseline/global_step_0/merged_hf_model",
+    "accuracy": 0.3972222222222222
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/difficulty_baseline/global_step_10/merged_hf_model",
+    "accuracy": 0.40574074074074074
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/difficulty_baseline/global_step_20/merged_hf_model",
+    "accuracy": 0.4059259259259259
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/difficulty_baseline/global_step_30/merged_hf_model",
+    "accuracy": 0.4074074074074074
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/difficulty_baseline/global_step_40/merged_hf_model",
+    "accuracy": 0.41833333333333333
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/difficulty_baseline/global_step_50/merged_hf_model",
+    "accuracy": 0.42018518518518516
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/difficulty_baseline/global_step_60/merged_hf_model",
+    "accuracy": 0.41962962962962963
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/difficulty_baseline/global_step_70/merged_hf_model",
+    "accuracy": 0.4255555555555556
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/difficulty_baseline/global_step_80/merged_hf_model",
+    "accuracy": 0.4203703703703704
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/difficulty_baseline/global_step_90/merged_hf_model",
+    "accuracy": 0.42148148148148146
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/difficulty_baseline/global_step_100/merged_hf_model",
+    "accuracy": 0.4272222222222222
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/difficulty_baseline/global_step_110/merged_hf_model",
+    "accuracy": 0.43703703703703706
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/difficulty_baseline/global_step_120/merged_hf_model",
+    "accuracy": 0.43555555555555553
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/difficulty_baseline/global_step_130/merged_hf_model",
+    "accuracy": 0.4362962962962963
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/difficulty_baseline/global_step_140/merged_hf_model",
+    "accuracy": 0.4425925925925926
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/difficulty_baseline/global_step_150/merged_hf_model",
+    "accuracy": 0.44407407407407407
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/difficulty_baseline/global_step_160/merged_hf_model",
+    "accuracy": 0.4477777777777778
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/difficulty_baseline/global_step_170/merged_hf_model",
+    "accuracy": 0.4464814814814815
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/difficulty_baseline/global_step_180/merged_hf_model",
+    "accuracy": 0.45
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/difficulty_baseline/global_step_190/merged_hf_model",
+    "accuracy": 0.45444444444444443
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/difficulty_baseline/global_step_200/merged_hf_model",
+    "accuracy": 0.45537037037037037
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/difficulty_baseline/global_step_210/merged_hf_model",
+    "accuracy": 0.4564814814814815
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/difficulty_baseline/global_step_220/merged_hf_model",
+    "accuracy": 0.45185185185185184
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/difficulty_baseline/global_step_220/merged_hf_model",
+    "accuracy": 0.45185185185185184
+  }
+]

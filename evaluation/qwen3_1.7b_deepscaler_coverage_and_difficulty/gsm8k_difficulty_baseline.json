@@ -1,0 +1,18 @@
+[
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/difficulty_baseline/global_step_0/merged_hf_model",
+    "accuracy": 0.0014215314632297195
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/difficulty_baseline/global_step_10/merged_hf_model",
+    "accuracy": 0.0032221379833206974
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/difficulty_baseline/global_step_20/merged_hf_model",
+    "accuracy": 0.002084912812736922
+  },
+  {
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/difficulty_baseline/global_step_30/merged_hf_model",
+    "accuracy": 0.0032221379833206974
+  }
+]

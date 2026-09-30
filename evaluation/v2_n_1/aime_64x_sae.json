@@ -1,0 +1,226 @@
+[
+  {
+    "accuracy": 0.26197916666666665,
+    "correct": 503,
+    "total": 1920,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/sae_global_metric_v2/global_step_10/merged_hf_model",
+    "timestamp": "2026-01-25T11:40:45.287918"
+  },
+  {
+    "accuracy": 0.3932291666666667,
+    "correct": 755,
+    "total": 1920,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/sae_global_metric_v2/global_step_100/merged_hf_model",
+    "timestamp": "2026-01-25T12:18:45.290260"
+  },
+  {
+    "accuracy": 0.3333333333333333,
+    "correct": 640,
+    "total": 1920,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/sae_global_metric_v2/global_step_250/merged_hf_model",
+    "timestamp": "2026-01-25T12:54:20.175475"
+  },
+  {
+    "accuracy": 0.23489583333333333,
+    "correct": 451,
+    "total": 1920,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/sae_global_metric_v2/global_step_170/merged_hf_model",
+    "timestamp": "2026-01-25T13:34:59.359823"
+  },
+  {
+    "accuracy": 0.23489583333333333,
+    "correct": 451,
+    "total": 1920,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/sae_global_metric_v2/global_step_310/merged_hf_model",
+    "timestamp": "2026-01-25T14:11:53.227165"
+  },
+  {
+    "accuracy": 0.30625,
+    "correct": 588,
+    "total": 1920,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/sae_global_metric_v2/global_step_90/merged_hf_model",
+    "timestamp": "2026-01-25T14:52:54.767009"
+  },
+  {
+    "accuracy": 0.2677083333333333,
+    "correct": 514,
+    "total": 1920,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/sae_global_metric_v2/global_step_160/merged_hf_model",
+    "timestamp": "2026-01-25T15:27:28.677046"
+  },
+  {
+    "accuracy": 0.2328125,
+    "correct": 447,
+    "total": 1920,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/sae_global_metric_v2/global_step_120/merged_hf_model",
+    "timestamp": "2026-01-25T16:06:08.103520"
+  },
+  {
+    "accuracy": 0.34010416666666665,
+    "correct": 653,
+    "total": 1920,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/sae_global_metric_v2/global_step_110/merged_hf_model",
+    "timestamp": "2026-01-25T16:44:24.838653"
+  },
+  {
+    "accuracy": 0.3729166666666667,
+    "correct": 716,
+    "total": 1920,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/sae_global_metric_v2/global_step_40/merged_hf_model",
+    "timestamp": "2026-01-25T17:23:56.660415"
+  },
+  {
+    "accuracy": 0.365625,
+    "correct": 702,
+    "total": 1920,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/sae_global_metric_v2/global_step_230/merged_hf_model",
+    "timestamp": "2026-01-25T17:58:47.610880"
+  },
+  {
+    "accuracy": 0.284375,
+    "correct": 546,
+    "total": 1920,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/sae_global_metric_v2/global_step_180/merged_hf_model",
+    "timestamp": "2026-01-25T18:36:04.694278"
+  },
+  {
+    "accuracy": 0.2390625,
+    "correct": 459,
+    "total": 1920,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/sae_global_metric_v2/global_step_300/merged_hf_model",
+    "timestamp": "2026-01-25T19:15:06.172209"
+  },
+  {
+    "accuracy": 0.2989583333333333,
+    "correct": 574,
+    "total": 1920,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/sae_global_metric_v2/global_step_70/merged_hf_model",
+    "timestamp": "2026-01-25T19:57:00.566716"
+  },
+  {
+    "accuracy": 0.3072916666666667,
+    "correct": 590,
+    "total": 1920,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/sae_global_metric_v2/global_step_150/merged_hf_model",
+    "timestamp": "2026-01-25T20:36:52.589352"
+  },
+  {
+    "accuracy": 0.3734375,
+    "correct": 717,
+    "total": 1920,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/sae_global_metric_v2/global_step_210/merged_hf_model",
+    "timestamp": "2026-01-25T21:11:43.848847"
+  },
+  {
+    "accuracy": 0.3541666666666667,
+    "correct": 680,
+    "total": 1920,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/sae_global_metric_v2/global_step_60/merged_hf_model",
+    "timestamp": "2026-01-25T21:52:54.489451"
+  },
+  {
+    "accuracy": 0.23020833333333332,
+    "correct": 442,
+    "total": 1920,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/sae_global_metric_v2/global_step_50/merged_hf_model",
+    "timestamp": "2026-01-25T22:35:18.279228"
+  },
+  {
+    "accuracy": 0.3421875,
+    "correct": 657,
+    "total": 1920,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/sae_global_metric_v2/global_step_200/merged_hf_model",
+    "timestamp": "2026-01-25T23:10:28.035914"
+  },
+  {
+    "accuracy": 0.3182291666666667,
+    "correct": 611,
+    "total": 1920,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/sae_global_metric_v2/global_step_320/merged_hf_model",
+    "timestamp": "2026-01-25T23:44:27.085167"
+  },
+  {
+    "accuracy": 0.2838541666666667,
+    "correct": 545,
+    "total": 1920,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/sae_global_metric_v2/global_step_30/merged_hf_model",
+    "timestamp": "2026-01-26T00:26:55.732299"
+  },
+  {
+    "accuracy": 0.30416666666666664,
+    "correct": 584,
+    "total": 1920,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/sae_global_metric_v2/global_step_20/merged_hf_model",
+    "timestamp": "2026-01-26T01:12:06.930493"
+  },
+  {
+    "accuracy": 0.3645833333333333,
+    "correct": 700,
+    "total": 1920,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/sae_global_metric_v2/global_step_240/merged_hf_model",
+    "timestamp": "2026-01-26T01:52:24.717287"
+  },
+  {
+    "accuracy": 0.3265625,
+    "correct": 627,
+    "total": 1920,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/sae_global_metric_v2/global_step_260/merged_hf_model",
+    "timestamp": "2026-01-26T02:27:08.945115"
+  },
+  {
+    "accuracy": 0.32760416666666664,
+    "correct": 629,
+    "total": 1920,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/sae_global_metric_v2/global_step_80/merged_hf_model",
+    "timestamp": "2026-01-26T03:06:20.238367"
+  },
+  {
+    "accuracy": 0.23177083333333334,
+    "correct": 445,
+    "total": 1920,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/sae_global_metric_v2/global_step_290/merged_hf_model",
+    "timestamp": "2026-01-26T03:43:13.475267"
+  },
+  {
+    "accuracy": 0.2682291666666667,
+    "correct": 515,
+    "total": 1920,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/sae_global_metric_v2/global_step_270/merged_hf_model",
+    "timestamp": "2026-01-26T04:17:11.141622"
+  },
+  {
+    "accuracy": 0.2328125,
+    "correct": 447,
+    "total": 1920,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/sae_global_metric_v2/global_step_280/merged_hf_model",
+    "timestamp": "2026-01-26T04:51:34.365443"
+  },
+  {
+    "accuracy": 0.37916666666666665,
+    "correct": 728,
+    "total": 1920,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/sae_global_metric_v2/global_step_220/merged_hf_model",
+    "timestamp": "2026-01-26T05:25:21.681299"
+  },
+  {
+    "accuracy": 0.37864583333333335,
+    "correct": 727,
+    "total": 1920,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/sae_global_metric_v2/global_step_140/merged_hf_model",
+    "timestamp": "2026-01-26T06:01:37.539383"
+  },
+  {
+    "accuracy": 0.32447916666666665,
+    "correct": 623,
+    "total": 1920,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/sae_global_metric_v2/global_step_190/merged_hf_model",
+    "timestamp": "2026-01-26T06:39:35.904193"
+  },
+  {
+    "accuracy": 0.2125,
+    "correct": 408,
+    "total": 1920,
+    "model_path": "/data/daiz/ckpt/saerl/BasicTest/sae_global_metric_v2/global_step_130/merged_hf_model",
+    "timestamp": "2026-01-26T07:19:19.469409"
+  }
+]
