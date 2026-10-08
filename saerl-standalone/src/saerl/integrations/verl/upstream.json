@@ -1,0 +1,13 @@
+{
+  "commit": "875788ef6e218d0b98cb64fff919d9fef014f986",
+  "version": "0.7.0.dev0",
+  "git_blobs": {
+    "trainer/main_ppo.py": "0f3935b5bfb1692f0161e3f21b5a0f7eea95c525",
+    "trainer/ppo/ray_trainer.py": "364d3a97a5afeabab9946473129eaf26317ac751",
+    "workers/fsdp_workers.py": "5328ad08864577e89c4758fb50024c2f42bbada6",
+    "workers/actor/dp_actor.py": "9efad34eb8590babee0f92ba1212de2d01cee569",
+    "utils/reward_score/__init__.py": "b65d94ec14dc8704d2f2939aca7a563e33a0485d",
+    "trainer/config/ppo_trainer.yaml": "7489b522fa22de75528cbc47ec768d1bb13fb92c",
+    "trainer/config/data/legacy_data.yaml": "60818f9e198e86266f51c5ac6c997fe73fe38300"
+  }
+}

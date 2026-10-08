@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "saerl"
+version = "0.1.0"
+description = "Static gradient SAE representations and data selection for RL"
+readme = "README.md"
+requires-python = ">=3.12"
+license = "Apache-2.0"
+dependencies = ["numpy>=1.26,<2", "pyarrow>=19", "scipy>=1.13"]
+
+[project.optional-dependencies]
+train = [
+  "verl @ git+https://github.com/verl-project/verl.git@875788ef6e218d0b98cb64fff919d9fef014f986",
+  "torch==2.8.0", "vllm==0.11.0", "flash-attn==2.8.1",
+  "safetensors>=0.4", "mathruler==0.1.0",
+]
+test = ["pytest>=8", "torch==2.8.0", "safetensors>=0.4", "hydra-core>=1.3", "ruff>=0.11"]
+
+[project.scripts]
+saerl-train = "saerl.train:main"
+saerl-extract = "saerl.extract:main"
+saerl-select = "saerl.select:main"
+saerl-feature-select = "saerl.feature_select:main"
+saerl-export-subset = "saerl.export_subset:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["saerl*"]
+
+[tool.setuptools.package-data]
+"saerl.config" = ["*.yaml"]
+"saerl.integrations.verl" = ["*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["integration: requires the pinned official verl installation"]
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]

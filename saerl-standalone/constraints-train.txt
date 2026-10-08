@@ -1,0 +1,13 @@
+# Reproduction constraints for the inspected Python 3.12 / CUDA 12.8 runtime.
+torch==2.8.0
+vllm==0.11.0
+flash-attn==2.8.1
+transformers==4.56.1
+ray==2.54.0
+tensordict==0.10.0
+torchdata==0.11.0
+numpy==1.26.4
+pyarrow==23.0.1
+scipy==1.17.1
+safetensors==0.7.0
+mathruler==0.1.0
