@@ -3,13 +3,8 @@ defaults:
   - _self_
 
 custom_reward_function:
-  path: pkg://saerl.rewards.dispatch
+  path: pkg://saerl.rewards.deepmath
   name: compute_score
-
-data:
-  saerl:
-    enable: false
-    processed_file: null
 
 static_gradient_extraction:
   enable: false
@@ -19,7 +14,6 @@ static_gradient_extraction:
   resume_from_step: null
   hookpoint: null
   sample_id_key: index
-  gradient_token_scope: attention
   projection_chunk_size: 32
   gradient_feature_topk: 128
   decoder_normalization: runtime_l2_normalized

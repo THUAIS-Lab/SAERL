@@ -9,7 +9,7 @@ description = "Static gradient SAE representations and data selection for RL"
 readme = "README.md"
 requires-python = ">=3.12"
 license = "Apache-2.0"
-dependencies = ["numpy>=1.26,<2", "pyarrow>=19", "scipy>=1.13"]
+dependencies = ["numpy>=1.26,<2", "pyarrow>=19"]
 
 [project.optional-dependencies]
 train = [
@@ -20,7 +20,7 @@ train = [
 
 [project.scripts]
 saerl-train = "saerl.train:main"
-saerl-extract = "saerl.extract:main"
+saerl-extract = "saerl.train:extract_main"
 saerl-select = "saerl.select:main"
 saerl-feature-select = "saerl.feature_select:main"
 saerl-export-subset = "saerl.export_subset:main"
@@ -30,14 +30,11 @@ package-dir = {saerl = "src"}
 packages = [
   "saerl",
   "saerl.config",
-  "saerl.data",
   "saerl.extraction",
   "saerl.integrations",
   "saerl.integrations.verl",
   "saerl.rewards",
   "saerl.selection",
-  "saerl.selection.features",
-  "saerl.selection.raw",
 ]
 
 [tool.setuptools.package-data]

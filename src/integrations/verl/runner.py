@@ -12,7 +12,6 @@ from verl.trainer.ppo.utils import Role, need_critic, need_reference_policy
 from verl.utils.config import validate_config
 
 from saerl.integrations.verl.config import prepare_static_gradient_extraction
-from saerl.integrations.verl.sampler import SAERLSampler
 from saerl.integrations.verl.trainer import StaticGradientTrainer
 
 
@@ -117,11 +116,7 @@ class SAERLTaskRunner(TaskRunner):
             is_train=False,
             max_samples=config.data.get("val_max_samples", -1),
         )
-        train_sampler = (
-            SAERLSampler(train_dataset, config.data)
-            if config.data.saerl.enable
-            else create_rl_sampler(config.data, train_dataset)
-        )
+        train_sampler = create_rl_sampler(config.data, train_dataset)
 
         # Initialize the PPO trainer.
         trainer_cls = StaticGradientTrainer if config.static_gradient_extraction.enable else RayPPOTrainer

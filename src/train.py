@@ -25,5 +25,9 @@ def main():
     launch("train")
 
 
+def extract_main():
+    launch("extract")
+
+
 if __name__ == "__main__":
     main()

@@ -1,8 +1,7 @@
-"""Static layer-gradient processing and OpenSAE decoder representations.
+"""Captured layer-output gradients to signed Token-TopK response-mean SAE values.
 
-The actor owns the backward hook and passes the captured tensor here. Each
-rollout is projected once and pooled into dense and token-TopK prompt/response
-branches before equal-weight rollout averaging.
+Average all valid response tokens first, then average rollouts with equal
+weight. Absolute values are applied later, after shared feature projection.
 """
 
 from __future__ import annotations
@@ -21,45 +20,17 @@ import torch
 
 
 def gradient_sae_schema() -> pa.Schema:
-    """Sample-level raw-gradient, dense SAE, and sparse token-TopK schema."""
+    """Sample-level Token-TopK response means and rollout rewards."""
     return pa.schema(
         [
             ("sample_id", pa.int64()),
             ("prompt_len_tok", pa.int64()),
             ("reward_mean", pa.float32()),
-            ("raw_grad_vals", pa.list_(pa.float32())),
-            ("dense_grad_feat_vals", pa.list_(pa.float32())),
-            ("topk_prompt_feat_ids", pa.list_(pa.int64())),
-            ("topk_prompt_feat_mean", pa.list_(pa.float32())),
-            ("topk_prompt_feat_signed_peak", pa.list_(pa.float32())),
             ("topk_response_feat_ids", pa.list_(pa.int64())),
             ("topk_response_feat_mean", pa.list_(pa.float32())),
-            ("topk_response_feat_signed_peak", pa.list_(pa.float32())),
-            ("zero_signal_dense", pa.bool_()),
             ("zero_signal_token_topk", pa.bool_()),
         ]
     )
-
-
-def materialize_topk_4f(row: dict[str, Any], feature_size: int) -> torch.Tensor:
-    """Restore one sparse token-TopK row to its logical four-channel vector."""
-    out = torch.zeros(4 * int(feature_size), dtype=torch.float32)
-    prompt_ids = torch.as_tensor(row["topk_prompt_feat_ids"], dtype=torch.long)
-    response_ids = torch.as_tensor(row["topk_response_feat_ids"], dtype=torch.long)
-    out[prompt_ids] = torch.as_tensor(row["topk_prompt_feat_mean"], dtype=torch.float32)
-    out[feature_size + prompt_ids] = torch.as_tensor(row["topk_prompt_feat_signed_peak"], dtype=torch.float32)
-    out[2 * feature_size + response_ids] = torch.as_tensor(row["topk_response_feat_mean"], dtype=torch.float32)
-    out[3 * feature_size + response_ids] = torch.as_tensor(row["topk_response_feat_signed_peak"], dtype=torch.float32)
-    return out
-
-
-def materialize_raw_gradient_4h(row: dict[str, Any], hidden_size: int) -> torch.Tensor:
-    """Restore and validate one dense raw-gradient baseline row."""
-    out = torch.as_tensor(row["raw_grad_vals"], dtype=torch.float32)
-    expected_size = 4 * int(hidden_size)
-    if out.numel() != expected_size:
-        raise ValueError(f"Expected raw gradient representation size {expected_size}, got {out.numel()}")
-    return out
 
 
 @dataclass(frozen=True)
@@ -72,14 +43,9 @@ class DecoderSpec:
 
 @dataclass(frozen=True)
 class SpanProjection:
-    """Per-rollout token pooling results for one prompt or response span."""
+    """Signed Token-TopK response mean and the union of token feature IDs."""
 
-    raw_mean: torch.Tensor
-    raw_signed_peak: torch.Tensor
-    dense_mean: torch.Tensor
-    dense_signed_peak: torch.Tensor
     topk_mean: torch.Tensor
-    topk_signed_peak: torch.Tensor
     topk_support: torch.Tensor
 
 
@@ -145,7 +111,7 @@ def read_decoder_spec(sae_path: str | Path) -> DecoderSpec:
 
 
 class SaeDecoderProjector:
-    """Load ``W_dec`` and pool dense plus token-TopK signed projections."""
+    """Load ``W_dec`` and pool signed Token-TopK response projections."""
 
     def __init__(
         self,
@@ -207,68 +173,18 @@ class SaeDecoderProjector:
             "max": float(norms.max().item()),
         }
 
-    @staticmethod
-    def _merge_signed_peak_(current: torch.Tensor, candidate: torch.Tensor) -> None:
-        replace = candidate.abs() > current.abs()
-        replace |= (candidate.abs() == current.abs()) & (candidate > current)
-        current.copy_(torch.where(replace, candidate, current))
-
-    @staticmethod
-    def _dense_chunk_signed_peak(projected: torch.Tensor) -> torch.Tensor:
-        peak_abs = projected.abs().amax(dim=0)
-        has_positive_tie = (projected == peak_abs.unsqueeze(0)).any(dim=0)
-        return torch.where(has_positive_tie, peak_abs, -peak_abs)
-
-    def _update_topk_pooling_(
-        self,
-        projected: torch.Tensor,
-        feature_sum: torch.Tensor,
-        signed_peak: torch.Tensor,
-        support: torch.Tensor,
-    ) -> None:
-        # Reuse the same OpenSAE TopK module used by activation extraction,
-        # ranking abs projections while gathering values from the signed input.
+    def _update_topk_pooling_(self, projected, feature_sum, support) -> None:
+        # Rank absolute projections, retain their original signed values.
         _, feature_ids = torch.topk(projected.abs(), self.gradient_feature_topk, dim=-1, sorted=False)
         feature_values = projected.gather(dim=-1, index=feature_ids)
-        flat_ids = feature_ids.reshape(-1)
-        flat_values = feature_values.reshape(-1)
+        flat_ids, flat_values = feature_ids.reshape(-1), feature_values.reshape(-1)
         valid = flat_values.abs() > self.gradient_zero_eps
-        flat_ids = flat_ids[valid]
-        flat_values = flat_values[valid]
-        if flat_ids.numel() == 0:
-            return
-
+        flat_ids, flat_values = flat_ids[valid], flat_values[valid]
         feature_sum.scatter_add_(0, flat_ids, flat_values)
         support[flat_ids] = True
 
-        chunk_peak_abs = torch.zeros_like(signed_peak)
-        chunk_peak_abs.scatter_reduce_(
-            0,
-            flat_ids,
-            flat_values.abs(),
-            reduce="amax",
-            include_self=True,
-        )
-        at_chunk_peak = flat_values.abs() == chunk_peak_abs[flat_ids]
-        chunk_peak = torch.full_like(signed_peak, float("-inf"))
-        chunk_peak.scatter_reduce_(
-            0,
-            flat_ids[at_chunk_peak],
-            flat_values[at_chunk_peak],
-            reduce="amax",
-            include_self=True,
-        )
-        touched = chunk_peak_abs > self.gradient_zero_eps
-        candidate = torch.where(touched, chunk_peak, signed_peak)
-        self._merge_signed_peak_(signed_peak, candidate)
-
-    def project_and_pool(
-        self,
-        token_gradient: torch.Tensor,
-        *,
-        timing_stats: dict[str, float] | None = None,
-    ) -> SpanProjection:
-        """Project a span and update both representation versions per chunk."""
+    def project_and_pool(self, token_gradient: torch.Tensor, *, timing_stats=None) -> SpanProjection:
+        """Token-TopK, then signed arithmetic mean over all valid response tokens."""
         if token_gradient.ndim != 2 or int(token_gradient.shape[0]) < 1:
             raise ValueError(f"Expected [tokens, hidden] gradient, got {tuple(token_gradient.shape)}")
         if int(token_gradient.shape[1]) != self.spec.hidden_size:
@@ -276,54 +192,32 @@ class SaeDecoderProjector:
                 f"Gradient hidden size {token_gradient.shape[1]} != SAE hidden size {self.spec.hidden_size}"
             )
         gradient = token_gradient.detach()
-
-        raw_sum = torch.zeros(self.spec.hidden_size, device=self.device, dtype=torch.float32)
-        raw_signed_peak = torch.zeros_like(raw_sum)
-        dense_sum = torch.zeros(self.spec.feature_size, device=self.device, dtype=torch.float32)
-        dense_signed_peak = torch.zeros_like(dense_sum)
-        topk_sum = torch.zeros_like(dense_sum)
-        topk_signed_peak = torch.zeros_like(dense_sum)
-        topk_support = torch.zeros(self.spec.feature_size, device=self.device, dtype=torch.bool)
-        projection_compute_seconds = 0.0
-        pending_cuda_events: list[tuple[torch.cuda.Event, torch.cuda.Event]] = []
+        feature_sum = torch.zeros(self.spec.feature_size, device=self.device, dtype=torch.float32)
+        support = torch.zeros(self.spec.feature_size, device=self.device, dtype=torch.bool)
+        compute_seconds = 0.0
+        pending_events = []
         with torch.no_grad():
             for start in range(0, int(gradient.shape[0]), self.chunk_size):
-                raw_chunk = gradient[start : start + self.chunk_size].to(self.device).float()
-                chunk = raw_chunk.to(dtype=self.decoder.dtype)
+                chunk = gradient[start : start + self.chunk_size].to(self.device).float().to(self.decoder.dtype)
                 if self.device.type == "cuda":
-                    compute_start = torch.cuda.Event(enable_timing=True)
-                    compute_end = torch.cuda.Event(enable_timing=True)
-                    compute_start.record()
+                    begin = torch.cuda.Event(enable_timing=True)
+                    end = torch.cuda.Event(enable_timing=True)
+                    begin.record()
                 else:
-                    compute_started_at = time.perf_counter()
-                raw_sum.add_(raw_chunk.sum(dim=0))
-                self._merge_signed_peak_(raw_signed_peak, self._dense_chunk_signed_peak(raw_chunk))
+                    started = time.perf_counter()
                 projected = (chunk @ self.decoder.mT).float()
-                dense_sum.add_(projected.sum(dim=0))
-                self._merge_signed_peak_(dense_signed_peak, self._dense_chunk_signed_peak(projected))
-                self._update_topk_pooling_(projected, topk_sum, topk_signed_peak, topk_support)
+                self._update_topk_pooling_(projected, feature_sum, support)
                 if self.device.type == "cuda":
-                    compute_end.record()
-                    pending_cuda_events.append((compute_start, compute_end))
+                    end.record()
+                    pending_events.append((begin, end))
                 else:
-                    projection_compute_seconds += time.perf_counter() - compute_started_at
-        if pending_cuda_events:
-            pending_cuda_events[-1][1].synchronize()
-            projection_compute_seconds += sum(
-                start_event.elapsed_time(end_event) / 1000.0 for start_event, end_event in pending_cuda_events
-            )
+                    compute_seconds += time.perf_counter() - started
+        if pending_events:
+            pending_events[-1][1].synchronize()
+            compute_seconds += sum(begin.elapsed_time(end) / 1000.0 for begin, end in pending_events)
         if timing_stats is not None:
-            timing_stats["projection_compute_s"] = projection_compute_seconds
-        token_count = float(gradient.shape[0])
-        return SpanProjection(
-            raw_mean=raw_sum / token_count,
-            raw_signed_peak=raw_signed_peak,
-            dense_mean=dense_sum / token_count,
-            dense_signed_peak=dense_signed_peak,
-            topk_mean=topk_sum / token_count,
-            topk_signed_peak=topk_signed_peak,
-            topk_support=topk_support,
-        )
+            timing_stats["projection_compute_s"] = compute_seconds
+        return SpanProjection(feature_sum / float(gradient.shape[0]), support)
 
 
 def _python_values(value: Any, expected: int) -> list[Any]:
@@ -358,9 +252,6 @@ class StaticGradientSaeProcessor:
         self.use_remove_padding = bool(use_remove_padding)
         self.expected_rollouts = int(config.num_rollouts)
         self.sample_id_key = str(config.get("sample_id_key", "index"))
-        self.token_scope = str(config.get("gradient_token_scope", "attention"))
-        if self.token_scope != "attention":
-            raise ValueError("prompt/response representations require gradient_token_scope='attention'")
         self.gradient_feature_topk = int(config.get("gradient_feature_topk", 128))
         self.decoder_normalization = str(config.get("decoder_normalization", "runtime_l2_normalized"))
         self.zero_eps = float(config.get("gradient_zero_eps", 1e-12))
@@ -384,7 +275,16 @@ class StaticGradientSaeProcessor:
         self.gradient_feature_topk = self.projector.gradient_feature_topk
         configured_hookpoint = str(config.get("hookpoint", "") or "").strip()
         self.hookpoint = configured_hookpoint or self.projector.spec.hookpoint
-        if self.rank == 0 and not (self.run_dir / "representation_manifest.json").exists():
+        manifest_path = self.run_dir / "representation_manifest.json"
+        if manifest_path.exists():
+            existing = json.loads(manifest_path.read_text(encoding="utf-8"))
+            current = self._representation_manifest()
+            if any(existing.get(key) != value for key, value in current.items()):
+                raise ValueError(
+                    "Cannot resume incompatible extraction output; use a new run_name. "
+                    "Legacy four-channel shards remain valid selection/export inputs."
+                )
+        elif self.rank == 0:
             self._write_representation_manifest()
         self._groups: dict[str, dict[str, Any]] = {}
         self._global_step: int | None = None
@@ -404,29 +304,15 @@ class StaticGradientSaeProcessor:
         self._projection_compute_seconds = 0.0
         self._processing_seconds = 0.0
 
-    def _project_rollout(
-        self,
-        *,
-        token_gradient: torch.Tensor,
-        prompt_len: int,
-        response_len: int,
-    ) -> tuple[SpanProjection, SpanProjection]:
-        processing_started_at = time.perf_counter()
-        prompt_timing: dict[str, float] = {}
-        prompt_result = self.projector.project_and_pool(
-            token_gradient[:prompt_len],
-            timing_stats=prompt_timing,
+    def _project_rollout(self, *, token_gradient, prompt_len, response_len) -> SpanProjection:
+        started = time.perf_counter()
+        timing = {}
+        result = self.projector.project_and_pool(
+            token_gradient[prompt_len : prompt_len + response_len], timing_stats=timing
         )
-        response_timing: dict[str, float] = {}
-        response_result = self.projector.project_and_pool(
-            token_gradient[prompt_len : prompt_len + response_len],
-            timing_stats=response_timing,
-        )
-        self._projection_compute_seconds += (
-            prompt_timing["projection_compute_s"] + response_timing["projection_compute_s"]
-        )
-        self._processing_seconds += time.perf_counter() - processing_started_at
-        return prompt_result, response_result
+        self._projection_compute_seconds += timing["projection_compute_s"]
+        self._processing_seconds += time.perf_counter() - started
+        return result
 
     def _compact_gradients(self, gradient: torch.Tensor, attention_mask: torch.Tensor) -> list[torch.Tensor]:
         lengths = [int(value) for value in attention_mask.sum(dim=-1).tolist()]
@@ -499,7 +385,7 @@ class StaticGradientSaeProcessor:
                 accumulator["sample_id"] != sample_ids[row] or accumulator["prompt_len"] != prompt_len
             ):
                 raise RuntimeError(f"Inconsistent metadata for rollout group {group_id}")
-            prompt_projection, response_projection = self._project_rollout(
+            response_projection = self._project_rollout(
                 token_gradient=compact_gradient,
                 prompt_len=prompt_len,
                 response_len=response_len,
@@ -510,19 +396,7 @@ class StaticGradientSaeProcessor:
                     "prompt_len": prompt_len,
                     "count": 0,
                     "reward_sum": torch.zeros((), device=rollout_rewards.device, dtype=torch.float32),
-                    "raw_prompt_mean_sum": torch.zeros_like(prompt_projection.raw_mean),
-                    "raw_prompt_peak_sum": torch.zeros_like(prompt_projection.raw_signed_peak),
-                    "raw_response_mean_sum": torch.zeros_like(response_projection.raw_mean),
-                    "raw_response_peak_sum": torch.zeros_like(response_projection.raw_signed_peak),
-                    "dense_prompt_mean_sum": torch.zeros_like(prompt_projection.dense_mean),
-                    "dense_prompt_peak_sum": torch.zeros_like(prompt_projection.dense_signed_peak),
-                    "dense_response_mean_sum": torch.zeros_like(response_projection.dense_mean),
-                    "dense_response_peak_sum": torch.zeros_like(response_projection.dense_signed_peak),
-                    "topk_prompt_mean_sum": torch.zeros_like(prompt_projection.topk_mean),
-                    "topk_prompt_peak_sum": torch.zeros_like(prompt_projection.topk_signed_peak),
                     "topk_response_mean_sum": torch.zeros_like(response_projection.topk_mean),
-                    "topk_response_peak_sum": torch.zeros_like(response_projection.topk_signed_peak),
-                    "topk_prompt_support": torch.zeros_like(prompt_projection.topk_support),
                     "topk_response_support": torch.zeros_like(response_projection.topk_support),
                     "nonzero_advantage_rollouts": 0,
                 }
@@ -530,29 +404,11 @@ class StaticGradientSaeProcessor:
 
             accumulator["count"] += 1
             accumulator["reward_sum"].add_(rollout_rewards[row])
-            accumulator["raw_prompt_mean_sum"].add_(prompt_projection.raw_mean)
-            accumulator["raw_prompt_peak_sum"].add_(prompt_projection.raw_signed_peak)
-            accumulator["raw_response_mean_sum"].add_(response_projection.raw_mean)
-            accumulator["raw_response_peak_sum"].add_(response_projection.raw_signed_peak)
-            accumulator["dense_prompt_mean_sum"].add_(prompt_projection.dense_mean)
-            accumulator["dense_prompt_peak_sum"].add_(prompt_projection.dense_signed_peak)
-            accumulator["dense_response_mean_sum"].add_(response_projection.dense_mean)
-            accumulator["dense_response_peak_sum"].add_(response_projection.dense_signed_peak)
-            accumulator["topk_prompt_mean_sum"].add_(prompt_projection.topk_mean)
-            accumulator["topk_prompt_peak_sum"].add_(prompt_projection.topk_signed_peak)
             accumulator["topk_response_mean_sum"].add_(response_projection.topk_mean)
-            accumulator["topk_response_peak_sum"].add_(response_projection.topk_signed_peak)
-            accumulator["topk_prompt_support"].logical_or_(prompt_projection.topk_support)
             accumulator["topk_response_support"].logical_or_(response_projection.topk_support)
-            # with open('topk_support.txt', 'a') as f:
-            #     f.write(f"Group ID: {group_id}\n")
-            #     f.write(f"num of topk prompt features: {prompt_projection.topk_support.sum().item()}\n")
-            #     f.write(f"num of topk response features: {response_projection.topk_support.sum().item()}\n")
-            #     f.write(f"TopK Prompt Support: {prompt_projection.topk_support.cpu().numpy()}\n")
-            #     f.write(f"TopK Response Support: {response_projection.topk_support.cpu().numpy()}\n\n")
             accumulator["nonzero_advantage_rollouts"] += int(abs(float(advantages[row].item())) > 1e-8)
             self._rollouts_seen += 1
-            self._tokens_seen += sequence_len
+            self._tokens_seen += response_len
 
         self._micro_batches_seen += 1
         if (
@@ -572,60 +428,27 @@ class StaticGradientSaeProcessor:
         if count != self.expected_rollouts:
             raise RuntimeError(
                 f"Prompt group {group_id!r} has {count} rollouts on rank {self.rank}, "
-                f"expected {self.expected_rollouts}; disable batch balancing and use prompt batches divisible by DP"
+                f"expected {self.expected_rollouts}; keep all prompt rollouts on one DP rank"
             )
-        raw_gradient_channels = [
-            item["raw_prompt_mean_sum"] / count,
-            item["raw_prompt_peak_sum"] / count,
-            item["raw_response_mean_sum"] / count,
-            item["raw_response_peak_sum"] / count,
-        ]
-        dense_channels = [
-            item["dense_prompt_mean_sum"] / count,
-            item["dense_prompt_peak_sum"] / count,
-            item["dense_response_mean_sum"] / count,
-            item["dense_response_peak_sum"] / count,
-        ]
-        topk_channels = [
-            item["topk_prompt_mean_sum"] / count,
-            item["topk_prompt_peak_sum"] / count,
-            item["topk_response_mean_sum"] / count,
-            item["topk_response_peak_sum"] / count,
-        ]
-        raw_gradient_representation = torch.cat(raw_gradient_channels).float()
-        dense_representation = torch.cat(dense_channels).float()
-        topk_representation = torch.cat(topk_channels).float()
-        prompt_ids = item["topk_prompt_support"].nonzero().flatten()
-        response_ids = item["topk_response_support"].nonzero().flatten()
-        nonzero_advantage_rollouts = int(item["nonzero_advantage_rollouts"])
+        mean = (item["topk_response_mean_sum"] / count).float()
+        ids = item["topk_response_support"].nonzero().flatten()
         return {
             "sample_id": int(item["sample_id"]),
             "prompt_len_tok": int(item["prompt_len"]),
             "reward_mean": float((item["reward_sum"] / count).item()),
-            "raw_grad_vals": raw_gradient_representation.cpu().tolist(),
-            "dense_grad_feat_vals": dense_representation.cpu().tolist(),
-            "topk_prompt_feat_ids": prompt_ids.cpu().tolist(),
-            "topk_prompt_feat_mean": topk_channels[0][prompt_ids].float().cpu().tolist(),
-            "topk_prompt_feat_signed_peak": topk_channels[1][prompt_ids].float().cpu().tolist(),
-            "topk_response_feat_ids": response_ids.cpu().tolist(),
-            "topk_response_feat_mean": topk_channels[2][response_ids].float().cpu().tolist(),
-            "topk_response_feat_signed_peak": topk_channels[3][response_ids].float().cpu().tolist(),
-            "zero_signal_dense": bool(
-                nonzero_advantage_rollouts == 0 or torch.linalg.vector_norm(dense_representation).item() < self.zero_eps
-            ),
+            "topk_response_feat_ids": ids.cpu().tolist(),
+            "topk_response_feat_mean": mean[ids].cpu().tolist(),
             "zero_signal_token_topk": bool(
-                nonzero_advantage_rollouts == 0 or torch.linalg.vector_norm(topk_representation).item() < self.zero_eps
+                item["nonzero_advantage_rollouts"] == 0 or torch.linalg.vector_norm(mean).item() < self.zero_eps
             ),
         }
 
     def _representation_manifest(self) -> dict[str, Any]:
-        feature_size = self.projector.spec.feature_size
-        hidden_size = self.projector.spec.hidden_size
         return {
             "sae_checkpoint": str(self.projector.spec.checkpoint),
-            "sae_feature_size": feature_size,
+            "sae_feature_size": self.projector.spec.feature_size,
             "hookpoint": self.hookpoint,
-            "gradient_token_scope": self.token_scope,
+            "gradient_token_scope": "response",
             "num_rollouts": self.expected_rollouts,
             "decoder_normalization": self.projector.decoder_normalization,
             "decoder_normalization_applied": self.projector.decoder_normalization_applied,
@@ -637,34 +460,12 @@ class StaticGradientSaeProcessor:
             "token_topk_value": "original_signed_projection",
             "token_topk_missing_value": "zero",
             "gradient_zero_eps": self.zero_eps,
-            "raw_gradient_token_pool": "mean_and_argmax_abs_keep_sign_per_span",
-            "raw_gradient_rollout_pool": "equal_weight_arithmetic_mean_per_channel",
-            "raw_gradient_representation_layout": [
-                "prompt_mean",
-                "prompt_signed_peak",
-                "response_mean",
-                "response_signed_peak",
-            ],
-            "raw_gradient_representation_size": 4 * hidden_size,
-            "token_mean_denominator": "all_valid_tokens_in_span",
-            "token_peak": "argmax_abs_keep_sign",
-            "signed_peak_tie_break": "positive",
-            "prompt_response_span_definition": "compact_attention=[valid_prompt||valid_response]",
-            "rollout_pool": "equal_weight_arithmetic_mean_per_branch",
-            "feature_union": "token_union_then_rollout_union_per_span",
-            "representation_layout": [
-                "prompt_mean",
-                "prompt_signed_peak",
-                "response_mean",
-                "response_signed_peak",
-            ],
-            "dense_representation_size": 4 * feature_size,
-            "topk_representation_size": 4 * feature_size,
-            "physical_storage_format": {
-                "raw_gradient": "parquet_list_float32_4h",
-                "dense": "parquet_list_float32_4f",
-                "token_topk": "parquet_sparse_union_ids_and_float32_values",
-            },
+            "token_mean_denominator": "all_valid_response_tokens",
+            "rollout_pool": "equal_weight_arithmetic_mean_of_signed_response_means",
+            "feature_union": "response_token_union_then_rollout_union",
+            "representation_layout": ["response_mean"],
+            "topk_representation_size": self.projector.spec.feature_size,
+            "physical_storage_format": "parquet_sparse_response_ids_and_float32_means",
         }
 
     def _write_representation_manifest(self) -> None:
