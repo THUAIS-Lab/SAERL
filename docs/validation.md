@@ -30,8 +30,8 @@ Limitations:
   remove-padding/checkpointing under CUDA, two-GPU rollout, and training/checkpoint restore have not been executed.
 - `scripts/gpu_smoke.py` exercises a four-prompt, two-GPU tail extraction, partial-rank resume, selection/export,
   one GRPO step and checkpoint save. Use a short, diverse fixture that produces nonzero advantages.
-- Full dependency resolution in a newly provisioned CUDA environment has not been validated. Observed version
-  constraints are provided separately from the source environment inventory.
+- Full dependency resolution in a newly provisioned CUDA environment has not been validated. The observed
+  principal training dependency versions are retained in `constraints-train.txt`, rather than a full resolver lock.
 - The sandbox denies network sockets. Outside the sandbox a local Ray instance starts, but importing the training
   adapters in its child process did not finish within the 150-second process limit. This check remains unverified;
   retry `scripts/check_ray_imports.py` on the actual training node. Driver-process adapter imports passed.
@@ -43,10 +43,11 @@ python -m build --no-isolation
 ruff check src tests scripts
 # Run in the environment where the official pinned dependency and SAERL wheel are installed.
 python -m pytest tests -q
-python scripts/compare_legacy_selection.py --legacy-root /path/to/old-checkout \
-  --run-dir /path/to/extraction --feature-indices /path/to/features.npy \
-  --output-dir /path/to/new-comparison --cosine-threshold 0.7
 ```
+
+The old/new selection comparison above was performed during migration. Its one-time comparison
+script and the full source environment package inventory have been removed from the standalone project.
+The retained scripts validate SAERL's Ray imports and GPU pipeline.
 
 Remaining GPU validation is not implied by the CPU tests or the existence of the smoke script.
 

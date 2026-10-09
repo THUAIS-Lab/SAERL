@@ -61,5 +61,7 @@ Historical imports through `recipe.*`, manual `sys.path` injection, and nonexist
 from the migrated core algorithms. Only the old project needs its external OpenSAE editable installation.
 
 The original environment used external editable paths for both verl and OpenSAE. The validation environment installs
-the unmodified official archive into a separate venv; `inspected-environment.json` records observed package versions,
-not a clean resolver lock or proof of GPU compatibility. See `validation.md` for actual checks and outstanding GPU checks.
+the unmodified official archive into a separate venv. SAERL's principal training dependency versions are retained in
+`../constraints-train.txt`; the full original environment inventory is no longer part of this project.
+These constraints are not a clean resolver lock or proof of GPU compatibility.
+See `validation.md` for actual checks and outstanding GPU checks.

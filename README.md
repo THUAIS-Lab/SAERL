@@ -187,11 +187,34 @@ GPU smoke test 使用数据集前四条样本，要求它们是合法、不同 I
 ```text
 src/saerl/             # 源码、配置、官方 verl 适配
 tests/                 # 核心算法和适配测试
-scripts/               # Ray/GPU 验证及旧新 selection 对比
+scripts/               # SAERL 的 Ray 加载检查和 GPU 端到端验证
 docs/                  # 版本审计与验证记录
 pyproject.toml         # 包定义、依赖、启动入口
 constraints-train.txt  # 原训练环境主要版本约束
 LICENSE / NOTICE       # 许可和来源说明
 ```
+
+这些目录都与 SAERL 有关，其中 `docs/`、`tests/` 和 `scripts/` 用于开发和验证，不是训练时必须加载的源码：
+
+| 文件或目录 | 用途 |
+| --- | --- |
+| `src/saerl/` | 实际运行代码：提取、特征筛选、selection、导出、训练、reward 和官方 verl 适配 |
+| `docs/upstream-audit.md` | 确认所用 verl 版本，说明原修改如何接入独立 SAERL，以及局部覆盖的原因 |
+| `docs/upstream-audit.json` | 上述版本和文件差异审计的结构化记录 |
+| `docs/validation.md` | 已通过的验证、复现命令，以及待完成的 GPU/Ray 检查 |
+| `tests/test_representations.py` | 梯度表示、rollout 聚合、padding 排除和分片续跑测试 |
+| `tests/test_selection_pipeline.py` | 特征筛选、selection、子集导出的 ID、顺序和数据一致性测试 |
+| `tests/test_verl_integration.py` | 官方 verl 适配、梯度一致性、禁止参数更新、sampler 和尾批测试 |
+| `tests/conftest.py` | 测试共用的小型模拟数据和 SAE 权重，无需真实模型 |
+| `scripts/check_ray_imports.py` | 检查 Ray 子进程能否加载 SAERL 和固定版本的官方 verl |
+| `scripts/gpu_smoke.py` | 两张 GPU 上验证提取 → 续跑 → selection → 导出 → 一步 GRPO 及 checkpoint 保存 |
+| `pyproject.toml` | Python 包定义、依赖、命令入口、pytest 和 Ruff 配置 |
+| `constraints-train.txt` | 原训练环境主要依赖的版本约束 |
+| `MANIFEST.in` | 指定源码发布包包含哪些文档、测试和验证脚本 |
+| `README.md` | 安装、启动和使用说明 |
+| `LICENSE`、`NOTICE` | 项目许可和保留的上游代码来源说明 |
+| `.gitignore` | 避免把缓存、模型权重、运行数据和构建产物提交到 Git |
+
+旧环境的完整包清单和一次性的旧新 selection 对比脚本已删除。保留的验证工具都面向当前 SAERL 项目。
 
 旧 verl 源码、旧 recipe、评估结果、baseline、集群脚本和上游 CI 已从当前分支的文件树移除。需要查看旧实现时可切换到 `origin/dev`；本项目的安装和运行不依赖旧目录。
