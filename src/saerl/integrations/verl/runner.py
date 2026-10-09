@@ -1,6 +1,6 @@
 # Copyright 2024 Bytedance Ltd. and/or its affiliates
 # SPDX-License-Identifier: Apache-2.0
-# TaskRunner.run adapted from the pinned upstream; see docs/upstream-audit.md.
+# TaskRunner.run adapted from the pinned upstream; see the verl integration section in README.md.
 import os
 import socket
 

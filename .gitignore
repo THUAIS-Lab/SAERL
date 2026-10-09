@@ -2,6 +2,9 @@ __pycache__/
 *.py[cod]
 *.egg-info/
 .venv/
+.agents/
+.aws/
+.codex/
 .pytest_cache/
 .ruff_cache/
 build/

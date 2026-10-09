@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """
-Static gradient actor. Method adaptations: see docs/upstream-audit.md.
+Static gradient actor. Method adaptations: see the verl integration section in README.md.
 """
 
 import re
