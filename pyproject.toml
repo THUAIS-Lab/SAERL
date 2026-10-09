@@ -25,9 +25,20 @@ saerl-select = "saerl.select:main"
 saerl-feature-select = "saerl.feature_select:main"
 saerl-export-subset = "saerl.export_subset:main"
 
-[tool.setuptools.packages.find]
-where = ["src"]
-include = ["saerl*"]
+[tool.setuptools]
+package-dir = {saerl = "src"}
+packages = [
+  "saerl",
+  "saerl.config",
+  "saerl.data",
+  "saerl.extraction",
+  "saerl.integrations",
+  "saerl.integrations.verl",
+  "saerl.rewards",
+  "saerl.selection",
+  "saerl.selection.features",
+  "saerl.selection.raw",
+]
 
 [tool.setuptools.package-data]
 "saerl.config" = ["*.yaml"]

@@ -1,12 +1,12 @@
 # SAERL
 
-SAERL 是独立的 Python 项目，提供静态梯度提取、SAE 特征筛选、数据选择、子集导出和 GRPO 训练。源码位于 `src/saerl/`；官方 verl 作为外部依赖安装，通过 `import verl` 使用。
+SAERL 是独立的 Python 项目，提供静态梯度提取、SAE 特征筛选、数据选择、子集导出和 GRPO 训练。源码直接位于 `src/`；官方 verl 作为外部依赖安装，通过 `import verl` 使用。
 
 verl 固定为原项目对应的 **0.7.0.dev0**，官方提交 **`875788ef6e218d0b98cb64fff919d9fef014f986`**，不会自动升级到新版。版本确认、调用链和局部覆盖的依据见下文“verl 版本与适配说明”。
 
 ## 1. 安装与启动检查
 
-以下命令均在仓库根目录执行，要求 Python 3.12。开发时使用 editable 安装，修改 `src/saerl/` 后即可生效。
+以下命令均在仓库根目录执行，要求 Python 3.12。开发时使用 editable 安装，修改 `src/` 后即可生效。Python 包名仍为 `saerl`，由 `pyproject.toml` 将它映射到 `src/`；启动命令和 `import saerl` 保持不变。
 
 ```bash
 python3.12 -m venv .venv
@@ -178,7 +178,7 @@ checkpoint 写入 `$SAERL_WORK_DIR/checkpoints`。如果要直接在完整数据
 | reward 分发及 `deepmath.py` | 通过官方 custom reward 接口加载 SAERL 评分函数 |
 | 原 trainer 配置 | SAERL YAML 通过 Hydra 搜索路径组合官方配置 |
 
-该版本没有覆盖完整提取流程的回调，也缺少可替换的 Trainer 工厂，因此部分编排、训练循环、Actor/Worker 更新方法在 SAERL 中局部覆盖。覆盖保留官方 loss 缩放、entropy/KL、dispatch、sharding 和 offload 语义，并保留来源版权说明。核心官方文件指纹存于 `src/saerl/integrations/verl/upstream.json`，启动时核验。
+该版本没有覆盖完整提取流程的回调，也缺少可替换的 Trainer 工厂，因此部分编排、训练循环、Actor/Worker 更新方法在 SAERL 中局部覆盖。覆盖保留官方 loss 缩放、entropy/KL、dispatch、sharding 和 offload 语义，并保留来源版权说明。核心官方文件指纹存于 `src/integrations/verl/upstream.json`，启动时核验。
 
 ## 验证状态
 
@@ -191,7 +191,7 @@ checkpoint 写入 `$SAERL_WORK_DIR/checkpoints`。如果要直接在完整数据
 ## 目录结构
 
 ```text
-src/saerl/             # SAERL 源码、运行配置、官方 verl 适配
+src/                   # 直接存放 SAERL 源码、运行配置、官方 verl 适配
 pyproject.toml         # 包定义、依赖、启动入口
 constraints-train.txt  # 原训练环境主要版本约束
 MANIFEST.in            # 将版本约束文件纳入源码发布包
@@ -201,3 +201,5 @@ LICENSE / NOTICE       # 许可和来源说明
 ```
 
 `.git/` 保留当前分支和历史，供版本管理及旧新对比使用。`.agents/`、`.aws/`、`.codex/` 是当前执行环境提供的空只读挂载，不属于 SAERL 项目，也不会进入 Git 或 Python 发布包。
+
+`src/` 内直接包含 `train.py`、`extract.py`、`select.py` 等入口，以及 `config/`、`data/`、`extraction/`、`integrations/`、`rewards/`、`selection/` 子目录。添加新的 Python 子包时，需要在 `pyproject.toml` 的 `tool.setuptools.packages` 中注册对应的 `saerl.*` 名称。
