@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# Shared paths and Qwen2.5-Math-1.5B settings; sourced by the three launchers.
 
 SAERL_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$SAERL_ROOT"
