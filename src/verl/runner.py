@@ -1,17 +1,16 @@
 # Copyright 2024 Bytedance Ltd. and/or its affiliates
 # SPDX-License-Identifier: Apache-2.0
 # TaskRunner.run adapted from the pinned upstream; see the verl integration section in README.md.
-import os
-import socket
+"""Select extraction workers and connect them to the official Ray training infrastructure."""
+
 
 import ray
 from verl.trainer.main_ppo import TaskRunner, create_rl_dataset, create_rl_sampler
-from verl.trainer.ppo.ray_trainer import RayPPOTrainer
 from verl.trainer.ppo.reward import load_reward_manager
 from verl.trainer.ppo.utils import Role, need_critic, need_reference_policy
 from verl.utils.config import validate_config
 
-from saerl.verl.config import prepare_static_gradient_extraction
+from saerl.verl.extraction_config import prepare_static_gradient_extraction
 from saerl.verl.trainer import StaticGradientTrainer
 
 
@@ -28,18 +27,9 @@ class SAERLTaskRunner(TaskRunner):
         return StaticGradientWorker, RayWorkerGroup
 
     def run(self, config):
-        """Execute the main PPO training workflow.
-
-        This method sets up the distributed training environment, initializes
-        workers, datasets, and reward functions, then starts the training process.
-
-        Args:
-            config: Training configuration object containing all parameters needed
-                   for setting up and running the PPO training process.
-        """
-        from saerl.verl.compat import verify_verl
-
-        verify_verl()
+        """Use official training unchanged; specialize only the extraction job."""
+        if not config.static_gradient_extraction.enable:
+            return super().run(config)
         prepare_static_gradient_extraction(config)
 
         # Print the initial configuration. `resolve=True` will evaluate symbolic values.
@@ -48,19 +38,12 @@ class SAERLTaskRunner(TaskRunner):
         from omegaconf import OmegaConf
         from verl.utils.fs import copy_to_local
 
-        print(f"TaskRunner hostname: {socket.gethostname()}, PID: {os.getpid()}")
         pprint(OmegaConf.to_container(config, resolve=True))
         OmegaConf.resolve(config)
 
         actor_rollout_cls, ray_worker_group_cls = self.add_actor_rollout_worker(config)
         self.add_critic_worker(config)
 
-        # We should adopt a multi-source reward function here:
-        # - for rule-based rm, we directly call a reward score
-        # - for model-based rm, we call a model
-        # - for code related prompt, we send to a sandbox if there are test cases
-        # finally, we combine all the rewards together
-        # The reward type depends on the tag of the data
         self.add_reward_model_worker(config)
 
         # Add a reference policy worker if KL loss or KL reward is used.
@@ -119,8 +102,7 @@ class SAERLTaskRunner(TaskRunner):
         train_sampler = create_rl_sampler(config.data, train_dataset)
 
         # Initialize the PPO trainer.
-        trainer_cls = StaticGradientTrainer if config.static_gradient_extraction.enable else RayPPOTrainer
-        trainer = trainer_cls(
+        trainer = StaticGradientTrainer(
             config=config,
             tokenizer=tokenizer,
             processor=processor,

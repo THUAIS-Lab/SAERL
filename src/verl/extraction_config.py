@@ -1,3 +1,5 @@
+"""Configure the official PPO components for a static, one-pass extraction job."""
+
 from datetime import datetime
 from pathlib import Path
 
@@ -11,12 +13,8 @@ def prepare_static_gradient_extraction(config) -> None:
         return
     if str(config.algorithm.adv_estimator).lower() != "grpo":
         raise ValueError("static_gradient_extraction currently requires algorithm.adv_estimator=grpo")
-    if not extraction.get("sae_path", None) or not extraction.get("output_dir", None):
-        raise ValueError("Static extraction requires static_gradient_extraction.sae_path and output_dir")
     if config.actor_rollout_ref.actor.strategy != "fsdp":
         raise ValueError("Static gradient-SAE extraction currently requires actor.strategy=fsdp")
-    if config.trainer.get("use_legacy_worker_impl", "auto") == "disable":
-        raise ValueError("Static extraction requires trainer.use_legacy_worker_impl=enable")
 
     resume_from_step = extraction.get("resume_from_step", None)
     if resume_from_step is not None:

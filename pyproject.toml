@@ -13,11 +13,11 @@ dynamic = ["optional-dependencies"]
 dependencies = ["numpy>=1.26,<2", "pyarrow>=19"]
 
 [project.scripts]
-saerl-train = "saerl.train:main"
-saerl-extract = "saerl.train:extract_main"
-saerl-select = "saerl.select:main"
-saerl-feature-select = "saerl.feature_select:main"
-saerl-export-subset = "saerl.export_subset:main"
+saerl-train = "saerl.verl.train:main"
+saerl-extract = "saerl.selection.extraction:main"
+saerl-select = "saerl.selection.sample_selection:main"
+saerl-feature-select = "saerl.selection.feature_selection:main"
+saerl-export-subset = "saerl.selection.export_subset:main"
 
 [tool.setuptools]
 package-dir = {saerl = "src"}
@@ -30,7 +30,6 @@ packages = [
 
 [tool.setuptools.package-data]
 "saerl.config" = ["*.yaml"]
-"saerl.verl" = ["*.json"]
 
 [tool.setuptools.dynamic.optional-dependencies]
 train = {file = ["requirements-train.txt"]}

@@ -16,6 +16,5 @@ static_gradient_extraction:
   sample_id_key: index
   projection_chunk_size: 32
   gradient_feature_topk: 128
-  decoder_normalization: runtime_l2_normalized
   gradient_zero_eps: 1.0e-12
   log_every_micro_batches: 1

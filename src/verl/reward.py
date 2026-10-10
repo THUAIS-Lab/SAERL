@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""Dataset-specific math rewards loaded through the official verl custom reward interface."""
+
 import mathruler.grader as mathruler_grader
 from verl.utils.py_functional import timeout_limit
 

@@ -2,9 +2,6 @@
 
 
 def launch(config_name):
-    from saerl.verl.compat import verify_verl
-
-    verify_verl()
     import hydra
 
     @hydra.main(config_path="pkg://saerl.config", config_name=config_name, version_base=None)
@@ -19,3 +16,11 @@ def launch(config_name):
         run_ppo(config, task_runner_class=ray.remote(num_cpus=1)(SAERLTaskRunner))
 
     run()
+
+
+def main() -> None:
+    launch("train")
+
+
+if __name__ == "__main__":
+    main()

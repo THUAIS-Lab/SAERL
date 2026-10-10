@@ -10,6 +10,8 @@ verl 固定为原项目对应的 **0.7.0.dev0**，官方提交 **`875788ef6e218d
 
 以下命令均在仓库根目录执行，要求 Python 3.12。开发时使用 editable 安装，修改 `src/` 后即可生效。Python 包名仍为 `saerl`，由 `pyproject.toml` 将它映射到 `src/`；启动命令和 `import saerl` 保持不变。
 
+本次调整了命令对应的模块路径，已有环境需重新执行 `python -m pip install -e .` 更新命令入口。
+
 ```bash
 python3.12 -m venv .venv
 source .venv/bin/activate
@@ -33,9 +35,6 @@ python -m pip install packaging ninja
 python -m pip install "flash-attn==2.8.1" --no-build-isolation
 python -m pip install -e '.[train]'
 
-# 核验官方 verl 的版本和核心源码指纹
-python -m saerl.verl.compat
-
 # 仅打印完整配置，不启动 Ray 或 GPU 任务
 saerl-extract --cfg job
 saerl-train --cfg job
@@ -50,7 +49,7 @@ python -m pip install -e .
 
 这份清单来自原 Python 3.12 / CUDA 12.8 环境，不是所有平台通用的完整依赖锁。Torch、flash-attn 和 vLLM 需要匹配训练节点的 CUDA 环境；如果使用集群提供的 flash-attn wheel，可用该 wheel 替代上面的编译安装命令。全新 CUDA 环境的依赖安装尚未实测。
 
-使用新虚拟环境，并移除指向旧 verl checkout 的 `PYTHONPATH` 设置。启动入口会核验官方依赖，遇到旧 editable 安装或修改过的 verl 会明确报错。
+使用新虚拟环境，并移除指向旧 verl checkout 的 `PYTHONPATH` 设置。官方 verl 的提交由训练依赖清单固定，运行时直接 import，不再扫描安装包源码或核验指纹。
 
 ## 2. 准备输入
 
@@ -103,7 +102,7 @@ saerl-extract \
 
 提取捕获的是**层输出梯度**，保留 rollout → reward → GRPO advantage → backward 的计算过程，禁止 optimizer 和 LR scheduler 更新。当前提取模式限定 GRPO、legacy FSDP、Ulysses SP=1，支持尾批和按 step 续跑。
 
-每个 response token 的梯度投影到 SAE decoder 后，按绝对值保留 `gradient_feature_topk` 个 features，并保留其原始符号，其他坐标视为零。先除以该 rollout 的全部有效 response token 数，再对同一 prompt 的 rollouts 等权平均，得到有符号的 response-mean 向量 `g_i`。新提取只保存 response mean、稳定 ID、平均奖励和零信号标记，不再计算或保存 raw gradient、dense SAE、prompt 或 peak 分支。
+SAE decoder 的每个 feature 方向使用 L2 归一化。每个 response token 的梯度投影到 decoder 后，按绝对值保留 `gradient_feature_topk` 个 features，并保留其原始符号，其他坐标视为零。先除以该 rollout 的全部有效 response token 数，再对同一 prompt 的 rollouts 等权平均，得到有符号的 response-mean 向量 `g_i`。提取只保存 response mean、稳定 ID、平均奖励和零信号标记。
 
 ## 4. 特征筛选、selection 和子集导出
 
@@ -137,7 +136,7 @@ Normalized Energy 使用 `E_j = Σ_i g_ij² / Σ_f g_if²` 对 features 评分�
 
 `reward_mean` 是同一 prompt 所有 rollout 的奖励均值。对当前 0/1 数学评分，均值为零意味着所有 rollout 都未得分；silent 并不等于 zero reward，奖励为正的 silent 样本不会自动加入训练集。
 
-导出通过 `extra_info.index` 匹配样本，保留原数据的行顺序、schema 和 metadata；不把 ID 当作行号。特征筛选、selection 和导出拒绝覆盖已有结果；再次运行时换一个输出目录。
+导出通过 `extra_info.index` 匹配样本，保留原数据的行顺序、schema 和 metadata。特征筛选、selection 和导出可重复运行，会覆盖同名结果。
 
 ## 5. 在选中子集上启动 GRPO 训练
 
@@ -169,7 +168,15 @@ saerl-train \
 
 checkpoint 写入 `$SAERL_WORK_DIR/checkpoints`。如果要直接在完整数据上训练，将 `data.train_files` 替换成 `"$SAERL_TRAIN_DATA"`。普通训练使用官方 Trainer/Worker。
 
-Python 模块入口为 `python -m saerl.feature_select`、`python -m saerl.select`、`python -m saerl.export_subset` 和 `python -m saerl.train`。提取与训练共享 `src/train.py`，`saerl-extract` 等价于 `python -m saerl.train --config-name extract`。
+每个命令直接对应所属功能模块，也可以通过 Python 模块启动：
+
+| 命令 | Python 模块入口 |
+| --- | --- |
+| `saerl-extract` | `python -m saerl.selection.extraction` |
+| `saerl-feature-select` | `python -m saerl.selection.feature_selection` |
+| `saerl-select` | `python -m saerl.selection.sample_selection` |
+| `saerl-export-subset` | `python -m saerl.selection.export_subset` |
+| `saerl-train` | `python -m saerl.verl.train` |
 
 ## 其他参数
 
@@ -179,7 +186,7 @@ Python 模块入口为 `python -m saerl.feature_select`、`python -m saerl.selec
 
 提取续跑时保持原来的模型、配置、GPU/DP 布局和 `run_name`，在原提取命令后加 `static_gradient_extraction.resume_from_step=N`。已有恢复 step 的 rank 分片会保留，缺失分片会补齐。续跑通过跳过已处理批次实现，不能保证恢复原随机 rollout 序列。
 
-旧版四通道提取结果仍可用于 feature selection、selection 和导出，但不能与新版 response-only 分片混用续跑；需要继续提取时使用新的 `run_name`。
+旧版四通道提取结果中的 response-mean 列仍可用于选择和导出。继续提取时使用新版创建的 run，避免混合不同表示格式。
 
 ## verl 版本与适配说明
 
@@ -197,17 +204,19 @@ Python 模块入口为 `python -m saerl.feature_select`、`python -m saerl.selec
 | reward 分发及 `deepmath.py` | 合并为一个模块，通过官方 custom reward 接口加载 |
 | 原 trainer 配置 | SAERL YAML 通过 Hydra 搜索路径组合官方配置 |
 
-该版本没有覆盖完整提取流程的回调，也缺少可替换的 Trainer 工厂，因此部分编排、训练循环、Actor/Worker 更新方法在 SAERL 中局部覆盖。覆盖保留官方 loss 缩放、entropy/KL、dispatch、sharding 和 offload 语义，并保留来源版权说明。核心官方文件指纹存于 `src/verl/upstream.json`，启动时核验。
+该版本没有覆盖完整提取流程的回调，也缺少可替换的 Trainer 工厂，因此提取模式使用 SAERL 的 Runner、Trainer、Worker 和 Actor。自定义 Trainer 只执行一遍 rollout → reward → GRPO advantage → backward，不包含普通训练的 critic 更新、验证、checkpoint 和其他 advantage 算法。普通训练委托给官方 `TaskRunner.run`。Actor 保留官方 loss 缩放、entropy/KL，Worker 保留 dispatch、sharding 和 offload 语义，相关源码保留来源版权说明。
 
 SAERL includes adaptations of verl (Copyright Bytedance Ltd., SGLang Team, ModelBest Inc.) and a DeepMath scorer (Copyright Huawei Technologies Co., Ltd.), licensed under Apache-2.0. 许可证全文保留在 `LICENSE`，相关源码保留原有版权声明。
 
 ## 验证状态
 
-选择算法和梯度表示已通过 22 项 CPU/官方 verl 回归用例，包括 response-mean 与旧实现一致、AMP 缩放和 padding 排除、不同 block size 的 greedy 与旧实现及逐样本 exact cosine 参考一致、全数据共享 feature energy、旧/新提取格式输入、全部零奖励并集和 Parquet 保真导出，以及官方 Actor loss/梯度一致、禁止 optimizer/scheduler 更新、尾批和续跑配置。
+当前代码已通过 22 项 CPU/官方 verl 回归用例，覆盖 signed Token-TopK response mean 与原实现一致、AMP 缩放和 padding 排除、greedy 与原实现及逐样本 exact cosine 参考一致、跨 run 的共享 feature energy、全部零奖励并集和 Parquet 保真导出。框架回归覆盖官方 Actor loss/梯度一致、禁止 optimizer/scheduler 更新、同步/异步 rollout 的尾批分组、续跑时跳过已完成批次，以及普通训练委托给官方流程。
 
-当前目录组织下另重跑 8 项相关回归并通过，覆盖框架适配、梯度处理模块接入、reward 加载和完整 CPU 选择导出流程。editable 和 wheel 安装后的五个启动命令、配置组合、模块入口和奖励加载也通过验证，官方 `verl` 始终解析到外部安装。wheel 与源码包均包含配置和官方指纹资源，训练依赖及固定版本写入安装元数据；源码包同时包含根目录的依赖清单，无需 MANIFEST.in。测试和安装验证脚本保存在临时目录，不进入项目。
+editable 和 wheel 安装后的五个命令、Hydra 配置组合及外部官方 verl 导入均通过检查，wheel 的 CPU 特征选择、core 筛选和零奖励导出流程也已跑通。wheel/源码包构建及脱离 Git 的源码包重建通过；配置和固定训练依赖均正确打包。
 
-上述验证使用临时 Python 3.12 环境安装官方 verl，并共享原环境的第三方包，不代表全新 CUDA 环境已完成依赖解析。真实 GPU/FSDP backward、两张 GPU 的完整提取训练流程尚未执行；Ray 子进程加载训练模块的检查曾超时，仍待训练节点验证。
+验证脚本保存在临时目录，不进入项目。源码包包含根目录的依赖清单，无需 MANIFEST.in。
+
+上述验证使用临时 Python 3.12 环境安装官方 verl，并共享原环境的第三方包。真实 GPU/FSDP backward 和分布式 Ray 提取训练流程尚未执行。
 
 当前文件树只保留安装和运行所需内容。可选文档、测试和验证脚本已移除；历史版本仍可从当前 Git 分支的提交记录中查看。
 
@@ -215,13 +224,27 @@ SAERL includes adaptations of verl (Copyright Bytedance Ltd., SGLang Team, Model
 
 ```text
 src/
-  train.py             # GRPO 训练与梯度提取的命令入口
-  feature_select.py    # 全局 SAE feature 筛选入口
-  select.py            # gradient core set 选择入口
-  export_subset.py     # 合并零奖励样本并导出训练数据
-  verl/                # 官方 verl 适配：启动、Trainer、Worker、Actor、reward、版本校验
-  selection/           # 梯度 SAE 表示、Normalized Energy、投影、exact cosine、数据校验
-  config/              # Hydra 运行配置
+  __init__.py
+  selection/                  # SAERL 算法和对应命令入口
+    extraction.py             # 接收层输出梯度，聚合 response/rollout mean，写出提取结果
+    sae_projection.py         # 加载 SAE decoder，执行梯度投影和逐 token Top-K
+    representations.py        # 定义提取结果格式，按批读取稀疏 response-mean 分片
+    feature_selection.py      # Normalized Energy Top-K，全数据共享 feature 集合
+    response_pattern.py       # 投影到选定 features，构造 absolute response-mean pattern
+    sample_selection.py       # exact cosine greedy，保存 core ID 和筛选结果
+    export_subset.py          # core 与全部零奖励样本合并，导出最终训练 Parquet
+  verl/                       # 与官方 verl 的连接层
+    train.py                  # Hydra/Ray 启动入口
+    runner.py                 # 普通训练调用官方流程；提取时注册 SAERL Worker/Trainer
+    extraction_config.py      # 设置 GRPO、单遍提取、FSDP 和 step 续跑配置
+    trainer.py                # 编排 rollout、reward、advantage、backward
+    worker.py                 # Ray RPC、FSDP sharding/offload；不更新 scheduler
+    actor.py                  # 官方 actor loss、backward、层输出梯度 hook；不更新参数
+    reward.py                 # 数据集数学奖励函数
+  config/                     # Hydra 运行配置
+    base.yaml                 # 共用 reward 入口和梯度提取参数
+    extract.yaml              # GRPO 静态提取模式，组合官方配置
+    train.yaml                # 普通训练模式，组合官方配置
 pyproject.toml         # 包定义、依赖、启动入口和配置资源打包
 requirements-train.txt # 训练依赖及固定版本；供 train extra 和 pip -r 共用
 README.md              # 安装、启动、版本审计和验证状态
@@ -233,6 +256,10 @@ LICENSE                # Apache-2.0 许可证全文；来源说明合并在 READ
 
 当前执行环境自动挂载的 `.agents/`、`.aws/`、`.codex/` 是空只读目录，不属于 SAERL，已由 `.gitignore` 排除，也不会进入安装包。
 
-框架接入统一通过 `saerl.verl` 使用，官方依赖仍通过 `import verl` 使用。梯度 hook 和 backward 编排属于框架适配，放在 `verl/`；捕获后的梯度投影、response-mean 聚合和 feature/sample 选择放在 `selection/`。命令入口负责接收参数并串联这些功能。
+算法链为 `extraction → sae_projection → feature_selection → response_pattern → sample_selection → export_subset`。`representations.py` 专门负责这条链之间的提取数据格式和批量读取。框架接入统一放在 `saerl.verl`，官方依赖仍通过 `import verl` 使用；层输出 hook 属于 Actor 接口适配，捕获后的梯度处理全部在 `selection/`。各功能模块直接提供命令入口，根目录不再保留重复入口文件，也无需通用 `utils` 目录。
 
-配置 YAML 和官方源码指纹由 `pyproject.toml` 的 package-data 配置纳入 wheel 和源码包。根目录的 `requirements-train.txt` 作为动态依赖定义文件进入源码包；构建 wheel 时，它的依赖及固定版本写入安装元数据，无需 MANIFEST 文件。添加新的 Python 子包时，需要在 `tool.setuptools.packages` 中注册对应的 `saerl.*` 名称。
+各目录的 `__init__.py` 用于声明可安装、可导入的 Python 包；`src/__init__.py` 同时提供 SAERL 版本号。
+
+运行时保留算法需要的共享 SAE 坐标、合法 Top-K/阈值、稳定样本 ID 和 rollout 分组检查。删除逐行 schema/空值扫描、数组哈希、导出后重新读回校验、官方源码指纹扫描，以及 CUDA 内存预判和 OOM 自动回退。`--device auto` 按 CUDA 是否可用选择执行设备；显存不足时可调小 `--similarity-block-size` 或使用 CPU。
+
+配置 YAML 由 `pyproject.toml` 的 package-data 配置纳入 wheel 和源码包。根目录的 `requirements-train.txt` 作为动态依赖定义文件进入源码包；构建 wheel 时，它的依赖及固定版本写入安装元数据。添加新的 Python 子包时，需要在 `tool.setuptools.packages` 中注册对应的 `saerl.*` 名称。

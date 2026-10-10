@@ -11,9 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""
-The main entry point to run the PPO algorithm
-"""
+"""FSDP/Ray dispatch adapter for backward-only gradient extraction."""
 
 import psutil
 import torch
@@ -38,9 +36,6 @@ class StaticGradientWorker(AsyncActorRolloutRefWorker):
 
     @register(dispatch_mode=Dispatch.ONE_TO_ALL)
     def init_model(self):
-        from saerl.verl.compat import verify_verl
-
-        verify_verl()
         super().init_model()
         if self._is_actor:
             upstream_actor = self.actor
@@ -79,7 +74,6 @@ class StaticGradientWorker(AsyncActorRolloutRefWorker):
             lr = self.actor_lr_scheduler.get_last_lr()[0]
             metrics["actor/lr"] = lr.item() if torch.is_tensor(lr) else lr
 
-            # TODO: here, we should return all metrics
             output = DataProto(meta_info={"metrics": metrics})
 
             output = output.to("cpu")
