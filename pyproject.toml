@@ -9,14 +9,8 @@ description = "Static gradient SAE representations and data selection for RL"
 readme = "README.md"
 requires-python = ">=3.12"
 license = "Apache-2.0"
+dynamic = ["optional-dependencies"]
 dependencies = ["numpy>=1.26,<2", "pyarrow>=19"]
-
-[project.optional-dependencies]
-train = [
-  "verl @ git+https://github.com/verl-project/verl.git@875788ef6e218d0b98cb64fff919d9fef014f986",
-  "torch==2.8.0", "vllm==0.11.0", "flash-attn==2.8.1",
-  "safetensors>=0.4", "mathruler==0.1.0",
-]
 
 [project.scripts]
 saerl-train = "saerl.train:main"
@@ -35,5 +29,8 @@ packages = [
 ]
 
 [tool.setuptools.package-data]
-"saerl.config" = ["*.yaml", "constraints-train.txt"]
+"saerl.config" = ["*.yaml"]
 "saerl.verl" = ["*.json"]
+
+[tool.setuptools.dynamic.optional-dependencies]
+train = {file = ["requirements-train.txt"]}

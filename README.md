@@ -28,10 +28,10 @@ saerl-export-subset --help
 
 ```bash
 # 先安装 Torch，再安装需要读取 Torch/CUDA 信息的 flash-attn
-python -m pip install "torch==2.8.0" -c src/config/constraints-train.txt
+python -m pip install "torch==2.8.0"
 python -m pip install packaging ninja
-python -m pip install "flash-attn==2.8.1" --no-build-isolation -c src/config/constraints-train.txt
-python -m pip install -e '.[train]' -c src/config/constraints-train.txt
+python -m pip install "flash-attn==2.8.1" --no-build-isolation
+python -m pip install -e '.[train]'
 
 # 核验官方 verl 的版本和核心源码指纹
 python -m saerl.verl.compat
@@ -41,7 +41,14 @@ saerl-extract --cfg job
 saerl-train --cfg job
 ```
 
-`src/config/constraints-train.txt` 来自原 Python 3.12 / CUDA 12.8 环境的主要版本记录，不是所有平台通用的完整依赖锁。Torch、flash-attn 和 vLLM 需要匹配训练节点的 CUDA 环境；如果使用集群提供的 flash-attn wheel，可用该 wheel 替代上面的编译安装命令。全新 CUDA 环境的依赖安装尚未实测。
+根目录的 `requirements-train.txt` 是训练依赖清单，保留原环境的版本，包括固定提交的官方 verl。`pyproject.toml` 直接读取它生成 `train` extra，因此上面的 `pip install -e '.[train]'` 会安装清单中的依赖。也可以在预装 Torch 和 flash-attn 后使用常见的安装方式：
+
+```bash
+python -m pip install -r requirements-train.txt
+python -m pip install -e .
+```
+
+这份清单来自原 Python 3.12 / CUDA 12.8 环境，不是所有平台通用的完整依赖锁。Torch、flash-attn 和 vLLM 需要匹配训练节点的 CUDA 环境；如果使用集群提供的 flash-attn wheel，可用该 wheel 替代上面的编译安装命令。全新 CUDA 环境的依赖安装尚未实测。
 
 使用新虚拟环境，并移除指向旧 verl checkout 的 `PYTHONPATH` 设置。启动入口会核验官方依赖，遇到旧 editable 安装或修改过的 verl 会明确报错。
 
@@ -198,7 +205,7 @@ SAERL includes adaptations of verl (Copyright Bytedance Ltd., SGLang Team, Model
 
 选择算法和梯度表示已通过 22 项 CPU/官方 verl 回归用例，包括 response-mean 与旧实现一致、AMP 缩放和 padding 排除、不同 block size 的 greedy 与旧实现及逐样本 exact cosine 参考一致、全数据共享 feature energy、旧/新提取格式输入、全部零奖励并集和 Parquet 保真导出，以及官方 Actor loss/梯度一致、禁止 optimizer/scheduler 更新、尾批和续跑配置。
 
-当前目录组织下另重跑 8 项相关回归并通过，覆盖框架适配、梯度处理模块接入、reward 加载和完整 CPU 选择导出流程。editable 和 wheel 安装后的五个启动命令、配置组合、模块入口和奖励加载也通过验证，官方 `verl` 始终解析到外部安装。wheel 与源码包均包含配置、版本约束和官方指纹资源，无需 MANIFEST.in。测试和安装验证脚本保存在临时目录，不进入项目。
+当前目录组织下另重跑 8 项相关回归并通过，覆盖框架适配、梯度处理模块接入、reward 加载和完整 CPU 选择导出流程。editable 和 wheel 安装后的五个启动命令、配置组合、模块入口和奖励加载也通过验证，官方 `verl` 始终解析到外部安装。wheel 与源码包均包含配置和官方指纹资源，训练依赖及固定版本写入安装元数据；源码包同时包含根目录的依赖清单，无需 MANIFEST.in。测试和安装验证脚本保存在临时目录，不进入项目。
 
 上述验证使用临时 Python 3.12 环境安装官方 verl，并共享原环境的第三方包，不代表全新 CUDA 环境已完成依赖解析。真实 GPU/FSDP backward、两张 GPU 的完整提取训练流程尚未执行；Ray 子进程加载训练模块的检查曾超时，仍待训练节点验证。
 
@@ -214,8 +221,9 @@ src/
   export_subset.py     # 合并零奖励样本并导出训练数据
   verl/                # 官方 verl 适配：启动、Trainer、Worker、Actor、reward、版本校验
   selection/           # 梯度 SAE 表示、Normalized Energy、投影、exact cosine、数据校验
-  config/              # Hydra 配置和 constraints-train.txt 版本约束
+  config/              # Hydra 运行配置
 pyproject.toml         # 包定义、依赖、启动入口和配置资源打包
+requirements-train.txt # 训练依赖及固定版本；供 train extra 和 pip -r 共用
 README.md              # 安装、启动、版本审计和验证状态
 LICENSE                # Apache-2.0 许可证全文；来源说明合并在 README 中
 .gitignore             # 忽略缓存、权重、运行数据和构建产物
@@ -227,4 +235,4 @@ LICENSE                # Apache-2.0 许可证全文；来源说明合并在 READ
 
 框架接入统一通过 `saerl.verl` 使用，官方依赖仍通过 `import verl` 使用。梯度 hook 和 backward 编排属于框架适配，放在 `verl/`；捕获后的梯度投影、response-mean 聚合和 feature/sample 选择放在 `selection/`。命令入口负责接收参数并串联这些功能。
 
-`src/config/constraints-train.txt` 保留原训练环境的主要版本约束，安装命令会使用它。配置 YAML、版本约束和官方源码指纹均由 `pyproject.toml` 的 package-data 配置纳入 wheel 和源码包，无需单独的 MANIFEST 文件。添加新的 Python 子包时，需要在 `tool.setuptools.packages` 中注册对应的 `saerl.*` 名称。
+配置 YAML 和官方源码指纹由 `pyproject.toml` 的 package-data 配置纳入 wheel 和源码包。根目录的 `requirements-train.txt` 作为动态依赖定义文件进入源码包；构建 wheel 时，它的依赖及固定版本写入安装元数据，无需 MANIFEST 文件。添加新的 Python 子包时，需要在 `tool.setuptools.packages` 中注册对应的 `saerl.*` 名称。
