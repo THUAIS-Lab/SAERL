@@ -1,3 +1,0 @@
-SAERL includes adaptations of verl (Copyright Bytedance Ltd., SGLang Team, ModelBest Inc.)
-and a DeepMath scorer (Copyright Huawei Technologies Co., Ltd.), licensed under Apache-2.0.
-See README.md for the pinned upstream version and adapted methods.

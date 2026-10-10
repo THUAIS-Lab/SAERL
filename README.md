@@ -192,6 +192,8 @@ Python 模块入口为 `python -m saerl.feature_select`、`python -m saerl.selec
 
 该版本没有覆盖完整提取流程的回调，也缺少可替换的 Trainer 工厂，因此部分编排、训练循环、Actor/Worker 更新方法在 SAERL 中局部覆盖。覆盖保留官方 loss 缩放、entropy/KL、dispatch、sharding 和 offload 语义，并保留来源版权说明。核心官方文件指纹存于 `src/verl/upstream.json`，启动时核验。
 
+SAERL includes adaptations of verl (Copyright Bytedance Ltd., SGLang Team, ModelBest Inc.) and a DeepMath scorer (Copyright Huawei Technologies Co., Ltd.), licensed under Apache-2.0. 许可证全文保留在 `LICENSE`，相关源码保留原有版权声明。
+
 ## 验证状态
 
 选择算法和梯度表示已通过 22 项 CPU/官方 verl 回归用例，包括 response-mean 与旧实现一致、AMP 缩放和 padding 排除、不同 block size 的 greedy 与旧实现及逐样本 exact cosine 参考一致、全数据共享 feature energy、旧/新提取格式输入、全部零奖励并集和 Parquet 保真导出，以及官方 Actor loss/梯度一致、禁止 optimizer/scheduler 更新、尾批和续跑配置。
@@ -215,7 +217,7 @@ src/
   config/              # Hydra 配置和 constraints-train.txt 版本约束
 pyproject.toml         # 包定义、依赖、启动入口和配置资源打包
 README.md              # 安装、启动、版本审计和验证状态
-LICENSE / NOTICE       # 许可和来源说明
+LICENSE                # Apache-2.0 许可证全文；来源说明合并在 README 中
 .gitignore             # 忽略缓存、权重、运行数据和构建产物
 ```
 
