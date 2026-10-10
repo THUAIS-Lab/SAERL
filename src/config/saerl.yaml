@@ -1,0 +1,22 @@
+defaults:
+  - base
+  - _self_
+
+hydra:
+  searchpath:
+    - pkg://verl.trainer.config
+
+algorithm:
+  adv_estimator: grpo
+
+data:
+  shuffle: false
+  dataloader_num_workers: 0
+  # processed_file addresses rows in the full, unfiltered training dataset.
+  filter_overlong_prompts: false
+  train_max_samples: -1
+  sampler:
+    class_path: pkg://saerl.verl.curriculum_sampler
+    class_name: SAERLSampler
+  saerl:
+    processed_file: null
