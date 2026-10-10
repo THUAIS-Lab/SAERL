@@ -30,13 +30,10 @@ package-dir = {saerl = "src"}
 packages = [
   "saerl",
   "saerl.config",
-  "saerl.extraction",
-  "saerl.integrations",
-  "saerl.integrations.verl",
-  "saerl.rewards",
+  "saerl.verl",
   "saerl.selection",
 ]
 
 [tool.setuptools.package-data]
-"saerl.config" = ["*.yaml"]
-"saerl.integrations.verl" = ["*.json"]
+"saerl.config" = ["*.yaml", "constraints-train.txt"]
+"saerl.verl" = ["*.json"]

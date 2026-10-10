@@ -28,20 +28,20 @@ saerl-export-subset --help
 
 ```bash
 # 先安装 Torch，再安装需要读取 Torch/CUDA 信息的 flash-attn
-python -m pip install "torch==2.8.0" -c constraints-train.txt
+python -m pip install "torch==2.8.0" -c src/config/constraints-train.txt
 python -m pip install packaging ninja
-python -m pip install "flash-attn==2.8.1" --no-build-isolation -c constraints-train.txt
-python -m pip install -e '.[train]' -c constraints-train.txt
+python -m pip install "flash-attn==2.8.1" --no-build-isolation -c src/config/constraints-train.txt
+python -m pip install -e '.[train]' -c src/config/constraints-train.txt
 
 # 核验官方 verl 的版本和核心源码指纹
-python -m saerl.integrations.verl.compat
+python -m saerl.verl.compat
 
 # 仅打印完整配置，不启动 Ray 或 GPU 任务
 saerl-extract --cfg job
 saerl-train --cfg job
 ```
 
-`constraints-train.txt` 来自原 Python 3.12 / CUDA 12.8 环境的主要版本记录，不是所有平台通用的完整依赖锁。Torch、flash-attn 和 vLLM 需要匹配训练节点的 CUDA 环境；如果使用集群提供的 flash-attn wheel，可用该 wheel 替代上面的编译安装命令。全新 CUDA 环境的依赖安装尚未实测。
+`src/config/constraints-train.txt` 来自原 Python 3.12 / CUDA 12.8 环境的主要版本记录，不是所有平台通用的完整依赖锁。Torch、flash-attn 和 vLLM 需要匹配训练节点的 CUDA 环境；如果使用集群提供的 flash-attn wheel，可用该 wheel 替代上面的编译安装命令。全新 CUDA 环境的依赖安装尚未实测。
 
 使用新虚拟环境，并移除指向旧 verl checkout 的 `PYTHONPATH` 设置。启动入口会核验官方依赖，遇到旧 editable 安装或修改过的 verl 会明确报错。
 
@@ -168,7 +168,7 @@ Python 模块入口为 `python -m saerl.feature_select`、`python -m saerl.selec
 
 特征和样本选择已经固定为上述方案，没有 `--method` 分发参数。使用各命令的 `--help` 查看剩余参数。
 
-奖励入口只有 `src/rewards/deepmath.py:compute_score`，直接接受官方 custom reward 参数。保留原评分规则：DeepMath、MinervaMath、OlympiadBench 使用 mathruler；AIME 2024 和 AMC-23 使用官方 `math_reward`；其他来源交给官方默认评分。SymPy 的 10 秒超时保留，避免奖励进程卡住。
+奖励入口只有 `src/verl/reward.py:compute_score`，直接接受官方 custom reward 参数。保留原评分规则：DeepMath、MinervaMath、OlympiadBench 使用 mathruler；AIME 2024 和 AMC-23 使用官方 `math_reward`；其他来源交给官方默认评分。SymPy 的 10 秒超时保留，避免奖励进程卡住。
 
 提取续跑时保持原来的模型、配置、GPU/DP 布局和 `run_name`，在原提取命令后加 `static_gradient_extraction.resume_from_step=N`。已有恢复 step 的 rank 分片会保留，缺失分片会补齐。续跑通过跳过已处理批次实现，不能保证恢复原随机 rollout 序列。
 
@@ -190,11 +190,13 @@ Python 模块入口为 `python -m saerl.feature_select`、`python -m saerl.selec
 | reward 分发及 `deepmath.py` | 合并为一个模块，通过官方 custom reward 接口加载 |
 | 原 trainer 配置 | SAERL YAML 通过 Hydra 搜索路径组合官方配置 |
 
-该版本没有覆盖完整提取流程的回调，也缺少可替换的 Trainer 工厂，因此部分编排、训练循环、Actor/Worker 更新方法在 SAERL 中局部覆盖。覆盖保留官方 loss 缩放、entropy/KL、dispatch、sharding 和 offload 语义，并保留来源版权说明。核心官方文件指纹存于 `src/integrations/verl/upstream.json`，启动时核验。
+该版本没有覆盖完整提取流程的回调，也缺少可替换的 Trainer 工厂，因此部分编排、训练循环、Actor/Worker 更新方法在 SAERL 中局部覆盖。覆盖保留官方 loss 缩放、entropy/KL、dispatch、sharding 和 offload 语义，并保留来源版权说明。核心官方文件指纹存于 `src/verl/upstream.json`，启动时核验。
 
 ## 验证状态
 
-本轮共 22 项 CPU/官方 verl 回归用例通过，测试保存在临时目录，不进入项目。包括 response-mean 与旧提取实现一致、AMP 缩放和 padding 排除、不同 block size 的 greedy 与旧实现及逐样本 exact cosine 参考一致、全数据共享 feature energy、旧/新提取格式输入、全部零奖励并集和 Parquet 保真导出，以及官方 Actor loss/梯度一致、禁止 optimizer/scheduler 更新、尾批和续跑配置。wheel、源码包、editable 安装及启动配置另行验证。
+选择算法和梯度表示已通过 22 项 CPU/官方 verl 回归用例，包括 response-mean 与旧实现一致、AMP 缩放和 padding 排除、不同 block size 的 greedy 与旧实现及逐样本 exact cosine 参考一致、全数据共享 feature energy、旧/新提取格式输入、全部零奖励并集和 Parquet 保真导出，以及官方 Actor loss/梯度一致、禁止 optimizer/scheduler 更新、尾批和续跑配置。
+
+当前目录组织下另重跑 8 项相关回归并通过，覆盖框架适配、梯度处理模块接入、reward 加载和完整 CPU 选择导出流程。editable 和 wheel 安装后的五个启动命令、配置组合、模块入口和奖励加载也通过验证，官方 `verl` 始终解析到外部安装。wheel 与源码包均包含配置、版本约束和官方指纹资源，无需 MANIFEST.in。测试和安装验证脚本保存在临时目录，不进入项目。
 
 上述验证使用临时 Python 3.12 环境安装官方 verl，并共享原环境的第三方包，不代表全新 CUDA 环境已完成依赖解析。真实 GPU/FSDP backward、两张 GPU 的完整提取训练流程尚未执行；Ray 子进程加载训练模块的检查曾超时，仍待训练节点验证。
 
@@ -203,15 +205,24 @@ Python 模块入口为 `python -m saerl.feature_select`、`python -m saerl.selec
 ## 目录结构
 
 ```text
-src/                   # 直接存放 SAERL 源码、运行配置、官方 verl 适配
-pyproject.toml         # 包定义、依赖、启动入口
-constraints-train.txt  # 原训练环境主要版本约束
-MANIFEST.in            # 将版本约束文件纳入源码发布包
-README.md              # 安装、启动、版本审计摘要和验证状态
+src/
+  train.py             # GRPO 训练与梯度提取的命令入口
+  feature_select.py    # 全局 SAE feature 筛选入口
+  select.py            # gradient core set 选择入口
+  export_subset.py     # 合并零奖励样本并导出训练数据
+  verl/                # 官方 verl 适配：启动、Trainer、Worker、Actor、reward、版本校验
+  selection/           # 梯度 SAE 表示、Normalized Energy、投影、exact cosine、数据校验
+  config/              # Hydra 配置和 constraints-train.txt 版本约束
+pyproject.toml         # 包定义、依赖、启动入口和配置资源打包
+README.md              # 安装、启动、版本审计和验证状态
 LICENSE / NOTICE       # 许可和来源说明
 .gitignore             # 忽略缓存、权重、运行数据和构建产物
 ```
 
 `.git/` 保留当前分支和历史，供版本管理及旧新对比使用。
 
-`src/` 内只有 `train.py`（训练与提取）、`feature_select.py`、`select.py`、`export_subset.py` 四个命令实现，以及 `config/`、`extraction/`、`integrations/`、`rewards/`、`selection/` 五个运行时子目录。`selection/` 只含共享读取校验、feature 投影与审计、exact cosine 算法；没有第二套命令实现。添加新的 Python 子包时，需要在 `pyproject.toml` 的 `tool.setuptools.packages` 中注册对应的 `saerl.*` 名称。
+当前执行环境自动挂载的 `.agents/`、`.aws/`、`.codex/` 是空只读目录，不属于 SAERL，已由 `.gitignore` 排除，也不会进入安装包。
+
+框架接入统一通过 `saerl.verl` 使用，官方依赖仍通过 `import verl` 使用。梯度 hook 和 backward 编排属于框架适配，放在 `verl/`；捕获后的梯度投影、response-mean 聚合和 feature/sample 选择放在 `selection/`。命令入口负责接收参数并串联这些功能。
+
+`src/config/constraints-train.txt` 保留原训练环境的主要版本约束，安装命令会使用它。配置 YAML、版本约束和官方源码指纹均由 `pyproject.toml` 的 package-data 配置纳入 wheel 和源码包，无需单独的 MANIFEST 文件。添加新的 Python 子包时，需要在 `tool.setuptools.packages` 中注册对应的 `saerl.*` 名称。

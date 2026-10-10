@@ -106,7 +106,7 @@ class StaticGradientActor(DataParallelPPOActor):
             raise RuntimeError("Static gradient extraction is already enabled")
         if int(self.ulysses_sequence_parallel_size) != 1:
             raise ValueError("Static gradient-SAE extraction currently requires Ulysses SP size 1")
-        from saerl.extraction.representations import StaticGradientSaeProcessor
+        from saerl.selection.gradient_sae import StaticGradientSaeProcessor
 
         processor = StaticGradientSaeProcessor(
             config=config,

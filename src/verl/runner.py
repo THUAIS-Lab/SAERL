@@ -11,8 +11,8 @@ from verl.trainer.ppo.reward import load_reward_manager
 from verl.trainer.ppo.utils import Role, need_critic, need_reference_policy
 from verl.utils.config import validate_config
 
-from saerl.integrations.verl.config import prepare_static_gradient_extraction
-from saerl.integrations.verl.trainer import StaticGradientTrainer
+from saerl.verl.config import prepare_static_gradient_extraction
+from saerl.verl.trainer import StaticGradientTrainer
 
 
 class SAERLTaskRunner(TaskRunner):
@@ -21,7 +21,7 @@ class SAERLTaskRunner(TaskRunner):
             return super().add_actor_rollout_worker(config)
         from verl.single_controller.ray import RayWorkerGroup
 
-        from saerl.integrations.verl.worker import StaticGradientWorker
+        from saerl.verl.worker import StaticGradientWorker
 
         self.role_worker_mapping[Role.ActorRollout] = ray.remote(StaticGradientWorker)
         self.mapping[Role.ActorRollout] = "global_pool"
@@ -37,7 +37,7 @@ class SAERLTaskRunner(TaskRunner):
             config: Training configuration object containing all parameters needed
                    for setting up and running the PPO training process.
         """
-        from saerl.integrations.verl.compat import verify_verl
+        from saerl.verl.compat import verify_verl
 
         verify_verl()
         prepare_static_gradient_extraction(config)

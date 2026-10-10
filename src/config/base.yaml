@@ -3,7 +3,7 @@ defaults:
   - _self_
 
 custom_reward_function:
-  path: pkg://saerl.rewards.deepmath
+  path: pkg://saerl.verl.reward
   name: compute_score
 
 static_gradient_extraction:

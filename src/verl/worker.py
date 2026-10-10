@@ -30,7 +30,7 @@ from verl.utils.fsdp_utils import (
 from verl.utils.profiler import DistProfiler, log_gpu_memory_usage
 from verl.workers.fsdp_workers import AsyncActorRolloutRefWorker, logger
 
-from saerl.integrations.verl.actor import StaticGradientActor
+from saerl.verl.actor import StaticGradientActor
 
 
 class StaticGradientWorker(AsyncActorRolloutRefWorker):
@@ -38,7 +38,7 @@ class StaticGradientWorker(AsyncActorRolloutRefWorker):
 
     @register(dispatch_mode=Dispatch.ONE_TO_ALL)
     def init_model(self):
-        from saerl.integrations.verl.compat import verify_verl
+        from saerl.verl.compat import verify_verl
 
         verify_verl()
         super().init_model()
