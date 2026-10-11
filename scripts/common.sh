@@ -16,6 +16,7 @@ SAERL_WORK_DIR="${SAERL_WORK_DIR:-$SAERL_ROOT/runs}"
 
 COMMON_ARGS=(
     algorithm.adv_estimator=grpo
+    algorithm.kl_ctrl.kl_coef=0.001
     "data.train_files=$SAERL_TRAIN_DATA"
     "data.val_files=$SAERL_VAL_DATA"
     "data.train_batch_size=${SAERL_TRAIN_BATCH_SIZE:-128}"
