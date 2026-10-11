@@ -1,11 +1,8 @@
-"""Train the selected subset in its precomputed curriculum order."""
-
 import torch
 from verl.experimental.dataset.sampler import AbstractSampler
 
 
 class SAERLSampler(AbstractSampler):
-    """Yield full-dataset row indices exactly as stored in processed_file."""
 
     def __init__(self, data_source, data_config):
         self.sort_list = torch.load(

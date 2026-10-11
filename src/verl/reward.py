@@ -12,16 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Dataset-specific math rewards loaded through the official verl custom reward interface."""
 
 import mathruler.grader as mathruler_grader
 from verl.utils.py_functional import timeout_limit
 
 SYMPY_TIMEOUT_SECONDS = 10
 
-# mathruler falls back to sympy.simplify for answers that do not match after
-# normalization. Run only that potentially unbounded fallback in a child
-# process so a pathological expression cannot block a reward worker forever.
 mathruler_grader.are_equal_under_sympy = timeout_limit(seconds=SYMPY_TIMEOUT_SECONDS)(
     mathruler_grader.are_equal_under_sympy
 )
@@ -37,13 +33,11 @@ def _score_deepmath(solution_str, ground_truth):
         return 0.0
 
 
-# Keep the original training/validation grading rules in one reward module.
 MATHRULER_SOURCES = {"zwhe99/DeepMath-103K", "math-ai/minervamath", "knoveleng/OlympiadBench"}
 VERL_MATH_SOURCES = {"Maxwell-Jia/AIME_2024", "knoveleng/AMC-23"}
 
 
 def compute_score(data_source, solution_str, ground_truth, extra_info=None, **kwargs):
-    """Official verl custom-reward signature; preserve dataset-specific grading."""
     if data_source in MATHRULER_SOURCES:
         return _score_deepmath(solution_str, ground_truth)
     if data_source in VERL_MATH_SOURCES:

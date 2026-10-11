@@ -1,6 +1,3 @@
-"""Launch Hydra/Ray through the pinned official verl and SAERL adapters."""
-
-
 def launch(config_name):
     import hydra
 

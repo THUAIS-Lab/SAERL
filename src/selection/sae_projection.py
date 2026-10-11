@@ -1,5 +1,3 @@
-"""SAE decoder loading and signed per-token Top-K response projection."""
-
 from __future__ import annotations
 
 import json
@@ -20,7 +18,6 @@ class DecoderSpec:
 
 @dataclass(frozen=True)
 class SpanProjection:
-    """Signed Token-TopK response mean and the union of token feature IDs."""
 
     topk_mean: torch.Tensor
     topk_support: torch.Tensor
@@ -88,7 +85,6 @@ def read_decoder_spec(sae_path: str | Path) -> DecoderSpec:
 
 
 class SaeDecoderProjector:
-    """Load ``W_dec`` and pool signed Token-TopK response projections."""
 
     def __init__(
         self,
@@ -128,7 +124,6 @@ class SaeDecoderProjector:
         self.decoder.requires_grad_(False)
 
     def _update_topk_pooling_(self, projected, feature_sum, support) -> None:
-        # Rank absolute projections, retain their original signed values.
         _, feature_ids = torch.topk(projected.abs(), self.gradient_feature_topk, dim=-1, sorted=False)
         feature_values = projected.gather(dim=-1, index=feature_ids)
         flat_ids, flat_values = feature_ids.reshape(-1), feature_values.reshape(-1)
@@ -138,7 +133,6 @@ class SaeDecoderProjector:
         support[flat_ids] = True
 
     def project_and_pool(self, token_gradient: torch.Tensor) -> SpanProjection:
-        """Keep signed token Top-K values, then mean over all valid response tokens."""
         gradient = token_gradient.detach()
         feature_sum = torch.zeros(self.spec.feature_size, device=self.device, dtype=torch.float32)
         support = torch.zeros(self.spec.feature_size, device=self.device, dtype=torch.bool)

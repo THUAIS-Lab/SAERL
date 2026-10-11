@@ -1,5 +1,3 @@
-"""Configure the official PPO components for a static, one-pass extraction job."""
-
 from datetime import datetime
 from pathlib import Path
 
@@ -7,7 +5,6 @@ from omegaconf import OmegaConf, open_dict
 
 
 def prepare_static_gradient_extraction(config) -> None:
-    """Normalize the ordinary PPO entry point for one-pass static extraction."""
     extraction = config.get("static_gradient_extraction", {})
     if not extraction.get("enable", False):
         return
@@ -40,8 +37,6 @@ def prepare_static_gradient_extraction(config) -> None:
             OmegaConf.to_container(config.static_gradient_extraction, resolve=True)
         )
 
-        # Keep the normal rollout/reward/advantage/backward path, but make the
-        # driver a deterministic one-pass analysis job.
         config.critic.enable = False
         config.actor_rollout_ref.actor.ppo_epochs = 1
         config.actor_rollout_ref.actor.shuffle = False

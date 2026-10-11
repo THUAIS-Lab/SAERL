@@ -1,5 +1,3 @@
-"""Construct the gradient core set with exact cosine greedy selection."""
-
 from __future__ import annotations
 
 import argparse
@@ -17,7 +15,6 @@ from saerl.selection.response_pattern import ResponsePatterns, project_response_
 
 @dataclass(frozen=True)
 class SelectionResult:
-    """Decisions indexed by active-row position."""
 
     selected: np.ndarray
     representative_sample_ids: np.ndarray
@@ -34,7 +31,6 @@ def exact_cosine_greedy(
     block_size: int = 64,
     device: str = "cpu",
 ) -> tuple[SelectionResult, dict]:
-    """Compare full vectors, visiting strongest signals first and breaking ties by ID."""
     use_cuda = False
     if device != "cpu":
         try:
@@ -56,7 +52,6 @@ def exact_cosine_greedy(
     ordered_ids = sample_ids[order]
     vectors = np.ascontiguousarray(normalized[order], dtype=np.float32)
     if use_cuda:
-        # Full float32 cosine computation; no approximate search or TF32 rounding.
         torch.backends.cuda.matmul.allow_tf32 = False
         torch.set_float32_matmul_precision("highest")
         vectors = torch.from_numpy(vectors).to("cuda")
@@ -111,7 +106,6 @@ def save_core_set(
     output_dir: Path, patterns: ResponsePatterns, result: SelectionResult,
     threshold: float, compute: dict, elapsed_seconds: float,
 ) -> dict:
-    """Save core IDs and explain which patterns were redundant or silent."""
     active = patterns.active_rows
     total = patterns.sample_ids.size
     statuses = np.full(total, "silent", dtype=object)
@@ -173,13 +167,13 @@ def save_core_set(
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description=__doc__)
+    parser = argparse.ArgumentParser(description="Construct the gradient core set with exact cosine greedy selection.")
     parser.add_argument("--run-dir", required=True, type=Path, nargs="+")
     parser.add_argument("--feature-indices", required=True, type=Path)
     parser.add_argument("--output-dir", type=Path)
     parser.add_argument("--cosine-threshold", type=float, default=0.98)
     parser.add_argument("--device", choices=("auto", "cpu", "cuda"), default="auto")
-    parser.add_argument("--read-batch-size", type=int, default=1024)
+    parser.add_argument("--read-batch-size", type=int, default=4)
     parser.add_argument("--similarity-block-size", type=int, default=64)
     args = parser.parse_args()
     if not 0 <= args.cosine_threshold <= 1:

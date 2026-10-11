@@ -11,7 +11,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""FSDP/Ray dispatch adapter for backward-only gradient extraction."""
 
 import psutil
 import torch
@@ -32,7 +31,6 @@ from saerl.verl.actor import StaticGradientActor
 
 
 class StaticGradientWorker(AsyncActorRolloutRefWorker):
-    """Keep the legacy async rollout worker and specialize its actor update."""
 
     @register(dispatch_mode=Dispatch.ONE_TO_ALL)
     def init_model(self):
@@ -56,9 +54,8 @@ class StaticGradientWorker(AsyncActorRolloutRefWorker):
             load_fsdp_optimizer(optimizer=self.actor_optimizer, device_id=get_device_id())
 
         with self.ulysses_sharding_manager:
-            data = data.to("cpu")  # data will to device with each micro batch on actor.update_policy
+            data = data.to("cpu")
 
-            # perform training
             with Timer(name="update_policy", logger=None) as timer:
                 metrics = self.actor.update_policy(data=data)
             delta_time = timer.last

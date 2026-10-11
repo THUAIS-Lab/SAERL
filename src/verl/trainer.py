@@ -13,7 +13,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""One-pass GRPO rollout/reward/backward orchestration for static SAERL extraction."""
 
 import uuid
 
@@ -33,7 +32,6 @@ from verl.utils.metric import reduce_metrics
 
 
 class StaticGradientTrainer(RayPPOTrainer):
-    """Keep prompt groups on one DP rank and run backward without policy updates."""
 
     def _create_dataloader(self, train_dataset, val_dataset, collate_fn, train_sampler):
         self.train_dataset, self.val_dataset = train_dataset, val_dataset
@@ -45,7 +43,6 @@ class StaticGradientTrainer(RayPPOTrainer):
             collate_fn=collate_fn,
             sampler=train_sampler,
         )
-        # The upstream trainer expects a validation loader during initialization.
         self.val_dataloader = StatefulDataLoader(
             dataset=val_dataset,
             batch_size=self.config.data.val_batch_size or len(val_dataset),
@@ -80,7 +77,6 @@ class StaticGradientTrainer(RayPPOTrainer):
         return super()._update_actor(batch)
 
     def _extract_batch(self, batch: DataProto) -> tuple[DataProto, dict, dict]:
-        """Roll out, score, compute GRPO advantages and consume actor gradients."""
         metrics, timing = {}, {}
         batch.meta_info["temperature"] = self.config.actor_rollout_ref.rollout.temperature
         original_size = len(batch)
@@ -152,7 +148,6 @@ class StaticGradientTrainer(RayPPOTrainer):
         return batch, metrics, timing
 
     def fit(self):
-        """Visit each source batch once; resuming skips batches before the requested step."""
         from verl.utils.tracking import Tracking
 
         logger = Tracking(

@@ -1,5 +1,3 @@
-"""Select global shared SAE features with Normalized Energy Top-K."""
-
 import argparse
 import json
 from pathlib import Path
@@ -24,13 +22,12 @@ def select_features(run_dirs: list[Path], top_k: int) -> tuple[np.ndarray, np.nd
         sample_count += 1
     if not sample_count:
         raise ValueError("No nonzero response-mean samples found")
-    # Stable ties choose smaller feature IDs; all samples share this feature set.
     indices = np.sort(np.argsort(-energy, kind="stable")[:top_k].astype(np.int64))
     return indices, energy, sample_count
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description=__doc__)
+    parser = argparse.ArgumentParser(description="Select global shared SAE features with Normalized Energy Top-K.")
     parser.add_argument("--run-dir", required=True, type=Path, nargs="+")
     parser.add_argument("--top-k", type=int, default=256)
     parser.add_argument("--output", type=Path)

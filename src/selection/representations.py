@@ -1,5 +1,3 @@
-"""Parquet storage for sample-level signed Token-TopK response-mean representations."""
-
 from __future__ import annotations
 
 import json
@@ -19,7 +17,6 @@ RESPONSE_COLUMNS = (
 
 
 def gradient_sae_schema() -> pa.Schema:
-    """One row per prompt, after averaging its rollouts."""
     return pa.schema(
         [
             ("sample_id", pa.int64()),
@@ -34,7 +31,6 @@ def gradient_sae_schema() -> pa.Schema:
 
 @dataclass(frozen=True)
 class ExtractionRuns:
-    """Extraction shards sharing the same SAE feature coordinates."""
 
     directories: list[Path]
     shards: list[Path]
@@ -46,7 +42,6 @@ class ExtractionRuns:
 def load_runs(run_dirs: list[Path]) -> ExtractionRuns:
     directories = [path.expanduser().resolve() for path in run_dirs]
     manifests = [json.loads((path / "representation_manifest.json").read_text()) for path in directories]
-    # Global feature selection is meaningful only in a shared SAE basis.
     basis_keys = (
         "sae_feature_size", "sae_checkpoint", "hookpoint", "gradient_feature_topk",
         "decoder_normalization", "gradient_zero_eps",
@@ -68,7 +63,6 @@ def load_runs(run_dirs: list[Path]) -> ExtractionRuns:
 
 
 def iter_response_means(runs: ExtractionRuns, batch_size: int = 1024) -> Iterator[tuple]:
-    """Read sample IDs, sparse feature IDs, signed means and zero-signal flags."""
     for path in runs.shards:
         for batch in pq.ParquetFile(path).iter_batches(batch_size=batch_size, columns=list(RESPONSE_COLUMNS)):
             ids_array, means_array = batch.column(1), batch.column(2)

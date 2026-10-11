@@ -1,5 +1,3 @@
-"""Export the core set union all zero-reward samples as the final training dataset."""
-
 import argparse
 import json
 from pathlib import Path
@@ -31,7 +29,6 @@ def export_subset(run_dirs: list[Path], selection_dir: Path, dataset_path: Path)
     combined_ids = np.union1d(selected_ids, zero_reward_ids)
     dataset = pq.read_table(dataset_path)
     dataset_ids = dataset.column("extra_info").combine_chunks().field("index").to_numpy()
-    # ID mapping determines training membership; row positions are never used as IDs.
     if np.unique(dataset_ids).size != dataset_ids.size:
         raise ValueError("Source dataset extra_info.index must uniquely identify each prompt")
     missing = np.setdiff1d(combined_ids, dataset_ids)
@@ -59,7 +56,7 @@ def export_subset(run_dirs: list[Path], selection_dir: Path, dataset_path: Path)
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description=__doc__)
+    parser = argparse.ArgumentParser(description="Export the core set union all zero-reward samples as the final training dataset.")
     parser.add_argument("--run-dir", required=True, type=Path, nargs="+")
     parser.add_argument("--selection-dir", required=True, type=Path)
     parser.add_argument("--dataset", required=True, type=Path)

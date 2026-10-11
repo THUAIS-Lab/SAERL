@@ -13,9 +13,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""
-Static gradient actor. Method adaptations: see the verl integration section in README.md.
-"""
 
 import re
 
@@ -31,7 +28,6 @@ from verl.workers.actor.dp_actor import DataParallelPPOActor, logger
 
 
 class StaticGradientActor(DataParallelPPOActor):
-    """Reuse upstream forward; adapt backward consumption without updating weights."""
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -56,7 +52,6 @@ class StaticGradientActor(DataParallelPPOActor):
         self._latest_static_layer_output_grad = None
 
     def _register_static_gradient_hook(self, hookpoint: str) -> str:
-        """Register the layer-output backward hook on the FSDP actor."""
         self._remove_static_gradient_hook()
         layer_match = re.search(r"(?:^|\.)layers\.(\d+)(?:$|\.)", hookpoint)
         if layer_match is None:
@@ -75,8 +70,6 @@ class StaticGradientActor(DataParallelPPOActor):
     def _on_static_layer_output_gradient(self, _module: nn.Module, _grad_input, grad_output) -> None:
         if not grad_output or grad_output[0] is None:
             return
-        # update_policy consumes this immediately after loss.backward(), so a
-        # detached view is sufficient and avoids a full activation-sized copy.
         self._latest_static_layer_output_grad = grad_output[0].detach()
 
     def _pop_static_layer_output_gradient(self) -> torch.Tensor:
@@ -87,7 +80,6 @@ class StaticGradientActor(DataParallelPPOActor):
         return gradient
 
     def enable_static_gradient_extraction(self, config) -> None:
-        """Attach the layer-output hook used by static gradient-SAE mode."""
         if int(self.ulysses_sequence_parallel_size) != 1:
             raise ValueError("Static gradient-SAE extraction currently requires Ulysses SP size 1")
         from saerl.selection.extraction import StaticGradientSaeProcessor
@@ -109,7 +101,6 @@ class StaticGradientActor(DataParallelPPOActor):
 
     @GPUMemoryLogger(role="dp actor", logger=logger)
     def update_policy(self, data: DataProto):
-        """Run the official actor loss and backward, then consume the hooked gradients."""
         self.actor_module.train()
         temperature = data.meta_info["temperature"]
         batch_keys = [
@@ -185,7 +176,6 @@ class StaticGradientActor(DataParallelPPOActor):
                     loss.backward()
                 gradient = self._pop_static_layer_output_gradient()
                 gradient_scale = float(self.scaler.get_scale()) if self.scaler is not None else 1.0
-                # Parameter gradients are unused; release them before SAE projection.
                 self.actor_optimizer.zero_grad(set_to_none=True)
                 self.static_gradient_sae_processor.consume_micro_batch(
                     gradient, model_inputs, gradient_scale=gradient_scale,

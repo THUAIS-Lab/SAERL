@@ -1,5 +1,3 @@
-"""Build absolute response-mean patterns on the globally selected SAE features."""
-
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -23,7 +21,7 @@ class ResponsePatterns:
 
 
 def project_response_patterns(
-    run_dirs: list[Path], feature_indices_path: Path, read_batch_size: int = 1024,
+    run_dirs: list[Path], feature_indices_path: Path, read_batch_size: int = 4,
 ) -> ResponsePatterns:
     runs = load_runs(run_dirs)
     feature_indices = np.load(feature_indices_path, allow_pickle=False).astype(np.int64, copy=False)
@@ -36,7 +34,6 @@ def project_response_patterns(
     for row, (sample_id, ids, means, zero_flag) in enumerate(iter_response_means(runs, read_batch_size)):
         columns = feature_to_column[ids]
         keep = columns >= 0
-        # Signed token/rollout means have already been computed during extraction.
         values[row, columns[keep]] = np.abs(means[keep])
         strengths[row] = np.linalg.norm(means[keep].astype(np.float64))
         sample_ids[row], zero_flags[row] = sample_id, zero_flag

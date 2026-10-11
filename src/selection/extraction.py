@@ -1,9 +1,3 @@
-"""Aggregate captured response gradients across rollouts and write extraction shards.
-
-The verl actor supplies layer-output gradients after backward. This module
-computes sample-level signed Token-TopK means, without updating the policy.
-"""
-
 from __future__ import annotations
 
 import json
@@ -40,7 +34,6 @@ def _python_values(value: Any, expected: int) -> list[Any]:
 
 
 class StaticGradientSaeProcessor:
-    """Project actor-captured gradients and persist one row per prompt."""
 
     def __init__(
         self,
@@ -277,8 +270,6 @@ class StaticGradientSaeProcessor:
         return {
             "static_gradient/rows": float(rows),
             "static_gradient/optimizer_step": 0.0,
-            # The ordinary key is averaged across DP ranks by reduce_metrics;
-            # its duplicate ending in "max" reports the critical-path rank.
             "timing_s/static_gradient_processing": self._processing_seconds,
             "timing_s/static_gradient_processing_max": self._processing_seconds,
             "timing_s/static_gradient_finalize": finalize_seconds,
@@ -288,7 +279,6 @@ class StaticGradientSaeProcessor:
 
 
 def main() -> None:
-    """Launch the one-pass extraction job through the verl adapter."""
     from saerl.verl.train import launch
 
     launch("extract")
