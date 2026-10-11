@@ -89,6 +89,8 @@ class StaticGradientSaeProcessor:
         self._processing_seconds = 0.0
 
     def start_update(self, global_step: int) -> None:
+        if self._groups:
+            raise RuntimeError("Previous static gradient extraction update was not finalized")
         self._global_step = int(global_step)
         self._micro_batches_seen = 0
         self._rollouts_seen = 0
@@ -169,9 +171,16 @@ class StaticGradientSaeProcessor:
                 continue
             prompt_len = int(prompt_lengths[row].item())
             response_len = int(response_lengths[row].item())
+            sequence_len = prompt_len + response_len
+            if int(compact_gradient.shape[0]) != sequence_len:
+                raise ValueError(f"Compact gradient has {compact_gradient.shape[0]} tokens, expected {sequence_len}")
 
             group_id = str(group_ids[row])
             accumulator = self._groups.get(group_id)
+            if accumulator is not None and (
+                accumulator["sample_id"] != sample_ids[row] or accumulator["prompt_len"] != prompt_len
+            ):
+                raise RuntimeError(f"Inconsistent metadata for rollout group {group_id}")
             prompt_projection, response_projection = self._project_rollout(
                 token_gradient=compact_gradient,
                 prompt_len=prompt_len,
@@ -203,7 +212,7 @@ class StaticGradientSaeProcessor:
             accumulator["topk_response_support"].logical_or_(response_projection.topk_support)
             accumulator["nonzero_advantage_rollouts"] += int(abs(float(advantages[row].item())) > 1e-8)
             self._rollouts_seen += 1
-            self._tokens_seen += prompt_len + response_len
+            self._tokens_seen += sequence_len
 
         self._micro_batches_seen += 1
         if (

@@ -23,6 +23,13 @@ def prepare_static_gradient_extraction(config) -> None:
         raise ValueError("static_gradient_extraction currently requires algorithm.adv_estimator=grpo")
     if config.actor_rollout_ref.actor.strategy != "fsdp":
         raise ValueError("Static gradient-SAE extraction currently requires actor.strategy=fsdp")
+    if config.trainer.get("use_legacy_worker_impl", "auto") == "disable":
+        raise ValueError("Static extraction requires trainer.use_legacy_worker_impl=enable")
+    if config.actor_rollout_ref.rollout.mode == "sync":
+        raise ValueError(
+            "Rollout mode 'sync' has been removed. Please set "
+            "`actor_rollout_ref.rollout.mode=async` to use the native server rollout."
+        )
 
     resume_from_step = extraction.get("resume_from_step", None)
     if resume_from_step is not None:
