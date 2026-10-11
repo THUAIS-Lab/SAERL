@@ -68,7 +68,7 @@ class StaticGradientTrainer(RayPPOTrainer):
         padding_flags = np.zeros(len(batch), dtype=np.bool_)
         padding_flags[original_size:] = True
         batch.non_tensor_batch["static_gradient_is_padding"] = padding_flags
-        batch.non_tensor_batch["uid"] = np.array([str(uuid.uuid4()) for _ in range(len(batch))], dtype=object)
+        batch.non_tensor_batch["uid"] = np.array([str(uuid.uuid4()) for _ in range(len(batch.batch))], dtype=object)
         gen_batch = self._get_gen_batch(batch)
         gen_batch.meta_info["global_steps"] = self.global_steps
         rollout_count = self.config.actor_rollout_ref.rollout.n
@@ -82,12 +82,12 @@ class StaticGradientTrainer(RayPPOTrainer):
                 )
                 timing.update(rollout.meta_info.pop("timing", {}))
             batch = batch.repeat(repeat_times=rollout_count, interleave=True).union(rollout)
-            if "response_mask" not in batch.batch:
+            if "response_mask" not in batch.batch.keys():
                 batch.batch["response_mask"] = compute_response_mask(batch)
             batch.meta_info["global_token_num"] = torch.sum(batch.batch["attention_mask"], dim=-1).tolist()
 
             with marked_timer("reward", timing):
-                if self.use_rm and "rm_scores" not in batch.batch:
+                if self.use_rm and "rm_scores" not in batch.batch.keys():
                     reward_scores = (
                         self.reward_loop_manager.compute_rm_score(batch) if self.use_reward_loop
                         else self.rm_wg.compute_rm_score(batch)
