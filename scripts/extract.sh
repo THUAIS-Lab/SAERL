@@ -9,10 +9,6 @@ exec "$PYTHON_BIN" -m saerl.selection.extraction \
     "${COMMON_ARGS[@]}" \
     actor_rollout_ref.actor.use_kl_loss=False \
     trainer.experiment_name=static_grad \
-    trainer.total_epochs=1 \
-    trainer.val_before_train=False \
-    trainer.save_freq=-1 \
-    trainer.test_freq=-1 \
     trainer.resume_mode=disable \
     "trainer.n_gpus_per_node=${SAERL_EXTRACT_GPUS:-4}" \
     "static_gradient_extraction.sae_path=$SAERL_SAE_PATH" \
