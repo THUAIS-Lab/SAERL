@@ -38,7 +38,6 @@ COMMON_ARGS=(
     actor_rollout_ref.rollout.temperature=0.6
     actor_rollout_ref.rollout.gpu_memory_utilization=0.85
     "actor_rollout_ref.rollout.n=${SAERL_ROLLOUT_N:-8}"
-    actor_rollout_ref.rollout.log_prob_micro_batch_size_per_gpu=1
     trainer.critic_warmup=0
     'trainer.logger=[console,wandb]'
     trainer.project_name=saerl
