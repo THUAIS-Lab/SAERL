@@ -232,7 +232,7 @@ class StaticGradientSaeProcessor:
             item["raw_prompt_peak_sum"] / count,
             item["raw_response_mean_sum"] / count,
             item["raw_response_peak_sum"] / count,
-        ])
+        ]).float()
         return {
             "sample_id": int(item["sample_id"]),
             "prompt_len_tok": int(item["prompt_len"]),
