@@ -95,34 +95,18 @@ class StaticGradientSaeProcessor:
         self._tokens_seen = 0
         self._processing_seconds = 0.0
 
-    def _pool_raw_gradient(self, token_gradient: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
-        raw_sum = torch.zeros(
-            self.projector.spec.hidden_size, device=self.projector.device, dtype=torch.float32,
-        )
-        signed_peak = torch.zeros_like(raw_sum)
-        with torch.no_grad():
-            for start in range(0, int(token_gradient.shape[0]), self.projector.chunk_size):
-                chunk = token_gradient[start:start + self.projector.chunk_size].to(self.projector.device).float()
-                raw_sum.add_(chunk.sum(dim=0))
-                peak_abs = chunk.abs().amax(dim=0)
-                positive_tie = (chunk == peak_abs.unsqueeze(0)).any(dim=0)
-                chunk_peak = torch.where(positive_tie, peak_abs, -peak_abs)
-                replace = chunk_peak.abs() > signed_peak.abs()
-                replace |= (chunk_peak.abs() == signed_peak.abs()) & (chunk_peak > signed_peak)
-                signed_peak.copy_(torch.where(replace, chunk_peak, signed_peak))
-        return raw_sum / max(1, int(token_gradient.shape[0])), signed_peak
-
-    def _project_rollout(self, *, token_gradient, prompt_len, response_len) -> tuple[torch.Tensor, SpanProjection]:
+    def _project_rollout(
+        self,
+        *,
+        token_gradient: torch.Tensor,
+        prompt_len: int,
+        response_len: int,
+    ) -> tuple[SpanProjection, SpanProjection]:
         started = time.perf_counter()
-        prompt_gradient = token_gradient[:prompt_len]
-        response_gradient = token_gradient[prompt_len:prompt_len + response_len]
-        raw_gradient = torch.cat((
-            *self._pool_raw_gradient(prompt_gradient),
-            *self._pool_raw_gradient(response_gradient),
-        ))
-        result = self.projector.project_and_pool(response_gradient)
+        prompt_result = self.projector.project_and_pool(token_gradient[:prompt_len])
+        response_result = self.projector.project_and_pool(token_gradient[prompt_len : prompt_len + response_len])
         self._processing_seconds += time.perf_counter() - started
-        return raw_gradient, result
+        return prompt_result, response_result
 
     def _compact_gradients(self, gradient: torch.Tensor, attention_mask: torch.Tensor) -> list[torch.Tensor]:
         lengths = [int(value) for value in attention_mask.sum(dim=-1).tolist()]
@@ -188,7 +172,7 @@ class StaticGradientSaeProcessor:
 
             group_id = str(group_ids[row])
             accumulator = self._groups.get(group_id)
-            raw_gradient, response_projection = self._project_rollout(
+            prompt_projection, response_projection = self._project_rollout(
                 token_gradient=compact_gradient,
                 prompt_len=prompt_len,
                 response_len=response_len,
@@ -199,7 +183,10 @@ class StaticGradientSaeProcessor:
                     "prompt_len": prompt_len,
                     "count": 0,
                     "reward_sum": torch.zeros((), device=rollout_rewards.device, dtype=torch.float32),
-                    "raw_grad_sum": torch.zeros_like(raw_gradient),
+                    "raw_prompt_mean_sum": torch.zeros_like(prompt_projection.raw_mean),
+                    "raw_prompt_peak_sum": torch.zeros_like(prompt_projection.raw_signed_peak),
+                    "raw_response_mean_sum": torch.zeros_like(response_projection.raw_mean),
+                    "raw_response_peak_sum": torch.zeros_like(response_projection.raw_signed_peak),
                     "topk_response_mean_sum": torch.zeros_like(response_projection.topk_mean),
                     "topk_response_support": torch.zeros_like(response_projection.topk_support),
                     "nonzero_advantage_rollouts": 0,
@@ -208,12 +195,15 @@ class StaticGradientSaeProcessor:
 
             accumulator["count"] += 1
             accumulator["reward_sum"].add_(rollout_rewards[row])
-            accumulator["raw_grad_sum"].add_(raw_gradient)
+            accumulator["raw_prompt_mean_sum"].add_(prompt_projection.raw_mean)
+            accumulator["raw_prompt_peak_sum"].add_(prompt_projection.raw_signed_peak)
+            accumulator["raw_response_mean_sum"].add_(response_projection.raw_mean)
+            accumulator["raw_response_peak_sum"].add_(response_projection.raw_signed_peak)
             accumulator["topk_response_mean_sum"].add_(response_projection.topk_mean)
             accumulator["topk_response_support"].logical_or_(response_projection.topk_support)
             accumulator["nonzero_advantage_rollouts"] += int(abs(float(advantages[row].item())) > 1e-8)
             self._rollouts_seen += 1
-            self._tokens_seen += response_len
+            self._tokens_seen += prompt_len + response_len
 
         self._micro_batches_seen += 1
         if (
@@ -237,11 +227,17 @@ class StaticGradientSaeProcessor:
             )
         mean = (item["topk_response_mean_sum"] / count).float()
         ids = item["topk_response_support"].nonzero().flatten()
+        raw_gradient_representation = torch.cat([
+            item["raw_prompt_mean_sum"] / count,
+            item["raw_prompt_peak_sum"] / count,
+            item["raw_response_mean_sum"] / count,
+            item["raw_response_peak_sum"] / count,
+        ])
         return {
             "sample_id": int(item["sample_id"]),
             "prompt_len_tok": int(item["prompt_len"]),
             "reward_mean": float((item["reward_sum"] / count).item()),
-            "raw_grad_vals": (item["raw_grad_sum"] / count).float().cpu().tolist(),
+            "raw_grad_vals": raw_gradient_representation.cpu().tolist(),
             "topk_response_feat_ids": ids.cpu().tolist(),
             "topk_response_feat_mean": mean[ids].cpu().tolist(),
             "zero_signal_token_topk": bool(
