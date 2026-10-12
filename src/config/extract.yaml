@@ -1,0 +1,41 @@
+defaults:
+  - base
+  - _self_
+
+hydra:
+  searchpath:
+    - pkg://verl.trainer.config
+
+algorithm:
+  adv_estimator: grpo
+
+static_gradient_extraction:
+  enable: true
+  run_dir: ${static_gradient_extraction.output_dir}/${static_gradient_extraction.run_name}
+  num_rollouts: ${actor_rollout_ref.rollout.n}
+
+actor_rollout_ref:
+  static_gradient_extraction: ${static_gradient_extraction}
+  actor:
+    strategy: fsdp
+    ppo_epochs: 1
+    shuffle: false
+    use_kl_loss: false
+    ulysses_sequence_parallel_size: 1
+
+critic:
+  enable: false
+
+data:
+  shuffle: false
+
+trainer:
+  use_legacy_worker_impl: enable
+  experiment_name: static_grad
+  balance_batch: false
+  total_epochs: 1
+  critic_warmup: 0
+  val_before_train: false
+  test_freq: -1
+  save_freq: -1
+  resume_mode: disable

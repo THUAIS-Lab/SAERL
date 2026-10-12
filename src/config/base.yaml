@@ -1,0 +1,20 @@
+defaults:
+  - ppo_trainer
+  - _self_
+
+custom_reward_function:
+  path: pkg://saerl.verl.reward
+  name: compute_score
+
+static_gradient_extraction:
+  enable: false
+  sae_path: null
+  output_dir: null
+  run_name: null
+  resume_from_step: null
+  hookpoint: null
+  sample_id_key: index
+  projection_chunk_size: 32
+  gradient_feature_topk: 128
+  gradient_zero_eps: 1.0e-12
+  log_every_micro_batches: 1

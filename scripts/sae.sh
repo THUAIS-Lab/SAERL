@@ -6,6 +6,7 @@ SAERL_PROCESSED_FILE="${SAERL_PROCESSED_FILE:-path/to/processed.pt}"
 
 exec "$PYTHON_BIN" -m saerl.verl.train --config-name saerl \
     "${COMMON_ARGS[@]}" \
+    data.filter_overlong_prompts=False \
     "data.saerl.processed_file=$SAERL_PROCESSED_FILE" \
     trainer.experiment_name=saerl \
     trainer.val_before_train=True \
