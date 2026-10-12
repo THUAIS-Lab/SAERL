@@ -17,7 +17,6 @@ saerl-train = "saerl.verl.train:main"
 saerl-extract = "saerl.selection.extraction:main"
 saerl-select = "saerl.selection.sample_selection:main"
 saerl-feature-select = "saerl.selection.feature_selection:main"
-saerl-export-subset = "saerl.selection.export_subset:main"
 
 [tool.setuptools]
 package-dir = {saerl = "src"}

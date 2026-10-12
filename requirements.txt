@@ -1,3 +1,4 @@
+# Immutable upstream baseline matching main (be4da3e); do not replace with a branch or version tag.
 verl @ git+https://github.com/verl-project/verl.git@875788ef6e218d0b98cb64fff919d9fef014f986
 torch==2.8.0
 vllm==0.11.0
