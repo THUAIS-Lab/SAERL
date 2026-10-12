@@ -31,4 +31,4 @@ packages = [
 "saerl.config" = ["*.yaml"]
 
 [tool.setuptools.dynamic.optional-dependencies]
-train = {file = ["requirements-train.txt"]}
+train = {file = ["requirements.txt"]}

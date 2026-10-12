@@ -36,7 +36,7 @@ src/
     train.yaml              # 普通 RL 训练配置
     saerl.yaml              # 接入 processed_file sampler 的训练配置
 pyproject.toml              # Python 包映射、依赖、配置资源和命令入口
-requirements-train.txt      # 训练依赖版本及官方 verl 固定提交
+requirements.txt            # 训练依赖版本及官方 verl 固定提交
 diff.txt                    # 文件变更清单，运行流程不读取
 test.sbatch                 # 本地 Slurm 作业脚本，当前申请一张 GPU 并启动 select.sh
 a.py                        # 本地 Parquet 结果对照脚本，运行入口不调用
@@ -64,7 +64,7 @@ python -m pip install 'flash-attn==2.8.1' --no-build-isolation
 python -m pip install -e '.[train]'
 ```
 
-`train` extra 读取根目录的 `requirements-train.txt`。也可以在安装 Torch 和 flash-attn 后执行 `python -m pip install -r requirements-train.txt`、`python -m pip install -e .`。使用集群提供的 flash-attn wheel 时，选择与上述 Torch/CUDA 环境匹配的版本。避免将旧 verl checkout 加入 `PYTHONPATH`。
+`train` extra 读取根目录的 `requirements.txt`。也可以在安装 Torch 和 flash-attn 后执行 `python -m pip install -r requirements.txt`、`python -m pip install -e .`。使用集群提供的 flash-attn wheel 时，选择与上述 Torch/CUDA 环境匹配的版本。避免将旧 verl checkout 加入 `PYTHONPATH`。
 
 本项目直接加载 OpenSAE 格式的预训练 decoder，投影和 Token-TopK 使用 Torch 实现；运行上述流程无需额外安装 OpenSAE 源码包。
 
@@ -72,7 +72,7 @@ python -m pip install -e '.[train]'
 
 本项目使用的基线来自本仓库 `main` 的 `be4da3e7711ced82677c4e7174367e7938ea0b54`。已将该快照与[官方固定提交](https://github.com/verl-project/verl/commit/875788ef6e218d0b98cb64fff919d9fef014f986)逐文件比较：1175 个对应文件的 Git blob 哈希一致。`dev` 的 `a7a707729b39dbed8c6126ace675bd0ba60d4e2a` 包含本地训练、奖励和提取改动；当前项目通过 `saerl.verl` 适配官方基线。
 
-`requirements-train.txt` 使用完整 Git commit 的直接依赖，`pyproject.toml` 的 `train` extra 从该文件读取。因此 `pip install -e '.[train]'` 和 `pip install -r requirements-train.txt` 使用同一提交，不跟随上游 main/dev 分支更新，也不使用仅固定 `verl==0.7.0.dev0` 的方式；不同源码提交可能使用相同版本号。
+`requirements.txt` 使用完整 Git commit 的直接依赖，`pyproject.toml` 的 `train` extra 从该文件读取。因此 `pip install -e '.[train]'` 和 `pip install -r requirements.txt` 使用同一提交，不跟随上游 main/dev 分支更新，也不使用仅固定 `verl==0.7.0.dev0` 的方式；不同源码提交可能使用相同版本号。
 
 如果沿用以前直接开发 verl 的环境，需要先替换旧的 editable verl。以下命令只替换 verl，训练环境的其他依赖仍需按上面的安装步骤准备：
 
