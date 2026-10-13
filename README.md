@@ -39,16 +39,15 @@ src/
 pyproject.toml              # Python 包映射、依赖、配置资源和命令入口
 requirements.txt            # 训练依赖版本及官方 verl 固定提交
 diff.txt                    # 文件变更清单，运行流程不读取
-test.sbatch                 # 本地 Slurm 作业脚本，当前申请一张 GPU 并启动 select.sh
 a.py                        # 本地 Parquet 结果对照脚本，运行入口不调用
 README.md                   # 文件说明和运行步骤
 LICENSE                     # Apache-2.0 许可证
 .gitignore                  # 数据、权重、运行产物、缓存和构建产物的忽略规则
 ```
 
-`src/` 安装后的包名是 `saerl`，由 `pyproject.toml` 映射。`src/verl/` 对应 `saerl.verl`，用于框架接入；`src/selection/` 对应 `saerl.selection`，用于梯度处理和筛选。先安装项目，再运行脚本或 `python -m saerl...`。
+`src/` 安装后的包名是 `saerl`，由 `pyproject.toml` 映射。`src/verl/` 对应 `saerl.verl`，用于框架接入；`src/selection/` 对应 `saerl.selection`，用于梯度处理和筛选。完成环境安装后，通过 `scripts/` 下的脚本运行。
 
-`test.sbatch`、`a.py` 和 `diff.txt` 是本地作业或对照文件，不进入 Python 包。`test.sbatch` 中的工作目录、环境激活和启动路径需要按运行机器调整；`.vscode/` 是本地编辑器配置。
+`a.py` 和 `diff.txt` 是本地对照文件，不进入 Python 包；`.vscode/` 是本地编辑器配置。
 
 selection 按梯度提取、feature selection、sample selection 三个阶段组织。梯度提取分为 `extraction.py`（提取结果聚合与写出）和 `sae_projection.py`（SAE 投影）；`feature_selection.py` 负责 Normalized Energy Top-K；`sample_selection.py` 完成 pattern 构造、exact cosine greedy、全部零奖励样本合并和最终子集导出。提取结果的加载与稀疏读取放在 `feature_selection.py`，供后续步骤复用。
 
@@ -64,58 +63,21 @@ conda activate saerl
 bash scripts/install_train.sh
 ```
 
-脚本依次安装 Torch 2.8.0 / torchvision 0.23.0 / torchaudio 2.8.0 的 CUDA 12.8 wheel，以 `USE_MEGATRON=0 USE_SGLANG=0` 运行官方脚本，再安装固定提交的 verl 和本项目，最后执行 `pip check`。安装时用 `requirements.txt` 约束依赖版本，完成后即可运行提取、筛选和训练脚本。
+脚本依次安装 Torch 2.8.0 / torchvision 0.23.0 / torchaudio 2.8.0 的 CUDA 12.8 wheel，以 `USE_MEGATRON=0 USE_SGLANG=0` 运行官方脚本，再安装固定提交的 verl 和本项目，最后执行 `pip check`。从安装开始即用 `requirements.txt` 约束依赖版本，并提前安装 NumPy 1.26.4 和旧开发环境使用的 filelock 3.25.2，保持原评分超时实现的依赖一致；完成后即可运行提取、筛选和训练脚本。
+
+`requirements.txt` 中的完整 Git commit 固定了 verl 版本，`pyproject.toml` 的 `train` extra 从该文件读取依赖；安装入口下载的官方脚本也使用同一提交。该提交对应本仓库 main 的源码基线，不跟随上游分支更新。上述环境安装已包含 verl 的安装，完成后 `import verl` 直接加载该包，无需再单独安装 verl。
 
 官方脚本写死了 `MAX_JOBS=32` 和 flash-attn 的 FALSE ABI；安装入口将前者改为默认 `2`（可通过 `MAX_JOBS` 覆盖），并按实际 Torch ABI 选择官方 flash-attn wheel。其余依赖安装步骤沿用原脚本。
 
-以后开启新终端或运行作业时，激活同一环境：
+安装入口会输出 `[1/5]` 到 `[5/5]` 的步骤日志。`[3/5]` 是导入 Torch 并读取 ABI，此时还未开始安装 vLLM。
+
+以后开启新终端时，激活同一环境：
 
 ```bash
 conda activate saerl
 ```
 
 本项目直接加载 OpenSAE 格式的预训练 decoder，投影和 Token-TopK 使用 Torch 实现，无需额外安装 OpenSAE 源码包。
-
-### 安装固定 verl 版本
-
-本项目使用的基线来自本仓库 `main` 的 `be4da3e7711ced82677c4e7174367e7938ea0b54`。已将该快照与[官方固定提交](https://github.com/verl-project/verl/commit/875788ef6e218d0b98cb64fff919d9fef014f986)逐文件比较：1175 个对应文件的 Git blob 哈希一致。`dev` 的 `a7a707729b39dbed8c6126ace675bd0ba60d4e2a` 包含本地训练、奖励和提取改动；当前项目通过 `saerl.verl` 适配官方基线。
-
-`requirements.txt` 使用完整 Git commit 的直接依赖，`pyproject.toml` 的 `train` extra 从该文件读取。安装脚本下载的官方依赖脚本和最终安装的 verl 使用同一提交，不跟随上游 main/dev 分支更新；不同源码提交可能使用相同的 `0.7.0.dev0` 版本号。
-
-<details>
-<summary>已有训练环境：替换旧 verl 或手动查看安装来源</summary>
-
-以下操作适用于已经具备匹配的 Torch、vLLM 和 flash-attn 的训练环境；从头配置环境时使用上面的 Conda 和安装脚本流程。
-
-如果沿用以前直接开发 verl 的环境，先替换旧的 editable verl，再安装本项目：
-
-```bash
-python -m pip uninstall -y verl
-python -m pip install --no-deps \
-  'verl @ git+https://github.com/verl-project/verl.git@875788ef6e218d0b98cb64fff919d9fef014f986'
-python -m pip install -e '.[train]' --no-build-isolation
-```
-
-`import verl` 只加载当前环境中的包，不会下载或安装依赖；版本固定在 pip 安装阶段完成。安装后如需手动查看提交信息和导入位置，可以运行：
-
-```bash
-python -c "import importlib.metadata as m; print(m.distribution('verl').read_text('direct_url.json'))"
-python -c "import importlib.util; print(importlib.util.find_spec('verl').origin)"
-```
-
-第一条输出中的 `vcs_info.commit_id` 应为上述完整提交，第二条应指向当前环境安装的 verl。旧 checkout 出现在 `PYTHONPATH` 或当前工作目录下时可能覆盖已安装的包；移除旧路径并从本项目根目录启动即可。SAERL 自身可以 editable 安装，verl 使用上述固定 Git 依赖安装。
-
-</details>
-
-### 仅运行 selection
-
-如果只对已有提取结果进行单卡 GPU selection 和导出，安装基础依赖及 Torch 即可：
-
-```bash
-python -m pip install -e . 'torch==2.8.0'
-```
-
-分步运行并使用 `--device cpu` 时，可省略 Torch，只安装 `python -m pip install -e .`。
 
 ## 输入与公共参数
 
@@ -125,31 +87,17 @@ python -m pip install -e . 'torch==2.8.0'
 
 SAE 目录需要 `config.json`，包含 `feature_size`、`hidden_size` 和 `input_hookpoint`，以及一个 `.pt` checkpoint 或 `model.safetensors` / 分片 safetensors 权重。decoder 支持 `W_dec` 或 `decoder.weight`，形状为 `[feature_size, hidden_size]`。hookpoint 需要匹配模型的 transformer layer；提取时也可用 `static_gradient_extraction.hookpoint` 覆盖。
 
-将下面的 `path/to/...` 替换为实际路径。相对路径以项目根目录为基准：
+运行前直接修改脚本中的 `path/to/...` 路径和参数默认值。相对路径以项目根目录为基准：
 
-```bash
-export SAERL_TRAIN_DATA="path/to/train.parquet"
-export SAERL_VAL_DATA="path/to/val.parquet"
-export SAERL_MODEL_PATH="path/to/model"
-export SAERL_SAE_PATH="path/to/sae"
-export SAERL_WORK_DIR="$PWD/runs"
-```
-
-| 环境变量 | 用途及默认值 |
+| 修改的脚本 | 需要配置的内容 |
 | --- | --- |
-| `SAERL_TRAIN_DATA` / `SAERL_VAL_DATA` | 训练 / 验证 Parquet 路径；默认 `path/to/train.parquet` / `path/to/val.parquet` |
-| `SAERL_MODEL_PATH` | 模型目录；默认 `path/to/model` |
-| `SAERL_SAE_PATH` | SAE decoder 目录；默认 `path/to/sae`，仅提取使用 |
-| `SAERL_PROCESSED_FILE` | 外部样本行号 Tensor；默认 `path/to/processed.pt`，仅 `sae.sh` 使用 |
-| `SAERL_WORK_DIR` | 输出根目录；默认项目根目录下的 `runs/` |
-| `SAERL_RUN_NAME` | 提取任务名；默认启动时间戳 |
-| `SAERL_EXTRACT_GPUS` / `SAERL_TRAIN_GPUS` | 提取 / 训练 GPU 数；默认 `4` / `4` |
-| `SAERL_TRAIN_BATCH_SIZE` / `SAERL_PPO_MINI_BATCH_SIZE` | prompt batch / PPO mini batch；默认 `128` / `64` |
-| `SAERL_ROLLOUT_N` / `SAERL_TOTAL_EPOCHS` | 每个 prompt 的 rollout 数 / RL 训练轮数；默认 `8` / `30` |
-| `SAERL_TOKEN_TOP_K` | 每个 response token 保留的 SAE features 数；默认 `128` |
-| `SAERL_PROJECTION_CHUNK_SIZE` | 提取脚本的投影分块大小；默认 `4096` |
-| `PYTHON_BIN` | Python 解释器；默认已激活环境中的 `python` |
-| `WANDB_MODE` / `WANDB_DIR` | 日志模式 / 保存目录；默认 `offline` / 项目根目录下的 `wandb/` |
+| `scripts/common.sh` | 完整训练/验证 Parquet、模型路径、输出根目录，以及公共 batch、rollout、优化器和日志参数 |
+| `scripts/extract.sh` | SAE 权重路径、提取任务名、GPU 数、Token-TopK 和投影分块大小 |
+| `scripts/select.sh` | 提取结果目录、筛选输出目录、共享 feature 数、cosine 阈值和计算分块大小 |
+| `scripts/grpo.sh` | 训练 GPU 数、epoch 数、checkpoint 目录；训练子集时在 `COMMON_ARGS` 后增加 `data.train_files` 参数，指向筛选导出的 `subset.parquet` |
+| `scripts/sae.sh` | `processed_file` 路径、训练 GPU 数、epoch 数和 checkpoint 目录 |
+
+`common.sh` 中的训练数据路径保持为完整源 Parquet，供提取、selection 导出和按原行号取样使用。普通 GRPO 可以在 `grpo.sh` 中通过 `data.train_files` 覆盖为筛选子集。
 
 `scripts/common.sh` 使用 GRPO、FSDP、动态 batch、gradient checkpointing，prompt/response 最大长度分别为 `1024` / `3072`，rollout 温度为 `0.6`。actor 学习率为 `1e-6`，actor KL loss 使用 `low_var_kl`、系数 `0.001`；提取脚本覆盖为关闭 actor KL loss。公共脚本同时设置 `algorithm.kl_ctrl.kl_coef=0.001`，该系数在启用 `algorithm.use_kl_in_reward` 后用于 reward KL；当前沿用官方默认关闭状态。
 
@@ -159,28 +107,25 @@ export SAERL_WORK_DIR="$PWD/runs"
 官方 verl YAML → SAERL YAML → common.sh 的 COMMON_ARGS → 各脚本专用参数 → 命令末尾的 Hydra 参数
 ```
 
-代码读取未配置的参数时才使用相应默认值。提取启动前还会根据实际 `rollout.n` 设置 `num_rollouts`，组装 `run_dir`，并保存最终配置。`select.sh` 复用公共脚本的数据路径和 Python 解释器，通过环境变量设置筛选参数。上表描述脚本默认值；直接调用 Python 提取入口时，`base.yaml` 的投影分块默认值是 `32`。
+代码读取未配置的参数时才使用相应默认值。提取启动前还会根据实际 `rollout.n` 设置 `num_rollouts`，组装 `run_dir`，并保存最终配置。`select.sh` 复用公共脚本的数据路径和 Python 解释器，筛选参数直接在该脚本中修改。提取脚本的投影分块默认值是 `4096`，会覆盖 `base.yaml` 中的 `32`。
 
 ## 当前流程快速运行
 
-安装环境并设置上述输入路径后：
+修改好上述脚本后，在项目根目录依次执行：
 
 ```bash
-export SAERL_RUN_NAME=extract-001
-export SAERL_RUN_DIR="$SAERL_WORK_DIR/extraction/$SAERL_RUN_NAME"
-export SAERL_SELECTION_DIR="path/to/selection_output"
-
 bash scripts/extract.sh
 bash scripts/select.sh
-bash scripts/grpo.sh data.train_files="$SAERL_SELECTION_DIR/subset.parquet"
+bash scripts/grpo.sh
 ```
 
-这三步分别提取梯度、导出筛选子集、训练子集。已有完整数据的梯度文件时可以直接从 `select.sh` 开始；已有外部筛选和排序结果时，使用后文的 `sae.sh`。
+这三步分别提取梯度、导出筛选子集、训练子集。`select.sh` 的提取结果目录应对应 `extract.sh` 的输出任务；`grpo.sh` 的 `data.train_files` 应指向 `select.sh` 导出的 `subset.parquet`。已有提取结果时可以从 `select.sh` 开始；已有外部筛选和排序结果时使用 `sae.sh`。
 
 ## 1. 梯度提取
 
+修改 `extract.sh` 中的 SAE 路径和任务名后执行：
+
 ```bash
-export SAERL_RUN_NAME=extract-001
 bash scripts/extract.sh
 ```
 
@@ -190,15 +135,9 @@ bash scripts/extract.sh
 
 `extract.yaml` 的保存和验证频率默认是 `-1`，`common.sh` 在命令行中将它们覆盖为 `20`；静态提取循环不调用验证或 checkpoint 保存，因此提取仍只写梯度和配置文件。`src/verl/train.py` 在创建 worker 前解析配置，将实际提取配置传给 worker。
 
-提取脚本默认过滤超过 `data.max_prompt_length` 的 prompts。需要覆盖每一行时，可关闭过滤，并设置足够的 prompt 长度：
+提取脚本默认过滤超过 `data.max_prompt_length` 的 prompts。需要覆盖每一行时，在 `extract.sh` 的专用参数中将 `data.filter_overlong_prompts` 设为 `False`，并根据数据调整 `data.max_prompt_length`；默认 `data.truncation=error`。
 
-```bash
-bash scripts/extract.sh data.filter_overlong_prompts=False data.max_prompt_length=4096
-```
-
-prompt 长度按实际数据调整；默认 `data.truncation=error`。
-
-输出目录为 `$SAERL_WORK_DIR/extraction/$SAERL_RUN_NAME/`：
+输出目录由 `common.sh` 的输出根目录和 `extract.sh` 的任务名决定，默认位于 `runs/extraction/<任务名>/`：
 
 | 文件 | 内容 |
 | --- | --- |
@@ -216,73 +155,21 @@ prompt 长度按实际数据调整；默认 `data.truncation=error`。
 
 提取分别处理有效 prompt 和 response tokens。每个 chunk 先用 float32 梯度计算 raw 统计，再转为 decoder 的 bfloat16 dtype 做 SAE 投影，并以 float32 累加。写出的 SAE 表示只保存 response 的 Token-TopK mean 和 feature IDs，不计算或保存 SAE TopK peak。
 
-使用新的任务名启动新提取。按 step 续跑时保留原模型、提取参数、GPU 布局和任务名：
+使用新的任务名启动新提取。按 step 续跑时，在 `extract.sh` 的提取参数中增加 `static_gradient_extraction.resume_from_step=743`，再运行同一脚本；将 `743` 替换为第一个未完整写出的 step，并保留原模型、提取参数、GPU 布局和任务名。
 
-```bash
-bash scripts/extract.sh static_gradient_extraction.resume_from_step=743
-```
-
-将 `743` 替换为第一个未完整写出的 step。续跑跳过此前的 batch，从该 step 开始处理；配置另存为 `resolved_config.resume-step-00000743.yaml`。起始 step 已存在的 rank 分片会保留，其余缺失分片继续写入。续跑通过跳过批次实现，不恢复原随机 rollout 状态。
+续跑跳过此前的 batch，从该 step 开始处理；配置另存为 `resolved_config.resume-step-00000743.yaml`。起始 step 已存在的 rank 分片会保留，其余缺失分片继续写入。续跑通过跳过批次实现，不恢复原随机 rollout 状态。
 
 ## 2. Gradient-SAE selection
 
-复用完整数据集的提取结果，一次执行共享 feature 选择、core set 筛选、全部零奖励样本合并和子集导出：
+修改 `select.sh` 中的提取结果目录和筛选输出目录后执行：
 
 ```bash
-export SAERL_RUN_DIR="$SAERL_WORK_DIR/extraction/$SAERL_RUN_NAME"
-export SAERL_SELECTION_DIR="path/to/selection_output"
 bash scripts/select.sh
 ```
 
-如果梯度已提前准备好，直接指定输入和输出路径即可：
+该脚本一次完成共享 feature 选择、core set 筛选、全部零奖励样本合并和子集导出。提取结果目录需要包含 `representation_manifest.json` 和 `step-*.parquet`；`common.sh` 中的训练数据路径应指向用于提取的完整源 Parquet。
 
-```bash
-SAERL_TRAIN_DATA="path/to/train.parquet" \
-SAERL_RUN_DIR="path/to/gradient_run" \
-SAERL_SELECTION_DIR="path/to/selection_output" \
-bash scripts/select.sh
-```
-
-梯度目录需要包含 `representation_manifest.json` 和 `step-*.parquet`；`SAERL_TRAIN_DATA` 传用于提取的完整源数据。输出目录中最终的 `subset.parquet` 是 core set 与全部零奖励样本的并集。
-
-| selection 环境变量 | 用途及脚本默认值 |
-| --- | --- |
-| `SAERL_RUN_DIR` | 已提取的梯度目录；默认 `path/to/gradient_run` |
-| `SAERL_SELECTION_DIR` | 所有筛选和导出结果的保存目录；默认 `path/to/selection_output` |
-| `SAERL_FEATURE_TOP_K` | 全数据共享的 feature 数；默认 `256` |
-| `SAERL_COSINE_THRESHOLD` | cosine 冗余阈值；默认 `0.7` |
-| `CUDA_VISIBLE_DEVICES` | 用于 cosine 计算的可见 GPU；仅使用第一张，Slurm 作业沿用调度器分配 |
-| `SAERL_SELECTION_READ_BATCH_SIZE` | 稀疏梯度读取 batch 大小；默认 `4` |
-| `SAERL_SIMILARITY_BLOCK_SIZE` | cosine 计算分块大小；默认 `64` |
-
-例如覆盖 feature 数并选择一张 GPU：
-
-```bash
-SAERL_FEATURE_TOP_K=128 CUDA_VISIBLE_DEVICES=0 bash scripts/select.sh
-```
-
-需要汇总多个梯度目录时，将目录作为脚本位置参数传入；它们共同拟合一组 features，并在同一个空间中筛选样本：
-
-```bash
-bash scripts/select.sh path/to/gradient_run_a path/to/gradient_run_b
-```
-
-也可以分步运行同一流程：
-
-```bash
-saerl-feature-select \
-  --run-dir "$SAERL_RUN_DIR" \
-  --top-k 256 \
-  --output "$SAERL_SELECTION_DIR/feature_indices.npy"
-
-CUDA_VISIBLE_DEVICES=0 saerl-select \
-  --run-dir "$SAERL_RUN_DIR" \
-  --feature-indices "$SAERL_SELECTION_DIR/feature_indices.npy" \
-  --dataset "$SAERL_TRAIN_DATA" \
-  --device cuda \
-  --cosine-threshold 0.7 \
-  --output "$SAERL_SELECTION_DIR/subset.parquet"
-```
+`select.sh` 默认选择 `256` 个共享 features，cosine 阈值为 `0.7`，稀疏梯度读取 batch 大小为 `4`，cosine 计算分块大小为 `64`；需要调整时直接修改该脚本。汇总多个提取目录时，在脚本的 `RUN_DIRS` 数组中填写这些目录，它们共同拟合一组 features 并在同一空间中筛选；各目录需要使用相同 SAE、hookpoint 和投影设置。
 
 selection 使用以下算法：
 
@@ -292,88 +179,54 @@ selection 使用以下算法：
 4. 按选定 features 上的 L2 范数降序、sample ID 升序执行 exact cosine greedy。与已保留样本的最大 cosine 达到阈值时判为冗余，其余保留为 gradient core set。
 5. 将 core set 与提取结果中**所有 `reward_mean == 0.0` 的样本**取并集，作为最终训练子集，包括零梯度和被判为冗余的零奖励样本。
 
-`SAERL_TOKEN_TOP_K` 是每个 token 的保留数量，超过 decoder feature size 时自动截到 feature size；`SAERL_FEATURE_TOP_K` 是全数据共享 feature 数，要求在 `1` 到 feature size 之间。这两个参数分别设置。
+`extract.sh` 中的 Token-TopK 是每个 token 的保留数量，超过 decoder feature size 时自动截到 feature size；`select.sh` 中的共享 feature 数要求在 `1` 到 feature size 之间。这两个参数分别在对应脚本中修改。
 
-Python feature 选择入口默认 `--top-k=256`。Python 样本筛选入口默认 `--cosine-threshold=0.98`、`--read-batch-size=4`、`--similarity-block-size=64`、`--device=cuda`；`select.sh` 显式将 cosine 阈值设为 `0.7`。exact cosine 计算使用可见 GPU 列表中的第一张卡 `cuda:0`，需要安装 Torch；feature 统计、Parquet 读取和导出在 CPU 上执行。单独调用 Python 样本筛选入口时，可传 `--device cpu` 使用基础依赖进行 CPU 筛选。
-
-两个 Python 命令的 `--run-dir` 都支持多个目录，要求使用相同 SAE、hookpoint 和投影设置。`saerl-select` 必须传入完整源数据集 `--dataset`，直接保存合并后的训练子集。`select.sh` 将所有结果写入 `SAERL_SELECTION_DIR`；单独调用 Python 入口且省略 `--output` 时，feature IDs 写入第一个梯度目录的 `selection/feature_indices.npy`，训练子集写入 `selection/training.parquet`。
+exact cosine 计算使用可见 GPU 中的第一张卡；feature 统计、Parquet 读取和导出在 CPU 上执行。
 
 | 输出位置 | 文件及内容 |
 | --- | --- |
-| `$SAERL_SELECTION_DIR/` | `feature_indices.npy`：全数据共享的 feature IDs |
-| `$SAERL_SELECTION_DIR/` | `subset.parquet`：gradient core set 与全部零奖励样本合并后的训练子集 |
+| `select.sh` 配置的输出目录 | `feature_indices.npy`：全数据共享的 feature IDs |
+| `select.sh` 配置的输出目录 | `subset.parquet`：gradient core set 与全部零奖励样本合并后的训练子集 |
 
 筛选阶段只保存上述两个文件，feature 数、core set 数、零奖励样本数及最终子集大小输出到终端。
 
 导出保留源 Parquet 的行序、schema 和 metadata，不按 greedy 选中顺序重排行。`subset.parquet` 包含最终训练子集；脚本不会额外写 sample indices、pattern、energy scores 或筛选 manifest。
 
-### 使用 Slurm 提交 selection
-
-当前 `test.sbatch` 申请一张 GPU，并调用 `scripts/select.sh`。按运行机器调整其中的路径与环境后，可以在提交时传入数据和输出目录：
-
-```bash
-sbatch --export=ALL,SAERL_TRAIN_DATA=path/to/train.parquet,SAERL_RUN_DIR=path/to/gradient_run,SAERL_SELECTION_DIR=path/to/selection_output test.sbatch
-```
-
-selection 使用作业分配的第一张可见 GPU；作业内沿用 Slurm 设置的 `CUDA_VISIBLE_DEVICES` 即可。
-
 ## 3. RL 训练
 
 ### 普通 GRPO
 
-完整训练集上的 GRPO：
+在 `grpo.sh` 中配置训练数据和训练参数后执行：
 
 ```bash
 bash scripts/grpo.sh
 ```
 
-对 selection 导出的子集进行 GRPO：
-
-```bash
-bash scripts/grpo.sh data.train_files="$SAERL_SELECTION_DIR/subset.parquet"
-```
-
-第二种方式完成当前已实现的“梯度提取 → selection → 子集 RL 训练”流程。
+默认使用 `common.sh` 配置的完整训练集。训练 selection 导出的子集时，在 `grpo.sh` 的训练命令中、`COMMON_ARGS` 后增加 `data.train_files` 参数，值设为筛选输出目录中的 `subset.parquet`，再运行同一脚本。
 
 ### 按外部 processed_file 训练
 
 `processed_file` 需要准备为**一维整数 Torch Tensor，保存样本在完整训练数据集中的行号，排列顺序就是训练取样顺序**。索引范围为 `0` 到实际完整数据集行数减一。sampler 通过 `torch.load(...).tolist()` 读取列表，保留原顺序及重复项，每个 epoch 复用该列表。
 
+修改 `sae.sh` 中的 `processed_file` 路径后执行：
+
 ```bash
-export SAERL_PROCESSED_FILE="path/to/processed.pt"
 bash scripts/sae.sh
 ```
 
-这里的 `SAERL_TRAIN_DATA` 必须仍指向生成索引时的**完整源 Parquet，且行序一致**；通过索引列表限定要训练的子集。`sae.sh` 覆盖公共参数，将长 prompt 过滤设为 `False`，保留原数据行号。`saerl.yaml` 设置 `train_max_samples=-1`、`shuffle=false`、`dataloader_num_workers=0`，接入读取索引的 `SAERLSampler`。prompt 最大长度应能容纳选中样本。
+这里 `common.sh` 中的训练数据路径必须仍指向生成索引时的**完整源 Parquet，且行序一致**；通过索引列表限定要训练的子集。`sae.sh` 覆盖公共参数，将长 prompt 过滤设为 `False`，保留原数据行号。`saerl.yaml` 设置 `train_max_samples=-1`、`shuffle=false`、`dataloader_num_workers=0`，接入读取索引的 `SAERLSampler`。prompt 最大长度应能容纳选中样本。
 
 `sae.sh` 只训练文件指定的样本。完整 SAERL 所需的 curriculum 排序模块尚未合并；已有外部排序结果时，可通过这个入口进行训练。
 
 普通 GRPO 和 `sae.sh` 使用官方训练 DataLoader 的 `drop_last=True`：每个 epoch 不足一个 prompt batch 的尾部样本会被丢弃。`sae.sh` 的列表长度需要至少达到一个 batch；希望每轮遍历全部列表时，应让列表长度能被实际 batch size 整除（通常为 `data.train_batch_size`，配置 `data.gen_batch_size` 时使用后者），并满足 verl 的 GPU 数和 PPO mini batch 约束。静态提取使用 `drop_last=False` 并补齐尾批。
 
-### checkpoint、验证和参数覆盖
+### checkpoint 和验证
 
-GRPO 与 `sae.sh` 默认训练 `30` 个 epoch，训练前验证，并且每 `20` step 保存和验证。checkpoint 分别写入 `$SAERL_WORK_DIR/checkpoints/grpo` 和 `$SAERL_WORK_DIR/checkpoints/saerl`；`resume_mode=auto` 自动从已有 checkpoint 恢复。启动新实验时设置新的 `SAERL_WORK_DIR` 或 `trainer.default_local_dir`。
+GRPO 与 `sae.sh` 默认训练 `30` 个 epoch，训练前验证，并且每 `20` step 保存和验证。checkpoint 分别写入输出根目录下的 `checkpoints/grpo` 和 `checkpoints/saerl`；`resume_mode=auto` 自动从已有 checkpoint 恢复。启动新实验时，修改 `common.sh` 的输出根目录或对应训练脚本中的 `trainer.default_local_dir`。
 
-提取循环不执行验证或 checkpoint 保存，关闭普通训练恢复，续跑使用专门的 `static_gradient_extraction.resume_from_step`。默认 WandB 离线记录在项目 `wandb/`，可通过 `WANDB_MODE=online` 覆盖。
+提取循环不执行验证或 checkpoint 保存，关闭普通训练恢复，续跑使用专门的 `static_gradient_extraction.resume_from_step`。默认 WandB 离线记录在项目 `wandb/`，需要在线记录时，在 `common.sh` 中将 WandB 模式改为 `online`。
 
-提取和 RL 训练入口可在命令末尾追加 Hydra 参数；筛选脚本通过上面的环境变量配置：
-
-```bash
-bash scripts/grpo.sh trainer.total_epochs=1 'trainer.logger=[console]'
-bash scripts/extract.sh static_gradient_extraction.gradient_feature_topk=64
-bash scripts/sae.sh \
-  data.saerl.processed_file="path/to/other_processed.pt"
-```
-
-只查看合成配置、不启动 Ray/GPU：
-
-```bash
-bash scripts/extract.sh --cfg job
-bash scripts/grpo.sh --cfg job
-bash scripts/sae.sh --cfg job
-```
-
-安装后有四个 Python 命令入口：`saerl-extract`、`saerl-train`、`saerl-feature-select`、`saerl-select`。前两个直接使用 Hydra 配置，脚本中的 `COMMON_ARGS` 由 `.sh` 入口传入。更新命令入口后，已安装环境可在项目根目录执行 `python -m pip install -e . --no-deps --no-build-isolation` 刷新安装信息。
+训练轮数、GPU 数和各流程专用参数在对应 `.sh` 脚本中修改；公共参数在 `common.sh` 中修改。配置合并顺序见前文，脚本传入的参数会覆盖 YAML 中的同名设置。
 
 ## verl 接入与许可证
 
@@ -381,8 +234,8 @@ bash scripts/sae.sh --cfg job
 
 提取调用链为官方 `run_ppo` → `SAERLTaskRunner` → `StaticGradientTrainer` → `StaticGradientWorker` → `StaticGradientActor` → 层输出梯度 hook → SAE 投影及聚合 → Parquet。
 
-奖励入口为 `saerl.verl.reward.compute_score`：DeepMath、MinervaMath、OlympiadBench 使用 mathruler，AIME 2024、AMC-23 使用官方 `math_reward`，其他数据来源使用官方默认评分；SymPy 等价性判断保留 10 秒超时。
+奖励入口为 `saerl.verl.reward.compute_score`：DeepMath、MinervaMath、OlympiadBench 使用 mathruler，AIME 2024、AMC-23 使用官方 `math_reward`，其他数据来源使用官方默认评分。SymPy 等价性判断沿用 dev 中的 verl 子进程超时实现，保留 10 秒超时，超时评分为 0。
 
-本次核对通过了 CPU selection 小样本验证（feature energy、exact cosine greedy、全部零奖励并集、导出行序和 metadata）、wheel 构建及固定官方 YAML 的配置合成。当前环境完整训练入口的导入检查在 flash-attn 初始化阶段超时；未执行真实 GPU/FSDP backward、分布式 Ray 训练或全新 CUDA 环境安装。
+已通过 CPU selection 小样本验证（feature energy、exact cosine greedy、全部零奖励并集、导出行序和 metadata）、wheel 构建及固定官方 YAML 的配置合成。完整 GPU 梯度提取及分布式 RL 训练仍需实际运行验证。
 
 SAERL includes adaptations of verl (Copyright Bytedance Ltd., SGLang Team, ModelBest Inc.) and a DeepMath scorer (Copyright Huawei Technologies Co., Ltd.), licensed under Apache-2.0. 许可证全文见 `LICENSE`，相关源码保留原有版权声明。
