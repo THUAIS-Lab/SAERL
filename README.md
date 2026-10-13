@@ -8,6 +8,7 @@ SAERL 是独立的 Python 项目，当前实现“梯度提取 → Gradient-SAE 
 
 ```text
 scripts/
+  install_train.sh          # 调用固定提交的官方 verl 脚本，配置 FSDP + vLLM 训练环境
   common.sh                 # 共用输入路径、GRPO、rollout、优化器、KL、日志及 checkpoint 设置
   extract.sh                # 单遍静态梯度提取入口，配置 SAE 和提取输出
   select.sh                 # feature 选择、core set 筛选、零奖励合并及子集导出
@@ -51,35 +52,48 @@ LICENSE                     # Apache-2.0 许可证
 
 selection 按梯度提取、feature selection、sample selection 三个阶段组织。梯度提取分为 `extraction.py`（提取结果聚合与写出）和 `sae_projection.py`（SAE 投影）；`feature_selection.py` 负责 Normalized Energy Top-K；`sample_selection.py` 完成 pattern 构造、exact cosine greedy、全部零奖励样本合并和最终子集导出。提取结果的加载与稀疏读取放在 `feature_selection.py`，供后续步骤复用。
 
-## 安装
+## 环境安装
 
-提取和 RL 训练使用 Python 3.12，依赖固定为 Torch 2.8.0、vLLM 0.11.0、flash-attn 2.8.1 等版本，沿用原 CUDA 12.8 环境。在项目根目录执行：
+使用 Conda 创建 Python 3.12 环境，然后通过 `scripts/install_train.sh` 调用固定 verl 提交的[官方依赖安装脚本](https://github.com/verl-project/verl/blob/875788ef6e218d0b98cb64fff919d9fef014f986/scripts/install_vllm_sglang_mcore.sh)，安装 FSDP + vLLM 训练环境及本项目。适用于 Linux x86_64 / NVIDIA CUDA 12.8；需要可用的 `git`、`curl`、`wget`，并能访问 PyTorch wheel 源与 GitHub。
+
+在本项目根目录执行以下三条命令：
 
 ```bash
-python3.12 -m venv .venv
-source .venv/bin/activate
-python -m pip install --upgrade pip setuptools wheel
-python -m pip install 'torch==2.8.0' packaging ninja
-python -m pip install 'flash-attn==2.8.1' --no-build-isolation
-python -m pip install -e '.[train]'
+conda create -n saerl python=3.12 pip -y
+conda activate saerl
+bash scripts/install_train.sh
 ```
 
-`train` extra 读取根目录的 `requirements.txt`。也可以在安装 Torch 和 flash-attn 后执行 `python -m pip install -r requirements.txt`、`python -m pip install -e .`。使用集群提供的 flash-attn wheel 时，选择与上述 Torch/CUDA 环境匹配的版本。避免将旧 verl checkout 加入 `PYTHONPATH`。
+脚本依次安装 Torch 2.8.0 / torchvision 0.23.0 / torchaudio 2.8.0 的 CUDA 12.8 wheel，以 `USE_MEGATRON=0 USE_SGLANG=0` 运行官方脚本，再安装固定提交的 verl 和本项目，最后执行 `pip check`。安装时用 `requirements.txt` 约束依赖版本，完成后即可运行提取、筛选和训练脚本。
 
-本项目直接加载 OpenSAE 格式的预训练 decoder，投影和 Token-TopK 使用 Torch 实现；运行上述流程无需额外安装 OpenSAE 源码包。
+官方脚本写死了 `MAX_JOBS=32` 和 flash-attn 的 FALSE ABI；安装入口将前者改为默认 `2`（可通过 `MAX_JOBS` 覆盖），并按实际 Torch ABI 选择官方 flash-attn wheel。其余依赖安装步骤沿用原脚本。
+
+以后开启新终端或运行作业时，激活同一环境：
+
+```bash
+conda activate saerl
+```
+
+本项目直接加载 OpenSAE 格式的预训练 decoder，投影和 Token-TopK 使用 Torch 实现，无需额外安装 OpenSAE 源码包。
 
 ### 安装固定 verl 版本
 
 本项目使用的基线来自本仓库 `main` 的 `be4da3e7711ced82677c4e7174367e7938ea0b54`。已将该快照与[官方固定提交](https://github.com/verl-project/verl/commit/875788ef6e218d0b98cb64fff919d9fef014f986)逐文件比较：1175 个对应文件的 Git blob 哈希一致。`dev` 的 `a7a707729b39dbed8c6126ace675bd0ba60d4e2a` 包含本地训练、奖励和提取改动；当前项目通过 `saerl.verl` 适配官方基线。
 
-`requirements.txt` 使用完整 Git commit 的直接依赖，`pyproject.toml` 的 `train` extra 从该文件读取。因此 `pip install -e '.[train]'` 和 `pip install -r requirements.txt` 使用同一提交，不跟随上游 main/dev 分支更新，也不使用仅固定 `verl==0.7.0.dev0` 的方式；不同源码提交可能使用相同版本号。
+`requirements.txt` 使用完整 Git commit 的直接依赖，`pyproject.toml` 的 `train` extra 从该文件读取。安装脚本下载的官方依赖脚本和最终安装的 verl 使用同一提交，不跟随上游 main/dev 分支更新；不同源码提交可能使用相同的 `0.7.0.dev0` 版本号。
 
-如果沿用以前直接开发 verl 的环境，需要先替换旧的 editable verl。以下命令只替换 verl，训练环境的其他依赖仍需按上面的安装步骤准备：
+<details>
+<summary>已有训练环境：替换旧 verl 或手动查看安装来源</summary>
+
+以下操作适用于已经具备匹配的 Torch、vLLM 和 flash-attn 的训练环境；从头配置环境时使用上面的 Conda 和安装脚本流程。
+
+如果沿用以前直接开发 verl 的环境，先替换旧的 editable verl，再安装本项目：
 
 ```bash
 python -m pip uninstall -y verl
 python -m pip install --no-deps \
   'verl @ git+https://github.com/verl-project/verl.git@875788ef6e218d0b98cb64fff919d9fef014f986'
+python -m pip install -e '.[train]' --no-build-isolation
 ```
 
 `import verl` 只加载当前环境中的包，不会下载或安装依赖；版本固定在 pip 安装阶段完成。安装后如需手动查看提交信息和导入位置，可以运行：
@@ -90,6 +104,10 @@ python -c "import importlib.util; print(importlib.util.find_spec('verl').origin)
 ```
 
 第一条输出中的 `vcs_info.commit_id` 应为上述完整提交，第二条应指向当前环境安装的 verl。旧 checkout 出现在 `PYTHONPATH` 或当前工作目录下时可能覆盖已安装的包；移除旧路径并从本项目根目录启动即可。SAERL 自身可以 editable 安装，verl 使用上述固定 Git 依赖安装。
+
+</details>
+
+### 仅运行 selection
 
 如果只对已有提取结果进行单卡 GPU selection 和导出，安装基础依赖及 Torch 即可：
 
