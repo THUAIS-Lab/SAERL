@@ -131,6 +131,7 @@ def export_subset(
     output_path = output_path.expanduser().resolve()
     output_path.parent.mkdir(parents=True, exist_ok=True)
     pq.write_table(training, output_path, compression="snappy")
+    np.save(output_path.parent / "selected_ids.npy", combined_ids, allow_pickle=False)
     return {
         "core_set": int(selected_ids.size),
         "zero_reward": int(zero_reward_ids.size),

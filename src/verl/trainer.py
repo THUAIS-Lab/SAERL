@@ -124,7 +124,9 @@ class StaticGradientTrainer(RayPPOTrainer):
                     reward_tensor, reward_extra = ray.get(reward_future)
                 batch.batch["token_level_scores"] = reward_tensor
                 if reward_extra:
-                    batch.non_tensor_batch.update({key: np.array(value) for key, value in reward_extra.items()})
+                    batch.non_tensor_batch.update({
+                        key: np.array(value) for key, value in reward_extra.items()
+                    })
                 if self.config.algorithm.use_kl_in_reward:
                     batch, kl_metrics = apply_kl_penalty(
                         batch, kl_ctrl=self.kl_ctrl_in_reward, kl_penalty=self.config.algorithm.kl_penalty,

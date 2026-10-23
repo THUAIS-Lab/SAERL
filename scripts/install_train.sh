@@ -9,7 +9,7 @@ trap 'rm -rf -- "$SAERL_INSTALL_DIR"' EXIT
 export PIP_CONSTRAINT="$SAERL_ROOT/requirements.txt"
 
 printf "[1/5] Installing PyTorch CUDA 12.8 and prerequisite packages\n"
-python -m pip install --upgrade pip setuptools wheel
+python -m pip install --upgrade pip setuptools 'packaging>=24.2' wheel
 python -m pip install numpy==1.26.4 filelock==3.25.2
 python -m pip install \
     torch==2.8.0 torchvision==0.23.0 torchaudio==2.8.0 \

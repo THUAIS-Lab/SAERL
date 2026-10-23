@@ -16,3 +16,10 @@ wandb/
 *.safetensors
 *.parquet
 *.npy
+*.npz
+*.joblib
+*.ckpt
+*.bin
+*.zip
+*.log
+.DS_Store

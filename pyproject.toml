@@ -1,11 +1,11 @@
 [build-system]
-requires = ["setuptools>=77", "wheel"]
+requires = ["setuptools>=77", "packaging>=24.2", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "saerl"
 version = "0.1.0"
-description = "Static gradient SAE representations and data selection for RL"
+description = "SAE-guided data selection and curriculum construction for RL"
 readme = "README.md"
 requires-python = ">=3.12"
 license = "Apache-2.0"
@@ -25,10 +25,16 @@ packages = [
   "saerl.config",
   "saerl.verl",
   "saerl.selection",
+  "saerl.core",
+  "saerl.dataset",
+  "saerl.sae_analysis",
+  "saerl.sae_analysis.sae",
+  "saerl.difficulty",
+  "saerl.curriculum",
 ]
 
 [tool.setuptools.package-data]
-"saerl.config" = ["*.yaml"]
+"saerl.config" = ["*.yaml", "*.json"]
 
 [tool.setuptools.dynamic.optional-dependencies]
 train = {file = ["requirements.txt"]}
